@@ -1,0 +1,337 @@
+﻿<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | typingWorld</title>
+    <link rel="shortcut icon" href="https://dreadmoz.github.io/typingWorldMirror/WebGL/favicon.ico">
+    <link rel="stylesheet" href="https://dreadmoz.github.io/typingWorldMirror/WebGL/style.css">
+</head>
+<body>
+    <div id="unity-container" class="unity-desktop">
+        <canvas id="unity-canvas" width=1366 height=768></canvas>
+        <div id="unity-loading-bar">
+            <div id="unity-logo"></div>
+            <div id="unity-progress-bar-empty">
+                <div id="unity-progress-bar-full"></div>
+            </div>
+        </div>
+        <div id="unity-warning"> </div>
+        <div id="unity-footer">
+            <div id="unity-webgl-logo"></div>
+            <div id="unity-fullscreen-button"></div>
+            <div id="unity-build-title">全画面</div>
+        </div>
+    </div>
+
+    <script type="module">// Import the functions you need from the SDKs you need
+        var userInfo = null;
+        let myGameInstance = null; // グローバルスコープで定義
+
+        function getUserInfo() {
+            google.script.run.withSuccessHandler(setUserInfo).getUserInformation();
+        }
+        function setUserInfo(info)
+        {
+          userInfo = info;
+        }
+        var container = document.querySelector("#unity-container");
+        var canvas = document.querySelector("#unity-canvas");
+        var loadingBar = document.querySelector("#unity-loading-bar");
+        var progressBarFull = document.querySelector("#unity-progress-bar-full");
+        var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+        var warningBanner = document.querySelector("#unity-warning");
+
+        function unityShowBanner(msg, type) {
+          function updateBannerVisibility() {
+              warningBanner.style.display = warningBanner.children.length ? "block" : "none";
+          }
+          var div = document.createElement("div");
+          div.innerHTML = msg;
+          warningBanner.appendChild(div);
+          if (type == "error") div.style = "background: red; padding: 10px;";
+          else {
+              if (type == "warning") div.style = "background: yellow; padding: 10px;";
+              setTimeout(function () {
+                  warningBanner.removeChild(div);
+                  updateBannerVisibility();
+              }, 5000);
+          }
+          updateBannerVisibility();
+        }
+
+        //ウインドウサイズに合わせキャンバスサイズを変更
+        function fitWindowCanvasSize(){
+          
+          var winHeight = window.innerHeight;
+          const isViewUnderBar = true;  //falseにすると下部のバーが画面外に表示
+          if (isViewUnderBar){
+            const barHeight = 18*2;            //下部のバーサイズ
+            const barHeightMargin = 10*2;      //下部の追加余白サイズ
+            winHeight = winHeight - barHeight - barHeightMargin;
+          }
+          const winWidth = window.innerWidth;
+          const appWidth = "1366";
+          const appHeight = "768";
+          const scale = Math.min((winWidth / appWidth), (winHeight / appHeight));
+          const fixWidth = (appWidth * scale);
+          const fixHeight = (appHeight * scale);
+
+          canvas.style.width = fixWidth + 'px';
+          canvas.style.height = fixHeight + 'px';
+        }
+        //ウインドウのリサイズ時の処理
+        function windowResizeEvent(){
+          var timeoutId = 0;
+          const resizeDelay = 300;  //リサイズが完了したと判断する時間
+          window.onresize = () => {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(()=>{
+              //リサイズ終了時の処理
+              fitWindowCanvasSize();
+            }, resizeDelay);
+          };
+        }
+
+        var buildUrl = "https://dreadmoz.github.io/typingWorldMirror/WebGL/Build";
+        var loaderUrl = buildUrl + "/WebGL.loader.js";
+        var config = {
+          dataUrl: buildUrl + "/WebGL.data",
+          frameworkUrl: buildUrl + "/WebGL.framework.js",
+          codeUrl: buildUrl + "/WebGL.wasm",
+          streamingAssetsUrl: "StreamingAssets",
+          companyName: "DefaultCompany",
+          productName: "TestingGAS",
+          productVersion: "1.0.0",
+          showBanner: unityShowBanner,
+        };
+
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+          // Mobile device style: fill the whole browser client area with the game canvas:
+
+          var meta = document.createElement("meta");
+          meta.name = "viewport";
+          meta.content = "width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes";
+          document.getElementsByTagName("head")[0].appendChild(meta);
+          container.className = "unity-mobile";
+          canvas.className = "unity-mobile";
+
+          unityShowBanner("WebGL builds are not supported on mobile devices.");
+        } else {
+          // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+          fitWindowCanvasSize();
+        }
+        loadingBar.style.display = "block";
+
+        var script = document.createElement("script");
+        script.src = loaderUrl;
+        script.onload = () => {
+          createUnityInstance(canvas, config, (progress) => {
+              progressBarFull.style.width = 100 * progress + "%";
+          }).then((unityInstance) => {
+              myGameInstance = unityInstance;
+              loadingBar.style.display = "none";
+              fullscreenButton.onclick = () => {
+                  unityInstance.SetFullscreen(1);
+              };
+          }).catch((message) => {
+              alert(message);
+          });
+          windowResizeEvent();
+        };
+        document.body.appendChild(script);
+
+        //######################################################
+        // ゲームデータ
+        //######################################################
+
+        let checkTime = 1000 * 60 * 60 * 2; // ms * 秒 *　分 * 時間
+
+        /// <summary>
+        /// Googleアカウントにログインします。
+        /// </summary>
+        /// <remarks>
+        /// OAuth認証。メール、ユーザ名、プロフィール画像のURL取得
+        async function getOAuth() {
+            google.script.run.withSuccessHandler(finishOAuth).getUserInformation();
+        }
+
+        function finishOAuth(response) {
+            userInfo = JSON.parse(response); // JSON文字列をオブジェクトに変換
+
+            console.log("Logged in as:", userInfo.email);
+            console.log('User firstName:', userInfo.firstName);
+            console.log('User lastName:', userInfo.lastName);
+            console.log('User photo URL:', userInfo.picture);
+            console.log('User Message:', userInfo.Message);
+            console.log('User access:', userInfo.access);
+            
+            myGameInstance.SendMessage('TitleScene', 'finishOAuth', JSON.stringify(userInfo));
+        }
+        window.getOAuth = getOAuth;
+
+        /// <summary>
+        /// Googleアカウントからログアウトします。
+        /// </summary>
+        /// <remarks>
+        /// OAuth認証セッションを終了します。
+        /// </remarks>
+        async function oAuthLogout() {
+            myGameInstance.SendMessage("TitleScene", "finishLogout");
+        }
+        window.oAuthLogout = oAuthLogout;
+
+        /// <summary>
+        /// GAS (Google Apps Script) から個人のステータスデータを受け取ります。
+        /// </summary>
+        /// <remarks>
+        /// GASから受け取るJSON形式はカンマ区切りの文字列。これをJSONにしてC＃に渡す
+        /// </remarks>
+        async function loadFromGss() {
+            google.script.run.withSuccessHandler(finishLoadFromGss).getUserStatus(userInfo.email);
+        }
+        window.loadFromGss = loadFromGss;
+
+        function finishLoadFromGss(response) {
+            try {
+                if (!response) {
+                    console.error("Response is null or undefined.");
+                    myGameInstance.SendMessage("TitleScene", "finishDataLoadGas", "");
+                    return;
+                }
+
+                const userData = JSON.parse(response); // JSON形式の文字列をオブジェクトに変換
+
+                if (userData.error) {
+                    console.log("from GAS:", userData.error);
+                    myGameInstance.SendMessage("TitleScene", "finishDataLoadGas", "");
+                } else {
+                    console.log("Data received successfully:", userData);
+                    myGameInstance.SendMessage("TitleScene", "finishDataLoadGas", JSON.stringify(userData));
+                }
+            } catch (error) {
+                console.error("Error receiving data:", error);
+                myGameInstance.SendMessage("TitleScene", "finishDataLoadGas", "");
+            }
+        }
+
+        /// <summary>
+        /// GASに保存データを送信します。
+        /// </summary>
+        /// <param name="data">GASに送るJSON形式のメッセージ文字列。データの内容はカンマ区切りで構成されています。</param>
+        /// <remarks>
+        /// GASでスプレッドシートの同じメールアドレスの行が更新される
+        /// </remarks>
+        async function saveToGss(data) {
+            console.log("saveToGss:", data);
+            const lastSavedTime = localStorage.getItem("lastSavedTime");
+            const currentTime = new Date();
+            const timestamp = new Date(lastSavedTime);
+
+            // 前回の保存から時間が経過しているか確認
+            if (lastSavedTime && (currentTime - timestamp) < checkTime) {
+                console.log(`前回の保存から${checkTime / 3600000}時間が経ってないのでスキップ。更新は${Math.floor((checkTime-(currentTime - timestamp)) / 60000)}分後`);
+                return; // 24時間以内なら保存処理をスキップ
+            }
+            google.script.run.withSuccessHandler(finishSaveToGss).saveData(data);
+        }
+        window.saveToGss = saveToGss;
+
+        async function finishSaveToGss(response) {
+            try {
+                console.log("Received data:", response); // デバッグ用に受け取ったデータをログ出力
+                let parsedResponse = JSON.parse(response); // JSON文字列をオブジェクトに変換
+                console.log("Parsed response data:", parsedResponse);
+
+                if (parsedResponse && parsedResponse.result === "success") {
+                    const timestamp = new Date().toISOString();
+                    localStorage.setItem("lastSavedTime", timestamp);
+                    console.log("Data saved successfully at:", timestamp);
+                } else if (parsedResponse && parsedResponse.result === "neednot") {
+                    console.log("Data need not to save:", timestamp);
+                }
+                else
+                {
+                    console.error("Failed to save data or invalid response structure:", response);
+                }
+            } catch (error) {
+                console.error("Error handling response:", error);
+            }
+        }
+
+        /// <summary>
+        /// ランキングデータを取得します。
+        /// </summary>
+        /// <param name="data"></param>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        async function getNecoRank() {
+            // LocalStorageからstatusDataを取得
+            const storedData = localStorage.getItem("statusData");
+            if (!storedData) {
+                console.log("LocalStorageからstatusDataが見つかりません。");
+                return;
+            }
+
+            const parsedData = JSON.parse(storedData);
+            const statusData = parsedData.statusData; // ここでネストされたstatusDataにアクセス
+            console.log("Complete statusData:", statusData); // 全データをログ出力して確認
+
+            const Stage = statusData.Stage;
+            console.log("Extracted Stage:", Stage); // ステージ値のログ出力
+
+            // 前回のランキング取得から24時間が経過しているか確認
+            const lastLoadedTime = localStorage.getItem("lastLoadedTime");
+            const currentTime = new Date();
+            const timestamp = new Date(lastLoadedTime);
+
+            if (lastLoadedTime && (currentTime - timestamp) < checkTime) {
+                console.log(`前回のランキング取得から${checkTime / 3600000}時間が経ってないのでスキップ。更新は${Math.floor((checkTime-(currentTime - timestamp)) / 60000)}分後`);
+                return; // 24時間以内ならロード処理をスキップ
+            }
+
+            if (Stage !== undefined) {
+                google.script.run.withSuccessHandler(finishGetRanking).getPlayersRanking(Stage);
+            } else {
+                console.log("StageがstatusData内に存在しません。");
+            }
+        }
+        window.getNecoRank = getNecoRank;
+
+        function finishGetRanking(response) {
+            try {
+                console.log("Data received successfully:", response);
+                let parsedResponse = JSON.parse(response); // JSON文字列をオブジェクトに変換
+
+                if (parsedResponse && parsedResponse.values) {
+                    localStorage.setItem("rankingData", JSON.stringify({ rankingData: parsedResponse.values }));
+                    console.log("ランキングデータをLocalStorageに保存しました");
+
+                    const timestamp = new Date().toISOString();
+                    localStorage.setItem("lastLoadedTime", timestamp);
+                    console.log("Data loaded successfully at:", timestamp);
+
+                    myGameInstance.SendMessage("GameManager", "finishDataLoadExtRanking", JSON.stringify({ rankingData: parsedResponse.values }));
+                } else {
+                    console.error("Failed to parse ranking data from response.");
+                }
+            } catch (error) {
+                console.error("Error parsing response:", error);
+            }
+        }
+
+        window.onload = getUserInfo;
+        /// <summary>
+        /// Geminiにデータプロンプトを送信します。　使用しない。
+        /// </summary>
+        /// <param name="data">Geminiに送るJSON形式のメッセージ文字列。データの内容はカンマ区切りで構成されています。</param>
+        /// <remarks>
+        /// Geminiに送るデータの羅列。プロンプトにはなっていない。
+        /// </remarks>
+        async function throughGemini(data) {
+        }
+        window.throughGemini = throughGemini;
+    </script>
+</body>
+</html>
