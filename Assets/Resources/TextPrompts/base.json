@@ -1,0 +1,438 @@
+{
+    "timer": 50,
+    "random": 30,
+    "hide": 0,
+    "messages": [
+        {
+            "count": 0,
+            "description": ""
+        }
+    ],
+    "themes": [
+        {
+            "id": 1,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 2,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 3,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 4,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 5,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 6,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 7,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 8,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 9,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 10,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 11,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 12,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 13,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 14,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 15,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 16,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 17,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 18,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 19,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 20,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 21,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 22,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 23,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 24,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 25,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 26,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 27,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 28,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 29,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 30,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 31,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 32,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 33,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 34,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 35,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 36,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 37,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 38,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 39,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 40,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 41,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 42,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 43,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 44,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 45,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 46,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 47,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 48,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 49,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 50,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 51,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 52,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 53,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 54,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 55,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 56,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 57,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 58,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 59,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 60,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 61,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 62,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 63,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 64,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 65,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 66,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 67,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 68,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 69,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 70,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 71,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 72,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 73,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 74,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 75,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 76,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 77,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 78,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 79,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 80,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 81,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 82,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 83,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 84,
+            "kanji": "",
+            "hiragana": ""
+        },
+        {
+            "id": 85,
+            "kanji": "",
+            "hiragana": ""
+        }
+    ]
+}

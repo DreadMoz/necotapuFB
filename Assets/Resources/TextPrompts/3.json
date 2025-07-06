@@ -1,0 +1,371 @@
+{
+  "title": "あいうえおの打ち方",
+  "description": "あいうえおまでのことばのれんしゅう",
+  "timer": 0,
+  "random": 0,
+  "hide": 99,
+  "messages": [
+    {
+      "count": 0,
+      "description": "あいうえおのれんしゅうだよ。「あ」のばしょはここです。ひかってるキーをおしてね。"
+    },
+    {
+      "count": 1,
+      "description": "「い」のばしょはここです。みぎ手のなかゆびでおしてね。"
+    },
+    {
+      "count": 2,
+      "description": "「う」のばしょはここです。みぎ手のひとさしゆびでおしてね。"
+    },
+    {
+      "count": 3,
+      "description": "「え」のばしょはここです。ひだり手のなかゆびでおしてね。"
+    },
+    {
+      "count": 4,
+      "description": "「お」のばしょはここです。みぎ手のくすりゆびでおしてね。"
+    },
+    {
+      "count": 5,
+      "description": "「あ」のばしょはここです。ひだり手のこゆびでおしてね。"
+    },
+    {
+      "count": 6,
+      "description": "「い」のばしょはここです。みぎ手のなかゆびでおしてね。"
+    },
+    {
+      "count": 7,
+      "description": "「う」のばしょはここです。みぎ手のひとさしゆびでおしてね。"
+    },
+    {
+      "count": 8,
+      "description": "「え」のばしょはここです。ひだり手のなかゆびでおしてね。"
+    },
+    {
+      "count": 9,
+      "description": "「お」のばしょはここです。みぎ手のくすりゆびでおしてね。"
+    },
+    {
+      "count": 10,
+      "description": "「あ」のばしょはここです。ひだり手のこゆびでおしてね。"
+    },
+    {
+      "count": 11,
+      "description": "「い」のばしょはここです。みぎ手のなかゆびでおしてね。"
+    },
+    {
+      "count": 12,
+      "description": "「う」のばしょはここです。みぎ手のひとさしゆびでおしてね。"
+    },
+    {
+      "count": 13,
+      "description": "「え」のばしょはここです。ひだり手のなかゆびでおしてね。"
+    },
+    {
+      "count": 14,
+      "description": "「お」のばしょはここです。みぎ手のくすりゆびでおしてね。"
+    },
+    {
+      "count": 15,
+      "description": "「あ」のばしょはここです。ひだり手のこゆびでおしてね。"
+    },
+    {
+      "count": 16,
+      "description": "「い」のばしょはここです。みぎ手のなかゆびでおしてね。"
+    },
+    {
+      "count": 17,
+      "description": "「う」のばしょはここです。みぎ手のひとさしゆびでおしてね。"
+    },
+    {
+      "count": 18,
+      "description": "「え」のばしょはここです。ひだり手のなかゆびでおしてね。"
+    },
+    {
+      "count": 19,
+      "description": "「お」のばしょはここです。みぎ手のくすりゆびでおしてね。"
+    },
+    {
+      "count": 20,
+      "description": "「あ」のばしょはここです。ひだり手のこゆびでおしてね。"
+    },
+    {
+      "count": 21,
+      "description": "「い」のばしょはここです。みぎ手のなかゆびでおしてね。"
+    },
+    {
+      "count": 22,
+      "description": "「う」のばしょはここです。みぎ手のひとさしゆびでおしてね。"
+    },
+    {
+      "count": 23,
+      "description": "「え」のばしょはここです。ひだり手のなかゆびでおしてね。"
+    },
+    {
+      "count": 24,
+      "description": "「お」のばしょはここです。みぎ手のくすりゆびでおしてね。"
+    },
+    {
+      "count": 25,
+      "description": "「あ」のばしょはここです。ひだり手のこゆびでおしてね。"
+    },
+    {
+      "count": 26,
+      "description": "「い」のばしょはここです。みぎ手のなかゆびでおしてね。"
+    },
+    {
+      "count": 27,
+      "description": "「う」のばしょはここです。みぎ手のひとさしゆびでおしてね。"
+    },
+    {
+      "count": 28,
+      "description": "「え」のばしょはここです。ひだり手のなかゆびでおしてね。"
+    },
+    {
+      "count": 29,
+      "description": "「お」のばしょはここです。みぎ手のくすりゆびでおしてね。"
+    },
+    {
+      "count": 30,
+      "description": "がんばってつづけましょう！「あ」のばしょはここです。ひだり手のこゆびでおしてね。"
+    },
+    {
+      "count": 31,
+      "description": "「い」のばしょはここです。みぎ手のなかゆびでおしてね。"
+    },
+    {
+      "count": 32,
+      "description": "「う」のばしょはここです。みぎ手のひとさしゆびでおしてね。"
+    },
+    {
+      "count": 33,
+      "description": "「え」のばしょはここです。ひだり手のなかゆびでおしてね。"
+    },
+    {
+      "count": 34,
+      "description": "「お」のばしょはここです。みぎ手のくすりゆびでおしてね。"
+    },
+    {
+      "count": 35,
+      "description": "「あ」のばしょはここです。ひだり手のこゆびでおしてね。"
+    },
+    {
+      "count": 36,
+      "description": "「い」のばしょはここです。みぎ手のなかゆびでおしてね。"
+    },
+    {
+      "count": 37,
+      "description": "「う」のばしょはここです。みぎ手のひとさしゆびでおしてね。"
+    },
+    {
+      "count": 38,
+      "description": "「え」のばしょはここです。ひだり手のなかゆびでおしてね。"
+    },
+    {
+      "count": 39,
+      "description": "「お」のばしょはここです。みぎ手のくすりゆびでおしてね。"
+    }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "あ"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "い"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "う"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "え"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "お"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "あ"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "い"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "う"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "え"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "お"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "あ"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "い"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "う"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "え"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "お"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "あ"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "い"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "う"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "え"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "お"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "あ"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "い"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "う"
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": "え"
+    },
+    {
+      "id": 25,
+      "kanji": "",
+      "hiragana": "お"
+    },
+    {
+      "id": 26,
+      "kanji": "",
+      "hiragana": "あ"
+    },
+    {
+      "id": 27,
+      "kanji": "",
+      "hiragana": "い"
+    },
+    {
+      "id": 28,
+      "kanji": "",
+      "hiragana": "う"
+    },
+    {
+      "id": 29,
+      "kanji": "",
+      "hiragana": "え"
+    },
+    {
+      "id": 30,
+      "kanji": "",
+      "hiragana": "お"
+    },
+    {
+      "id": 31,
+      "kanji": "",
+      "hiragana": "あ"
+    },
+    {
+      "id": 32,
+      "kanji": "",
+      "hiragana": "い"
+    },
+    {
+      "id": 33,
+      "kanji": "",
+      "hiragana": "う"
+    },
+    {
+      "id": 34,
+      "kanji": "",
+      "hiragana": "え"
+    },
+    {
+      "id": 35,
+      "kanji": "",
+      "hiragana": "お"
+    },
+    {
+      "id": 36,
+      "kanji": "",
+      "hiragana": "あ"
+    },
+    {
+      "id": 37,
+      "kanji": "",
+      "hiragana": "い"
+    },
+    {
+      "id": 38,
+      "kanji": "",
+      "hiragana": "う"
+    },
+    {
+      "id": 39,
+      "kanji": "",
+      "hiragana": "え"
+    },
+    {
+      "id": 40,
+      "kanji": "",
+      "hiragana": "お"
+    }
+  ]
+}

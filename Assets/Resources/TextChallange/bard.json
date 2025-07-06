@@ -1,0 +1,508 @@
+{
+  "title": "鳥の名前",
+  "description": "いろいろな鳥の名前が出てきます。鳥についてもっと学びましょう。",
+  "timer": 60,
+  "random": 40,
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "スズメ",
+      "hiragana": "すずめ"
+    },
+    {
+      "id": 2,
+      "kanji": "カラス",
+      "hiragana": "からす"
+    },
+    {
+      "id": 3,
+      "kanji": "ハト",
+      "hiragana": "はと"
+    },
+    {
+      "id": 4,
+      "kanji": "ツバメ",
+      "hiragana": "つばめ"
+    },
+    {
+      "id": 5,
+      "kanji": "カッコウ",
+      "hiragana": "かっこう"
+    },
+    {
+      "id": 6,
+      "kanji": "ホトトギス",
+      "hiragana": "ほととぎす"
+    },
+    {
+      "id": 7,
+      "kanji": "カナリア",
+      "hiragana": "かなりあ"
+    },
+    {
+      "id": 8,
+      "kanji": "ウグイス",
+      "hiragana": "うぐいす"
+    },
+    {
+      "id": 9,
+      "kanji": "メジロ",
+      "hiragana": "めじろ"
+    },
+    {
+      "id": 10,
+      "kanji": "セキレイ",
+      "hiragana": "せきれい"
+    },
+    {
+      "id": 11,
+      "kanji": "キジ",
+      "hiragana": "きじ"
+    },
+    {
+      "id": 12,
+      "kanji": "シジュウカラ",
+      "hiragana": "しじゅうから"
+    },
+    {
+      "id": 13,
+      "kanji": "オジロワシ",
+      "hiragana": "おじろわし"
+    },
+    {
+      "id": 14,
+      "kanji": "トビ",
+      "hiragana": "とび"
+    },
+    {
+      "id": 15,
+      "kanji": "サギ",
+      "hiragana": "さぎ"
+    },
+    {
+      "id": 16,
+      "kanji": "ツル",
+      "hiragana": "つる"
+    },
+    {
+      "id": 17,
+      "kanji": "ペリカン",
+      "hiragana": "ぺりかん"
+    },
+    {
+      "id": 18,
+      "kanji": "アホウドリ",
+      "hiragana": "あほうどり"
+    },
+    {
+      "id": 19,
+      "kanji": "コンドル",
+      "hiragana": "こんどる"
+    },
+    {
+      "id": 20,
+      "kanji": "ハシビロコウ",
+      "hiragana": "はしびろこう"
+    },
+    {
+      "id": 21,
+      "kanji": "フクロウ",
+      "hiragana": "ふくろう"
+    },
+    {
+      "id": 22,
+      "kanji": "タカ",
+      "hiragana": "たか"
+    },
+    {
+      "id": 23,
+      "kanji": "ワシ",
+      "hiragana": "わし"
+    },
+    {
+      "id": 24,
+      "kanji": "オウム",
+      "hiragana": "おうむ"
+    },
+    {
+      "id": 25,
+      "kanji": "ヒバリ",
+      "hiragana": "ひばり"
+    },
+    {
+      "id": 26,
+      "kanji": "カワセミ",
+      "hiragana": "かわせみ"
+    },
+    {
+      "id": 27,
+      "kanji": "キジバト",
+      "hiragana": "きじばと"
+    },
+    {
+      "id": 28,
+      "kanji": "コゲラ",
+      "hiragana": "こげら"
+    },
+    {
+      "id": 29,
+      "kanji": "ツグミ",
+      "hiragana": "つぐみ"
+    },
+    {
+      "id": 30,
+      "kanji": "アカショウビン",
+      "hiragana": "あかしょうびん"
+    },
+    {
+      "id": 31,
+      "kanji": "ヤマガラ",
+      "hiragana": "やまがら"
+    },
+    {
+      "id": 32,
+      "kanji": "シラサギ",
+      "hiragana": "しらさぎ"
+    },
+    {
+      "id": 33,
+      "kanji": "キレンジャク",
+      "hiragana": "きれんじゃく"
+    },
+    {
+      "id": 34,
+      "kanji": "クロツグミ",
+      "hiragana": "くろつぐみ"
+    },
+    {
+      "id": 35,
+      "kanji": "ウミネコ",
+      "hiragana": "うみねこ"
+    },
+    {
+      "id": 36,
+      "kanji": "シロハラ",
+      "hiragana": "しろはら"
+    },
+    {
+      "id": 37,
+      "kanji": "カッパ",
+      "hiragana": "かっぱ"
+    },
+    {
+      "id": 38,
+      "kanji": "コサギ",
+      "hiragana": "こさぎ"
+    },
+    {
+      "id": 39,
+      "kanji": "ゴイサギ",
+      "hiragana": "ごいさぎ"
+    },
+    {
+      "id": 40,
+      "kanji": "アオサギ",
+      "hiragana": "あおさぎ"
+    },
+    {
+      "id": 41,
+      "kanji": "オオルリ",
+      "hiragana": "おおるり"
+    },
+    {
+      "id": 42,
+      "kanji": "ルリビタキ",
+      "hiragana": "るりびたき"
+    },
+    {
+      "id": 43,
+      "kanji": "コノハズク",
+      "hiragana": "このはずく"
+    },
+    {
+      "id": 44,
+      "kanji": "メグロ",
+      "hiragana": "めぐろ"
+    },
+    {
+      "id": 45,
+      "kanji": "メジロ",
+      "hiragana": "めじろ"
+    },
+    {
+      "id": 46,
+      "kanji": "ホオジロ",
+      "hiragana": "ほおじろ"
+    },
+    {
+      "id": 47,
+      "kanji": "セグロセキレイ",
+      "hiragana": "せぐろせきれい"
+    },
+    {
+      "id": 48,
+      "kanji": "ヒヨドリ",
+      "hiragana": "ひよどり"
+    },
+    {
+      "id": 49,
+      "kanji": "ヤマシギ",
+      "hiragana": "やましぎ"
+    },
+    {
+      "id": 50,
+      "kanji": "セッカ",
+      "hiragana": "せっか"
+    },
+    {
+      "id": 51,
+      "kanji": "ミサゴ",
+      "hiragana": "みさご"
+    },
+    {
+      "id": 52,
+      "kanji": "トビ",
+      "hiragana": "とび"
+    },
+    {
+      "id": 53,
+      "kanji": "サンショウクイ",
+      "hiragana": "さんしょうくい"
+    },
+    {
+      "id": 54,
+      "kanji": "ヤマセミ",
+      "hiragana": "やませみ"
+    },
+    {
+      "id": 55,
+      "kanji": "アカゲラ",
+      "hiragana": "あかげら"
+    },
+    {
+      "id": 56,
+      "kanji": "コサメビタキ",
+      "hiragana": "こさめびたき"
+    },
+    {
+      "id": 57,
+      "kanji": "ツミ",
+      "hiragana": "つみ"
+    },
+    {
+      "id": 58,
+      "kanji": "コマドリ",
+      "hiragana": "こまどり"
+    },
+    {
+      "id": 59,
+      "kanji": "ヒバリ",
+      "hiragana": "ひばり"
+    },
+    {
+      "id": 60,
+      "kanji": "ホオジロ",
+      "hiragana": "ほおじろ"
+    },
+    {
+      "id": 61,
+      "kanji": "アオバズク",
+      "hiragana": "あおばずく"
+    },
+    {
+      "id": 62,
+      "kanji": "シマフクロウ",
+      "hiragana": "しまふくろう"
+    },
+    {
+      "id": 63,
+      "kanji": "トラツグミ",
+      "hiragana": "とらつぐみ"
+    },
+    {
+      "id": 64,
+      "kanji": "ヤマガラ",
+      "hiragana": "やまがら"
+    },
+    {
+      "id": 65,
+      "kanji": "オオセッカ",
+      "hiragana": "おおせっか"
+    },
+    {
+      "id": 66,
+      "kanji": "ホシムクドリ",
+      "hiragana": "ほしむくどり"
+    },
+    {
+      "id": 67,
+      "kanji": "マガモ",
+      "hiragana": "まがも"
+    },
+    {
+      "id": 68,
+      "kanji": "オシドリ",
+      "hiragana": "おしどり"
+    },
+    {
+      "id": 69,
+      "kanji": "コガモ",
+      "hiragana": "こがも"
+    },
+    {
+      "id": 70,
+      "kanji": "ホオアカ",
+      "hiragana": "ほおあか"
+    },
+    {
+      "id": 71,
+      "kanji": "ヨタカ",
+      "hiragana": "よたか"
+    },
+    {
+      "id": 72,
+      "kanji": "ササゴイ",
+      "hiragana": "ささごい"
+    },
+    {
+      "id": 73,
+      "kanji": "サギ",
+      "hiragana": "さぎ"
+    },
+    {
+      "id": 74,
+      "kanji": "アカハラ",
+      "hiragana": "あかはら"
+    },
+    {
+      "id": 75,
+      "kanji": "オオヨシキリ",
+      "hiragana": "おおよしきり"
+    },
+    {
+      "id": 76,
+      "kanji": "コサギ",
+      "hiragana": "こさぎ"
+    },
+    {
+      "id": 77,
+      "kanji": "ゴイサギ",
+      "hiragana": "ごいさぎ"
+    },
+    {
+      "id": 78,
+      "kanji": "ヤツガシラ",
+      "hiragana": "やつがしら"
+    },
+    {
+      "id": 79,
+      "kanji": "アカゲラ",
+      "hiragana": "あかげら"
+    },
+    {
+      "id": 80,
+      "kanji": "ヒクイドリ",
+      "hiragana": "ひくいどり"
+    },
+    {
+      "id": 81,
+      "kanji": "ツグミ",
+      "hiragana": "つぐみ"
+    },
+    {
+      "id": 82,
+      "kanji": "メジロ",
+      "hiragana": "めじろ"
+    },
+    {
+      "id": 83,
+      "kanji": "スズメ",
+      "hiragana": "すずめ"
+    },
+    {
+      "id": 84,
+      "kanji": "カワセミ",
+      "hiragana": "かわせみ"
+    },
+    {
+      "id": 85,
+      "kanji": "アオサギ",
+      "hiragana": "あおさぎ"
+    },
+    {
+      "id": 86,
+      "kanji": "オオタカ",
+      "hiragana": "おおたか"
+    },
+    {
+      "id": 87,
+      "kanji": "トビ",
+      "hiragana": "とび"
+    },
+    {
+      "id": 88,
+      "kanji": "コノハズク",
+      "hiragana": "このはずく"
+    },
+    {
+      "id": 89,
+      "kanji": "オオルリ",
+      "hiragana": "おおるり"
+    },
+    {
+      "id": 90,
+      "kanji": "ルリビタキ",
+      "hiragana": "るりびたき"
+    },
+    {
+      "id": 91,
+      "kanji": "シジュウカラ",
+      "hiragana": "しじゅうから"
+    },
+    {
+      "id": 92,
+      "kanji": "カワウ",
+      "hiragana": "かわう"
+    },
+    {
+      "id": 93,
+      "kanji": "オオハシ",
+      "hiragana": "おおはし"
+    },
+    {
+      "id": 94,
+      "kanji": "オシドリ",
+      "hiragana": "おしどり"
+    },
+    {
+      "id": 95,
+      "kanji": "キジバト",
+      "hiragana": "きじばと"
+    },
+    {
+      "id": 96,
+      "kanji": "カササギ",
+      "hiragana": "かささぎ"
+    },
+    {
+      "id": 97,
+      "kanji": "クロツグミ",
+      "hiragana": "くろつぐみ"
+    },
+    {
+      "id": 98,
+      "kanji": "ホオジロ",
+      "hiragana": "ほおじろ"
+    },
+    {
+      "id": 99,
+      "kanji": "カッコウ",
+      "hiragana": "かっこう"
+    },
+    {
+      "id": 100,
+      "kanji": "ヒタキ",
+      "hiragana": "ひたき"
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "title": "ぱぴぷぺぽのきそ",
+  "description": "ぱぴぷぺぽのれんしゅうだよ",
+  "timer": 0,
+  "random": 0,
+  "hide": 99,
+  "messages": [
+    {
+      "count": 0,
+      "description": "ぱぴぷぺぽのれんしゅうだよ。「P」のキーをおしてから「あいうえお」をおします。"
+    },
+    {
+      "count": 1,
+      "description": "「ぴ」は「P」と「い」だよ"
+    },
+    {
+      "count": 2,
+      "description": "「ぷ」は「P」と「う」だよ"
+    },
+    {
+      "count": 3,
+      "description": "「ぺ」は「P」と「え」だよ"
+    },
+    {
+      "count": 4,
+      "description": "「ぽ」は「P」と「お」だよ"
+    },
+    {
+      "count": 5,
+      "description": "「ぱ」は「P」と「あ」だよ"
+    },
+    {
+      "count": 6,
+      "description": "「ぴ」は「P」と「い」だよ"
+    },
+    {
+      "count": 7,
+      "description": "「ぷ」は「P」と「う」だよ"
+    },
+    {
+      "count": 8,
+      "description": "「ぺ」は「P」と「え」だよ"
+    },
+    {
+      "count": 9,
+      "description": "「ぽ」は「P」と「お」だよ"
+    },
+    {
+      "count": 0,
+      "description": "「ぱ」は「P」と「あ」だよ"
+    },
+    {
+      "count": 1,
+      "description": "「ぴ」は「P」と「い」だよ"
+    },
+    {
+      "count": 2,
+      "description": "「ぷ」は「P」と「う」だよ"
+    },
+    {
+      "count": 3,
+      "description": "「ぺ」は「P」と「え」だよ"
+    },
+    {
+      "count": 4,
+      "description": "「ぽ」は「P」と「お」だよ"
+    },
+    {
+      "count": 5,
+      "description": "「ぱ」は「P」と「あ」だよ"
+    },
+    {
+      "count": 6,
+      "description": "「ぴ」は「P」と「い」だよ"
+    },
+    {
+      "count": 7,
+      "description": "「ぷ」は「P」と「う」だよ"
+    },
+    {
+      "count": 8,
+      "description": "「ぺ」は「P」と「え」だよ"
+    },
+    {
+      "count": 9,
+      "description": "「ぽ」は「P」と「お」だよ"
+    }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "ぱ"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "ぴ"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "ぷ"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "ぺ"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "ぽ"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "ぱ"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "ぴ"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "ぷ"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "ぺ"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "ぽ"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "ぱ"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "ぴ"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "ぷ"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "ぺ"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "ぽ"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "ぱ"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "ぴ"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "ぷ"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "ぺ"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "ぽ"
+    }
+  ]
+}

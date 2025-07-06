@@ -1,0 +1,410 @@
+{
+  "title": "らりるれろまでのことば",
+  "description": "らりるれろまでのことばを練習しよう",
+  "timer": 60,
+  "random": 40,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "ららら"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "おる"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "うら"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "れい"
+    },
+    {
+      "id": 5,
+      "kanji": "雷雨",
+      "hiragana": "らいう"
+    },
+    {
+      "id": 6,
+      "kanji": "ライス",
+      "hiragana": "らいす"
+    },
+    {
+      "id": 7,
+      "kanji": "ライト",
+      "hiragana": "らいと"
+    },
+    {
+      "id": 8,
+      "kanji": "ラムネ",
+      "hiragana": "らむね"
+    },
+    {
+      "id": 9,
+      "kanji": "理科",
+      "hiragana": "りか"
+    },
+    {
+      "id": 10,
+      "kanji": "リアル",
+      "hiragana": "りある"
+    },
+    {
+      "id": 11,
+      "kanji": "陸",
+      "hiragana": "りく"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "りす"
+    },
+    {
+      "id": 13,
+      "kanji": "理想",
+      "hiragana": "りそう"
+    },
+    {
+      "id": 14,
+      "kanji": "留守",
+      "hiragana": "るす"
+    },
+    {
+      "id": 15,
+      "kanji": "とる",
+      "hiragana": "とる"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "ける"
+    },
+    {
+      "id": 17,
+      "kanji": "見る",
+      "hiragana": "みる"
+    },
+    {
+      "id": 18,
+      "kanji": "荒れる",
+      "hiragana": "あれる"
+    },
+    {
+      "id": 19,
+      "kanji": "レア",
+      "hiragana": "れあ"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "れい"
+    },
+    {
+      "id": 21,
+      "kanji": "レタス",
+      "hiragana": "れたす"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "あれ"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "これ"
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": "それ"
+    },
+    {
+      "id": 25,
+      "kanji": "色",
+      "hiragana": "いろ"
+    },
+    {
+      "id": 26,
+      "kanji": "",
+      "hiragana": "いろいろ"
+    },
+    {
+      "id": 27,
+      "kanji": "",
+      "hiragana": "ろくろ"
+    },
+    {
+      "id": 28,
+      "kanji": "廊下",
+      "hiragana": "ろうか"
+    },
+    {
+      "id": 29,
+      "kanji": "",
+      "hiragana": "かろう"
+    },
+    {
+      "id": 30,
+      "kanji": "",
+      "hiragana": "きろ"
+    },
+    {
+      "id": 31,
+      "kanji": "",
+      "hiragana": "らいと"
+    },
+    {
+      "id": 32,
+      "kanji": "トラ",
+      "hiragana": "とら"
+    },
+    {
+      "id": 33,
+      "kanji": "コアラ",
+      "hiragana": "こあら"
+    },
+    {
+      "id": 34,
+      "kanji": "",
+      "hiragana": "あらら"
+    },
+    {
+      "id": 35,
+      "kanji": "",
+      "hiragana": "ほら"
+    },
+    {
+      "id": 36,
+      "kanji": "",
+      "hiragana": "から"
+    },
+    {
+      "id": 37,
+      "kanji": "",
+      "hiragana": "あり"
+    },
+    {
+      "id": 38,
+      "kanji": "",
+      "hiragana": "えり"
+    },
+    {
+      "id": 39,
+      "kanji": "",
+      "hiragana": "かり"
+    },
+    {
+      "id": 40,
+      "kanji": "",
+      "hiragana": "くり"
+    },
+    {
+      "id": 41,
+      "kanji": "",
+      "hiragana": "そり"
+    },
+    {
+      "id": 42,
+      "kanji": "",
+      "hiragana": "もる"
+    },
+    {
+      "id": 43,
+      "kanji": "",
+      "hiragana": "むり"
+    },
+    {
+      "id": 44,
+      "kanji": "",
+      "hiragana": "かりる"
+    },
+    {
+      "id": 45,
+      "kanji": "タオル",
+      "hiragana": "たおる"
+    },
+    {
+      "id": 46,
+      "kanji": "群",
+      "hiragana": "むれ"
+    },
+    {
+      "id": 47,
+      "kanji": "カラフル",
+      "hiragana": "からふる"
+    },
+    {
+      "id": 48,
+      "kanji": "洗う",
+      "hiragana": "あらう"
+    },
+    {
+      "id": 49,
+      "kanji": "リトマス紙",
+      "hiragana": "りとますし"
+    },
+    {
+      "id": 50,
+      "kanji": "霧",
+      "hiragana": "きり"
+    },
+    {
+      "id": 51,
+      "kanji": "",
+      "hiragana": "けり"
+    },
+    {
+      "id": 52,
+      "kanji": "",
+      "hiragana": "ちり"
+    },
+    {
+      "id": 53,
+      "kanji": "釣り",
+      "hiragana": "つり"
+    },
+    {
+      "id": 54,
+      "kanji": "鳥",
+      "hiragana": "とり"
+    },
+    {
+      "id": 55,
+      "kanji": "理解",
+      "hiragana": "りかい"
+    },
+    {
+      "id": 56,
+      "kanji": "",
+      "hiragana": "とれる"
+    },
+    {
+      "id": 57,
+      "kanji": "塗り絵",
+      "hiragana": "ぬりえ"
+    },
+    {
+      "id": 58,
+      "kanji": "",
+      "hiragana": "ろうそく"
+    },
+    {
+      "id": 59,
+      "kanji": "",
+      "hiragana": "たおれる"
+    },
+    {
+      "id": 60,
+      "kanji": "俺",
+      "hiragana": "おれ"
+    },
+    {
+      "id": 61,
+      "kanji": "",
+      "hiragana": "わかれる"
+    },
+    {
+      "id": 62,
+      "kanji": "",
+      "hiragana": "ひれ"
+    },
+    {
+      "id": 63,
+      "kanji": "",
+      "hiragana": "おのれ"
+    },
+    {
+      "id": 64,
+      "kanji": "",
+      "hiragana": "くらい"
+    },
+    {
+      "id": 65,
+      "kanji": "",
+      "hiragana": "くらくら"
+    },
+    {
+      "id": 66,
+      "kanji": "",
+      "hiragana": "そら"
+    },
+    {
+      "id": 67,
+      "kanji": "",
+      "hiragana": "おろおろ"
+    },
+    {
+      "id": 68,
+      "kanji": "黄色",
+      "hiragana": "きいろ"
+    },
+    {
+      "id": 69,
+      "kanji": "カイロ",
+      "hiragana": "かいろ"
+    },
+    {
+      "id": 70,
+      "kanji": "トロ",
+      "hiragana": "とろ"
+    },
+    {
+      "id": 71,
+      "kanji": "風呂",
+      "hiragana": "ふろ"
+    },
+    {
+      "id": 72,
+      "kanji": "お城",
+      "hiragana": "おしろ"
+    },
+    {
+      "id": 73,
+      "kanji": "レトロ",
+      "hiragana": "れとろ"
+    },
+    {
+      "id": 74,
+      "kanji": "",
+      "hiragana": "ころころ"
+    },
+    {
+      "id": 75,
+      "kanji": "",
+      "hiragana": "いらいら"
+    },
+    {
+      "id": 76,
+      "kanji": "あれこれあると隠れられる",
+      "hiragana": "あれこれあるとかくれられる"
+    },
+    {
+      "id": 77,
+      "kanji": "有る居る売る得る折る",
+      "hiragana": "あるいるうるえるおる"
+    },
+    {
+      "id": 78,
+      "kanji": "楽々落雷よける",
+      "hiragana": "らくらくらくらいよける"
+    },
+    {
+      "id": 79,
+      "kanji": "いろいろな色の迷路にノロノロ",
+      "hiragana": "いろいろないろのめいろにのろのろ"
+    },
+    {
+      "id": 80,
+      "kanji": "瓜売りは瓜売りに来て瓜売り切れ",
+      "hiragana": "うりうりはうりうりにきてうりうりきれ"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "title": "ぱぴぷぺぽランダム",
+  "description": "ぱぴぷぺぽのれんしゅうだよ",
+  "timer": 40,
+  "random": 99,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "ぱ"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "ぴ"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "ぷ"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "ぺ"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "ぽ"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "ぱ"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "ぴ"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "ぷ"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "ぺ"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "ぽ"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "ぱ"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "ぴ"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "ぷ"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "ぺ"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "ぽ"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "ぱぱ"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "ぴぴ"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "ぷぷ"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "ぺぺ"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "ぽぽ"
+    }
+  ]
+}

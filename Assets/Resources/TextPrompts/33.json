@@ -1,0 +1,371 @@
+{
+  "title": "がぎぐげご・ざじずぜぞのきそ",
+  "description": "がぎぐげご・ざじずぜぞのれんしゅうだよ",
+  "timer": 0,
+  "random": 0,
+  "hide": 99,
+  "messages": [
+    {
+      "count": 0,
+      "description": "がぎぐげご・ざじずぜぞのれんしゅうだよ。がぎぐげごは「G」のキーをおしてから「あいうえお」をおします。"
+    },
+    {
+      "count": 1,
+      "description": "「ぎ」は「G」と「い」だよ"
+    },
+    {
+      "count": 2,
+      "description": "「ぐ」は「G」と「う」だよ"
+    },
+    {
+      "count": 3,
+      "description": "「げ」は「G」と「え」だよ"
+    },
+    {
+      "count": 4,
+      "description": "「ご」は「G」と「お」だよ"
+    },
+    {
+      "count": 5,
+      "description": "「が」は「G」と「あ」だよ"
+    },
+    {
+      "count": 6,
+      "description": "「ぎ」は「G」と「い」だよ"
+    },
+    {
+      "count": 7,
+      "description": "「ぐ」は「G」と「う」だよ"
+    },
+    {
+      "count": 8,
+      "description": "「げ」は「G」と「え」だよ"
+    },
+    {
+      "count": 9,
+      "description": "「ご」は「G」と「お」だよ"
+    },
+    {
+      "count": 10,
+      "description": "ざじずぜぞは「Z」と「あいうえお」だよ"
+    },
+    {
+      "count": 11,
+      "description": "「じ」は「Z」と「い」だよ"
+    },
+    {
+      "count": 12,
+      "description": "「ず」は「Z」と「う」だよ"
+    },
+    {
+      "count": 13,
+      "description": "「ぜ」は「Z」と「え」だよ"
+    },
+    {
+      "count": 14,
+      "description": "「ぞ」は「Z」と「お」だよ"
+    },
+    {
+      "count": 15,
+      "description": "「ざ」は「Z」と「あ」だよ"
+    },
+    {
+      "count": 16,
+      "description": "「じ」は「Z」と「い」だよ。「J」と「い」でもいいよ"
+    },
+    {
+      "count": 17,
+      "description": "「ず」は「Z」と「う」だよ"
+    },
+    {
+      "count": 18,
+      "description": "「ぜ」は「Z」と「え」だよ"
+    },
+    {
+      "count": 19,
+      "description": "「ぞ」は「Z」と「お」だよ"
+    },
+    {
+      "count": 20,
+      "description": "「が」は「G」と「あ」だよ"
+    },
+    {
+      "count": 21,
+      "description": "「ぎ」は「G」と「い」だよ"
+    },
+    {
+      "count": 22,
+      "description": "「ぐ」は「G」と「う」だよ"
+    },
+    {
+      "count": 23,
+      "description": "「げ」は「G」と「え」だよ"
+    },
+    {
+      "count": 24,
+      "description": "「ご」は「G」と「お」だよ"
+    },
+    {
+      "count": 25,
+      "description": "「が」は「G」と「あ」だよ"
+    },
+    {
+      "count": 26,
+      "description": "「ぎ」は「G」と「い」だよ"
+    },
+    {
+      "count": 27,
+      "description": "「ぐ」は「G」と「う」だよ"
+    },
+    {
+      "count": 28,
+      "description": "「げ」は「G」と「え」だよ"
+    },
+    {
+      "count": 29,
+      "description": "「ご」は「G」と「お」だよ"
+    },
+    {
+      "count": 30,
+      "description": "「ざ」は「Z」と「あ」だよ"
+    },
+    {
+      "count": 31,
+      "description": "「じ」は「Z」と「い」だよ。「J」と「い」でもいいよ"
+    },
+    {
+      "count": 32,
+      "description": "「ず」は「Z」と「う」だよ"
+    },
+    {
+      "count": 33,
+      "description": "「ぜ」は「Z」と「え」だよ"
+    },
+    {
+      "count": 34,
+      "description": "「ぞ」は「Z」と「お」だよ"
+    },
+    {
+      "count": 35,
+      "description": "「ざ」は「Z」と「あ」だよ"
+    },
+    {
+      "count": 36,
+      "description": "「じ」は「Z」と「い」だよ。「J」と「い」でもいいよ"
+    },
+    {
+      "count": 37,
+      "description": "「ず」は「Z」と「う」だよ"
+    },
+    {
+      "count": 38,
+      "description": "「ぜ」は「Z」と「え」だよ"
+    },
+    {
+      "count": 39,
+      "description": "「ぞ」は「Z」と「お」だよ"
+    }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "が"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "ぎ"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "ぐ"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "げ"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "ご"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "が"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "ぎ"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "ぐ"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "げ"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "ご"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "ざ"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "じ"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "ず"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "ぜ"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "ぞ"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "ざ"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "じ"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "ず"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "ぜ"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "ぞ"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "が"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "ぎ"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "ぐ"
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": "げ"
+    },
+    {
+      "id": 25,
+      "kanji": "",
+      "hiragana": "ご"
+    },
+    {
+      "id": 26,
+      "kanji": "",
+      "hiragana": "が"
+    },
+    {
+      "id": 27,
+      "kanji": "",
+      "hiragana": "ぎ"
+    },
+    {
+      "id": 28,
+      "kanji": "",
+      "hiragana": "ぐ"
+    },
+    {
+      "id": 29,
+      "kanji": "",
+      "hiragana": "げ"
+    },
+    {
+      "id": 30,
+      "kanji": "",
+      "hiragana": "ご"
+    },
+    {
+      "id": 31,
+      "kanji": "",
+      "hiragana": "ざ"
+    },
+    {
+      "id": 32,
+      "kanji": "",
+      "hiragana": "じ"
+    },
+    {
+      "id": 33,
+      "kanji": "",
+      "hiragana": "ず"
+    },
+    {
+      "id": 34,
+      "kanji": "",
+      "hiragana": "ぜ"
+    },
+    {
+      "id": 35,
+      "kanji": "",
+      "hiragana": "ぞ"
+    },
+    {
+      "id": 36,
+      "kanji": "",
+      "hiragana": "ざ"
+    },
+    {
+      "id": 37,
+      "kanji": "",
+      "hiragana": "じ"
+    },
+    {
+      "id": 38,
+      "kanji": "",
+      "hiragana": "ず"
+    },
+    {
+      "id": 39,
+      "kanji": "",
+      "hiragana": "ぜ"
+    },
+    {
+      "id": 40,
+      "kanji": "",
+      "hiragana": "ぞ"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "title": "スペースキーの使い方",
+  "description": "スペースキーを使ってみよう",
+  "timer": 0,
+  "random": 0,
+  "hide": 99,
+  "messages": [
+    {
+      "count": 0,
+      "description": "さあ、タイピングのれんしゅうをはじめよう。したのひかっているキーのばしょがわかるかな？わかったらおしてみてね。"
+    },
+    {
+      "count": 1,
+      "description": "このキーは「スペースキー」っていうんだよ。"
+    },
+    {
+      "count": 2,
+      "description": "このキーはなにももじがかかれてないよね。からっぽのもじをあらわすキーなんだよ。"
+    },
+    {
+      "count": 3,
+      "description": "ほかにもとくべつなつかいかたをするキーだからしっかりおぼえておいてね。"
+    },
+    {
+      "count": 4,
+      "description": "とてもよくつかうキーなので、りょうほうの手のおやゆびがとどくようになっています。"
+    },
+    {
+      "count": 5,
+      "description": "どっちのおやゆびでおしてもいいんだよ。スペースキーはおやゆびでおすとおぼえておいてね。"
+    },
+    {
+      "count": 6,
+      "description": "ではおやゆびでスペースキーを3かいおしてみましょう。"
+    }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": " "
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": " "
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": " "
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": " "
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": " "
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": " "
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": " "
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": " "
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": " "
+    }
+  ]
+}

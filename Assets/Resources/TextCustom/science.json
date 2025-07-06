@@ -1,0 +1,258 @@
+{
+  "title": "理科室にあるもの",
+  "description": "理科室で見つけることができる物について学びましょう。",
+  "timer": 60,
+  "random": 40,
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "顕微鏡",
+      "hiragana": "けんびきょう"
+    },
+    {
+      "id": 2,
+      "kanji": "試験管",
+      "hiragana": "しけんかん"
+    },
+    {
+      "id": 3,
+      "kanji": "フラスコ",
+      "hiragana": "ふらすこ"
+    },
+    {
+      "id": 4,
+      "kanji": "ビーカー",
+      "hiragana": "びーかー"
+    },
+    {
+      "id": 5,
+      "kanji": "温度計",
+      "hiragana": "おんどけい"
+    },
+    {
+      "id": 6,
+      "kanji": "メスシリンダー",
+      "hiragana": "めすしりんだー"
+    },
+    {
+      "id": 7,
+      "kanji": "ガスバーナー",
+      "hiragana": "がすばーなー"
+    },
+    {
+      "id": 8,
+      "kanji": "ピペット",
+      "hiragana": "ぴぺっと"
+    },
+    {
+      "id": 9,
+      "kanji": "薬品",
+      "hiragana": "やくひん"
+    },
+    {
+      "id": 10,
+      "kanji": "顕微鏡",
+      "hiragana": "けんびきょう"
+    },
+    {
+      "id": 11,
+      "kanji": "アルコールランプ",
+      "hiragana": "あるこーるらんぷ"
+    },
+    {
+      "id": 12,
+      "kanji": "電池",
+      "hiragana": "でんち"
+    },
+    {
+      "id": 13,
+      "kanji": "ゴーグル",
+      "hiragana": "ごーぐる"
+    },
+    {
+      "id": 14,
+      "kanji": "白衣",
+      "hiragana": "はくい"
+    },
+    {
+      "id": 15,
+      "kanji": "実験台",
+      "hiragana": "じっけんだい"
+    },
+    {
+      "id": 16,
+      "kanji": "接眼レンズ",
+      "hiragana": "せつがんれんず"
+    },
+    {
+      "id": 17,
+      "kanji": "こまごめピペット",
+      "hiragana": "こまごめぴぺっと"
+    },
+    {
+      "id": 18,
+      "kanji": "試薬",
+      "hiragana": "しやく"
+    },
+    {
+      "id": 19,
+      "kanji": "対物レンズ",
+      "hiragana": "たいぶつれんず"
+    },
+    {
+      "id": 20,
+      "kanji": "水道",
+      "hiragana": "すいどう"
+    },
+    {
+      "id": 21,
+      "kanji": "ピンセット",
+      "hiragana": "ぴんせっと"
+    },
+    {
+      "id": 22,
+      "kanji": "ビュレット",
+      "hiragana": "びゅれっと"
+    },
+    {
+      "id": 23,
+      "kanji": "試験管立て",
+      "hiragana": "しけんかんたて"
+    },
+    {
+      "id": 24,
+      "kanji": "スポイト",
+      "hiragana": "すぽいと"
+    },
+    {
+      "id": 25,
+      "kanji": "ガラス棒",
+      "hiragana": "がらすぼう"
+    },
+    {
+      "id": 26,
+      "kanji": "ホールピペット",
+      "hiragana": "ほーるぴぺっと"
+    },
+    {
+      "id": 27,
+      "kanji": "ろ紙",
+      "hiragana": "ろし"
+    },
+    {
+      "id": 28,
+      "kanji": "試薬瓶",
+      "hiragana": "しやくびん"
+    },
+    {
+      "id": 29,
+      "kanji": "ろうと",
+      "hiragana": "ろうと"
+    },
+    {
+      "id": 30,
+      "kanji": "磁石",
+      "hiragana": "じしゃく"
+    },
+    {
+      "id": 31,
+      "kanji": "バーナースタンド",
+      "hiragana": "ばーなーすたんど"
+    },
+    {
+      "id": 32,
+      "kanji": "リトマス紙",
+      "hiragana": "りとますし"
+    },
+    {
+      "id": 33,
+      "kanji": "黒板",
+      "hiragana": "こくばん"
+    },
+    {
+      "id": 34,
+      "kanji": "分銅",
+      "hiragana": "ふんどう"
+    },
+    {
+      "id": 35,
+      "kanji": "天秤",
+      "hiragana": "てんびん"
+    },
+    {
+      "id": 36,
+      "kanji": "薬包紙",
+      "hiragana": "やくほうし"
+    },
+    {
+      "id": 37,
+      "kanji": "電気",
+      "hiragana": "でんき"
+    },
+    {
+      "id": 38,
+      "kanji": "水槽",
+      "hiragana": "すいそう"
+    },
+    {
+      "id": 39,
+      "kanji": "気体検知官",
+      "hiragana": "きたいけんちかん"
+    },
+    {
+      "id": 40,
+      "kanji": "集気瓶",
+      "hiragana": "しゅうきびん"
+    },
+    {
+      "id": 41,
+      "kanji": "",
+      "hiragana": "ばねばかり"
+    },
+    {
+      "id": 42,
+      "kanji": "三脚",
+      "hiragana": "さんきゃく"
+    },
+    {
+      "id": 43,
+      "kanji": "メスピペット",
+      "hiragana": "めすぴぺっと"
+    },
+    {
+      "id": 44,
+      "kanji": "プレパラート",
+      "hiragana": "ぷれぱらーと"
+    },
+    {
+      "id": 45,
+      "kanji": "虫カゴ",
+      "hiragana": "むしかご"
+    },
+    {
+      "id": 46,
+      "kanji": "安全眼鏡",
+      "hiragana": "あんぜんめがね"
+    },
+    {
+      "id": 47,
+      "kanji": "蒸発皿",
+      "hiragana": "じょうはつざら"
+    },
+    {
+      "id": 48,
+      "kanji": "電流系",
+      "hiragana": "でんりゅうけい"
+    },
+    {
+      "id": 49,
+      "kanji": "ルーペ",
+      "hiragana": "るーぺ"
+    },
+    {
+      "id": 50,
+      "kanji": "電圧計",
+      "hiragana": "でんあつけい"
+    }
+  ]
+}

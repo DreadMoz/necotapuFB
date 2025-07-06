@@ -1,0 +1,389 @@
+{
+  "title": "やゆよ・わを・ーのきそ",
+  "description": "やゆよ・わを・ーを打てるようになろう",
+  "timer": 0,
+  "random": 0,
+  "hide": 99,
+  "messages": [
+    {
+      "count": 0,
+      "description": "「やゆよ」と「わを」と「ー」のれんしゅうだよ。やゆよは「Y」わをは「W」のキーをつかうよ"
+    },
+    {
+      "count": 1,
+      "description": "「ゆ」は「Y」と「う」だよ"
+    },
+    {
+      "count": 2,
+      "description": "「よ」は「Y」と「お」だよ"
+    },
+    {
+      "count": 3,
+      "description": "「わ」は「W」と「あ」だよ"
+    },
+    {
+      "count": 4,
+      "description": "「を」は「W」と「お」だよ"
+    },
+    {
+      "count": 5,
+      "description": "「ー」はここだよ。右手こゆびだよ。"
+    },
+    {
+      "count": 6,
+      "description": "「や」は「Y」と「あ」だよ"
+    },
+    {
+      "count": 7,
+      "description": "「ゆ」は「Y」と「う」だよ"
+    },
+    {
+      "count": 8,
+      "description": "「よ」は「Y」と「お」だよ"
+    },
+    {
+      "count": 9,
+      "description": "「わ」は「W」と「あ」だよ"
+    },
+    {
+      "count": 10,
+      "description": "「を」は「W」と「お」だよ"
+    },
+    {
+      "count": 11,
+      "description": "「ー」はここだよ。右手こゆびだよ。"
+    },
+    {
+      "count": 12,
+      "description": "「や」は「Y」と「あ」だよ"
+    },
+    {
+      "count": 13,
+      "description": "「ゆ」は「Y」と「う」だよ"
+    },
+    {
+      "count": 14,
+      "description": "「よ」は「Y」と「お」だよ"
+    },
+    {
+      "count": 15,
+      "description": "「わ」は「W」と「あ」だよ"
+    },
+    {
+      "count": 16,
+      "description": "「を」は「W」と「お」だよ"
+    },
+    {
+      "count": 17,
+      "description": "「ー」はここだよ。右手こゆびだよ。"
+    },
+    {
+      "count": 18,
+      "description": "「や」は「Y」と「あ」だよ"
+    },
+    {
+      "count": 19,
+      "description": "「ゆ」は「Y」と「う」だよ"
+    },
+    {
+      "count": 20,
+      "description": "「よ」は「Y」と「お」だよ"
+    },
+    {
+      "count": 21,
+      "description": "「わ」は「W」と「あ」だよ"
+    },
+    {
+      "count": 22,
+      "description": "「を」は「W」と「お」だよ"
+    },
+    {
+      "count": 23,
+      "description": "「ー」はここだよ。右手こゆびだよ。"
+    },
+    {
+      "count": 24,
+      "description": "「や」は「Y」と「あ」だよ"
+    },
+    {
+      "count": 25,
+      "description": "「ゆ」は「Y」と「う」だよ"
+    },
+    {
+      "count": 26,
+      "description": "「よ」は「Y」と「お」だよ"
+    },
+    {
+      "count": 27,
+      "description": "「わ」は「W」と「あ」だよ"
+    },
+    {
+      "count": 28,
+      "description": "「を」は「W」と「お」だよ"
+    },
+    {
+      "count": 29,
+      "description": "「ー」はここだよ。右手こゆびだよ。"
+    },
+    {
+      "count": 30,
+      "description": "「や」は「Y」と「あ」だよ"
+    },
+    {
+      "count": 31,
+      "description": "「ゆ」は「Y」と「う」だよ"
+    },
+    {
+      "count": 32,
+      "description": "「よ」は「Y」と「お」だよ"
+    },
+    {
+      "count": 33,
+      "description": "「わ」は「W」と「あ」だよ"
+    },
+    {
+      "count": 34,
+      "description": "「を」は「W」と「お」だよ"
+    },
+    {
+      "count": 35,
+      "description": "「ー」はここだよ。右手こゆびだよ。"
+    },
+    {
+      "count": 36,
+      "description": "「や」は「Y」と「あ」だよ"
+    },
+    {
+      "count": 37,
+      "description": "「ゆ」は「Y」と「う」だよ"
+    },
+    {
+      "count": 38,
+      "description": "「よ」は「Y」と「お」だよ"
+    },
+    {
+      "count": 39,
+      "description": "「わ」は「W」と「あ」だよ"
+    },
+    {
+      "count": 40,
+      "description": "「を」は「W」と「お」だよ"
+    },
+    {
+      "count": 41,
+      "description": "「ー」はここだよ。右手こゆびだよ。"
+    }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "や"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "ゆ"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "よ"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "わ"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "を"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "ー"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "や"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "ゆ"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "よ"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "わ"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "を"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "ー"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "や"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "ゆ"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "よ"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "わ"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "を"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "ー"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "や"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "ゆ"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "よ"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "わ"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "を"
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": "ー"
+    },
+    {
+      "id": 25,
+      "kanji": "",
+      "hiragana": "や"
+    },
+    {
+      "id": 26,
+      "kanji": "",
+      "hiragana": "ゆ"
+    },
+    {
+      "id": 27,
+      "kanji": "",
+      "hiragana": "よ"
+    },
+    {
+      "id": 28,
+      "kanji": "",
+      "hiragana": "わ"
+    },
+    {
+      "id": 29,
+      "kanji": "",
+      "hiragana": "を"
+    },
+    {
+      "id": 30,
+      "kanji": "",
+      "hiragana": "ー"
+    },
+    {
+      "id": 31,
+      "kanji": "",
+      "hiragana": "や"
+    },
+    {
+      "id": 32,
+      "kanji": "",
+      "hiragana": "ゆ"
+    },
+    {
+      "id": 33,
+      "kanji": "",
+      "hiragana": "よ"
+    },
+    {
+      "id": 34,
+      "kanji": "",
+      "hiragana": "わ"
+    },
+    {
+      "id": 35,
+      "kanji": "",
+      "hiragana": "を"
+    },
+    {
+      "id": 36,
+      "kanji": "",
+      "hiragana": "ー"
+    },
+    {
+      "id": 37,
+      "kanji": "",
+      "hiragana": "や"
+    },
+    {
+      "id": 38,
+      "kanji": "",
+      "hiragana": "ゆ"
+    },
+    {
+      "id": 39,
+      "kanji": "",
+      "hiragana": "よ"
+    },
+    {
+      "id": 40,
+      "kanji": "",
+      "hiragana": "わ"
+    },
+    {
+      "id": 41,
+      "kanji": "",
+      "hiragana": "を"
+    },
+    {
+      "id": 42,
+      "kanji": "",
+      "hiragana": "ー"
+    }
+  ]
+}

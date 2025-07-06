@@ -1,0 +1,360 @@
+{
+  "title": "さしすせそまでのことば",
+  "description": "さしすせそまでのことばの練習をしよう",
+  "timer": 60,
+  "random": 30,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "くし"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "すそ"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "そそう"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "きせい"
+    },
+    {
+      "id": 5,
+      "kanji": "朝",
+      "hiragana": "あさ"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "さし"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "さくさく"
+    },
+    {
+      "id": 8,
+      "kanji": "酒",
+      "hiragana": "さけ"
+    },
+    {
+      "id": 9,
+      "kanji": "色紙",
+      "hiragana": "しきし"
+    },
+    {
+      "id": 10,
+      "kanji": "鹿",
+      "hiragana": "しか"
+    },
+    {
+      "id": 11,
+      "kanji": "スイカ",
+      "hiragana": "すいか"
+    },
+    {
+      "id": 12,
+      "kanji": "スイス",
+      "hiragana": "すいす"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "さお"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "さそう"
+    },
+    {
+      "id": 15,
+      "kanji": "大阪",
+      "hiragana": "おおさか"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "かさい"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "ささ"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "あさい"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "すし"
+    },
+    {
+      "id": 20,
+      "kanji": "正解",
+      "hiragana": "せいかい"
+    },
+    {
+      "id": 21,
+      "kanji": "世界",
+      "hiragana": "せかい"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "さすけ"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "こうさ"
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": "さかい"
+    },
+    {
+      "id": 25,
+      "kanji": "",
+      "hiragana": "さかさ"
+    },
+    {
+      "id": 26,
+      "kanji": "成績",
+      "hiragana": "せいせき"
+    },
+    {
+      "id": 27,
+      "kanji": "操作",
+      "hiragana": "そうさ"
+    },
+    {
+      "id": 28,
+      "kanji": "",
+      "hiragana": "すいせい"
+    },
+    {
+      "id": 29,
+      "kanji": "",
+      "hiragana": "かせい"
+    },
+    {
+      "id": 30,
+      "kanji": "",
+      "hiragana": "しかく"
+    },
+    {
+      "id": 31,
+      "kanji": "塩",
+      "hiragana": "しお"
+    },
+    {
+      "id": 32,
+      "kanji": "",
+      "hiragana": "かさ"
+    },
+    {
+      "id": 33,
+      "kanji": "牛",
+      "hiragana": "うし"
+    },
+    {
+      "id": 34,
+      "kanji": "柵",
+      "hiragana": "さく"
+    },
+    {
+      "id": 35,
+      "kanji": "遅い",
+      "hiragana": "おそい"
+    },
+    {
+      "id": 36,
+      "kanji": "",
+      "hiragana": "おいしいすし"
+    },
+    {
+      "id": 37,
+      "kanji": "オアシス",
+      "hiragana": "おあしす"
+    },
+    {
+      "id": 38,
+      "kanji": "奇跡",
+      "hiragana": "きせき"
+    },
+    {
+      "id": 39,
+      "kanji": "",
+      "hiragana": "そうかい"
+    },
+    {
+      "id": 40,
+      "kanji": "",
+      "hiragana": "そうこ"
+    },
+    {
+      "id": 41,
+      "kanji": "走行",
+      "hiragana": "そうこう"
+    },
+    {
+      "id": 42,
+      "kanji": "",
+      "hiragana": "そうさく"
+    },
+    {
+      "id": 43,
+      "kanji": "お葬式",
+      "hiragana": "おそうしき"
+    },
+    {
+      "id": 44,
+      "kanji": "",
+      "hiragana": "そうち"
+    },
+    {
+      "id": 45,
+      "kanji": "",
+      "hiragana": "そし"
+    },
+    {
+      "id": 46,
+      "kanji": "",
+      "hiragana": "せいかく"
+    },
+    {
+      "id": 47,
+      "kanji": "",
+      "hiragana": "せいこう"
+    },
+    {
+      "id": 48,
+      "kanji": "",
+      "hiragana": "せいそう"
+    },
+    {
+      "id": 49,
+      "kanji": "汗",
+      "hiragana": "あせ"
+    },
+    {
+      "id": 50,
+      "kanji": "伊勢市",
+      "hiragana": "いせし"
+    },
+    {
+      "id": 51,
+      "kanji": "",
+      "hiragana": "おせ"
+    },
+    {
+      "id": 52,
+      "kanji": "",
+      "hiragana": "くせ"
+    },
+    {
+      "id": 53,
+      "kanji": "",
+      "hiragana": "うそ"
+    },
+    {
+      "id": 54,
+      "kanji": "",
+      "hiragana": "そうそう"
+    },
+    {
+      "id": 55,
+      "kanji": "明日",
+      "hiragana": "あす"
+    },
+    {
+      "id": 56,
+      "kanji": "",
+      "hiragana": "すす"
+    },
+    {
+      "id": 57,
+      "kanji": "",
+      "hiragana": "うす"
+    },
+    {
+      "id": 58,
+      "kanji": "水素",
+      "hiragana": "すいそ"
+    },
+    {
+      "id": 59,
+      "kanji": "水槽",
+      "hiragana": "すいそう"
+    },
+    {
+      "id": 60,
+      "kanji": "",
+      "hiragana": "あし"
+    },
+    {
+      "id": 61,
+      "kanji": "",
+      "hiragana": "あすか"
+    },
+    {
+      "id": 62,
+      "kanji": "",
+      "hiragana": "あそ"
+    },
+    {
+      "id": 63,
+      "kanji": "スカイ",
+      "hiragana": "すかい"
+    },
+    {
+      "id": 64,
+      "kanji": "",
+      "hiragana": "せいさ"
+    },
+    {
+      "id": 65,
+      "kanji": "席",
+      "hiragana": "せき"
+    },
+    {
+      "id": 66,
+      "kanji": "思想",
+      "hiragana": "しそう"
+    },
+    {
+      "id": 67,
+      "kanji": "明日朝スイカ食う",
+      "hiragana": "あすあさすいかくう"
+    },
+    {
+      "id": 68,
+      "kanji": "薄い塩少し",
+      "hiragana": "うすいしおすこし"
+    },
+    {
+      "id": 69,
+      "kanji": "四角い椅子",
+      "hiragana": "しかくいいす"
+    },
+    {
+      "id": 70,
+      "kanji": "色紙逆さ",
+      "hiragana": "しきしさかさ"
+    }
+  ]
+}

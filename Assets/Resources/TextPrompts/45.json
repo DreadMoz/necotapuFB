@@ -1,0 +1,227 @@
+{
+  "title": "ちゃちゅちょ・にゃにゅにょのきそ",
+  "description": "ちゃちゅちょ・にゃにゅにょを打てるようになろう",
+  "timer": 0,
+  "random": 0,
+  "hide": 99,
+  "messages": [
+    {
+      "count": 0,
+      "description": "ちゃちゅちょ・にゃにゅにょをいきますよ。"
+    },
+    {
+      "count": 1,
+      "description": "「ちゅ」は「T」と「ゆ」だよ。"
+    },
+    {
+      "count": 2,
+      "description": "「ちょ」は「T」と「よ」だよ。"
+    },
+    {
+      "count": 3,
+      "description": "「にゃ」は「N」と「や」だよ。"
+    },
+    {
+      "count": 4,
+      "description": "「にゅ」は「N」と「ゆ」だよ。"
+    },
+    {
+      "count": 5,
+      "description": "「にょ」は「N」と「よ」だよ。"
+    },
+    {
+      "count": 6,
+      "description": "「ちゃ」は「T」と「や」だよ。"
+    },
+    {
+      "count": 7,
+      "description": "「ちゅ」は「T」と「ゆ」だよ。"
+    },
+    {
+      "count": 8,
+      "description": "「ちょ」は「T」と「よ」だよ。"
+    },
+    {
+      "count": 9,
+      "description": "「にゃ」は「N」と「や」だよ。"
+    },
+    {
+      "count": 10,
+      "description": "「にゅ」は「N」と「ゆ」だよ。"
+    },
+    {
+      "count": 11,
+      "description": "「にょ」は「N」と「よ」だよ。"
+    },
+    {
+      "count": 12,
+      "description": "「ちゃ」は「T」と「や」だよ。"
+    },
+    {
+      "count": 13,
+      "description": "「ちゅ」は「T」と「ゆ」だよ。"
+    },
+    {
+      "count": 14,
+      "description": "「ちょ」は「T」と「よ」だよ。"
+    },
+    {
+      "count": 15,
+      "description": "「にゃ」は「N」と「や」だよ。"
+    },
+    {
+      "count": 16,
+      "description": "「にゅ」は「N」と「ゆ」だよ。"
+    },
+    {
+      "count": 17,
+      "description": "「にょ」は「N」と「よ」だよ。"
+    },
+    {
+      "count": 18,
+      "description": "「ちゃ」は「T」と「や」だよ。"
+    },
+    {
+      "count": 19,
+      "description": "「ちゅ」は「T」と「ゆ」だよ。"
+    },
+    {
+      "count": 20,
+      "description": "「ちょ」は「T」と「よ」だよ。"
+    },
+    {
+      "count": 21,
+      "description": "「にゃ」は「N」と「や」だよ。"
+    },
+    {
+      "count": 22,
+      "description": "「にゅ」は「N」と「ゆ」だよ。"
+    },
+    {
+      "count": 23,
+      "description": "「にょ」は「N」と「よ」だよ。"
+    }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "ちゃ"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "ちゅ"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "ちょ"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "にゃ"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "にゅ"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "にょ"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "ちゃ"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "ちゅ"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "ちょ"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "にゃ"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "にゅ"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "にょ"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "ちゃ"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "ちゅ"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "ちょ"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "にゃ"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "にゅ"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "にょ"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "ちゃ"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "ちゅ"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "ちょ"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "にゃ"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "にゅ"
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": "にょ"
+    }
+  ]
+}

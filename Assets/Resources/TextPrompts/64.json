@@ -1,0 +1,160 @@
+{
+  "title": "数字ランダム",
+  "description": "１２３４５６７８９０をランダムに打てるようになろう",
+  "timer": 40,
+  "random": 99,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "1"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "2"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "3"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "4"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "5"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "6"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "7"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "8"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "9"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "0"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "1"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "2"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "3"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "4"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "5"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "6"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "7"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "8"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "9"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "0"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "11"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "22"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "33"
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": "44"
+    },
+    {
+      "id": 25,
+      "kanji": "",
+      "hiragana": "55"
+    },
+    {
+      "id": 26,
+      "kanji": "",
+      "hiragana": "66"
+    },
+    {
+      "id": 27,
+      "kanji": "",
+      "hiragana": "77"
+    },
+    {
+      "id": 28,
+      "kanji": "",
+      "hiragana": "88"
+    },
+    {
+      "id": 29,
+      "kanji": "",
+      "hiragana": "99"
+    },
+    {
+      "id": 30,
+      "kanji": "",
+      "hiragana": "00"
+    }
+  ]
+}

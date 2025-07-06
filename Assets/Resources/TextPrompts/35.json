@@ -1,0 +1,360 @@
+{
+  "title": "がぎぐげご・ざじずぜぞまでのことば",
+  "description": "がぎぐげご・ざじずぜぞのれんしゅうだよ",
+  "timer": 60,
+  "random": 30,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "がらがら"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "ぎらぎら"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "ぐらぐら"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "げらげら"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "ごろごろ"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "ざらざら"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "じろじろ"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "ずるずる"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "ぜんぜん"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "ぞろぞろ"
+    },
+    {
+      "id": 11,
+      "kanji": "ゼロ",
+      "hiragana": "ぜろ"
+    },
+    {
+      "id": 12,
+      "kanji": "銀山",
+      "hiragana": "ぎんざん"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "ぐずぐず"
+    },
+    {
+      "id": 14,
+      "kanji": "朝顔",
+      "hiragana": "あさがお"
+    },
+    {
+      "id": 15,
+      "kanji": "劇",
+      "hiragana": "げき"
+    },
+    {
+      "id": 16,
+      "kanji": "ゴム",
+      "hiragana": "ごむ"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "ざる"
+    },
+    {
+      "id": 18,
+      "kanji": "時間",
+      "hiragana": "じかん"
+    },
+    {
+      "id": 19,
+      "kanji": "数",
+      "hiragana": "かず"
+    },
+    {
+      "id": 20,
+      "kanji": "象",
+      "hiragana": "ぞう"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "いがぐり"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "ぎりぎり"
+    },
+    {
+      "id": 23,
+      "kanji": "ゲーム",
+      "hiragana": "げーむ"
+    },
+    {
+      "id": 24,
+      "kanji": "ゴール",
+      "hiragana": "ごーる"
+    },
+    {
+      "id": 25,
+      "kanji": "",
+      "hiragana": "せいざ"
+    },
+    {
+      "id": 26,
+      "kanji": "自由",
+      "hiragana": "じゆう"
+    },
+    {
+      "id": 27,
+      "kanji": "図鑑",
+      "hiragana": "ずかん"
+    },
+    {
+      "id": 28,
+      "kanji": "風",
+      "hiragana": "かぜ"
+    },
+    {
+      "id": 29,
+      "kanji": "海賊",
+      "hiragana": "かいぞく"
+    },
+    {
+      "id": 30,
+      "kanji": "学校",
+      "hiragana": "がっこう"
+    },
+    {
+      "id": 31,
+      "kanji": "銀行",
+      "hiragana": "ぎんこう"
+    },
+    {
+      "id": 32,
+      "kanji": "",
+      "hiragana": "ぐるぐる"
+    },
+    {
+      "id": 33,
+      "kanji": "",
+      "hiragana": "げげげ"
+    },
+    {
+      "id": 34,
+      "kanji": "ゴリラ",
+      "hiragana": "ごりら"
+    },
+    {
+      "id": 35,
+      "kanji": "",
+      "hiragana": "ざらめ"
+    },
+    {
+      "id": 36,
+      "kanji": "地面",
+      "hiragana": "じめん"
+    },
+    {
+      "id": 37,
+      "kanji": "傷",
+      "hiragana": "きず"
+    },
+    {
+      "id": 38,
+      "kanji": "セリー",
+      "hiragana": "ぜりー"
+    },
+    {
+      "id": 39,
+      "kanji": "草履",
+      "hiragana": "ぞうり"
+    },
+    {
+      "id": 40,
+      "kanji": "学生",
+      "hiragana": "がくせい"
+    },
+    {
+      "id": 41,
+      "kanji": "学年",
+      "hiragana": "がくねん"
+    },
+    {
+      "id": 42,
+      "kanji": "会議",
+      "hiragana": "かいぎ"
+    },
+    {
+      "id": 43,
+      "kanji": "遊戯",
+      "hiragana": "ゆうぎ"
+    },
+    {
+      "id": 44,
+      "kanji": "影",
+      "hiragana": "かげ"
+    },
+    {
+      "id": 45,
+      "kanji": "グリズリー",
+      "hiragana": "ぐりずりー"
+    },
+    {
+      "id": 46,
+      "kanji": "グッズ",
+      "hiragana": "ぐっず"
+    },
+    {
+      "id": 47,
+      "kanji": "",
+      "hiragana": "とげ"
+    },
+    {
+      "id": 48,
+      "kanji": "豪華",
+      "hiragana": "ごうか"
+    },
+    {
+      "id": 49,
+      "kanji": "黄金",
+      "hiragana": "おうごん"
+    },
+    {
+      "id": 50,
+      "kanji": "財産",
+      "hiragana": "ざいさん"
+    },
+    {
+      "id": 51,
+      "kanji": "雑誌",
+      "hiragana": "ざっし"
+    },
+    {
+      "id": 52,
+      "kanji": "味",
+      "hiragana": "あじ"
+    },
+    {
+      "id": 53,
+      "kanji": "",
+      "hiragana": "かじ"
+    },
+    {
+      "id": 54,
+      "kanji": "",
+      "hiragana": "ずっと"
+    },
+    {
+      "id": 55,
+      "kanji": "全部",
+      "hiragana": "ぜんぶ"
+    },
+    {
+      "id": 56,
+      "kanji": "",
+      "hiragana": "ぜいたく"
+    },
+    {
+      "id": 57,
+      "kanji": "ガーゼ",
+      "hiragana": "がーぜ"
+    },
+    {
+      "id": 58,
+      "kanji": "絶対",
+      "hiragana": "ぜったい"
+    },
+    {
+      "id": 59,
+      "kanji": "",
+      "hiragana": "なぞなぞ"
+    },
+    {
+      "id": 60,
+      "kanji": "ゾーン",
+      "hiragana": "ぞーん"
+    },
+    {
+      "id": 61,
+      "kanji": "ガム",
+      "hiragana": "がむ"
+    },
+    {
+      "id": 62,
+      "kanji": "鍵",
+      "hiragana": "かぎ"
+    },
+    {
+      "id": 63,
+      "kanji": "",
+      "hiragana": "じりじり"
+    },
+    {
+      "id": 64,
+      "kanji": "",
+      "hiragana": "りんご"
+    },
+    {
+      "id": 65,
+      "kanji": "",
+      "hiragana": "おにごっこ"
+    },
+    {
+      "id": 66,
+      "kanji": "",
+      "hiragana": "ざりがに"
+    },
+    {
+      "id": 67,
+      "kanji": "ゾウリムシ",
+      "hiragana": "ぞうりむし"
+    },
+    {
+      "id": 68,
+      "kanji": "ガジガジかじるじいじ",
+      "hiragana": "がじがじかじるじいじ"
+    },
+    {
+      "id": 69,
+      "kanji": "地蔵がごろごろござがぐずぐず",
+      "hiragana": "じぞうがごろごろござがぐずぐず"
+    },
+    {
+      "id": 70,
+      "kanji": "午後5時事実が事後に具現化",
+      "hiragana": "ごごごじじじつがじごにぐげんか"
+    }
+  ]
+}

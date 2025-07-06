@@ -1,0 +1,298 @@
+{
+  "title": "文房具",
+  "description": "文房具の名前が出てきます。文房具についてもっと学びましょう。",
+  "timer": 60,
+  "random": 40,
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "鉛筆",
+      "hiragana": "えんぴつ"
+    },
+    {
+      "id": 2,
+      "kanji": "消しゴム",
+      "hiragana": "けしごむ"
+    },
+    {
+      "id": 3,
+      "kanji": "ノート",
+      "hiragana": "のーと"
+    },
+    {
+      "id": 4,
+      "kanji": "定規",
+      "hiragana": "じょうぎ"
+    },
+    {
+      "id": 5,
+      "kanji": "はさみ",
+      "hiragana": "はさみ"
+    },
+    {
+      "id": 6,
+      "kanji": "ホッチキス",
+      "hiragana": "ほっちきす"
+    },
+    {
+      "id": 7,
+      "kanji": "のり",
+      "hiragana": "のり"
+    },
+    {
+      "id": 8,
+      "kanji": "カッター",
+      "hiragana": "かったー"
+    },
+    {
+      "id": 9,
+      "kanji": "クリップ",
+      "hiragana": "くりっぷ"
+    },
+    {
+      "id": 10,
+      "kanji": "付箋",
+      "hiragana": "ふせん"
+    },
+    {
+      "id": 11,
+      "kanji": "ファイル",
+      "hiragana": "ふぁいる"
+    },
+    {
+      "id": 12,
+      "kanji": "ペン",
+      "hiragana": "ぺん"
+    },
+    {
+      "id": 13,
+      "kanji": "シャープペンシル",
+      "hiragana": "しゃーぷぺんしる"
+    },
+    {
+      "id": 14,
+      "kanji": "インク",
+      "hiragana": "いんく"
+    },
+    {
+      "id": 15,
+      "kanji": "修正テープ",
+      "hiragana": "しゅうせいてーぷ"
+    },
+    {
+      "id": 16,
+      "kanji": "画鋲",
+      "hiragana": "がびょう"
+    },
+    {
+      "id": 17,
+      "kanji": "マーカー",
+      "hiragana": "まーかー"
+    },
+    {
+      "id": 18,
+      "kanji": "ホワイトボード",
+      "hiragana": "ほわいとぼーど"
+    },
+    {
+      "id": 19,
+      "kanji": "スタンプ",
+      "hiragana": "すたんぷ"
+    },
+    {
+      "id": 20,
+      "kanji": "テープ",
+      "hiragana": "てーぷ"
+    },
+    {
+      "id": 21,
+      "kanji": "はんこ",
+      "hiragana": "はんこ"
+    },
+    {
+      "id": 22,
+      "kanji": "封筒",
+      "hiragana": "ふうとう"
+    },
+    {
+      "id": 23,
+      "kanji": "紙",
+      "hiragana": "かみ"
+    },
+    {
+      "id": 24,
+      "kanji": "ボッチキス",
+      "hiragana": "ほっちきす"
+    },
+    {
+      "id": 25,
+      "kanji": "定規",
+      "hiragana": "じょうぎ"
+    },
+    {
+      "id": 26,
+      "kanji": "クリアファイル",
+      "hiragana": "くりあふぁいる"
+    },
+    {
+      "id": 27,
+      "kanji": "メモ帳",
+      "hiragana": "めもちょう"
+    },
+    {
+      "id": 28,
+      "kanji": "万年筆",
+      "hiragana": "まんねんひつ"
+    },
+    {
+      "id": 29,
+      "kanji": "コンパス",
+      "hiragana": "こんぱす"
+    },
+    {
+      "id": 30,
+      "kanji": "三角定規",
+      "hiragana": "さんかくじょうぎ"
+    },
+    {
+      "id": 31,
+      "kanji": "模造紙",
+      "hiragana": "もぞうし"
+    },
+    {
+      "id": 32,
+      "kanji": "ボールペン",
+      "hiragana": "ぼーるぺん"
+    },
+    {
+      "id": 33,
+      "kanji": "カラーペン",
+      "hiragana": "からーぺん"
+    },
+    {
+      "id": 34,
+      "kanji": "マスキングテープ",
+      "hiragana": "ますきんぐてーぷ"
+    },
+    {
+      "id": 35,
+      "kanji": "ラベル",
+      "hiragana": "らべる"
+    },
+    {
+      "id": 36,
+      "kanji": "マグネット",
+      "hiragana": "まぐねっと"
+    },
+    {
+      "id": 37,
+      "kanji": "カレンダー",
+      "hiragana": "かれんだー"
+    },
+    {
+      "id": 38,
+      "kanji": "ホワイトボードマーカー",
+      "hiragana": "ほわいとぼーどまーかー"
+    },
+    {
+      "id": 39,
+      "kanji": "デスクマット",
+      "hiragana": "ですくまっと"
+    },
+    {
+      "id": 40,
+      "kanji": "クリアホルダー",
+      "hiragana": "くりあほるだー"
+    },
+    {
+      "id": 41,
+      "kanji": "ペンケース",
+      "hiragana": "ぺんけーす"
+    },
+    {
+      "id": 42,
+      "kanji": "電動鉛筆削り",
+      "hiragana": "でんどうえんぴつけずり"
+    },
+    {
+      "id": 43,
+      "kanji": "ファイルボックス",
+      "hiragana": "ふぁいるぼっくす"
+    },
+    {
+      "id": 44,
+      "kanji": "",
+      "hiragana": "さし"
+    },
+    {
+      "id": 45,
+      "kanji": "コピー用紙",
+      "hiragana": "こぴーようし"
+    },
+    {
+      "id": 46,
+      "kanji": "スティックのり",
+      "hiragana": "すてぃっくのり"
+    },
+    {
+      "id": 47,
+      "kanji": "ノートパッド",
+      "hiragana": "のーとぱっど"
+    },
+    {
+      "id": 48,
+      "kanji": "ルーズリーフ",
+      "hiragana": "るーずりーふ"
+    },
+    {
+      "id": 49,
+      "kanji": "シャーペンの芯",
+      "hiragana": "しゃーぺんのしん"
+    },
+    {
+      "id": 50,
+      "kanji": "画用紙",
+      "hiragana": "がようし"
+    },
+    {
+      "id": 51,
+      "kanji": "折り紙",
+      "hiragana": "おりがみ"
+    },
+    {
+      "id": 52,
+      "kanji": "ホッチキスの針",
+      "hiragana": "ほっちきすのはり"
+    },
+    {
+      "id": 53,
+      "kanji": "電動消しゴム",
+      "hiragana": "でんどうけしごむ"
+    },
+    {
+      "id": 54,
+      "kanji": "キャップ",
+      "hiragana": "きゃっぷ"
+    },
+    {
+      "id": 55,
+      "kanji": "水性ペン",
+      "hiragana": "すいせいぺん"
+    },
+    {
+      "id": 56,
+      "kanji": "油性ペン",
+      "hiragana": "ゆせいぺん"
+    },
+    {
+      "id": 57,
+      "kanji": "色鉛筆",
+      "hiragana": "いろえんぴつ"
+    },
+    {
+      "id": 58,
+      "kanji": "フラッシュカード",
+      "hiragana": "ふらっしゅかーど"
+    }
+  ]
+}

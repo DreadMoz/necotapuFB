@@ -1,0 +1,139 @@
+{
+  "title": "「ん」とちいさい「っ」のきそ",
+  "description": "「ん」とちいさい「っ」を打てるようになろう",
+  "timer": 0,
+  "random": 0,
+  "hide": 0,
+  "messages": [
+    {
+      "count": 0,
+      "description": "「ん」は「N」を2回おすとでるよ。"
+    },
+    {
+      "count": 3,
+      "description": "これはとくべつなルールがあって、「ん」のつぎにことばがあるときは「N」は1回でもいいんだよ。"
+    },
+    {
+      "count": 4,
+      "description": "これは1つ目の「ん」は「N」を1回、2つ目の「ん」は「N」を2回おさないといけないね。"
+    },
+    {
+      "count": 6,
+      "description": "ゆっくりうってかくにんしてみてね。"
+    },
+    {
+      "count": 10,
+      "description": "さぁ、ここでちゅういです。「N」のあとが「あいうえお」のばあい、「N」を2回うたないといけないよ。「なにぬねの」にばけちゃからね。"
+    },
+    {
+      "count": 12,
+      "description": "つぎのことばでばけちゃうときと、さいごの「N」は2回うつんだ。「やゆよ」もばけるよ気をつけて。"
+    },
+    {
+      "count": 15,
+      "description": "あと5つれんしゅうしてみよう。"
+    }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "ん"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "えん"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "あん"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "あんき"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "かんたん"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "かんたん"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "あんしん"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "いんかん"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "うんてん"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "おんせん"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "えんえん"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "たんい"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "こんや"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "うんゆ"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "あんよ"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "れんあい"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "ほんや"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "はんい"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "せんえん"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "しんかんせん"
+    }
+  ]
+}

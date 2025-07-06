@@ -1,0 +1,385 @@
+{
+  "title": "ひゃひゅひょ・みゃみゅみょまでの言葉",
+  "description": "ひゃひゅひょ・みゃみゅみょの練習",
+  "timer": 60,
+  "random": 40,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "ひょうたん"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "ひゅるひゅる"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "ひょうひょう"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "みょうが"
+    },
+    {
+      "id": 5,
+      "kanji": "百人一首",
+      "hiragana": "ひゃくにんいっしゅ"
+    },
+    {
+      "id": 6,
+      "kanji": "百円",
+      "hiragana": "ひゃくえん"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "ひょうきん"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "ひょっこり"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "みゃみゃみゃ"
+    },
+    {
+      "id": 10,
+      "kanji": "ミュージカル",
+      "hiragana": "みゅーじかる"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "みょう"
+    },
+    {
+      "id": 12,
+      "kanji": "ミュート",
+      "hiragana": "みゅーと"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "ひょう"
+    },
+    {
+      "id": 14,
+      "kanji": "氷河",
+      "hiragana": "ひょうが"
+    },
+    {
+      "id": 15,
+      "kanji": "百年",
+      "hiragana": "ひゃくねん"
+    },
+    {
+      "id": 16,
+      "kanji": "百姓",
+      "hiragana": "ひゃくしょう"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "ひゅーひゅー"
+    },
+    {
+      "id": 18,
+      "kanji": "ミュンヘン",
+      "hiragana": "みゅんへん"
+    },
+    {
+      "id": 19,
+      "kanji": "ミュー",
+      "hiragana": "みゅー"
+    },
+    {
+      "id": 20,
+      "kanji": "ミュージック",
+      "hiragana": "みゅーじっく"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "みょうじ"
+    },
+    {
+      "id": 22,
+      "kanji": "本名",
+      "hiragana": "ほんみょう"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "みょうばん"
+    },
+    {
+      "id": 24,
+      "kanji": "冥利",
+      "hiragana": "みょうり"
+    },
+    {
+      "id": 25,
+      "kanji": "",
+      "hiragana": "しんみょう"
+    },
+    {
+      "id": 26,
+      "kanji": "",
+      "hiragana": "みゃく"
+    },
+    {
+      "id": 27,
+      "kanji": "",
+      "hiragana": "みゃくみゃく"
+    },
+    {
+      "id": 28,
+      "kanji": "脈絡",
+      "hiragana": "みゃくらく"
+    },
+    {
+      "id": 29,
+      "kanji": "脈圧",
+      "hiragana": "みゃくあつ"
+    },
+    {
+      "id": 30,
+      "kanji": "脈拍",
+      "hiragana": "みゃくはく"
+    },
+    {
+      "id": 31,
+      "kanji": "動脈",
+      "hiragana": "どうみゃく"
+    },
+    {
+      "id": 32,
+      "kanji": "ミャンマー",
+      "hiragana": "みゃんまー"
+    },
+    {
+      "id": 33,
+      "kanji": "",
+      "hiragana": "ひゃくしょう"
+    },
+    {
+      "id": 34,
+      "kanji": "",
+      "hiragana": "ひゃっか"
+    },
+    {
+      "id": 35,
+      "kanji": "",
+      "hiragana": "ひゃっきん"
+    },
+    {
+      "id": 36,
+      "kanji": "",
+      "hiragana": "ひゅうが"
+    },
+    {
+      "id": 37,
+      "kanji": "ヒューストン",
+      "hiragana": "ひゅーすとん"
+    },
+    {
+      "id": 38,
+      "kanji": "ヒューマン",
+      "hiragana": "ひゅーまん"
+    },
+    {
+      "id": 39,
+      "kanji": "ミュージアム",
+      "hiragana": "みゅーじあむ"
+    },
+    {
+      "id": 40,
+      "kanji": "百均",
+      "hiragana": "ひゃっきん"
+    },
+    {
+      "id": 41,
+      "kanji": "百万",
+      "hiragana": "ひゃくまん"
+    },
+    {
+      "id": 42,
+      "kanji": "百獣の王",
+      "hiragana": "ひゃくじゅうのおう"
+    },
+    {
+      "id": 43,
+      "kanji": "百年",
+      "hiragana": "ひゃくねん"
+    },
+    {
+      "id": 44,
+      "kanji": "百貨店",
+      "hiragana": "ひゃっかてん"
+    },
+    {
+      "id": 45,
+      "kanji": "ヒューズ",
+      "hiragana": "ひゅーず"
+    },
+    {
+      "id": 46,
+      "kanji": "ヒュッテ",
+      "hiragana": "ひゅって"
+    },
+    {
+      "id": 47,
+      "kanji": "日向灘",
+      "hiragana": "ひゅうがなだ"
+    },
+    {
+      "id": 48,
+      "kanji": "ヒュドラ",
+      "hiragana": "ひゅどら"
+    },
+    {
+      "id": 49,
+      "kanji": "",
+      "hiragana": "ひゅうひゅう"
+    },
+    {
+      "id": 50,
+      "kanji": "標語",
+      "hiragana": "ひょうご"
+    },
+    {
+      "id": 51,
+      "kanji": "漂流",
+      "hiragana": "ひょうりゅう"
+    },
+    {
+      "id": 52,
+      "kanji": "氷点下",
+      "hiragana": "ひょうてんか"
+    },
+    {
+      "id": 53,
+      "kanji": "標本",
+      "hiragana": "ひょうほん"
+    },
+    {
+      "id": 54,
+      "kanji": "表面",
+      "hiragana": "ひょうめん"
+    },
+    {
+      "id": 55,
+      "kanji": "座標",
+      "hiragana": "ざひょう"
+    },
+    {
+      "id": 56,
+      "kanji": "名字・苗字",
+      "hiragana": "みょうじ"
+    },
+    {
+      "id": 57,
+      "kanji": "明星",
+      "hiragana": "みょうじょう"
+    },
+    {
+      "id": 58,
+      "kanji": "妙案",
+      "hiragana": "みょうあん"
+    },
+    {
+      "id": 59,
+      "kanji": "悪名",
+      "hiragana": "あくみょう"
+    },
+    {
+      "id": 60,
+      "kanji": "寿命",
+      "hiragana": "じゅみょう"
+    },
+    {
+      "id": 61,
+      "kanji": "大名",
+      "hiragana": "だいみょう"
+    },
+    {
+      "id": 62,
+      "kanji": "ミュゼット",
+      "hiragana": "みゅぜっと"
+    },
+    {
+      "id": 63,
+      "kanji": "ミュトス",
+      "hiragana": "みゅとす"
+    },
+    {
+      "id": 64,
+      "kanji": "ミュラー",
+      "hiragana": "みゅらー"
+    },
+    {
+      "id": 65,
+      "kanji": "ミュー",
+      "hiragana": "みゅー"
+    },
+    {
+      "id": 66,
+      "kanji": "ミュール",
+      "hiragana": "みゅーる"
+    },
+    {
+      "id": 67,
+      "kanji": "カミュ",
+      "hiragana": "かみゅ"
+    },
+    {
+      "id": 68,
+      "kanji": "コミュニケーション",
+      "hiragana": "こみゅにけーしょん"
+    },
+    {
+      "id": 69,
+      "kanji": "コミュニティ",
+      "hiragana": "こみゅにてぃ"
+    },
+    {
+      "id": 70,
+      "kanji": "ミャンマー",
+      "hiragana": "みゃんまー"
+    },
+    {
+      "id": 71,
+      "kanji": "山脈",
+      "hiragana": "さんみゃく"
+    },
+    {
+      "id": 72,
+      "kanji": "人脈",
+      "hiragana": "じんみゃく"
+    },
+    {
+      "id": 73,
+      "kanji": "",
+      "hiragana": "ひゃっかん"
+    },
+    {
+      "id": 74,
+      "kanji": "",
+      "hiragana": "ひゃひゃひゃひょひょひょ"
+    },
+    {
+      "id": 75,
+      "kanji": "",
+      "hiragana": "みゃみゅみょみゃみゅみょ"
+    }
+  ]
+}

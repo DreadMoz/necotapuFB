@@ -1,0 +1,440 @@
+{
+  "title": "ちゃちゅちょ・にゃにゅにょまでの言葉",
+  "description": "ちゃちゅちょ・にゃにゅにょの練習",
+  "timer": 60,
+  "random": 40,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "注射",
+      "hiragana": "ちゅうしゃ"
+    },
+    {
+      "id": 2,
+      "kanji": "チャンポン",
+      "hiragana": "ちゃんぽん"
+    },
+    {
+      "id": 3,
+      "kanji": "チャルメラ",
+      "hiragana": "ちゃるめら"
+    },
+    {
+      "id": 4,
+      "kanji": "チャンス",
+      "hiragana": "ちゃんす"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "にゃんこ"
+    },
+    {
+      "id": 6,
+      "kanji": "ちゃぶ台",
+      "hiragana": "ちゃぶだい"
+    },
+    {
+      "id": 7,
+      "kanji": "中国",
+      "hiragana": "ちゅうごく"
+    },
+    {
+      "id": 8,
+      "kanji": "チャボ",
+      "hiragana": "ちゃぼ"
+    },
+    {
+      "id": 9,
+      "kanji": "茶碗蒸し",
+      "hiragana": "ちゃわんむし"
+    },
+    {
+      "id": 10,
+      "kanji": "茶碗",
+      "hiragana": "ちゃわん"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "ちゃせん"
+    },
+    {
+      "id": 12,
+      "kanji": "紅茶",
+      "hiragana": "こうちゃ"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "にょきにょき"
+    },
+    {
+      "id": 14,
+      "kanji": "女房",
+      "hiragana": "にょうぼう"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "にょろにょろ"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "ちょきちょき"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "ちょくちょく"
+    },
+    {
+      "id": 18,
+      "kanji": "直接",
+      "hiragana": "ちょくせつ"
+    },
+    {
+      "id": 19,
+      "kanji": "直線",
+      "hiragana": "ちょくせん"
+    },
+    {
+      "id": 20,
+      "kanji": "貯金",
+      "hiragana": "ちょきん"
+    },
+    {
+      "id": 21,
+      "kanji": "茶色",
+      "hiragana": "ちゃいろ"
+    },
+    {
+      "id": 22,
+      "kanji": "チャンス",
+      "hiragana": "ちゃんす"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "にゅうめん"
+    },
+    {
+      "id": 24,
+      "kanji": "入浴",
+      "hiragana": "にゅうよく"
+    },
+    {
+      "id": 25,
+      "kanji": "入院",
+      "hiragana": "にゅういん"
+    },
+    {
+      "id": 26,
+      "kanji": "入学",
+      "hiragana": "にゅうがく"
+    },
+    {
+      "id": 27,
+      "kanji": "貯金",
+      "hiragana": "ちょきん"
+    },
+    {
+      "id": 28,
+      "kanji": "茶漬け",
+      "hiragana": "ちゃづけ"
+    },
+    {
+      "id": 29,
+      "kanji": "",
+      "hiragana": "ちゃらちゃら"
+    },
+    {
+      "id": 30,
+      "kanji": "注文",
+      "hiragana": "ちゅうもん"
+    },
+    {
+      "id": 31,
+      "kanji": "",
+      "hiragana": "ちゃりんこ"
+    },
+    {
+      "id": 32,
+      "kanji": "駐車",
+      "hiragana": "ちゅうしゃ"
+    },
+    {
+      "id": 33,
+      "kanji": "チャレンジ",
+      "hiragana": "ちゃれんじ"
+    },
+    {
+      "id": 34,
+      "kanji": "",
+      "hiragana": "ちょうちん"
+    },
+    {
+      "id": 35,
+      "kanji": "躊躇",
+      "hiragana": "ちゅうちょ"
+    },
+    {
+      "id": 36,
+      "kanji": "購入",
+      "hiragana": "こうにゅう"
+    },
+    {
+      "id": 37,
+      "kanji": "",
+      "hiragana": "にゃあにゃあ"
+    },
+    {
+      "id": 38,
+      "kanji": "老若男女",
+      "hiragana": "ろうにゃくなんにょ"
+    },
+    {
+      "id": 39,
+      "kanji": "",
+      "hiragana": "ほにゃらら"
+    },
+    {
+      "id": 40,
+      "kanji": "般若",
+      "hiragana": "はんにゃ"
+    },
+    {
+      "id": 41,
+      "kanji": "",
+      "hiragana": "むにゃむにゃ"
+    },
+    {
+      "id": 42,
+      "kanji": "",
+      "hiragana": "くにゃくにゃ"
+    },
+    {
+      "id": 43,
+      "kanji": "",
+      "hiragana": "こんにゃく"
+    },
+    {
+      "id": 44,
+      "kanji": "",
+      "hiragana": "ぷにょぷにょ"
+    },
+    {
+      "id": 45,
+      "kanji": "",
+      "hiragana": "ぽにょ"
+    },
+    {
+      "id": 46,
+      "kanji": "如意棒",
+      "hiragana": "にょいぼう"
+    },
+    {
+      "id": 47,
+      "kanji": "",
+      "hiragana": "にょっき"
+    },
+    {
+      "id": 48,
+      "kanji": "注意",
+      "hiragana": "ちゅうい"
+    },
+    {
+      "id": 49,
+      "kanji": "中心",
+      "hiragana": "ちゅうしん"
+    },
+    {
+      "id": 50,
+      "kanji": "宙返り",
+      "hiragana": "ちゅうがえり"
+    },
+    {
+      "id": 51,
+      "kanji": "甲冑",
+      "hiragana": "かっちゅう"
+    },
+    {
+      "id": 52,
+      "kanji": "課長",
+      "hiragana": "かちょう"
+    },
+    {
+      "id": 53,
+      "kanji": "焼酎",
+      "hiragana": "しょうちゅう"
+    },
+    {
+      "id": 54,
+      "kanji": "",
+      "hiragana": "しょっちゅう"
+    },
+    {
+      "id": 55,
+      "kanji": "暑中",
+      "hiragana": "しょちゅう"
+    },
+    {
+      "id": 56,
+      "kanji": "空中",
+      "hiragana": "くうちゅう"
+    },
+    {
+      "id": 57,
+      "kanji": "空調",
+      "hiragana": "くうちょう"
+    },
+    {
+      "id": 58,
+      "kanji": "宇宙",
+      "hiragana": "うちゅう"
+    },
+    {
+      "id": 59,
+      "kanji": "ニュアンス",
+      "hiragana": "にゅあんす"
+    },
+    {
+      "id": 60,
+      "kanji": "入試",
+      "hiragana": "にゅうし"
+    },
+    {
+      "id": 61,
+      "kanji": "入金",
+      "hiragana": "にゅうきん"
+    },
+    {
+      "id": 62,
+      "kanji": "牛乳",
+      "hiragana": "ぎゅうにゅう"
+    },
+    {
+      "id": 63,
+      "kanji": "マニュアル",
+      "hiragana": "まにゅある"
+    },
+    {
+      "id": 64,
+      "kanji": "導入",
+      "hiragana": "どうにゅう"
+    },
+    {
+      "id": 65,
+      "kanji": "乳酸菌",
+      "hiragana": "にゅうさんきん"
+    },
+    {
+      "id": 66,
+      "kanji": "入道雲",
+      "hiragana": "にゅうどうぐも"
+    },
+    {
+      "id": 67,
+      "kanji": "入門",
+      "hiragana": "にゅうもん"
+    },
+    {
+      "id": 68,
+      "kanji": "クロマニョン人",
+      "hiragana": "くろまにょんじん"
+    },
+    {
+      "id": 69,
+      "kanji": "",
+      "hiragana": "ごにょごにょ"
+    },
+    {
+      "id": 70,
+      "kanji": "",
+      "hiragana": "ぐにゃぐにゃ"
+    },
+    {
+      "id": 71,
+      "kanji": "",
+      "hiragana": "にゃあにゃあ"
+    },
+    {
+      "id": 72,
+      "kanji": "超能力",
+      "hiragana": "ちょうのうりょく"
+    },
+    {
+      "id": 73,
+      "kanji": "長者",
+      "hiragana": "ちょうじゃ"
+    },
+    {
+      "id": 74,
+      "kanji": "",
+      "hiragana": "おっちょこちょい"
+    },
+    {
+      "id": 75,
+      "kanji": "異国情緒",
+      "hiragana": "いこくじょうちょ"
+    },
+    {
+      "id": 76,
+      "kanji": "包丁",
+      "hiragana": "ほうちょう"
+    },
+    {
+      "id": 77,
+      "kanji": "所長",
+      "hiragana": "しょちょう"
+    },
+    {
+      "id": 78,
+      "kanji": "社長",
+      "hiragana": "しゃちょう"
+    },
+    {
+      "id": 79,
+      "kanji": "女人",
+      "hiragana": "にょにん"
+    },
+    {
+      "id": 80,
+      "kanji": "",
+      "hiragana": "にゃにゃにゃ"
+    },
+    {
+      "id": 81,
+      "kanji": "",
+      "hiragana": "にゃーにゃー"
+    },
+    {
+      "id": 82,
+      "kanji": "ニュース",
+      "hiragana": "にゅーす"
+    },
+    {
+      "id": 83,
+      "kanji": "チュロス",
+      "hiragana": "ちゅろす"
+    },
+    {
+      "id": 84,
+      "kanji": "",
+      "hiragana": "どじょうにょろにょろみにょろにょろ"
+    },
+    {
+      "id": 85,
+      "kanji": "",
+      "hiragana": "にゃーにゃーにゃーちゅーちゅーちゅー"
+    },
+    {
+      "id": 86,
+      "kanji": "ちょっとチャットちょっとチャット",
+      "hiragana": "ちょっとちゃっとちょっとちゃっと"
+    }
+  ]
+}

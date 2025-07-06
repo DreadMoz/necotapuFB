@@ -1,0 +1,360 @@
+{
+  "title": "なにぬねのまでのことば",
+  "description": "なにぬねのまでのことばを打てるようになろう",
+  "timer": 60,
+  "random": 40,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "なし"
+    },
+    {
+      "id": 2,
+      "kanji": "茄子",
+      "hiragana": "なす"
+    },
+    {
+      "id": 3,
+      "kanji": "木の葉",
+      "hiragana": "このは"
+    },
+    {
+      "id": 4,
+      "kanji": "その他",
+      "hiragana": "そのた"
+    },
+    {
+      "id": 5,
+      "kanji": "何",
+      "hiragana": "なに"
+    },
+    {
+      "id": 6,
+      "kanji": "西",
+      "hiragana": "にし"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "にかい"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "にこ"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "にい"
+    },
+    {
+      "id": 10,
+      "kanji": "兄",
+      "hiragana": "あに"
+    },
+    {
+      "id": 11,
+      "kanji": "犬",
+      "hiragana": "いぬ"
+    },
+    {
+      "id": 12,
+      "kanji": "絹",
+      "hiragana": "きぬ"
+    },
+    {
+      "id": 13,
+      "kanji": "ケニア",
+      "hiragana": "けにあ"
+    },
+    {
+      "id": 14,
+      "kanji": "主",
+      "hiragana": "ぬし"
+    },
+    {
+      "id": 15,
+      "kanji": "猫",
+      "hiragana": "ねこ"
+    },
+    {
+      "id": 16,
+      "kanji": "七",
+      "hiragana": "なな"
+    },
+    {
+      "id": 17,
+      "kanji": "姉",
+      "hiragana": "あね"
+    },
+    {
+      "id": 18,
+      "kanji": "稲",
+      "hiragana": "いね"
+    },
+    {
+      "id": 19,
+      "kanji": "お金",
+      "hiragana": "おかね"
+    },
+    {
+      "id": 20,
+      "kanji": "種",
+      "hiragana": "たね"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "いいね"
+    },
+    {
+      "id": 22,
+      "kanji": "農家",
+      "hiragana": "のうか"
+    },
+    {
+      "id": 23,
+      "kanji": "農地",
+      "hiragana": "のうち"
+    },
+    {
+      "id": 24,
+      "kanji": "軒下",
+      "hiragana": "のきした"
+    },
+    {
+      "id": 25,
+      "kanji": "残す",
+      "hiragana": "のこす"
+    },
+    {
+      "id": 26,
+      "kanji": "内閣",
+      "hiragana": "ないかく"
+    },
+    {
+      "id": 27,
+      "kanji": "内科",
+      "hiragana": "ないか"
+    },
+    {
+      "id": 28,
+      "kanji": "",
+      "hiragana": "ないさく"
+    },
+    {
+      "id": 29,
+      "kanji": "七草",
+      "hiragana": "ななくさ"
+    },
+    {
+      "id": 30,
+      "kanji": "",
+      "hiragana": "ななし"
+    },
+    {
+      "id": 31,
+      "kanji": "",
+      "hiragana": "なにか"
+    },
+    {
+      "id": 32,
+      "kanji": "七日",
+      "hiragana": "なのか"
+    },
+    {
+      "id": 33,
+      "kanji": "",
+      "hiragana": "ぬう"
+    },
+    {
+      "id": 34,
+      "kanji": "",
+      "hiragana": "ぬか"
+    },
+    {
+      "id": 35,
+      "kanji": "",
+      "hiragana": "ぬく"
+    },
+    {
+      "id": 36,
+      "kanji": "布",
+      "hiragana": "ぬの"
+    },
+    {
+      "id": 37,
+      "kanji": "",
+      "hiragana": "かいいぬ"
+    },
+    {
+      "id": 38,
+      "kanji": "子犬",
+      "hiragana": "こいぬ"
+    },
+    {
+      "id": 39,
+      "kanji": "狛犬",
+      "hiragana": "こまいぬ"
+    },
+    {
+      "id": 40,
+      "kanji": "値打ち",
+      "hiragana": "ねうち"
+    },
+    {
+      "id": 41,
+      "kanji": "寝起き",
+      "hiragana": "ねおき"
+    },
+    {
+      "id": 42,
+      "kanji": "熱意",
+      "hiragana": "ねつい"
+    },
+    {
+      "id": 43,
+      "kanji": "狐",
+      "hiragana": "きつね"
+    },
+    {
+      "id": 44,
+      "kanji": "垣根",
+      "hiragana": "かきね"
+    },
+    {
+      "id": 45,
+      "kanji": "",
+      "hiragana": "ない"
+    },
+    {
+      "id": 46,
+      "kanji": "屋根",
+      "hiragana": "やね"
+    },
+    {
+      "id": 47,
+      "kanji": "",
+      "hiragana": "つくね"
+    },
+    {
+      "id": 48,
+      "kanji": "",
+      "hiragana": "おのおの"
+    },
+    {
+      "id": 49,
+      "kanji": "丁寧",
+      "hiragana": "ていねい"
+    },
+    {
+      "id": 50,
+      "kanji": "菜種",
+      "hiragana": "なたね"
+    },
+    {
+      "id": 51,
+      "kanji": "",
+      "hiragana": "あかね"
+    },
+    {
+      "id": 52,
+      "kanji": "草の根",
+      "hiragana": "くさのね"
+    },
+    {
+      "id": 53,
+      "kanji": "鐘の音",
+      "hiragana": "かねのね"
+    },
+    {
+      "id": 54,
+      "kanji": "",
+      "hiragana": "いぬかき"
+    },
+    {
+      "id": 55,
+      "kanji": "猫と犬",
+      "hiragana": "ねこといぬ"
+    },
+    {
+      "id": 56,
+      "kanji": "",
+      "hiragana": "あくぬき"
+    },
+    {
+      "id": 57,
+      "kanji": "息抜き",
+      "hiragana": "いきぬき"
+    },
+    {
+      "id": 58,
+      "kanji": "狸",
+      "hiragana": "たぬき"
+    },
+    {
+      "id": 59,
+      "kanji": "",
+      "hiragana": "さぬき"
+    },
+    {
+      "id": 60,
+      "kanji": "鬼",
+      "hiragana": "おに"
+    },
+    {
+      "id": 61,
+      "kanji": "谷",
+      "hiragana": "たに"
+    },
+    {
+      "id": 62,
+      "kanji": "国",
+      "hiragana": "くに"
+    },
+    {
+      "id": 63,
+      "kanji": "",
+      "hiragana": "かに"
+    },
+    {
+      "id": 64,
+      "kanji": "",
+      "hiragana": "うに"
+    },
+    {
+      "id": 65,
+      "kanji": "ニス",
+      "hiragana": "にす"
+    },
+    {
+      "id": 66,
+      "kanji": "可能",
+      "hiragana": "かのう"
+    },
+    {
+      "id": 67,
+      "kanji": "なかなか鳴かない",
+      "hiragana": "なかなかなかない"
+    },
+    {
+      "id": 68,
+      "kanji": "兄にニコニコの猫",
+      "hiragana": "あにににこにこのねこ"
+    },
+    {
+      "id": 69,
+      "kanji": "狐と狸の国なの",
+      "hiragana": "きつねとたぬきのくになの"
+    },
+    {
+      "id": 70,
+      "kanji": "北と西の農家の犬",
+      "hiragana": "きたとにしののうかのいぬ"
+    }
+  ]
+}

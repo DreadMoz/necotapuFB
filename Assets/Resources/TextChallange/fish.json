@@ -1,0 +1,393 @@
+{
+  "title": "魚の名前",
+  "description": "いろいろな魚の名前が出てきます。魚についてもっと学びましょう。",
+  "timer": 60,
+  "random": 40,
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "マグロ",
+      "hiragana": "まぐろ"
+    },
+    {
+      "id": 2,
+      "kanji": "サケ",
+      "hiragana": "さけ"
+    },
+    {
+      "id": 3,
+      "kanji": "サバ",
+      "hiragana": "さば"
+    },
+    {
+      "id": 4,
+      "kanji": "アジ",
+      "hiragana": "あじ"
+    },
+    {
+      "id": 5,
+      "kanji": "イワシ",
+      "hiragana": "いわし"
+    },
+    {
+      "id": 6,
+      "kanji": "サンマ",
+      "hiragana": "さんま"
+    },
+    {
+      "id": 7,
+      "kanji": "タラ",
+      "hiragana": "たら"
+    },
+    {
+      "id": 8,
+      "kanji": "カツオ",
+      "hiragana": "かつお"
+    },
+    {
+      "id": 9,
+      "kanji": "ブリ",
+      "hiragana": "ぶり"
+    },
+    {
+      "id": 10,
+      "kanji": "ヒラメ",
+      "hiragana": "ひらめ"
+    },
+    {
+      "id": 11,
+      "kanji": "カレイ",
+      "hiragana": "かれい"
+    },
+    {
+      "id": 12,
+      "kanji": "サヨリ",
+      "hiragana": "さより"
+    },
+    {
+      "id": 13,
+      "kanji": "ハモ",
+      "hiragana": "はも"
+    },
+    {
+      "id": 14,
+      "kanji": "コハダ",
+      "hiragana": "こはだ"
+    },
+    {
+      "id": 15,
+      "kanji": "フグ",
+      "hiragana": "ふぐ"
+    },
+    {
+      "id": 16,
+      "kanji": "ウナギ",
+      "hiragana": "うなぎ"
+    },
+    {
+      "id": 17,
+      "kanji": "ドジョウ",
+      "hiragana": "どじょう"
+    },
+    {
+      "id": 18,
+      "kanji": "アユ",
+      "hiragana": "あゆ"
+    },
+    {
+      "id": 19,
+      "kanji": "カマス",
+      "hiragana": "かます"
+    },
+    {
+      "id": 20,
+      "kanji": "メダカ",
+      "hiragana": "めだか"
+    },
+    {
+      "id": 21,
+      "kanji": "ハゼ",
+      "hiragana": "はぜ"
+    },
+    {
+      "id": 22,
+      "kanji": "タチウオ",
+      "hiragana": "たちうお"
+    },
+    {
+      "id": 23,
+      "kanji": "ニシン",
+      "hiragana": "にしん"
+    },
+    {
+      "id": 24,
+      "kanji": "ワカサギ",
+      "hiragana": "わかさぎ"
+    },
+    {
+      "id": 25,
+      "kanji": "アイナメ",
+      "hiragana": "あいなめ"
+    },
+    {
+      "id": 26,
+      "kanji": "アカムツ",
+      "hiragana": "あかむつ"
+    },
+    {
+      "id": 27,
+      "kanji": "アオダイ",
+      "hiragana": "あおだい"
+    },
+    {
+      "id": 28,
+      "kanji": "クロカジキ",
+      "hiragana": "くろかじき"
+    },
+    {
+      "id": 29,
+      "kanji": "アンコウ",
+      "hiragana": "あんこう"
+    },
+    {
+      "id": 30,
+      "kanji": "イシダイ",
+      "hiragana": "いしだい"
+    },
+    {
+      "id": 31,
+      "kanji": "イシナギ",
+      "hiragana": "いしなぎ"
+    },
+    {
+      "id": 32,
+      "kanji": "イサキ",
+      "hiragana": "いさき"
+    },
+    {
+      "id": 33,
+      "kanji": "イトウ",
+      "hiragana": "いとう"
+    },
+    {
+      "id": 34,
+      "kanji": "イワナ",
+      "hiragana": "いわな"
+    },
+    {
+      "id": 35,
+      "kanji": "ウグイ",
+      "hiragana": "うぐい"
+    },
+    {
+      "id": 36,
+      "kanji": "サヨリ",
+      "hiragana": "さより"
+    },
+    {
+      "id": 37,
+      "kanji": "ウツボ",
+      "hiragana": "うつぼ"
+    },
+    {
+      "id": 38,
+      "kanji": "ウミタナゴ",
+      "hiragana": "うみたなご"
+    },
+    {
+      "id": 39,
+      "kanji": "ウルメイワシ",
+      "hiragana": "うるめいわし"
+    },
+    {
+      "id": 40,
+      "kanji": "キハダマグロ",
+      "hiragana": "きはだまぐろ"
+    },
+    {
+      "id": 41,
+      "kanji": "ワカサギ",
+      "hiragana": "わかさぎ"
+    },
+    {
+      "id": 42,
+      "kanji": "カサゴ",
+      "hiragana": "かさご"
+    },
+    {
+      "id": 43,
+      "kanji": "カツオ",
+      "hiragana": "かつお"
+    },
+    {
+      "id": 44,
+      "kanji": "カマス",
+      "hiragana": "かます"
+    },
+    {
+      "id": 45,
+      "kanji": "カレイ",
+      "hiragana": "かれい"
+    },
+    {
+      "id": 46,
+      "kanji": "キス",
+      "hiragana": "きす"
+    },
+    {
+      "id": 47,
+      "kanji": "キンメダイ",
+      "hiragana": "きんめだい"
+    },
+    {
+      "id": 48,
+      "kanji": "クロダイ",
+      "hiragana": "くろだい"
+    },
+    {
+      "id": 49,
+      "kanji": "クロマグロ",
+      "hiragana": "くろまぐろ"
+    },
+    {
+      "id": 50,
+      "kanji": "コイ",
+      "hiragana": "こい"
+    },
+    {
+      "id": 51,
+      "kanji": "サバ",
+      "hiragana": "さば"
+    },
+    {
+      "id": 52,
+      "kanji": "サメ",
+      "hiragana": "さめ"
+    },
+    {
+      "id": 53,
+      "kanji": "シシャモ",
+      "hiragana": "ししゃも"
+    },
+    {
+      "id": 54,
+      "kanji": "シロギス",
+      "hiragana": "しろぎす"
+    },
+    {
+      "id": 55,
+      "kanji": "スズキ",
+      "hiragana": "すずき"
+    },
+    {
+      "id": 56,
+      "kanji": "スマガツオ",
+      "hiragana": "すまがつお"
+    },
+    {
+      "id": 57,
+      "kanji": "セイゴ",
+      "hiragana": "せいご"
+    },
+    {
+      "id": 58,
+      "kanji": "リュウグウノツカイ",
+      "hiragana": "りゅうぐうのつかい"
+    },
+    {
+      "id": 59,
+      "kanji": "タイ",
+      "hiragana": "たい"
+    },
+    {
+      "id": 60,
+      "kanji": "タチウオ",
+      "hiragana": "たちうお"
+    },
+    {
+      "id": 61,
+      "kanji": "タナゴ",
+      "hiragana": "たなご"
+    },
+    {
+      "id": 62,
+      "kanji": "メダカ",
+      "hiragana": "めだか"
+    },
+    {
+      "id": 63,
+      "kanji": "ヤリイカ",
+      "hiragana": "やりいか"
+    },
+    {
+      "id": 64,
+      "kanji": "テングダイ",
+      "hiragana": "てんぐだい"
+    },
+    {
+      "id": 65,
+      "kanji": "トビウオ",
+      "hiragana": "とびうお"
+    },
+    {
+      "id": 66,
+      "kanji": "ライギョ",
+      "hiragana": "らいぎょ"
+    },
+    {
+      "id": 67,
+      "kanji": "ナマズ",
+      "hiragana": "なまず"
+    },
+    {
+      "id": 68,
+      "kanji": "ニジマス",
+      "hiragana": "にじます"
+    },
+    {
+      "id": 69,
+      "kanji": "ハタハタ",
+      "hiragana": "はたはた"
+    },
+    {
+      "id": 70,
+      "kanji": "ハマチ",
+      "hiragana": "はまち"
+    },
+    {
+      "id": 71,
+      "kanji": "マダイ",
+      "hiragana": "まだい"
+    },
+    {
+      "id": 72,
+      "kanji": "マンボウ",
+      "hiragana": "まんぼう"
+    },
+    {
+      "id": 73,
+      "kanji": "フグ",
+      "hiragana": "ふぐ"
+    },
+    {
+      "id": 74,
+      "kanji": "ヘダイ",
+      "hiragana": "へだい"
+    },
+    {
+      "id": 75,
+      "kanji": "ホッケ",
+      "hiragana": "ほっけ"
+    },
+    {
+      "id": 76,
+      "kanji": "ボラ",
+      "hiragana": "ぼら"
+    },
+    {
+      "id": 77,
+      "kanji": "マアジ",
+      "hiragana": "まあじ"
+    }
+  ]
+}

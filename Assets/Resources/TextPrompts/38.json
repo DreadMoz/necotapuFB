@@ -1,0 +1,395 @@
+{
+  "title": "だぢづでど・ばびぶべぼまでのことば",
+  "description": "だぢづでど・ばびぶべぼのれんしゅうだよ",
+  "timer": 60,
+  "random": 30,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "ダンス",
+      "hiragana": "だんす"
+    },
+    {
+      "id": 2,
+      "kanji": "大豆",
+      "hiragana": "だいず"
+    },
+    {
+      "id": 3,
+      "kanji": "鼻血",
+      "hiragana": "はなぢ"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "ちかぢか"
+    },
+    {
+      "id": 5,
+      "kanji": "三日月",
+      "hiragana": "みかづき"
+    },
+    {
+      "id": 6,
+      "kanji": "奈良漬",
+      "hiragana": "ならづけ"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "できる"
+    },
+    {
+      "id": 8,
+      "kanji": "出口",
+      "hiragana": "でぐち"
+    },
+    {
+      "id": 9,
+      "kanji": "ドル",
+      "hiragana": "どる"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "どんぐり"
+    },
+    {
+      "id": 11,
+      "kanji": "バス",
+      "hiragana": "ばす"
+    },
+    {
+      "id": 12,
+      "kanji": "バター",
+      "hiragana": "ばたー"
+    },
+    {
+      "id": 13,
+      "kanji": "瓶",
+      "hiragana": "びん"
+    },
+    {
+      "id": 14,
+      "kanji": "ビーカー",
+      "hiragana": "びーかー"
+    },
+    {
+      "id": 15,
+      "kanji": "豚",
+      "hiragana": "ぶた"
+    },
+    {
+      "id": 16,
+      "kanji": "部品",
+      "hiragana": "ぶひん"
+    },
+    {
+      "id": 17,
+      "kanji": "壁",
+      "hiragana": "かべ"
+    },
+    {
+      "id": 18,
+      "kanji": "ベース",
+      "hiragana": "べーす"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "ぼたん"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "しぼる"
+    },
+    {
+      "id": 21,
+      "kanji": "花壇",
+      "hiragana": "かだん"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "だらだら"
+    },
+    {
+      "id": 23,
+      "kanji": "縮む",
+      "hiragana": "ちぢむ"
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": "ばかぢから"
+    },
+    {
+      "id": 25,
+      "kanji": "",
+      "hiragana": "ぬかづけ"
+    },
+    {
+      "id": 26,
+      "kanji": "",
+      "hiragana": "あいづち"
+    },
+    {
+      "id": 27,
+      "kanji": "データ",
+      "hiragana": "でーた"
+    },
+    {
+      "id": 28,
+      "kanji": "",
+      "hiragana": "でこ"
+    },
+    {
+      "id": 29,
+      "kanji": "ドア",
+      "hiragana": "どあ"
+    },
+    {
+      "id": 30,
+      "kanji": "ドリル",
+      "hiragana": "どりる"
+    },
+    {
+      "id": 31,
+      "kanji": "場面",
+      "hiragana": "ばめん"
+    },
+    {
+      "id": 32,
+      "kanji": "バイト",
+      "hiragana": "ばいと"
+    },
+    {
+      "id": 33,
+      "kanji": "ビル",
+      "hiragana": "びる"
+    },
+    {
+      "id": 34,
+      "kanji": "カビ",
+      "hiragana": "かび"
+    },
+    {
+      "id": 35,
+      "kanji": "",
+      "hiragana": "かけぶとん"
+    },
+    {
+      "id": 36,
+      "kanji": "ブザー",
+      "hiragana": "ぶざー"
+    },
+    {
+      "id": 37,
+      "kanji": "弁当",
+      "hiragana": "べんとう"
+    },
+    {
+      "id": 38,
+      "kanji": "",
+      "hiragana": "べろ"
+    },
+    {
+      "id": 39,
+      "kanji": "ボス",
+      "hiragana": "ぼす"
+    },
+    {
+      "id": 40,
+      "kanji": "ボール",
+      "hiragana": "ぼーる"
+    },
+    {
+      "id": 41,
+      "kanji": "カバ",
+      "hiragana": "かば"
+    },
+    {
+      "id": 42,
+      "kanji": "",
+      "hiragana": "おば"
+    },
+    {
+      "id": 43,
+      "kanji": "美人",
+      "hiragana": "びじん"
+    },
+    {
+      "id": 44,
+      "kanji": "ビーム",
+      "hiragana": "びーむ"
+    },
+    {
+      "id": 45,
+      "kanji": "",
+      "hiragana": "ぶるぶる"
+    },
+    {
+      "id": 46,
+      "kanji": "ベッド",
+      "hiragana": "べっど"
+    },
+    {
+      "id": 47,
+      "kanji": "ベル",
+      "hiragana": "べる"
+    },
+    {
+      "id": 48,
+      "kanji": "",
+      "hiragana": "ぼそぼそ"
+    },
+    {
+      "id": 49,
+      "kanji": "台",
+      "hiragana": "だい"
+    },
+    {
+      "id": 50,
+      "kanji": "電気",
+      "hiragana": "でんき"
+    },
+    {
+      "id": 51,
+      "kanji": "モデル",
+      "hiragana": "もでる"
+    },
+    {
+      "id": 52,
+      "kanji": "",
+      "hiragana": "どかん"
+    },
+    {
+      "id": 53,
+      "kanji": "",
+      "hiragana": "かど"
+    },
+    {
+      "id": 54,
+      "kanji": "",
+      "hiragana": "だいたい"
+    },
+    {
+      "id": 55,
+      "kanji": "",
+      "hiragana": "いれぢえ"
+    },
+    {
+      "id": 56,
+      "kanji": "底力",
+      "hiragana": "そこぢから"
+    },
+    {
+      "id": 57,
+      "kanji": "言葉遣い",
+      "hiragana": "ことばづかい"
+    },
+    {
+      "id": 58,
+      "kanji": "",
+      "hiragana": "ことづて"
+    },
+    {
+      "id": 59,
+      "kanji": "腕",
+      "hiragana": "うで"
+    },
+    {
+      "id": 60,
+      "kanji": "",
+      "hiragana": "びっくり"
+    },
+    {
+      "id": 61,
+      "kanji": "",
+      "hiragana": "えび"
+    },
+    {
+      "id": 62,
+      "kanji": "",
+      "hiragana": "ぶぶん"
+    },
+    {
+      "id": 63,
+      "kanji": "ベスト",
+      "hiragana": "べすと"
+    },
+    {
+      "id": 64,
+      "kanji": "ベンチ",
+      "hiragana": "べんち"
+    },
+    {
+      "id": 65,
+      "kanji": "",
+      "hiragana": "ぼうし"
+    },
+    {
+      "id": 66,
+      "kanji": "ボクシング",
+      "hiragana": "ぼくしんぐ"
+    },
+    {
+      "id": 67,
+      "kanji": "大王",
+      "hiragana": "だいおう"
+    },
+    {
+      "id": 68,
+      "kanji": "大工",
+      "hiragana": "だいく"
+    },
+    {
+      "id": 69,
+      "kanji": "出口",
+      "hiragana": "でぐち"
+    },
+    {
+      "id": 70,
+      "kanji": "弟子",
+      "hiragana": "でし"
+    },
+    {
+      "id": 71,
+      "kanji": "出前",
+      "hiragana": "でまえ"
+    },
+    {
+      "id": 72,
+      "kanji": "道具",
+      "hiragana": "どうぐ"
+    },
+    {
+      "id": 73,
+      "kanji": "ドーナツ",
+      "hiragana": "どーなつ"
+    },
+    {
+      "id": 74,
+      "kanji": "",
+      "hiragana": "どく"
+    },
+    {
+      "id": 75,
+      "kanji": "バナナの謎はまだ謎なのだぞ",
+      "hiragana": "ばななのなぞはなだなぞなのだぞ"
+    },
+    {
+      "id": 76,
+      "kanji": "赤あぶりカルビ青あぶりカルビ黄あぶりカルビ",
+      "hiragana": "あかあぶりかるびあおあぶりかるびきあぶりかるび"
+    },
+    {
+      "id": 77,
+      "kanji": "ビビデバビデブー",
+      "hiragana": "びびでばびでぶー"
+    }
+  ]
+}

@@ -1,0 +1,565 @@
+{
+  "title": "きゃきゅきょ・しゃしゅしょまでの言葉",
+  "description": "きゃきゅきょ・しゃしゅしょの練習",
+  "timer": 60,
+  "random": 40,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "キャラ",
+      "hiragana": "きゃら"
+    },
+    {
+      "id": 2,
+      "kanji": "客",
+      "hiragana": "きゃく"
+    },
+    {
+      "id": 3,
+      "kanji": "キャンプ",
+      "hiragana": "きゃんぷ"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "きゅうり"
+    },
+    {
+      "id": 5,
+      "kanji": "球根",
+      "hiragana": "きゅうこん"
+    },
+    {
+      "id": 6,
+      "kanji": "９",
+      "hiragana": "きゅう"
+    },
+    {
+      "id": 7,
+      "kanji": "今日",
+      "hiragana": "きょう"
+    },
+    {
+      "id": 8,
+      "kanji": "京都",
+      "hiragana": "きょうと"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "はいきょ"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "しゃれ"
+    },
+    {
+      "id": 11,
+      "kanji": "校舎",
+      "hiragana": "こうしゃ"
+    },
+    {
+      "id": 12,
+      "kanji": "会社",
+      "hiragana": "かいしゃ"
+    },
+    {
+      "id": 13,
+      "kanji": "修理",
+      "hiragana": "しゅうり"
+    },
+    {
+      "id": 14,
+      "kanji": "投手",
+      "hiragana": "とうしゅ"
+    },
+    {
+      "id": 15,
+      "kanji": "手裏剣",
+      "hiragana": "しゅりけん"
+    },
+    {
+      "id": 16,
+      "kanji": "小学生",
+      "hiragana": "しょうがくせい"
+    },
+    {
+      "id": 17,
+      "kanji": "書写",
+      "hiragana": "しょしゃ"
+    },
+    {
+      "id": 18,
+      "kanji": "少年",
+      "hiragana": "しょうねん"
+    },
+    {
+      "id": 19,
+      "kanji": "キャラメル",
+      "hiragana": "きゃらめる"
+    },
+    {
+      "id": 20,
+      "kanji": "キャベツ",
+      "hiragana": "きゃべつ"
+    },
+    {
+      "id": 21,
+      "kanji": "気球",
+      "hiragana": "ききゅう"
+    },
+    {
+      "id": 22,
+      "kanji": "電車",
+      "hiragana": "でんしゃ"
+    },
+    {
+      "id": 23,
+      "kanji": "醤油",
+      "hiragana": "しょうゆ"
+    },
+    {
+      "id": 24,
+      "kanji": "握手",
+      "hiragana": "あくしゅ"
+    },
+    {
+      "id": 25,
+      "kanji": "客室",
+      "hiragana": "きゃくしつ"
+    },
+    {
+      "id": 26,
+      "kanji": "客足",
+      "hiragana": "きゃくあし"
+    },
+    {
+      "id": 27,
+      "kanji": "陰キャ",
+      "hiragana": "いんきゃ"
+    },
+    {
+      "id": 28,
+      "kanji": "野球",
+      "hiragana": "やきゅう"
+    },
+    {
+      "id": 29,
+      "kanji": "",
+      "hiragana": "きゅうえん"
+    },
+    {
+      "id": 30,
+      "kanji": "卓球",
+      "hiragana": "たっきゅう"
+    },
+    {
+      "id": 31,
+      "kanji": "半球",
+      "hiragana": "はんきゅう"
+    },
+    {
+      "id": 32,
+      "kanji": "救急",
+      "hiragana": "きゅうきゅう"
+    },
+    {
+      "id": 33,
+      "kanji": "",
+      "hiragana": "いっきょ"
+    },
+    {
+      "id": 34,
+      "kanji": "",
+      "hiragana": "いんきょ"
+    },
+    {
+      "id": 35,
+      "kanji": "",
+      "hiragana": "あいきょう"
+    },
+    {
+      "id": 36,
+      "kanji": "お経",
+      "hiragana": "おきょう"
+    },
+    {
+      "id": 37,
+      "kanji": "海峡",
+      "hiragana": "かいきょう"
+    },
+    {
+      "id": 38,
+      "kanji": "実況",
+      "hiragana": "じっきょう"
+    },
+    {
+      "id": 39,
+      "kanji": "",
+      "hiragana": "しゅじん"
+    },
+    {
+      "id": 40,
+      "kanji": "シャツ",
+      "hiragana": "しゃつ"
+    },
+    {
+      "id": 41,
+      "kanji": "車輪",
+      "hiragana": "しゃりん"
+    },
+    {
+      "id": 42,
+      "kanji": "社会",
+      "hiragana": "しゃかい"
+    },
+    {
+      "id": 43,
+      "kanji": "種子",
+      "hiragana": "しゅし"
+    },
+    {
+      "id": 44,
+      "kanji": "",
+      "hiragana": "しゃもじ"
+    },
+    {
+      "id": 45,
+      "kanji": "",
+      "hiragana": "よゆうしゃくしゃく"
+    },
+    {
+      "id": 46,
+      "kanji": "首位",
+      "hiragana": "しゅい"
+    },
+    {
+      "id": 47,
+      "kanji": "春夏秋冬",
+      "hiragana": "しゅんかしゅうとう"
+    },
+    {
+      "id": 48,
+      "kanji": "集会",
+      "hiragana": "しゅうかい"
+    },
+    {
+      "id": 49,
+      "kanji": "収穫",
+      "hiragana": "しゅうかく"
+    },
+    {
+      "id": 50,
+      "kanji": "修学",
+      "hiragana": "しゅうがく"
+    },
+    {
+      "id": 51,
+      "kanji": "習慣",
+      "hiragana": "しゅうかん"
+    },
+    {
+      "id": 52,
+      "kanji": "修理",
+      "hiragana": "しょうり"
+    },
+    {
+      "id": 53,
+      "kanji": "消化",
+      "hiragana": "しょうか"
+    },
+    {
+      "id": 54,
+      "kanji": "紹介",
+      "hiragana": "しょうかい"
+    },
+    {
+      "id": 55,
+      "kanji": "商売",
+      "hiragana": "しょうばい"
+    },
+    {
+      "id": 56,
+      "kanji": "鑑賞",
+      "hiragana": "かんしょう"
+    },
+    {
+      "id": 57,
+      "kanji": "",
+      "hiragana": "あいしょう"
+    },
+    {
+      "id": 58,
+      "kanji": "感謝",
+      "hiragana": "かんしゃ"
+    },
+    {
+      "id": 59,
+      "kanji": "読書",
+      "hiragana": "どくしょ"
+    },
+    {
+      "id": 60,
+      "kanji": "",
+      "hiragana": "どっこいしょ"
+    },
+    {
+      "id": 61,
+      "kanji": "",
+      "hiragana": "びしょびしょ"
+    },
+    {
+      "id": 62,
+      "kanji": "",
+      "hiragana": "けいさつしょ"
+    },
+    {
+      "id": 63,
+      "kanji": "",
+      "hiragana": "しょうぼうしょ"
+    },
+    {
+      "id": 64,
+      "kanji": "教会",
+      "hiragana": "きょうかい"
+    },
+    {
+      "id": 65,
+      "kanji": "",
+      "hiragana": "しょうが"
+    },
+    {
+      "id": 66,
+      "kanji": "恐竜",
+      "hiragana": "きょうりゅう"
+    },
+    {
+      "id": 67,
+      "kanji": "機関車",
+      "hiragana": "きかんしゃ"
+    },
+    {
+      "id": 68,
+      "kanji": "消防車",
+      "hiragana": "しょうぼうしゃ"
+    },
+    {
+      "id": 69,
+      "kanji": "電車",
+      "hiragana": "でんしゃ"
+    },
+    {
+      "id": 70,
+      "kanji": "兄弟",
+      "hiragana": "きょうだい"
+    },
+    {
+      "id": 71,
+      "kanji": "写真",
+      "hiragana": "しゃしん"
+    },
+    {
+      "id": 72,
+      "kanji": "シャケ",
+      "hiragana": "しゃけ"
+    },
+    {
+      "id": 73,
+      "kanji": "シュウマイ",
+      "hiragana": "しゅうまい"
+    },
+    {
+      "id": 74,
+      "kanji": "修行",
+      "hiragana": "しゅぎょう"
+    },
+    {
+      "id": 75,
+      "kanji": "給食",
+      "hiragana": "きゅうしょく"
+    },
+    {
+      "id": 76,
+      "kanji": "小学校",
+      "hiragana": "しょうがっこう"
+    },
+    {
+      "id": 77,
+      "kanji": "シャンデリア",
+      "hiragana": "しゃんでりあ"
+    },
+    {
+      "id": 78,
+      "kanji": "キャッチ",
+      "hiragana": "きゃっち"
+    },
+    {
+      "id": 79,
+      "kanji": "脚立",
+      "hiragana": "きゃたつ"
+    },
+    {
+      "id": 80,
+      "kanji": "キャラクター",
+      "hiragana": "きゃらくたー"
+    },
+    {
+      "id": 81,
+      "kanji": "キャット",
+      "hiragana": "きゃっと"
+    },
+    {
+      "id": 82,
+      "kanji": "",
+      "hiragana": "きゅんきゅん"
+    },
+    {
+      "id": 83,
+      "kanji": "",
+      "hiragana": "きゅうぎ"
+    },
+    {
+      "id": 84,
+      "kanji": "地球儀",
+      "hiragana": "ちきゅうぎ"
+    },
+    {
+      "id": 85,
+      "kanji": "地球",
+      "hiragana": "ちきゅう"
+    },
+    {
+      "id": 86,
+      "kanji": "休日",
+      "hiragana": "きゅうじつ"
+    },
+    {
+      "id": 87,
+      "kanji": "",
+      "hiragana": "きゅうきょ"
+    },
+    {
+      "id": 88,
+      "kanji": "吸血鬼",
+      "hiragana": "きゅうけつき"
+    },
+    {
+      "id": 89,
+      "kanji": "",
+      "hiragana": "きゅうばん"
+    },
+    {
+      "id": 90,
+      "kanji": "社長",
+      "hiragana": "しゃちょう"
+    },
+    {
+      "id": 91,
+      "kanji": "車掌",
+      "hiragana": "しゃしょう"
+    },
+    {
+      "id": 92,
+      "kanji": "キャタピラ",
+      "hiragana": "きゃたぴら"
+    },
+    {
+      "id": 93,
+      "kanji": "キャスター",
+      "hiragana": "きゃすたー"
+    },
+    {
+      "id": 94,
+      "kanji": "キャプテン",
+      "hiragana": "きゃぷてん"
+    },
+    {
+      "id": 95,
+      "kanji": "キャンセル",
+      "hiragana": "きゃんせる"
+    },
+    {
+      "id": 96,
+      "kanji": "",
+      "hiragana": "きょろきょろ"
+    },
+    {
+      "id": 97,
+      "kanji": "教育",
+      "hiragana": "きょういく"
+    },
+    {
+      "id": 98,
+      "kanji": "協力",
+      "hiragana": "きょうりょく"
+    },
+    {
+      "id": 99,
+      "kanji": "免許",
+      "hiragana": "めんきょ"
+    },
+    {
+      "id": 100,
+      "kanji": "",
+      "hiragana": "こんきょ"
+    },
+    {
+      "id": 101,
+      "kanji": "消去",
+      "hiragana": "しょうきょ"
+    },
+    {
+      "id": 102,
+      "kanji": "出発",
+      "hiragana": "しゅっぱつ"
+    },
+    {
+      "id": 103,
+      "kanji": "集会",
+      "hiragana": "しゅうかい"
+    },
+    {
+      "id": 104,
+      "kanji": "終了",
+      "hiragana": "しゅうりょう"
+    },
+    {
+      "id": 105,
+      "kanji": "修学旅行",
+      "hiragana": "しゅうがくりょこう"
+    },
+    {
+      "id": 106,
+      "kanji": "",
+      "hiragana": "きゃぴきゃぴ"
+    },
+    {
+      "id": 107,
+      "kanji": "キャラ弁",
+      "hiragana": "きゃらべん"
+    },
+    {
+      "id": 108,
+      "kanji": "華奢な社員書写で写経",
+      "hiragana": "きゃしゃなしゃいんしょしゃでしゃきょう"
+    },
+    {
+      "id": 109,
+      "kanji": "シャイな所員急遽今日出所",
+      "hiragana": "しゃいなしょいんきゅうきょきょうしゅっしょ"
+    },
+    {
+      "id": 110,
+      "kanji": "車掌挙手救急車停車",
+      "hiragana": "しゃしょうきょしゅきゅうきゅうしゃていしゃ"
+    },
+    {
+      "id": 111,
+      "kanji": "九州吸収して急襲",
+      "hiragana": "きゅうしゅうきゅうしゅうしてきゅうしゅう"
+    }
+  ]
+}

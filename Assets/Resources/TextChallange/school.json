@@ -1,0 +1,258 @@
+{
+  "title": "がっこう",
+  "description": "学校で見つけることができる物や事柄について学びましょう。",
+  "timer": 60,
+  "random": 40,
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "教室",
+      "hiragana": "きょうしつ"
+    },
+    {
+      "id": 2,
+      "kanji": "黒板",
+      "hiragana": "こくばん"
+    },
+    {
+      "id": 3,
+      "kanji": "机",
+      "hiragana": "つくえ"
+    },
+    {
+      "id": 4,
+      "kanji": "椅子",
+      "hiragana": "いす"
+    },
+    {
+      "id": 5,
+      "kanji": "教科書",
+      "hiragana": "きょうかしょ"
+    },
+    {
+      "id": 6,
+      "kanji": "ノート",
+      "hiragana": "のーと"
+    },
+    {
+      "id": 7,
+      "kanji": "鉛筆",
+      "hiragana": "えんぴつ"
+    },
+    {
+      "id": 8,
+      "kanji": "消しゴム",
+      "hiragana": "けしごむ"
+    },
+    {
+      "id": 9,
+      "kanji": "定規",
+      "hiragana": "じょうぎ"
+    },
+    {
+      "id": 10,
+      "kanji": "コンパス",
+      "hiragana": "こんぱす"
+    },
+    {
+      "id": 11,
+      "kanji": "給食",
+      "hiragana": "きゅうしょく"
+    },
+    {
+      "id": 12,
+      "kanji": "運動場",
+      "hiragana": "うんどうじょう"
+    },
+    {
+      "id": 13,
+      "kanji": "図書館",
+      "hiragana": "としょかん"
+    },
+    {
+      "id": 14,
+      "kanji": "体育館",
+      "hiragana": "たいいくかん"
+    },
+    {
+      "id": 15,
+      "kanji": "校長先生",
+      "hiragana": "こうちょうせんせい"
+    },
+    {
+      "id": 16,
+      "kanji": "音楽室",
+      "hiragana": "おんがくしつ"
+    },
+    {
+      "id": 17,
+      "kanji": "理科室",
+      "hiragana": "りかしつ"
+    },
+    {
+      "id": 18,
+      "kanji": "図工室",
+      "hiragana": "ずこうしつ"
+    },
+    {
+      "id": 19,
+      "kanji": "家庭科室",
+      "hiragana": "かていかしつ"
+    },
+    {
+      "id": 20,
+      "kanji": "保健室",
+      "hiragana": "ほけんしつ"
+    },
+    {
+      "id": 21,
+      "kanji": "校庭",
+      "hiragana": "こうてい"
+    },
+    {
+      "id": 22,
+      "kanji": "体育",
+      "hiragana": "たいいく"
+    },
+    {
+      "id": 23,
+      "kanji": "音楽",
+      "hiragana": "おんがく"
+    },
+    {
+      "id": 24,
+      "kanji": "図工",
+      "hiragana": "ずこう"
+    },
+    {
+      "id": 25,
+      "kanji": "理科",
+      "hiragana": "りか"
+    },
+    {
+      "id": 26,
+      "kanji": "算数",
+      "hiragana": "さんすう"
+    },
+    {
+      "id": 27,
+      "kanji": "国語",
+      "hiragana": "こくご"
+    },
+    {
+      "id": 28,
+      "kanji": "社会",
+      "hiragana": "しゃかい"
+    },
+    {
+      "id": 29,
+      "kanji": "外国語",
+      "hiragana": "がいこくご"
+    },
+    {
+      "id": 30,
+      "kanji": "始業式",
+      "hiragana": "しぎょうしき"
+    },
+    {
+      "id": 31,
+      "kanji": "文化祭",
+      "hiragana": "ぶんかさい"
+    },
+    {
+      "id": 32,
+      "kanji": "卒業式",
+      "hiragana": "そつぎょうしき"
+    },
+    {
+      "id": 33,
+      "kanji": "入学式",
+      "hiragana": "にゅうがくしき"
+    },
+    {
+      "id": 34,
+      "kanji": "修学旅行",
+      "hiragana": "しゅうがくりょこう"
+    },
+    {
+      "id": 35,
+      "kanji": "遠足",
+      "hiragana": "えんそく"
+    },
+    {
+      "id": 36,
+      "kanji": "朝礼",
+      "hiragana": "ちょうれい"
+    },
+    {
+      "id": 37,
+      "kanji": "掃除",
+      "hiragana": "そうじ"
+    },
+    {
+      "id": 38,
+      "kanji": "授業",
+      "hiragana": "じゅぎょう"
+    },
+    {
+      "id": 39,
+      "kanji": "テスト",
+      "hiragana": "てすと"
+    },
+    {
+      "id": 40,
+      "kanji": "宿題",
+      "hiragana": "しゅくだい"
+    },
+    {
+      "id": 41,
+      "kanji": "休み時間",
+      "hiragana": "やすみじかん"
+    },
+    {
+      "id": 42,
+      "kanji": "放課後",
+      "hiragana": "ほうかご"
+    },
+    {
+      "id": 43,
+      "kanji": "部活動",
+      "hiragana": "ぶかつどう"
+    },
+    {
+      "id": 44,
+      "kanji": "総合",
+      "hiragana": "そうごう"
+    },
+    {
+      "id": 45,
+      "kanji": "給食当番",
+      "hiragana": "きゅうしょくとうばん"
+    },
+    {
+      "id": 46,
+      "kanji": "生徒会",
+      "hiragana": "せいとかい"
+    },
+    {
+      "id": 47,
+      "kanji": "学級会",
+      "hiragana": "がっきゅうかい"
+    },
+    {
+      "id": 48,
+      "kanji": "遠足",
+      "hiragana": "えんそく"
+    },
+    {
+      "id": 49,
+      "kanji": "遊具",
+      "hiragana": "ゆうぐ"
+    },
+    {
+      "id": 50,
+      "kanji": "学芸会",
+      "hiragana": "がくげいかい"
+    }
+  ]
+}

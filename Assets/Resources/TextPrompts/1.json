@@ -1,0 +1,195 @@
+{
+  "title": "FとJの練習",
+  "description": "FとJを練習してみよう",
+  "timer": 0,
+  "random": 0,
+  "hide": 99,
+  "messages": [
+    {
+      "count": 0,
+      "description": "こんかいは、ひとさしゆびをつかっていくよ。じゅんびができたらスペースキーをおしてね。"
+    },
+    {
+      "count": 1,
+      "description": "したの手のまねをしてキーボードにゆびをおいてみよう。できたらスペースキーをおしてね。"
+    },
+    {
+      "count": 2,
+      "description": "りょうほうのひとさしゆびにキーのでっぱりがあるのがわかるかな？わかったらスペースキーをおしてね。"
+    },
+    {
+      "count": 3,
+      "description": "ほかのゆびもじゅんばんにキーにのせてね。"
+    },
+    {
+      "count": 4,
+      "description": "では、ひだりてのひとさしゆびで「F」をおしてみよう。"
+    },
+    {
+      "count": 5,
+      "description": "みぎてひとさしゆびで「J」をおしてみよう"
+    },
+    {
+      "count": 6,
+      "description": "もういちど、ひだりてのひとさしゆびで「F」"
+    },
+    {
+      "count": 7,
+      "description": "みぎてひとさしゆびで「J」"
+    },
+    {
+      "count": 8,
+      "description": "りょうほうのひとさしゆびで「F」「J」「F」「J」とおしてみよう"
+    },
+    {
+      "count": 12,
+      "description": "がめんをみながらつづけてみてね"
+    },
+    {
+      "count": 20,
+      "description": "あとすこしがんばってみよう"
+    }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": " "
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": " "
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": " "
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": " "
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "f"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "j"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "f"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "j"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "f"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "j"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "f"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "j"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "f"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "j"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "f"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "j"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "f"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "j"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "f"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "j"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "f"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "j"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "f"
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": "j"
+    },
+    {
+      "id": 25,
+      "kanji": "",
+      "hiragana": "f"
+    },
+    {
+      "id": 26,
+      "kanji": "",
+      "hiragana": "j"
+    },
+    {
+      "id": 27,
+      "kanji": "",
+      "hiragana": "f"
+    },
+    {
+      "id": 28,
+      "kanji": "",
+      "hiragana": "j"
+    }
+  ]
+}

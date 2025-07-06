@@ -1,0 +1,371 @@
+{
+  "title": "数字のきそ",
+  "description": "1234567890を打てるようになろう",
+  "timer": 0,
+  "random": 0,
+  "hide": 2,
+  "messages": [
+    {
+      "count": 0,
+      "description": "最後に数字の練習をしますよ。1は小指で打ちますよ"
+    },
+    {
+      "count": 1,
+      "description": "2は薬指で打ちますよ"
+    },
+    {
+      "count": 2,
+      "description": "3は中指で打ちますよ"
+    },
+    {
+      "count": 3,
+      "description": "4は人差し指で打ちますよ"
+    },
+    {
+      "count": 4,
+      "description": "5は人差し指で打ちますよ"
+    },
+    {
+      "count": 5,
+      "description": "6は人差し指で打ちますよ"
+    },
+    {
+      "count": 6,
+      "description": "7は人差し指で打ちますよ"
+    },
+    {
+      "count": 7,
+      "description": "8は中指で打ちますよ"
+    },
+    {
+      "count": 8,
+      "description": "9は薬指で打ちますよ"
+    },
+    {
+      "count": 9,
+      "description": "0は小指で打ちますよ"
+    },
+    {
+      "count": 10,
+      "description": "1は小指で打ちますよ"
+    },
+    {
+      "count": 11,
+      "description": "2は薬指で打ちますよ"
+    },
+    {
+      "count": 12,
+      "description": "3は中指で打ちますよ"
+    },
+    {
+      "count": 13,
+      "description": "4は人差し指で打ちますよ"
+    },
+    {
+      "count": 14,
+      "description": "5は人差し指で打ちますよ"
+    },
+    {
+      "count": 15,
+      "description": "6は人差し指で打ちますよ"
+    },
+    {
+      "count": 16,
+      "description": "7は人差し指で打ちますよ"
+    },
+    {
+      "count": 17,
+      "description": "8は中指で打ちますよ"
+    },
+    {
+      "count": 18,
+      "description": "9は薬指で打ちますよ"
+    },
+    {
+      "count": 19,
+      "description": "0は小指で打ちますよ"
+    },
+    {
+      "count": 20,
+      "description": "1は小指で打ちますよ"
+    },
+    {
+      "count": 21,
+      "description": "2は薬指で打ちますよ"
+    },
+    {
+      "count": 22,
+      "description": "3は中指で打ちますよ"
+    },
+    {
+      "count": 23,
+      "description": "4は人差し指で打ちますよ"
+    },
+    {
+      "count": 24,
+      "description": "5は人差し指で打ちますよ"
+    },
+    {
+      "count": 25,
+      "description": "6は人差し指で打ちますよ"
+    },
+    {
+      "count": 26,
+      "description": "7は人差し指で打ちますよ"
+    },
+    {
+      "count": 27,
+      "description": "8は中指で打ちますよ"
+    },
+    {
+      "count": 28,
+      "description": "9は薬指で打ちますよ"
+    },
+    {
+      "count": 29,
+      "description": "0は小指で打ちますよ"
+    },
+    {
+      "count": 30,
+      "description": "1は小指で打ちますよ"
+    },
+    {
+      "count": 31,
+      "description": "2は薬指で打ちますよ"
+    },
+    {
+      "count": 32,
+      "description": "3は中指で打ちますよ"
+    },
+    {
+      "count": 33,
+      "description": "4は人差し指で打ちますよ"
+    },
+    {
+      "count": 34,
+      "description": "5は人差し指で打ちますよ"
+    },
+    {
+      "count": 35,
+      "description": "6は人差し指で打ちますよ"
+    },
+    {
+      "count": 36,
+      "description": "7は人差し指で打ちますよ"
+    },
+    {
+      "count": 37,
+      "description": "8は中指で打ちますよ"
+    },
+    {
+      "count": 38,
+      "description": "9は薬指で打ちますよ"
+    },
+    {
+      "count": 39,
+      "description": "0は小指で打ちますよ"
+    }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": 1
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": 2
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": 3
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": 4
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": 5
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": 6
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": 7
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": 8
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": 9
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": 0
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": 1
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": 2
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": 3
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": 4
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": 5
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": 6
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": 7
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": 8
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": 9
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": 0
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": 1
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": 2
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": 3
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": 4
+    },
+    {
+      "id": 25,
+      "kanji": "",
+      "hiragana": 5
+    },
+    {
+      "id": 26,
+      "kanji": "",
+      "hiragana": 6
+    },
+    {
+      "id": 27,
+      "kanji": "",
+      "hiragana": 7
+    },
+    {
+      "id": 28,
+      "kanji": "",
+      "hiragana": 8
+    },
+    {
+      "id": 29,
+      "kanji": "",
+      "hiragana": 9
+    },
+    {
+      "id": 30,
+      "kanji": "",
+      "hiragana": 0
+    },
+    {
+      "id": 31,
+      "kanji": "",
+      "hiragana": 1
+    },
+    {
+      "id": 32,
+      "kanji": "",
+      "hiragana": 2
+    },
+    {
+      "id": 33,
+      "kanji": "",
+      "hiragana": 3
+    },
+    {
+      "id": 34,
+      "kanji": "",
+      "hiragana": 4
+    },
+    {
+      "id": 35,
+      "kanji": "",
+      "hiragana": 5
+    },
+    {
+      "id": 36,
+      "kanji": "",
+      "hiragana": 6
+    },
+    {
+      "id": 37,
+      "kanji": "",
+      "hiragana": 7
+    },
+    {
+      "id": 38,
+      "kanji": "",
+      "hiragana": 8
+    },
+    {
+      "id": 39,
+      "kanji": "",
+      "hiragana": 9
+    },
+    {
+      "id": 40,
+      "kanji": "",
+      "hiragana": 0
+    }
+  ]
+}

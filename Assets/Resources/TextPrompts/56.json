@@ -1,0 +1,430 @@
+{
+  "title": "じゃじゅじょ・ぢゃぢゅぢょまでの言葉",
+  "description": "じゃじゅじょ・ぢゃぢゅぢょの練習",
+  "timer": 60,
+  "random": 40,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "じゃがいも"
+    },
+    {
+      "id": 2,
+      "kanji": "ジャム",
+      "hiragana": "じゃむ"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "じゃぶじゃぶ"
+    },
+    {
+      "id": 4,
+      "kanji": "邪魔",
+      "hiragana": "じゃま"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "かじゅつ"
+    },
+    {
+      "id": 6,
+      "kanji": "手術",
+      "hiragana": "しゅじゅつ"
+    },
+    {
+      "id": 7,
+      "kanji": "戦術",
+      "hiragana": "せんじゅつ"
+    },
+    {
+      "id": 8,
+      "kanji": "技術",
+      "hiragana": "ぎじゅつ"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "ぢゃ"
+    },
+    {
+      "id": 10,
+      "kanji": "準備",
+      "hiragana": "じゅんび"
+    },
+    {
+      "id": 11,
+      "kanji": "順番",
+      "hiragana": "じゅんばん"
+    },
+    {
+      "id": 12,
+      "kanji": "呪文",
+      "hiragana": "じゅもん"
+    },
+    {
+      "id": 13,
+      "kanji": "情報",
+      "hiragana": "じょうほう"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "ぢゅ"
+    },
+    {
+      "id": 15,
+      "kanji": "王女様",
+      "hiragana": "おじょうさま"
+    },
+    {
+      "id": 16,
+      "kanji": "女性",
+      "hiragana": "じょせい"
+    },
+    {
+      "id": 17,
+      "kanji": "順番",
+      "hiragana": "じゅんばん"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "ぢゃ"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "ぢゅ"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "ぢょ"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "ぢゃぢゃ"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "ぢゅぢゅ"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "ぢょぢょ"
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": "ぢゃぢゃぢゃ"
+    },
+    {
+      "id": 25,
+      "kanji": "",
+      "hiragana": "ぢゅぢゅぢゅ"
+    },
+    {
+      "id": 26,
+      "kanji": "",
+      "hiragana": "ぢょぢょぢょ"
+    },
+    {
+      "id": 27,
+      "kanji": "",
+      "hiragana": "ぢゃぢゅぢょ"
+    },
+    {
+      "id": 28,
+      "kanji": "ジャマイカ",
+      "hiragana": "じゃまいか"
+    },
+    {
+      "id": 29,
+      "kanji": "上位",
+      "hiragana": "じょうい"
+    },
+    {
+      "id": 30,
+      "kanji": "屋上",
+      "hiragana": "おくじょう"
+    },
+    {
+      "id": 31,
+      "kanji": "場外",
+      "hiragana": "じょうがい"
+    },
+    {
+      "id": 32,
+      "kanji": "状態",
+      "hiragana": "じょうたい"
+    },
+    {
+      "id": 33,
+      "kanji": "浄化槽",
+      "hiragana": "じょうかそう"
+    },
+    {
+      "id": 34,
+      "kanji": "定規",
+      "hiragana": "じょうぎ"
+    },
+    {
+      "id": 35,
+      "kanji": "蒸気機関車",
+      "hiragana": "じょうききかんしゃ"
+    },
+    {
+      "id": 36,
+      "kanji": "上級者",
+      "hiragana": "じょうきゅうしゃ"
+    },
+    {
+      "id": 37,
+      "kanji": "冗談",
+      "hiragana": "じょうだん"
+    },
+    {
+      "id": 38,
+      "kanji": "上下",
+      "hiragana": "じょうげ"
+    },
+    {
+      "id": 39,
+      "kanji": "蒸散",
+      "hiragana": "じょうさん"
+    },
+    {
+      "id": 40,
+      "kanji": "弱者",
+      "hiragana": "じゃくしゃ"
+    },
+    {
+      "id": 41,
+      "kanji": "弱小",
+      "hiragana": "じゃくしょう"
+    },
+    {
+      "id": 42,
+      "kanji": "弱点",
+      "hiragana": "じゃくてん"
+    },
+    {
+      "id": 43,
+      "kanji": "若輩者",
+      "hiragana": "じゃくはいもの"
+    },
+    {
+      "id": 44,
+      "kanji": "弱冷車",
+      "hiragana": "じゃくれいしゃ"
+    },
+    {
+      "id": 45,
+      "kanji": "ジャバラ",
+      "hiragana": "じゃばら"
+    },
+    {
+      "id": 46,
+      "kanji": "邪道",
+      "hiragana": "じゃどう"
+    },
+    {
+      "id": 47,
+      "kanji": "重油",
+      "hiragana": "じゅうゆ"
+    },
+    {
+      "id": 48,
+      "kanji": "",
+      "hiragana": "じゃれあう"
+    },
+    {
+      "id": 49,
+      "kanji": "呪術",
+      "hiragana": "じゅじゅつ"
+    },
+    {
+      "id": 50,
+      "kanji": "獣医",
+      "hiragana": "じゅうい"
+    },
+    {
+      "id": 51,
+      "kanji": "十円玉",
+      "hiragana": "じゅうえんだま"
+    },
+    {
+      "id": 52,
+      "kanji": "充血",
+      "hiragana": "じゅうけつ"
+    },
+    {
+      "id": 53,
+      "kanji": "十分",
+      "hiragana": "じゅうぶん"
+    },
+    {
+      "id": 54,
+      "kanji": "",
+      "hiragana": "じゃんけん"
+    },
+    {
+      "id": 55,
+      "kanji": "上機嫌",
+      "hiragana": "じょうきげん"
+    },
+    {
+      "id": 56,
+      "kanji": "蒸発",
+      "hiragana": "じょうはつ"
+    },
+    {
+      "id": 57,
+      "kanji": "上段",
+      "hiragana": "じょうだん"
+    },
+    {
+      "id": 58,
+      "kanji": "参上",
+      "hiragana": "さんじょう"
+    },
+    {
+      "id": 59,
+      "kanji": "上々",
+      "hiragana": "じょうじょう"
+    },
+    {
+      "id": 60,
+      "kanji": "重々",
+      "hiragana": "じゅうじゅう"
+    },
+    {
+      "id": 61,
+      "kanji": "ジャッカル",
+      "hiragana": "じゃっかる"
+    },
+    {
+      "id": 62,
+      "kanji": "ジャスト",
+      "hiragana": "じゃすと"
+    },
+    {
+      "id": 63,
+      "kanji": "ジャンプ",
+      "hiragana": "じゃんぷ"
+    },
+    {
+      "id": 64,
+      "kanji": "忍者",
+      "hiragana": "にんじゃ"
+    },
+    {
+      "id": 65,
+      "kanji": "JICA",
+      "hiragana": "じゃいか"
+    },
+    {
+      "id": 66,
+      "kanji": "重点",
+      "hiragana": "じゅうてん"
+    },
+    {
+      "id": 67,
+      "kanji": "ジャイロ",
+      "hiragana": "じゃいろ"
+    },
+    {
+      "id": 68,
+      "kanji": "蛇口",
+      "hiragana": "じゃぐち"
+    },
+    {
+      "id": 69,
+      "kanji": "JAXA",
+      "hiragana": "じゃくさ"
+    },
+    {
+      "id": 70,
+      "kanji": "若干",
+      "hiragana": "じゃっかん"
+    },
+    {
+      "id": 71,
+      "kanji": "充電",
+      "hiragana": "じゅうでん"
+    },
+    {
+      "id": 72,
+      "kanji": "十二支",
+      "hiragana": "じゅうにし"
+    },
+    {
+      "id": 73,
+      "kanji": "住民",
+      "hiragana": "じゅうみん"
+    },
+    {
+      "id": 74,
+      "kanji": "重油",
+      "hiragana": "じゅうゆ"
+    },
+    {
+      "id": 75,
+      "kanji": "授業",
+      "hiragana": "じゅぎょう"
+    },
+    {
+      "id": 76,
+      "kanji": "熟語",
+      "hiragana": "じゅくご"
+    },
+    {
+      "id": 77,
+      "kanji": "乗馬",
+      "hiragana": "じょうば"
+    },
+    {
+      "id": 78,
+      "kanji": "上陸",
+      "hiragana": "じょうりく"
+    },
+    {
+      "id": 79,
+      "kanji": "",
+      "hiragana": "ぢょ"
+    },
+    {
+      "id": 80,
+      "kanji": "蒸留",
+      "hiragana": "じょうりゅう"
+    },
+    {
+      "id": 81,
+      "kanji": "上手",
+      "hiragana": "じょうず"
+    },
+    {
+      "id": 82,
+      "kanji": "赤パジャマ青パジャマ黄パジャマ",
+      "hiragana": "あかぱじゃまあおぱじゃまきぱじゃま"
+    },
+    {
+      "id": 83,
+      "kanji": "魔術師手術中",
+      "hiragana": "まじゅつししゅじゅつちゅう"
+    },
+    {
+      "id": 84,
+      "kanji": "坊主が上手に屏風に坊主の絵を描いた",
+      "hiragana": "ぼうずがじょうずにびょうぶにぼうずのえをかいた"
+    }
+  ]
+}

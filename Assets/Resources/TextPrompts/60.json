@@ -1,0 +1,227 @@
+{
+  "title": "「ぁぃぅぇぉ」「ゃゅょ」のきそ",
+  "description": "「ぁぃぅぇぉ」「ゃゅょ」を打てるようになろう",
+  "timer": 0,
+  "random": 0,
+  "hide": 99,
+  "messages": [
+    {
+      "count": 0,
+      "description": "ちいさい「ぁぃぅぇぉ」、ちいさい「ゃゅょ」をいきますよ。"
+    },
+    {
+      "count": 1,
+      "description": "「ぃ」は「L」と「い」だよ。「X」と「い」でもいいよ。"
+    },
+    {
+      "count": 2,
+      "description": "「ぅ」は「L」と「う」だよ。「X」と「う」でもいいよ。"
+    },
+    {
+      "count": 3,
+      "description": "「ぇ」は「L」と「え」だよ。「X」と「え」でもいいよ。"
+    },
+    {
+      "count": 4,
+      "description": "「ぉ」は「L」と「お」だよ。「X」と「お」でもいいよ。"
+    },
+    {
+      "count": 5,
+      "description": "「ゃ」は「L」と「や」だよ。「X」と「や」でもいいよ。"
+    },
+    {
+      "count": 6,
+      "description": "「ゅ」は「L」と「ゆ」だよ。「X」と「ゆ」でもいいよ。"
+    },
+    {
+      "count": 7,
+      "description": "「ょ」は「L」と「よ」だよ。「X」と「よ」でもいいよ。"
+    },
+    {
+      "count": 8,
+      "description": "「ぁ」は「L」と「あ」だよ。「X」と「あ」でもいいよ。"
+    },
+    {
+      "count": 9,
+      "description": "「ぃ」は「L」と「い」だよ。「X」と「い」でもいいよ。"
+    },
+    {
+      "count": 10,
+      "description": "「ぅ」は「L」と「う」だよ。「X」と「う」でもいいよ。"
+    },
+    {
+      "count": 11,
+      "description": "「ぇ」は「L」と「え」だよ。「X」と「え」でもいいよ。"
+    },
+    {
+      "count": 12,
+      "description": "「ぉ」は「L」と「お」だよ。「X」と「お」でもいいよ。"
+    },
+    {
+      "count": 13,
+      "description": "「ゃ」は「L」と「や」だよ。「X」と「や」でもいいよ。"
+    },
+    {
+      "count": 14,
+      "description": "「ゅ」は「L」と「ゆ」だよ。「X」と「ゆ」でもいいよ。"
+    },
+    {
+      "count": 15,
+      "description": "「ょ」は「L」と「よ」だよ。「X」と「よ」でもいいよ。"
+    },
+    {
+      "count": 16,
+      "description": "「ぁ」は「L」と「あ」だよ。「X」と「あ」でもいいよ。"
+    },
+    {
+      "count": 17,
+      "description": "「ぃ」は「L」と「い」だよ。「X」と「い」でもいいよ。"
+    },
+    {
+      "count": 18,
+      "description": "「ぅ」は「L」と「う」だよ。「X」と「う」でもいいよ。"
+    },
+    {
+      "count": 19,
+      "description": "「ぇ」は「L」と「え」だよ。「X」と「え」でもいいよ。"
+    },
+    {
+      "count": 20,
+      "description": "「ぉ」は「L」と「お」だよ。「X」と「お」でもいいよ。"
+    },
+    {
+      "count": 21,
+      "description": "「ゃ」は「L」と「や」だよ。「X」と「や」でもいいよ。"
+    },
+    {
+      "count": 22,
+      "description": "「ゅ」は「L」と「ゆ」だよ。「X」と「ゆ」でもいいよ。"
+    },
+    {
+      "count": 23,
+      "description": "「ょ」は「L」と「よ」だよ。「X」と「よ」でもいいよ。"
+    }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "ぁ"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "ぃ"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "ぅ"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "ぇ"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "ぉ"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "ゃ"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "ゅ"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "ょ"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "ぁ"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "ぃ"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "ぅ"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "ぇ"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "ぉ"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "ゃ"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "ゅ"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "ょ"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "ぁ"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "ぃ"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "ぅ"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "ぇ"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "ぉ"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "ゃ"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "ゅ"
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": "ょ"
+    }
+  ]
+}

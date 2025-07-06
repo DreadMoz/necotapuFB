@@ -1,0 +1,585 @@
+{
+  "title": "★いろんなことば",
+  "description": "子供向けのいろんな文章",
+  "timer": 60,
+  "random": 999,
+  "hide": 50,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "僕",
+      "hiragana": "ぼく"
+    },
+    {
+      "id": 2,
+      "kanji": "私",
+      "hiragana": "わたし"
+    },
+    {
+      "id": 3,
+      "kanji": "儂",
+      "hiragana": "わし"
+    },
+    {
+      "id": 4,
+      "kanji": "わたくし",
+      "hiragana": "わたくし"
+    },
+    {
+      "id": 5,
+      "kanji": "わらわ",
+      "hiragana": "わらわ"
+    },
+    {
+      "id": 6,
+      "kanji": "おい",
+      "hiragana": "おい"
+    },
+    {
+      "id": 7,
+      "kanji": "おいどん",
+      "hiragana": "おいどん"
+    },
+    {
+      "id": 8,
+      "kanji": "吾輩",
+      "hiragana": "わがはい"
+    },
+    {
+      "id": 9,
+      "kanji": "俺",
+      "hiragana": "おれ"
+    },
+    {
+      "id": 10,
+      "kanji": "自分",
+      "hiragana": "じぶん"
+    },
+    {
+      "id": 11,
+      "kanji": "あたい",
+      "hiragana": "あたい"
+    },
+    {
+      "id": 12,
+      "kanji": "わて",
+      "hiragana": "わて"
+    },
+    {
+      "id": 13,
+      "kanji": "わい",
+      "hiragana": "わい"
+    },
+    {
+      "id": 14,
+      "kanji": "うち",
+      "hiragana": "うち"
+    },
+    {
+      "id": 15,
+      "kanji": "おら",
+      "hiragana": "おら"
+    },
+    {
+      "id": 16,
+      "kanji": "おれっち",
+      "hiragana": "おれっち"
+    },
+    {
+      "id": 17,
+      "kanji": "ミー",
+      "hiragana": "みー"
+    },
+    {
+      "id": 18,
+      "kanji": "それがし",
+      "hiragana": "それがし"
+    },
+    {
+      "id": 19,
+      "kanji": "まろ",
+      "hiragana": "まろ"
+    },
+    {
+      "id": 20,
+      "kanji": "予",
+      "hiragana": "よ"
+    },
+    {
+      "id": 21,
+      "kanji": "あっし",
+      "hiragana": "あっし"
+    },
+    {
+      "id": 22,
+      "kanji": "拙者",
+      "hiragana": "せっしゃ"
+    },
+    {
+      "id": 23,
+      "kanji": "僕",
+      "hiragana": "ぼく"
+    },
+    {
+      "id": 24,
+      "kanji": "僕",
+      "hiragana": "ぼく"
+    },
+    {
+      "id": 25,
+      "kanji": "わたくし",
+      "hiragana": "わたくし"
+    },
+    {
+      "id": 26,
+      "kanji": "俺",
+      "hiragana": "おれ"
+    },
+    {
+      "id": 27,
+      "kanji": "俺",
+      "hiragana": "おれ"
+    },
+    {
+      "id": 28,
+      "kanji": "私",
+      "hiragana": "わたし"
+    },
+    {
+      "id": 29,
+      "kanji": "私",
+      "hiragana": "わたし"
+    },
+    {
+      "id": 30,
+      "kanji": "私",
+      "hiragana": "わたし"
+    },
+    {
+      "id": 31,
+      "kanji": "私",
+      "hiragana": "わたし"
+    },
+    {
+      "id": 32,
+      "kanji": "私",
+      "hiragana": "わたし"
+    },
+    {
+      "id": 33,
+      "kanji": "私",
+      "hiragana": "わたし"
+    },
+    {
+      "id": 34,
+      "kanji": "儂",
+      "hiragana": "わし"
+    },
+    {
+      "id": 35,
+      "kanji": "おら",
+      "hiragana": "おら"
+    },
+    {
+      "id": 36,
+      "kanji": "拙者",
+      "hiragana": "せっしゃ"
+    },
+    {
+      "id": 37,
+      "kanji": "私たち",
+      "hiragana": "わたしたち"
+    },
+    {
+      "id": 38,
+      "kanji": "僕たち",
+      "hiragana": "ぼくたち"
+    },
+    {
+      "id": 39,
+      "kanji": "俺たち",
+      "hiragana": "おれたち"
+    },
+    {
+      "id": 40,
+      "kanji": "我々",
+      "hiragana": "われわれ"
+    },
+    {
+      "id": 41,
+      "kanji": "あなたと私",
+      "hiragana": "あなたとわたし"
+    },
+    {
+      "id": 42,
+      "kanji": "君と僕",
+      "hiragana": "きみとぼく"
+    },
+    {
+      "id": 43,
+      "kanji": "そなたとわらわ",
+      "hiragana": "そなたとわらわ"
+    },
+    {
+      "id": 44,
+      "kanji": "私たち",
+      "hiragana": "わたしたち"
+    },
+    {
+      "id": 45,
+      "kanji": "私",
+      "hiragana": "わたし"
+    },
+    {
+      "id": 46,
+      "kanji": "あなたと私",
+      "hiragana": "あなたとわたし"
+    },
+    {
+      "id": 47,
+      "kanji": "僕",
+      "hiragana": "ぼく"
+    },
+    {
+      "id": 48,
+      "kanji": "僕",
+      "hiragana": "ぼく"
+    },
+    {
+      "id": 49,
+      "kanji": "俺",
+      "hiragana": "おれ"
+    },
+    {
+      "id": 50,
+      "kanji": "俺",
+      "hiragana": "おれ"
+    },
+    {
+      "id": 51,
+      "kanji": "は満足じゃ",
+      "hiragana": "はまんぞくじゃ"
+    },
+    {
+      "id": 52,
+      "kanji": "はユーチューブを見る",
+      "hiragana": "はゆーちゅーぶをみる"
+    },
+    {
+      "id": 53,
+      "kanji": "は暇だ",
+      "hiragana": "はひまだ"
+    },
+    {
+      "id": 54,
+      "kanji": "は元気です",
+      "hiragana": "はげんきです"
+    },
+    {
+      "id": 55,
+      "kanji": "は楽しいよ",
+      "hiragana": "はたのしいよ"
+    },
+    {
+      "id": 56,
+      "kanji": "が食べます",
+      "hiragana": "がたべます"
+    },
+    {
+      "id": 57,
+      "kanji": "がやります",
+      "hiragana": "がやります"
+    },
+    {
+      "id": 58,
+      "kanji": "はテレビを見ております",
+      "hiragana": "はてれびをみております"
+    },
+    {
+      "id": 59,
+      "kanji": "はタイピング中ですお静かに",
+      "hiragana": "はたいぴんぐちゅうですおしずかに"
+    },
+    {
+      "id": 60,
+      "kanji": "は綿菓子",
+      "hiragana": "はわたがし"
+    },
+    {
+      "id": 61,
+      "kanji": "は十分頑張った",
+      "hiragana": "はじゅうぶんがんばった"
+    },
+    {
+      "id": 62,
+      "kanji": "は面白い",
+      "hiragana": "はおもしろい"
+    },
+    {
+      "id": 63,
+      "kanji": "が喜んでいます",
+      "hiragana": "がよろこんでいます"
+    },
+    {
+      "id": 64,
+      "kanji": "はごろごろしています",
+      "hiragana": "はごろごろしています"
+    },
+    {
+      "id": 65,
+      "kanji": "はねこと一緒です",
+      "hiragana": "はねこといっしょです"
+    },
+    {
+      "id": 66,
+      "kanji": "は走る",
+      "hiragana": "ははしる"
+    },
+    {
+      "id": 67,
+      "kanji": "は歩く",
+      "hiragana": "はあるく"
+    },
+    {
+      "id": 68,
+      "kanji": "は夜寝ます",
+      "hiragana": "はよるねます"
+    },
+    {
+      "id": 69,
+      "kanji": "は朝起きます",
+      "hiragana": "はあさおきます"
+    },
+    {
+      "id": 70,
+      "kanji": "は昼遊びます",
+      "hiragana": "はひるあそびます"
+    },
+    {
+      "id": 71,
+      "kanji": "は食べます",
+      "hiragana": "はたべます"
+    },
+    {
+      "id": 72,
+      "kanji": "はねこたぷ中です",
+      "hiragana": "はねこたぷちゅうです"
+    },
+    {
+      "id": 73,
+      "kanji": "は成長しています",
+      "hiragana": "はせいちょうしています"
+    },
+    {
+      "id": 74,
+      "kanji": "がパワーアップ",
+      "hiragana": "がぱわーあっぷ"
+    },
+    {
+      "id": 75,
+      "kanji": "の力",
+      "hiragana": "のちから"
+    },
+    {
+      "id": 76,
+      "kanji": "の技",
+      "hiragana": "のわざ"
+    },
+    {
+      "id": 77,
+      "kanji": "の知恵",
+      "hiragana": "のちえ"
+    },
+    {
+      "id": 78,
+      "kanji": "の実力",
+      "hiragana": "のじつりょく"
+    },
+    {
+      "id": 79,
+      "kanji": "の思いやり",
+      "hiragana": "のおもいやり"
+    },
+    {
+      "id": 80,
+      "kanji": "の優しさ",
+      "hiragana": "のやさしさ"
+    },
+    {
+      "id": 81,
+      "kanji": "の必殺技",
+      "hiragana": "のひっさつわざ"
+    },
+    {
+      "id": 82,
+      "kanji": "の得意技",
+      "hiragana": "のとくいわざ"
+    },
+    {
+      "id": 83,
+      "kanji": "の好きなアニメ",
+      "hiragana": "のすきなあにめ"
+    },
+    {
+      "id": 84,
+      "kanji": "の好きな食べ物",
+      "hiragana": "のすきなたべもの"
+    },
+    {
+      "id": 85,
+      "kanji": "の好きな人",
+      "hiragana": "のすきなひと"
+    },
+    {
+      "id": 86,
+      "kanji": "の好きな花",
+      "hiragana": "のすきなはな"
+    },
+    {
+      "id": 87,
+      "kanji": "は踊る",
+      "hiragana": "はおどる"
+    },
+    {
+      "id": 88,
+      "kanji": "のダンス",
+      "hiragana": "のだんす"
+    },
+    {
+      "id": 89,
+      "kanji": "の季節",
+      "hiragana": "のきせつ"
+    },
+    {
+      "id": 90,
+      "kanji": "のお気に入り",
+      "hiragana": "のおきにいり"
+    },
+    {
+      "id": 91,
+      "kanji": "のグループ",
+      "hiragana": "のぐるーぷ"
+    },
+    {
+      "id": 92,
+      "kanji": "を守る",
+      "hiragana": "をまもる"
+    },
+    {
+      "id": 93,
+      "kanji": "を倒してみなさい",
+      "hiragana": "をたおしてみなさい"
+    },
+    {
+      "id": 94,
+      "kanji": "を越えて行け",
+      "hiragana": "をこえてゆけ"
+    },
+    {
+      "id": 95,
+      "kanji": "を楽しませる",
+      "hiragana": "をたのしませる"
+    },
+    {
+      "id": 96,
+      "kanji": "と遊ぼう",
+      "hiragana": "とあそぼう"
+    },
+    {
+      "id": 97,
+      "kanji": "と勝負だ",
+      "hiragana": "としょうぶだ"
+    },
+    {
+      "id": 98,
+      "kanji": "と勉強をしよう",
+      "hiragana": "とべんきょうをしよう"
+    },
+    {
+      "id": 99,
+      "kanji": "と研究をしよう",
+      "hiragana": "とけんきゅうをしよう"
+    },
+    {
+      "id": 100,
+      "kanji": "と特訓をしよう",
+      "hiragana": "ととっくんをしよう"
+    },
+    {
+      "id": 101,
+      "kanji": "と百人一首をしよう",
+      "hiragana": "とひゃくにんいっしゅをしよう"
+    },
+    {
+      "id": 102,
+      "kanji": "は蹴鞠が好きじゃ",
+      "hiragana": "はけまりがすきじゃ"
+    },
+    {
+      "id": 103,
+      "kanji": "は子供です",
+      "hiragana": "はこどもです"
+    },
+    {
+      "id": 104,
+      "kanji": "の好きな服",
+      "hiragana": "のすきなふく"
+    },
+    {
+      "id": 105,
+      "kanji": "の服",
+      "hiragana": "のふく"
+    },
+    {
+      "id": 106,
+      "kanji": "の笑顔",
+      "hiragana": "のえがお"
+    },
+    {
+      "id": 107,
+      "kanji": "は笑う",
+      "hiragana": "はわらう"
+    },
+    {
+      "id": 108,
+      "kanji": "は微笑む",
+      "hiragana": "はほほえむ"
+    },
+    {
+      "id": 109,
+      "kanji": "のペット",
+      "hiragana": "のぺっと"
+    },
+    {
+      "id": 110,
+      "kanji": "のコップ",
+      "hiragana": "のこっぷ"
+    },
+    {
+      "id": 111,
+      "kanji": "は歌が好き",
+      "hiragana": "はうたがすき"
+    },
+    {
+      "id": 112,
+      "kanji": "です",
+      "hiragana": "です"
+    },
+    {
+      "id": 113,
+      "kanji": "はくよくよしない",
+      "hiragana": "はくよくよしない"
+    },
+    {
+      "id": 114,
+      "kanji": "は希望の塊",
+      "hiragana": "はきぼうのかたまり"
+    },
+    {
+      "id": 115,
+      "kanji": "は前に進む",
+      "hiragana": "はまえにすすむ"
+    }
+  ]
+}

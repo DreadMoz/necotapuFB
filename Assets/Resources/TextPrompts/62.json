@@ -1,0 +1,315 @@
+{
+  "title": "ぁぃぅぇぉ・ゃゅょの特訓",
+  "description": "ぁぃぅぇぉ・ゃゅょの練習",
+  "timer": 60,
+  "random": 49,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "あぁ"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "おぉぉ"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "とぅ"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "とぉ"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "えぇぇ"
+    },
+    {
+      "id": 6,
+      "kanji": "フェンス",
+      "hiragana": "ふぇんす"
+    },
+    {
+      "id": 7,
+      "kanji": "フェイント",
+      "hiragana": "ふぇいんと"
+    },
+    {
+      "id": 8,
+      "kanji": "チェス",
+      "hiragana": "ちぇす"
+    },
+    {
+      "id": 9,
+      "kanji": "ファスト",
+      "hiragana": "ふぁすと"
+    },
+    {
+      "id": 10,
+      "kanji": "フィット",
+      "hiragana": "ふぃっと"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "ぎゃぁぁぁぁぁ"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "うわぁぁぁぁぁ"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "きぃぃぃぃぃぃ"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "おぉぉぉぉぉぉ"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "えぇぇぇぇぇぇ"
+    },
+    {
+      "id": 16,
+      "kanji": "フォント",
+      "hiragana": "ふぉんと"
+    },
+    {
+      "id": 17,
+      "kanji": "フォーカス",
+      "hiragana": "ふぉーかす"
+    },
+    {
+      "id": 18,
+      "kanji": "ファン",
+      "hiragana": "ふぁん"
+    },
+    {
+      "id": 19,
+      "kanji": "プロジェクト",
+      "hiragana": "ぷろじぇくと"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "ひぃぃぃぃ"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "きゃぁぁぁぁ"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "うぉぉぉぉぉ"
+    },
+    {
+      "id": 23,
+      "kanji": "ウィリアム",
+      "hiragana": "うぃりあむ"
+    },
+    {
+      "id": 24,
+      "kanji": "ファイト",
+      "hiragana": "ふぁいと"
+    },
+    {
+      "id": 25,
+      "kanji": "",
+      "hiragana": "ぐぅぅぅ"
+    },
+    {
+      "id": 26,
+      "kanji": "",
+      "hiragana": "ぶぅぅぅぅぅぅ"
+    },
+    {
+      "id": 27,
+      "kanji": "",
+      "hiragana": "ぶぅぶぅぶぅ"
+    },
+    {
+      "id": 28,
+      "kanji": "ウォーター",
+      "hiragana": "うぉーたー"
+    },
+    {
+      "id": 29,
+      "kanji": "フォロー",
+      "hiragana": "ふぉろー"
+    },
+    {
+      "id": 30,
+      "kanji": "ファイル",
+      "hiragana": "ふぁいる"
+    },
+    {
+      "id": 31,
+      "kanji": "チェック",
+      "hiragana": "ちぇっく"
+    },
+    {
+      "id": 32,
+      "kanji": "ウィン",
+      "hiragana": "うぃん"
+    },
+    {
+      "id": 33,
+      "kanji": "イェーイ",
+      "hiragana": "いぇーい"
+    },
+    {
+      "id": 34,
+      "kanji": "フェリー",
+      "hiragana": "ふぇりー"
+    },
+    {
+      "id": 35,
+      "kanji": "ティー",
+      "hiragana": "てぃー"
+    },
+    {
+      "id": 36,
+      "kanji": "ソファー",
+      "hiragana": "そふぁー"
+    },
+    {
+      "id": 37,
+      "kanji": "トゥナイト",
+      "hiragana": "とぅないと"
+    },
+    {
+      "id": 38,
+      "kanji": "チェーンソー",
+      "hiragana": "ちぇーんそー"
+    },
+    {
+      "id": 39,
+      "kanji": "ウェディング",
+      "hiragana": "うぇでぃんぐ"
+    },
+    {
+      "id": 40,
+      "kanji": "ウォーク",
+      "hiragana": "うぉーく"
+    },
+    {
+      "id": 41,
+      "kanji": "",
+      "hiragana": "ぁぃぅぇぉ"
+    },
+    {
+      "id": 42,
+      "kanji": "ティーパーティー",
+      "hiragana": "てぃーぱーてぃー"
+    },
+    {
+      "id": 43,
+      "kanji": "ウィキ",
+      "hiragana": "うぃき"
+    },
+    {
+      "id": 44,
+      "kanji": "チェア",
+      "hiragana": "ちぇあ"
+    },
+    {
+      "id": 45,
+      "kanji": "チェリー",
+      "hiragana": "ちぇりー"
+    },
+    {
+      "id": 46,
+      "kanji": "ディスク",
+      "hiragana": "でぃすく"
+    },
+    {
+      "id": 47,
+      "kanji": "トゥシューズ",
+      "hiragana": "とぅしゅーず"
+    },
+    {
+      "id": 48,
+      "kanji": "",
+      "hiragana": "ぷぅぷぅ"
+    },
+    {
+      "id": 49,
+      "kanji": "",
+      "hiragana": "ふぅぅぅ"
+    },
+    {
+      "id": 50,
+      "kanji": "",
+      "hiragana": "ぁぁ"
+    },
+    {
+      "id": 51,
+      "kanji": "",
+      "hiragana": "ぃぃ"
+    },
+    {
+      "id": 52,
+      "kanji": "",
+      "hiragana": "ぅぅ"
+    },
+    {
+      "id": 53,
+      "kanji": "",
+      "hiragana": "ぇぇ"
+    },
+    {
+      "id": 54,
+      "kanji": "",
+      "hiragana": "ぉぉ"
+    },
+    {
+      "id": 55,
+      "kanji": "トゥース",
+      "hiragana": "とぅーす"
+    },
+    {
+      "id": 56,
+      "kanji": "",
+      "hiragana": "ぉょょ"
+    },
+    {
+      "id": 57,
+      "kanji": "",
+      "hiragana": "ゃぃゃぃゃぉゃ"
+    },
+    {
+      "id": 58,
+      "kanji": "",
+      "hiragana": "ぁぃぁぃ"
+    },
+    {
+      "id": 59,
+      "kanji": "",
+      "hiragana": "ょゅぅょゅぅ"
+    },
+    {
+      "id": 60,
+      "kanji": "",
+      "hiragana": "ょぃょぃ"
+    },
+    {
+      "id": 61,
+      "kanji": "",
+      "hiragana": "ぉゃぉゃ"
+    }
+  ]
+}

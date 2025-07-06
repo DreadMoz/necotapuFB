@@ -1,0 +1,508 @@
+{
+  "title": "国連加盟国",
+  "description": "国連に加盟している国の名前が出てきます。世界についてもっと学びましょう。",
+  "timer": 60,
+  "random": 40,
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "日本",
+      "hiragana": "にほん"
+    },
+    {
+      "id": 2,
+      "kanji": "アメリカ合衆国",
+      "hiragana": "あめりかがっしゅうこく"
+    },
+    {
+      "id": 3,
+      "kanji": "中国",
+      "hiragana": "ちゅうごく"
+    },
+    {
+      "id": 4,
+      "kanji": "ロシア",
+      "hiragana": "ろしあ"
+    },
+    {
+      "id": 5,
+      "kanji": "イギリス",
+      "hiragana": "いぎりす"
+    },
+    {
+      "id": 6,
+      "kanji": "フランス",
+      "hiragana": "ふらんす"
+    },
+    {
+      "id": 7,
+      "kanji": "ドイツ",
+      "hiragana": "どいつ"
+    },
+    {
+      "id": 8,
+      "kanji": "イタリア",
+      "hiragana": "いたりあ"
+    },
+    {
+      "id": 9,
+      "kanji": "カナダ",
+      "hiragana": "かなだ"
+    },
+    {
+      "id": 10,
+      "kanji": "ブラジル",
+      "hiragana": "ぶらじる"
+    },
+    {
+      "id": 11,
+      "kanji": "オーストラリア",
+      "hiragana": "おーすとらりあ"
+    },
+    {
+      "id": 12,
+      "kanji": "インド",
+      "hiragana": "いんど"
+    },
+    {
+      "id": 13,
+      "kanji": "インドネシア",
+      "hiragana": "いんどねしあ"
+    },
+    {
+      "id": 14,
+      "kanji": "韓国",
+      "hiragana": "かんこく"
+    },
+    {
+      "id": 15,
+      "kanji": "サウジアラビア",
+      "hiragana": "さうじあらびあ"
+    },
+    {
+      "id": 16,
+      "kanji": "南アフリカ",
+      "hiragana": "みなみあふりか"
+    },
+    {
+      "id": 17,
+      "kanji": "エジプト",
+      "hiragana": "えじぷと"
+    },
+    {
+      "id": 18,
+      "kanji": "トルコ",
+      "hiragana": "とるこ"
+    },
+    {
+      "id": 19,
+      "kanji": "アルゼンチン",
+      "hiragana": "あるぜんちん"
+    },
+    {
+      "id": 20,
+      "kanji": "メキシコ",
+      "hiragana": "めきしこ"
+    },
+    {
+      "id": 21,
+      "kanji": "スペイン",
+      "hiragana": "すぺいん"
+    },
+    {
+      "id": 22,
+      "kanji": "ポルトガル",
+      "hiragana": "ぽるとがる"
+    },
+    {
+      "id": 23,
+      "kanji": "ギリシャ",
+      "hiragana": "ぎりしゃ"
+    },
+    {
+      "id": 24,
+      "kanji": "ノルウェー",
+      "hiragana": "のるうぇー"
+    },
+    {
+      "id": 25,
+      "kanji": "スウェーデン",
+      "hiragana": "すうぇーでん"
+    },
+    {
+      "id": 26,
+      "kanji": "フィンランド",
+      "hiragana": "ふぃんらんど"
+    },
+    {
+      "id": 27,
+      "kanji": "デンマーク",
+      "hiragana": "でんまーく"
+    },
+    {
+      "id": 28,
+      "kanji": "アイスランド",
+      "hiragana": "あいすらんど"
+    },
+    {
+      "id": 29,
+      "kanji": "ニュージーランド",
+      "hiragana": "にゅーじーらんど"
+    },
+    {
+      "id": 30,
+      "kanji": "チリ",
+      "hiragana": "ちり"
+    },
+    {
+      "id": 31,
+      "kanji": "ペルー",
+      "hiragana": "ぺるー"
+    },
+    {
+      "id": 32,
+      "kanji": "コロンビア",
+      "hiragana": "ころんびあ"
+    },
+    {
+      "id": 33,
+      "kanji": "ベネズエラ",
+      "hiragana": "べねずえら"
+    },
+    {
+      "id": 34,
+      "kanji": "ウクライナ",
+      "hiragana": "うくらいな"
+    },
+    {
+      "id": 35,
+      "kanji": "ポーランド",
+      "hiragana": "ぽーらんど"
+    },
+    {
+      "id": 36,
+      "kanji": "チェコ",
+      "hiragana": "ちぇこ"
+    },
+    {
+      "id": 37,
+      "kanji": "ハンガリー",
+      "hiragana": "はんがりー"
+    },
+    {
+      "id": 38,
+      "kanji": "ルーマニア",
+      "hiragana": "るーまにあ"
+    },
+    {
+      "id": 39,
+      "kanji": "ブルガリア",
+      "hiragana": "ぶるがりあ"
+    },
+    {
+      "id": 40,
+      "kanji": "セルビア",
+      "hiragana": "せるびあ"
+    },
+    {
+      "id": 41,
+      "kanji": "クロアチア",
+      "hiragana": "くろあちあ"
+    },
+    {
+      "id": 42,
+      "kanji": "スロベニア",
+      "hiragana": "すろべにあ"
+    },
+    {
+      "id": 43,
+      "kanji": "スロバキア",
+      "hiragana": "すろばきあ"
+    },
+    {
+      "id": 44,
+      "kanji": "リトアニア",
+      "hiragana": "りとあにあ"
+    },
+    {
+      "id": 45,
+      "kanji": "ラトビア",
+      "hiragana": "らとびあ"
+    },
+    {
+      "id": 46,
+      "kanji": "エストニア",
+      "hiragana": "えすとにあ"
+    },
+    {
+      "id": 47,
+      "kanji": "ベラルーシ",
+      "hiragana": "べらるーし"
+    },
+    {
+      "id": 48,
+      "kanji": "モルドバ",
+      "hiragana": "もるどば"
+    },
+    {
+      "id": 49,
+      "kanji": "ジョージア",
+      "hiragana": "じょーじあ"
+    },
+    {
+      "id": 50,
+      "kanji": "アルメニア",
+      "hiragana": "あるめにあ"
+    },
+    {
+      "id": 51,
+      "kanji": "アゼルバイジャン",
+      "hiragana": "あぜるばいじゃん"
+    },
+    {
+      "id": 52,
+      "kanji": "カザフスタン",
+      "hiragana": "かざふすたん"
+    },
+    {
+      "id": 53,
+      "kanji": "ウズベキスタン",
+      "hiragana": "うずべきすたん"
+    },
+    {
+      "id": 54,
+      "kanji": "トルクメニスタン",
+      "hiragana": "とるくめにすたん"
+    },
+    {
+      "id": 55,
+      "kanji": "キルギス",
+      "hiragana": "きるぎす"
+    },
+    {
+      "id": 56,
+      "kanji": "タジキスタン",
+      "hiragana": "たじきすたん"
+    },
+    {
+      "id": 57,
+      "kanji": "アフガニスタン",
+      "hiragana": "あふがにすたん"
+    },
+    {
+      "id": 58,
+      "kanji": "パキスタン",
+      "hiragana": "ぱきすたん"
+    },
+    {
+      "id": 59,
+      "kanji": "バングラデシュ",
+      "hiragana": "ばんぐらでしゅ"
+    },
+    {
+      "id": 60,
+      "kanji": "スリランカ",
+      "hiragana": "すりらんか"
+    },
+    {
+      "id": 61,
+      "kanji": "ミャンマー",
+      "hiragana": "みゃんまー"
+    },
+    {
+      "id": 62,
+      "kanji": "タイ",
+      "hiragana": "たい"
+    },
+    {
+      "id": 63,
+      "kanji": "カンボジア",
+      "hiragana": "かんぼじあ"
+    },
+    {
+      "id": 64,
+      "kanji": "ラオス",
+      "hiragana": "らおす"
+    },
+    {
+      "id": 65,
+      "kanji": "ベトナム",
+      "hiragana": "べとなむ"
+    },
+    {
+      "id": 66,
+      "kanji": "マレーシア",
+      "hiragana": "まれーしあ"
+    },
+    {
+      "id": 67,
+      "kanji": "シンガポール",
+      "hiragana": "しんがぽーる"
+    },
+    {
+      "id": 68,
+      "kanji": "フィリピン",
+      "hiragana": "ふぃりぴん"
+    },
+    {
+      "id": 69,
+      "kanji": "ブルネイ",
+      "hiragana": "ぶるねい"
+    },
+    {
+      "id": 70,
+      "kanji": "東ティモール",
+      "hiragana": "ひがしてぃもーる"
+    },
+    {
+      "id": 71,
+      "kanji": "ネパール",
+      "hiragana": "ねぱーる"
+    },
+    {
+      "id": 72,
+      "kanji": "ブータン",
+      "hiragana": "ぶーたん"
+    },
+    {
+      "id": 73,
+      "kanji": "モンゴル",
+      "hiragana": "もんごる"
+    },
+    {
+      "id": 74,
+      "kanji": "北朝鮮",
+      "hiragana": "きたちょうせん"
+    },
+    {
+      "id": 75,
+      "kanji": "アラブ首長国連邦",
+      "hiragana": "あらぶしゅちょうこくれんぽう"
+    },
+    {
+      "id": 76,
+      "kanji": "カタール",
+      "hiragana": "かたーる"
+    },
+    {
+      "id": 77,
+      "kanji": "クウェート",
+      "hiragana": "くうぇーと"
+    },
+    {
+      "id": 78,
+      "kanji": "バーレーン",
+      "hiragana": "ばーれーん"
+    },
+    {
+      "id": 79,
+      "kanji": "オマーン",
+      "hiragana": "おまーん"
+    },
+    {
+      "id": 80,
+      "kanji": "イエメン",
+      "hiragana": "いえめん"
+    },
+    {
+      "id": 81,
+      "kanji": "イスラエル",
+      "hiragana": "いすらえる"
+    },
+    {
+      "id": 82,
+      "kanji": "ヨルダン",
+      "hiragana": "よるだん"
+    },
+    {
+      "id": 83,
+      "kanji": "レバノン",
+      "hiragana": "ればのん"
+    },
+    {
+      "id": 84,
+      "kanji": "シリア",
+      "hiragana": "しりあ"
+    },
+    {
+      "id": 85,
+      "kanji": "イラク",
+      "hiragana": "いらく"
+    },
+    {
+      "id": 86,
+      "kanji": "イラン",
+      "hiragana": "いらん"
+    },
+    {
+      "id": 87,
+      "kanji": "アフガニスタン",
+      "hiragana": "あふがにすたん"
+    },
+    {
+      "id": 88,
+      "kanji": "ウズベキスタン",
+      "hiragana": "うずべきすたん"
+    },
+    {
+      "id": 89,
+      "kanji": "キルギス",
+      "hiragana": "きるぎす"
+    },
+    {
+      "id": 90,
+      "kanji": "カザフスタン",
+      "hiragana": "かざふすたん"
+    },
+    {
+      "id": 91,
+      "kanji": "タジキスタン",
+      "hiragana": "たじきすたん"
+    },
+    {
+      "id": 92,
+      "kanji": "トルクメニスタン",
+      "hiragana": "とるくめにすたん"
+    },
+    {
+      "id": 93,
+      "kanji": "エジプト",
+      "hiragana": "えじぷと"
+    },
+    {
+      "id": 94,
+      "kanji": "南アフリカ",
+      "hiragana": "みなみあふりか"
+    },
+    {
+      "id": 95,
+      "kanji": "ナイジェリア",
+      "hiragana": "ないじぇりあ"
+    },
+    {
+      "id": 96,
+      "kanji": "ケニア",
+      "hiragana": "けにあ"
+    },
+    {
+      "id": 97,
+      "kanji": "エチオピア",
+      "hiragana": "えちおぴあ"
+    },
+    {
+      "id": 98,
+      "kanji": "ガーナ",
+      "hiragana": "がーな"
+    },
+    {
+      "id": 99,
+      "kanji": "セネガル",
+      "hiragana": "せねがる"
+    },
+    {
+      "id": 100,
+      "kanji": "コートジボワール",
+      "hiragana": "こーとじぼわーる"
+    }
+  ]
+}

@@ -1,0 +1,280 @@
+{
+  "title": "びゃびゅびょ・ぴゃぴゅぴょまでの言葉",
+  "description": "びゃびゅびょ・ぴゃぴゅぴょの練習",
+  "timer": 60,
+  "random": 40,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "ぴょんぴょん"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "ぴょこぴょこ"
+    },
+    {
+      "id": 3,
+      "kanji": "病気",
+      "hiragana": "びょうき"
+    },
+    {
+      "id": 4,
+      "kanji": "屏風",
+      "hiragana": "びょうぶ"
+    },
+    {
+      "id": 5,
+      "kanji": "白虎",
+      "hiragana": "びゃっこ"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "びゅんびゅん"
+    },
+    {
+      "id": 7,
+      "kanji": "病院",
+      "hiragana": "びょういん"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "ぴゅうぴゅう"
+    },
+    {
+      "id": 9,
+      "kanji": "ピュア",
+      "hiragana": "ぴゅあ"
+    },
+    {
+      "id": 10,
+      "kanji": "一票",
+      "hiragana": "いっぴょう"
+    },
+    {
+      "id": 11,
+      "kanji": "看病",
+      "hiragana": "かんびょう"
+    },
+    {
+      "id": 12,
+      "kanji": "伝票",
+      "hiragana": "でんぴょう"
+    },
+    {
+      "id": 13,
+      "kanji": "信憑性",
+      "hiragana": "しんぴょうせい"
+    },
+    {
+      "id": 14,
+      "kanji": "突拍子",
+      "hiragana": "とっぴょうし"
+    },
+    {
+      "id": 15,
+      "kanji": "年表",
+      "hiragana": "ねんぴょう"
+    },
+    {
+      "id": 16,
+      "kanji": "発表",
+      "hiragana": "はっぴょう"
+    },
+    {
+      "id": 17,
+      "kanji": "嘘八百",
+      "hiragana": "うそはっぴゃく"
+    },
+    {
+      "id": 18,
+      "kanji": "八百百町",
+      "hiragana": "はっぴゃくひゃくちょう"
+    },
+    {
+      "id": 19,
+      "kanji": "無病息災",
+      "hiragana": "むびょうそくさい"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "ぴゃ"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "ぴゃぴゃ"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "ぴゃぴゃぴゃ"
+    },
+    {
+      "id": 23,
+      "kanji": "六百",
+      "hiragana": "ろっぴゃく"
+    },
+    {
+      "id": 24,
+      "kanji": "白夜",
+      "hiragana": "びゃくや"
+    },
+    {
+      "id": 25,
+      "kanji": "白衣",
+      "hiragana": "びゃくえ"
+    },
+    {
+      "id": 26,
+      "kanji": "白虎隊",
+      "hiragana": "びゃっこたい"
+    },
+    {
+      "id": 27,
+      "kanji": "",
+      "hiragana": "かいびゃく"
+    },
+    {
+      "id": 28,
+      "kanji": "三百",
+      "hiragana": "さんびゃく"
+    },
+    {
+      "id": 29,
+      "kanji": "",
+      "hiragana": "びゃびゅびょ"
+    },
+    {
+      "id": 30,
+      "kanji": "",
+      "hiragana": "ぴゃぴゅぴょ"
+    },
+    {
+      "id": 31,
+      "kanji": "",
+      "hiragana": "びゃくげつ"
+    },
+    {
+      "id": 32,
+      "kanji": "",
+      "hiragana": "びゃくごう"
+    },
+    {
+      "id": 33,
+      "kanji": "",
+      "hiragana": "びゃくどう"
+    },
+    {
+      "id": 34,
+      "kanji": "ビュッフェ",
+      "hiragana": "びゅっふぇ"
+    },
+    {
+      "id": 35,
+      "kanji": "ビュー",
+      "hiragana": "びゅー"
+    },
+    {
+      "id": 36,
+      "kanji": "ビューアー",
+      "hiragana": "びゅーあー"
+    },
+    {
+      "id": 37,
+      "kanji": "ビューティ",
+      "hiragana": "びゅーてぃ"
+    },
+    {
+      "id": 38,
+      "kanji": "ビュレット",
+      "hiragana": "びゅれっと"
+    },
+    {
+      "id": 39,
+      "kanji": "インタビュー",
+      "hiragana": "いんたびゅー"
+    },
+    {
+      "id": 40,
+      "kanji": "",
+      "hiragana": "びゅんびゅん"
+    },
+    {
+      "id": 41,
+      "kanji": "描画",
+      "hiragana": "びょうが"
+    },
+    {
+      "id": 42,
+      "kanji": "図形描画",
+      "hiragana": "ずけいびょうが"
+    },
+    {
+      "id": 43,
+      "kanji": "秒速",
+      "hiragana": "びょうそく"
+    },
+    {
+      "id": 44,
+      "kanji": "秒読み",
+      "hiragana": "びょうよみ"
+    },
+    {
+      "id": 45,
+      "kanji": "病原菌",
+      "hiragana": "びょうげんきん"
+    },
+    {
+      "id": 46,
+      "kanji": "ピューレ",
+      "hiragana": "ぴゅーれ"
+    },
+    {
+      "id": 47,
+      "kanji": "ピューマ",
+      "hiragana": "ぴゅーま"
+    },
+    {
+      "id": 48,
+      "kanji": "ピューリタン",
+      "hiragana": "ぴゅーりたん"
+    },
+    {
+      "id": 49,
+      "kanji": "ピュロス",
+      "hiragana": "ぴゅろす"
+    },
+    {
+      "id": 50,
+      "kanji": "ピュシス",
+      "hiragana": "ぴゅしす"
+    },
+    {
+      "id": 51,
+      "kanji": "",
+      "hiragana": "ぴゅーぴゅー"
+    },
+    {
+      "id": 52,
+      "kanji": "",
+      "hiragana": "びゃびゅびょぴゃぴゅぴょ"
+    },
+    {
+      "id": 53,
+      "kanji": "",
+      "hiragana": "びゃぴゃびゅぴゅびょぴょ"
+    },
+    {
+      "id": 54,
+      "kanji": "",
+      "hiragana": "かえるぴょこぴょこみぴょこぴょこ"
+    }
+  ]
+}

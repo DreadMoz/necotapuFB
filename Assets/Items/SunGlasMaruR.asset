@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b954d327897ac4cacf477718b430f2, type: 3}
+  m_Name: SunGlasMaruR
+  m_EditorClassIdentifier: 
+  itemNo: 133
+  itemName: "\u307E\u308B\u30B5\u30F3\u30B0\u30E9\u30B9\u8D64"
+  itemType: 2
+  itemPrice: 500
+  itemImage: {fileID: 21300000, guid: c000fc1230c874f2083e852ed7bbb613, type: 3}
+  itemMemo: "\u304A\u3057\u3083\u308C\u7528\u306E\u3046\u3059\u3044\u8D64\u306E\u30B5\u30F3\u30B0\u30E9\u30B9\u3067\u3059\u3088\u3002"

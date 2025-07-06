@@ -1,0 +1,130 @@
+{
+  "title": "「ぁぃぅぇぉ」「ゃゅょ」ランダム",
+  "description": "「ぁぃぅぇぉ」「ゃゅょ」の練習",
+  "timer": 40,
+  "random": 99,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "ぁ"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "ぃ"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "ぅ"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "ぇ"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "ぉ"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "ゃ"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "ゅ"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "ょ"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "ぁ"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "ぃ"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "ぅ"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "ぇ"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "ぉ"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "ゃ"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "ゅ"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "ょ"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "ぁぁ"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "ぃぃ"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "ぅぅ"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "ぇぇ"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "ぉぉ"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "ゃゃ"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "ゅゅ"
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": "ょょ"
+    }
+  ]
+}

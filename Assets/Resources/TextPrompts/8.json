@@ -1,0 +1,405 @@
+{
+  "title": "かきくけこまでのことば",
+  "description": "かきくけこまでのことばを練習しよう",
+  "timer": 50,
+  "random": 30,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "かこく"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "かこ"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "きか"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "こうか"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "かい"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "おか"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "うえき"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "かく"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "くうこう"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "いけ"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "いか"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "けい"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "くえ"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "くう"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "くい"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "こえ"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "こい"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "こあ"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "こう"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "かいこ"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "きく"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "かき"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "かけ"
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": "かこう"
+    },
+    {
+      "id": 25,
+      "kanji": "",
+      "hiragana": "あく"
+    },
+    {
+      "id": 26,
+      "kanji": "",
+      "hiragana": "いく"
+    },
+    {
+      "id": 27,
+      "kanji": "",
+      "hiragana": "うく"
+    },
+    {
+      "id": 28,
+      "kanji": "",
+      "hiragana": "おく"
+    },
+    {
+      "id": 29,
+      "kanji": "",
+      "hiragana": "おけ"
+    },
+    {
+      "id": 30,
+      "kanji": "",
+      "hiragana": "こうこう"
+    },
+    {
+      "id": 31,
+      "kanji": "ココア",
+      "hiragana": "ここあ"
+    },
+    {
+      "id": 32,
+      "kanji": "",
+      "hiragana": "おうこく"
+    },
+    {
+      "id": 33,
+      "kanji": "九九",
+      "hiragana": "くく"
+    },
+    {
+      "id": 34,
+      "kanji": "",
+      "hiragana": "きあい"
+    },
+    {
+      "id": 35,
+      "kanji": "",
+      "hiragana": "きおく"
+    },
+    {
+      "id": 36,
+      "kanji": "キウイ",
+      "hiragana": "きうい"
+    },
+    {
+      "id": 37,
+      "kanji": "",
+      "hiragana": "きかい"
+    },
+    {
+      "id": 38,
+      "kanji": "",
+      "hiragana": "こけ"
+    },
+    {
+      "id": 39,
+      "kanji": "",
+      "hiragana": "けいえい"
+    },
+    {
+      "id": 40,
+      "kanji": "",
+      "hiragana": "けいかく"
+    },
+    {
+      "id": 41,
+      "kanji": "",
+      "hiragana": "けいき"
+    },
+    {
+      "id": 42,
+      "kanji": "",
+      "hiragana": "きき"
+    },
+    {
+      "id": 43,
+      "kanji": "",
+      "hiragana": "ききて"
+    },
+    {
+      "id": 44,
+      "kanji": "",
+      "hiragana": "おいけ"
+    },
+    {
+      "id": 45,
+      "kanji": "",
+      "hiragana": "けいかい"
+    },
+    {
+      "id": 46,
+      "kanji": "ケア",
+      "hiragana": "けあ"
+    },
+    {
+      "id": 47,
+      "kanji": "",
+      "hiragana": "きこう"
+    },
+    {
+      "id": 48,
+      "kanji": "",
+      "hiragana": "あき"
+    },
+    {
+      "id": 49,
+      "kanji": "",
+      "hiragana": "いき"
+    },
+    {
+      "id": 50,
+      "kanji": "",
+      "hiragana": "えき"
+    },
+    {
+      "id": 51,
+      "kanji": "",
+      "hiragana": "くき"
+    },
+    {
+      "id": 52,
+      "kanji": "",
+      "hiragana": "けいこう"
+    },
+    {
+      "id": 53,
+      "kanji": "",
+      "hiragana": "かいけい"
+    },
+    {
+      "id": 54,
+      "kanji": "",
+      "hiragana": "かけい"
+    },
+    {
+      "id": 55,
+      "kanji": "",
+      "hiragana": "けいい"
+    },
+    {
+      "id": 56,
+      "kanji": "",
+      "hiragana": "いこう"
+    },
+    {
+      "id": 57,
+      "kanji": "",
+      "hiragana": "かくかく"
+    },
+    {
+      "id": 58,
+      "kanji": "",
+      "hiragana": "かくう"
+    },
+    {
+      "id": 59,
+      "kanji": "",
+      "hiragana": "ここ"
+    },
+    {
+      "id": 60,
+      "kanji": "",
+      "hiragana": "かう"
+    },
+    {
+      "id": 61,
+      "kanji": "",
+      "hiragana": "かお"
+    },
+    {
+      "id": 62,
+      "kanji": "",
+      "hiragana": "おき"
+    },
+    {
+      "id": 63,
+      "kanji": "",
+      "hiragana": "かいか"
+    },
+    {
+      "id": 64,
+      "kanji": "",
+      "hiragana": "いえき"
+    },
+    {
+      "id": 65,
+      "kanji": "",
+      "hiragana": "こくおう"
+    },
+    {
+      "id": 66,
+      "kanji": "",
+      "hiragana": "こく"
+    },
+    {
+      "id": 67,
+      "kanji": "",
+      "hiragana": "こくう"
+    },
+    {
+      "id": 68,
+      "kanji": "",
+      "hiragana": "くけい"
+    },
+    {
+      "id": 69,
+      "kanji": "",
+      "hiragana": "けいか"
+    },
+    {
+      "id": 70,
+      "kanji": "",
+      "hiragana": "かかく"
+    },
+    {
+      "id": 71,
+      "kanji": "",
+      "hiragana": "きかく"
+    },
+    {
+      "id": 72,
+      "kanji": "",
+      "hiragana": "くかく"
+    },
+    {
+      "id": 73,
+      "kanji": "",
+      "hiragana": "きこく"
+    },
+    {
+      "id": 74,
+      "kanji": "",
+      "hiragana": "こかく"
+    },
+    {
+      "id": 75,
+      "kanji": "",
+      "hiragana": "ここく"
+    },
+    {
+      "id": 76,
+      "kanji": "",
+      "hiragana": "かきかけ"
+    },
+    {
+      "id": 77,
+      "kanji": "お稽古行こう",
+      "hiragana": "おけいこいこう"
+    },
+    {
+      "id": 78,
+      "kanji": "大きい声",
+      "hiragana": "おおきいこえ"
+    },
+    {
+      "id": 79,
+      "kanji": "来い来い赤い鯉",
+      "hiragana": "こいこいあかいこい"
+    }
+  ]
+}

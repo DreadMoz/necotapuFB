@@ -1,0 +1,490 @@
+{
+  "title": "1234567890の特訓",
+  "description": "1234567890の練習",
+  "timer": 60,
+  "random": 70,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": 1
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": 2
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": 3
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": 4
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": 5
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": 6
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": 7
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": 8
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": 9
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": 10
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": 123
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": 456
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": 789
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": 246810
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": 13579
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": 100
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": 110
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": 119
+    },
+    {
+      "id": 19,
+      "kanji": "1年",
+      "hiragana": "1ねん"
+    },
+    {
+      "id": 20,
+      "kanji": "2匹",
+      "hiragana": "2ひき"
+    },
+    {
+      "id": 21,
+      "kanji": "3色",
+      "hiragana": "3しょく"
+    },
+    {
+      "id": 22,
+      "kanji": "4個",
+      "hiragana": "4こ"
+    },
+    {
+      "id": 23,
+      "kanji": "5本",
+      "hiragana": "5ほん"
+    },
+    {
+      "id": 24,
+      "kanji": "6枚",
+      "hiragana": "6まい"
+    },
+    {
+      "id": 25,
+      "kanji": "7頭",
+      "hiragana": "7とう"
+    },
+    {
+      "id": 26,
+      "kanji": "8台",
+      "hiragana": "8だい"
+    },
+    {
+      "id": 27,
+      "kanji": "9人",
+      "hiragana": "9にん"
+    },
+    {
+      "id": 28,
+      "kanji": "10円",
+      "hiragana": "10えん"
+    },
+    {
+      "id": 29,
+      "kanji": "",
+      "hiragana": 2024
+    },
+    {
+      "id": 30,
+      "kanji": "100点",
+      "hiragana": "100てん"
+    },
+    {
+      "id": 31,
+      "kanji": "0点",
+      "hiragana": "0てん"
+    },
+    {
+      "id": 32,
+      "kanji": "",
+      "hiragana": 8391
+    },
+    {
+      "id": 33,
+      "kanji": "",
+      "hiragana": 8720
+    },
+    {
+      "id": 34,
+      "kanji": "",
+      "hiragana": 1386
+    },
+    {
+      "id": 35,
+      "kanji": "",
+      "hiragana": 2439
+    },
+    {
+      "id": 36,
+      "kanji": "",
+      "hiragana": 2024
+    },
+    {
+      "id": 37,
+      "kanji": "",
+      "hiragana": 3047
+    },
+    {
+      "id": 38,
+      "kanji": "",
+      "hiragana": 7806
+    },
+    {
+      "id": 39,
+      "kanji": "",
+      "hiragana": 3748
+    },
+    {
+      "id": 40,
+      "kanji": "",
+      "hiragana": 1029
+    },
+    {
+      "id": 41,
+      "kanji": "",
+      "hiragana": 1192
+    },
+    {
+      "id": 42,
+      "kanji": "",
+      "hiragana": 4567
+    },
+    {
+      "id": 43,
+      "kanji": "",
+      "hiragana": 4132
+    },
+    {
+      "id": 44,
+      "kanji": "",
+      "hiragana": 7098
+    },
+    {
+      "id": 45,
+      "kanji": "",
+      "hiragana": 5647
+    },
+    {
+      "id": 46,
+      "kanji": "",
+      "hiragana": 8392
+    },
+    {
+      "id": 47,
+      "kanji": "",
+      "hiragana": 5454
+    },
+    {
+      "id": 48,
+      "kanji": "",
+      "hiragana": 7123
+    },
+    {
+      "id": 49,
+      "kanji": "",
+      "hiragana": 9282
+    },
+    {
+      "id": 50,
+      "kanji": "",
+      "hiragana": 7423
+    },
+    {
+      "id": 51,
+      "kanji": "",
+      "hiragana": 8726
+    },
+    {
+      "id": 52,
+      "kanji": "",
+      "hiragana": 9012
+    },
+    {
+      "id": 53,
+      "kanji": "",
+      "hiragana": 6723
+    },
+    {
+      "id": 54,
+      "kanji": "",
+      "hiragana": 827
+    },
+    {
+      "id": 55,
+      "kanji": "",
+      "hiragana": 1920
+    },
+    {
+      "id": 56,
+      "kanji": "",
+      "hiragana": 1080
+    },
+    {
+      "id": 57,
+      "kanji": "",
+      "hiragana": 7822
+    },
+    {
+      "id": 58,
+      "kanji": "",
+      "hiragana": 9243
+    },
+    {
+      "id": 59,
+      "kanji": "",
+      "hiragana": 7969
+    },
+    {
+      "id": 60,
+      "kanji": "",
+      "hiragana": 9865
+    },
+    {
+      "id": 61,
+      "kanji": "",
+      "hiragana": 3583
+    },
+    {
+      "id": 62,
+      "kanji": "",
+      "hiragana": 2593
+    },
+    {
+      "id": 63,
+      "kanji": "",
+      "hiragana": 6767
+    },
+    {
+      "id": 64,
+      "kanji": "",
+      "hiragana": 3476
+    },
+    {
+      "id": 65,
+      "kanji": "",
+      "hiragana": 2583
+    },
+    {
+      "id": 66,
+      "kanji": "",
+      "hiragana": 1680
+    },
+    {
+      "id": 67,
+      "kanji": "",
+      "hiragana": 9837
+    },
+    {
+      "id": 68,
+      "kanji": "",
+      "hiragana": 2347
+    },
+    {
+      "id": 69,
+      "kanji": "",
+      "hiragana": 2847
+    },
+    {
+      "id": 70,
+      "kanji": "",
+      "hiragana": 5834
+    },
+    {
+      "id": 71,
+      "kanji": "",
+      "hiragana": 2573
+    },
+    {
+      "id": 72,
+      "kanji": "",
+      "hiragana": 1366
+    },
+    {
+      "id": 73,
+      "kanji": "",
+      "hiragana": 768
+    },
+    {
+      "id": 74,
+      "kanji": "",
+      "hiragana": 2938
+    },
+    {
+      "id": 75,
+      "kanji": "",
+      "hiragana": 3847
+    },
+    {
+      "id": 76,
+      "kanji": "",
+      "hiragana": 6565
+    },
+    {
+      "id": 77,
+      "kanji": "",
+      "hiragana": 2718
+    },
+    {
+      "id": 78,
+      "kanji": "",
+      "hiragana": 987
+    },
+    {
+      "id": 79,
+      "kanji": "",
+      "hiragana": 3482
+    },
+    {
+      "id": 80,
+      "kanji": "",
+      "hiragana": 1024
+    },
+    {
+      "id": 81,
+      "kanji": "",
+      "hiragana": 4649
+    },
+    {
+      "id": 82,
+      "kanji": "",
+      "hiragana": 90
+    },
+    {
+      "id": 83,
+      "kanji": "",
+      "hiragana": 80
+    },
+    {
+      "id": 84,
+      "kanji": "24時間",
+      "hiragana": "24じかん"
+    },
+    {
+      "id": 85,
+      "kanji": "60分",
+      "hiragana": "60ふん"
+    },
+    {
+      "id": 86,
+      "kanji": "",
+      "hiragana": 2025
+    },
+    {
+      "id": 87,
+      "kanji": "",
+      "hiragana": 2026
+    },
+    {
+      "id": 88,
+      "kanji": "",
+      "hiragana": 9999
+    },
+    {
+      "id": 89,
+      "kanji": "",
+      "hiragana": 256
+    },
+    {
+      "id": 90,
+      "kanji": "",
+      "hiragana": 512
+    },
+    {
+      "id": 91,
+      "kanji": "",
+      "hiragana": 666555
+    },
+    {
+      "id": 92,
+      "kanji": "",
+      "hiragana": 65656574
+    },
+    {
+      "id": 93,
+      "kanji": "",
+      "hiragana": 7676767654321
+    },
+    {
+      "id": 94,
+      "kanji": "",
+      "hiragana": 10101010101010
+    },
+    {
+      "id": 95,
+      "kanji": "",
+      "hiragana": 1234509876
+    },
+    {
+      "id": 96,
+      "kanji": "",
+      "hiragana": 5432167890
+    }
+  ]
+}

@@ -1,0 +1,405 @@
+{
+  "title": "なにぬねのまでのことば",
+  "description": "なにぬねのまでのことばを打ってみよう",
+  "timer": 60,
+  "random": 40,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "那覇",
+      "hiragana": "なは"
+    },
+    {
+      "id": 2,
+      "kanji": "制覇",
+      "hiragana": "せいは"
+    },
+    {
+      "id": 3,
+      "kanji": "王妃",
+      "hiragana": "おうひ"
+    },
+    {
+      "id": 4,
+      "kanji": "旗",
+      "hiragana": "はた"
+    },
+    {
+      "id": 5,
+      "kanji": "端",
+      "hiragana": "はし"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "ひひ"
+    },
+    {
+      "id": 7,
+      "kanji": "夫婦",
+      "hiragana": "ふうふ"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "ほほ"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "はは"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "はと"
+    },
+    {
+      "id": 11,
+      "kanji": "人",
+      "hiragana": "ひと"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "ひにち"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "ひなた"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "ひきにく"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "ひきぬき"
+    },
+    {
+      "id": 16,
+      "kanji": "笛",
+      "hiragana": "ふえ"
+    },
+    {
+      "id": 17,
+      "kanji": "服",
+      "hiragana": "ふく"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "ふた"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "そふ"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "へへへ"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "へそ"
+    },
+    {
+      "id": 22,
+      "kanji": "平気",
+      "hiragana": "へいき"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "へとへと"
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": "へい"
+    },
+    {
+      "id": 25,
+      "kanji": "並行",
+      "hiragana": "へいこう"
+    },
+    {
+      "id": 26,
+      "kanji": "",
+      "hiragana": "へいし"
+    },
+    {
+      "id": 27,
+      "kanji": "",
+      "hiragana": "ほくほく"
+    },
+    {
+      "id": 28,
+      "kanji": "星",
+      "hiragana": "ほし"
+    },
+    {
+      "id": 29,
+      "kanji": "細い",
+      "hiragana": "ほそい"
+    },
+    {
+      "id": 30,
+      "kanji": "",
+      "hiragana": "ほあ"
+    },
+    {
+      "id": 31,
+      "kanji": "",
+      "hiragana": "ほうき"
+    },
+    {
+      "id": 32,
+      "kanji": "保育",
+      "hiragana": "ほいく"
+    },
+    {
+      "id": 33,
+      "kanji": "他",
+      "hiragana": "ほか"
+    },
+    {
+      "id": 34,
+      "kanji": "包囲",
+      "hiragana": "ほうい"
+    },
+    {
+      "id": 35,
+      "kanji": "",
+      "hiragana": "ほうそう"
+    },
+    {
+      "id": 36,
+      "kanji": "",
+      "hiragana": "ほうおう"
+    },
+    {
+      "id": 37,
+      "kanji": "方法",
+      "hiragana": "ほうほう"
+    },
+    {
+      "id": 38,
+      "kanji": "宝庫",
+      "hiragana": "ほうこ"
+    },
+    {
+      "id": 39,
+      "kanji": "方向",
+      "hiragana": "ほうこう"
+    },
+    {
+      "id": 40,
+      "kanji": "報告",
+      "hiragana": "ほうこく"
+    },
+    {
+      "id": 41,
+      "kanji": "",
+      "hiragana": "へいか"
+    },
+    {
+      "id": 42,
+      "kanji": "平成",
+      "hiragana": "へいせい"
+    },
+    {
+      "id": 43,
+      "kanji": "平地",
+      "hiragana": "へいち"
+    },
+    {
+      "id": 44,
+      "kanji": "平熱",
+      "hiragana": "へいねつ"
+    },
+    {
+      "id": 45,
+      "kanji": "",
+      "hiragana": "へきち"
+    },
+    {
+      "id": 46,
+      "kanji": "",
+      "hiragana": "へこむ"
+    },
+    {
+      "id": 47,
+      "kanji": "",
+      "hiragana": "ひひひ"
+    },
+    {
+      "id": 48,
+      "kanji": "",
+      "hiragana": "ははは"
+    },
+    {
+      "id": 49,
+      "kanji": "",
+      "hiragana": "ふうう"
+    },
+    {
+      "id": 50,
+      "kanji": "風景",
+      "hiragana": "ふうけい"
+    },
+    {
+      "id": 51,
+      "kanji": "",
+      "hiragana": "へへへ"
+    },
+    {
+      "id": 52,
+      "kanji": "封筒",
+      "hiragana": "ふうとう"
+    },
+    {
+      "id": 53,
+      "kanji": "",
+      "hiragana": "ふふふ"
+    },
+    {
+      "id": 54,
+      "kanji": "",
+      "hiragana": "ふかさ"
+    },
+    {
+      "id": 55,
+      "kanji": "",
+      "hiragana": "ほほほ"
+    },
+    {
+      "id": 56,
+      "kanji": "",
+      "hiragana": "ふかひ"
+    },
+    {
+      "id": 57,
+      "kanji": "",
+      "hiragana": "ふかふか"
+    },
+    {
+      "id": 58,
+      "kanji": "",
+      "hiragana": "ふきかえ"
+    },
+    {
+      "id": 59,
+      "kanji": "福岡",
+      "hiragana": "ふくおか"
+    },
+    {
+      "id": 60,
+      "kanji": "飛行機",
+      "hiragana": "ひこうき"
+    },
+    {
+      "id": 61,
+      "kanji": "",
+      "hiragana": "ひいき"
+    },
+    {
+      "id": 62,
+      "kanji": "比較",
+      "hiragana": "ひかく"
+    },
+    {
+      "id": 63,
+      "kanji": "",
+      "hiragana": "ふえふき"
+    },
+    {
+      "id": 64,
+      "kanji": "",
+      "hiragana": "ひきあう"
+    },
+    {
+      "id": 65,
+      "kanji": "",
+      "hiragana": "ひきかえす"
+    },
+    {
+      "id": 66,
+      "kanji": "",
+      "hiragana": "ひしひし"
+    },
+    {
+      "id": 67,
+      "kanji": "密かに",
+      "hiragana": "ひそかに"
+    },
+    {
+      "id": 68,
+      "kanji": "額",
+      "hiragana": "ひたい"
+    },
+    {
+      "id": 69,
+      "kanji": "把握",
+      "hiragana": "はあく"
+    },
+    {
+      "id": 70,
+      "kanji": "",
+      "hiragana": "はい"
+    },
+    {
+      "id": 71,
+      "kanji": "",
+      "hiragana": "はいき"
+    },
+    {
+      "id": 72,
+      "kanji": "俳句",
+      "hiragana": "はいく"
+    },
+    {
+      "id": 73,
+      "kanji": "",
+      "hiragana": "はいけい"
+    },
+    {
+      "id": 74,
+      "kanji": "",
+      "hiragana": "はいはい"
+    },
+    {
+      "id": 75,
+      "kanji": "",
+      "hiragana": "はいふ"
+    },
+    {
+      "id": 76,
+      "kanji": "",
+      "hiragana": "はかない"
+    },
+    {
+      "id": 77,
+      "kanji": "父の日は母の日の後",
+      "hiragana": "ちちのひはははのひのあと"
+    },
+    {
+      "id": 78,
+      "kanji": "放送の方法",
+      "hiragana": "ほうそうのほうほう"
+    },
+    {
+      "id": 79,
+      "kanji": "祖父の頬と母の頬",
+      "hiragana": "そふのほほとははのほほ"
+    }
+  ]
+}

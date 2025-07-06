@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b954d327897ac4cacf477718b430f2, type: 3}
+  m_Name: clipboard
+  m_EditorClassIdentifier: 
+  itemNo: 16
+  itemName: "\u30D0\u30A4\u30F3\u30C0\u30FC"
+  itemType: 0
+  itemPrice: 250
+  itemImage: {fileID: 21300000, guid: 162a05ebd35b84f1ea11aab9be886c59, type: 3}
+  itemMemo: "\u30D0\u30A4\u30F3\u30C0\u30FC\u3067\u3059\u3002\u5916\u3067\u3082\u30E1\u30E2\u304C\u53D6\u308C\u307E\u3059\u3002"

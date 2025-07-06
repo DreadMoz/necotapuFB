@@ -1,0 +1,736 @@
+{
+  "title": "１ねんせいのかんじ",
+  "description": "１ねんせいでならうかんじがでてくるよ。",
+  "timer": 60,
+  "random": 40,
+  "hide": 2,
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "一にち",
+      "hiragana": "いち"
+    },
+    {
+      "id": 2,
+      "kanji": "一やすみ",
+      "hiragana": "ひと"
+    },
+    {
+      "id": 3,
+      "kanji": "二かい",
+      "hiragana": "に"
+    },
+    {
+      "id": 4,
+      "kanji": "二つのりんご",
+      "hiragana": "ふた"
+    },
+    {
+      "id": 5,
+      "kanji": "三びきのこぶた",
+      "hiragana": "さん"
+    },
+    {
+      "id": 6,
+      "kanji": "四年生",
+      "hiragana": "よねんせい"
+    },
+    {
+      "id": 7,
+      "kanji": "四かくいつくえ",
+      "hiragana": "し"
+    },
+    {
+      "id": 8,
+      "kanji": "五つのボール",
+      "hiragana": "いつ"
+    },
+    {
+      "id": 9,
+      "kanji": "六ばんめ",
+      "hiragana": "ろく"
+    },
+    {
+      "id": 10,
+      "kanji": "三日づき",
+      "hiragana": "みか"
+    },
+    {
+      "id": 11,
+      "kanji": "六日",
+      "hiragana": "むいか"
+    },
+    {
+      "id": 12,
+      "kanji": "七じにごはんをたべる",
+      "hiragana": "しち"
+    },
+    {
+      "id": 13,
+      "kanji": "七さいになる",
+      "hiragana": "なな"
+    },
+    {
+      "id": 14,
+      "kanji": "八まいのプリント",
+      "hiragana": "はち"
+    },
+    {
+      "id": 15,
+      "kanji": "九じにねる",
+      "hiragana": "く"
+    },
+    {
+      "id": 16,
+      "kanji": "九ほんのぼう",
+      "hiragana": "きゅう"
+    },
+    {
+      "id": 17,
+      "kanji": "七五三",
+      "hiragana": "しちごさん"
+    },
+    {
+      "id": 18,
+      "kanji": "十えんだま",
+      "hiragana": "じゅう"
+    },
+    {
+      "id": 19,
+      "kanji": "百えんだま",
+      "hiragana": "ひゃく"
+    },
+    {
+      "id": 20,
+      "kanji": "千えんさつ",
+      "hiragana": "せん"
+    },
+    {
+      "id": 21,
+      "kanji": "九日",
+      "hiragana": "ここのか"
+    },
+    {
+      "id": 22,
+      "kanji": "十日",
+      "hiragana": "とおか"
+    },
+    {
+      "id": 23,
+      "kanji": "はつ日ので",
+      "hiragana": "ひ"
+    },
+    {
+      "id": 24,
+      "kanji": "一日じゅうあそぶ",
+      "hiragana": "いちにち"
+    },
+    {
+      "id": 25,
+      "kanji": "月ようび",
+      "hiragana": "げつ"
+    },
+    {
+      "id": 26,
+      "kanji": "たいようと月",
+      "hiragana": "つき"
+    },
+    {
+      "id": 27,
+      "kanji": "一月一日",
+      "hiragana": "いちがつついたち"
+    },
+    {
+      "id": 28,
+      "kanji": "火ようび",
+      "hiragana": "か"
+    },
+    {
+      "id": 29,
+      "kanji": "火をつける",
+      "hiragana": "ひ"
+    },
+    {
+      "id": 30,
+      "kanji": "水ようび",
+      "hiragana": "すい"
+    },
+    {
+      "id": 31,
+      "kanji": "水あそび",
+      "hiragana": "みず"
+    },
+    {
+      "id": 32,
+      "kanji": "木のぼり",
+      "hiragana": "き"
+    },
+    {
+      "id": 33,
+      "kanji": "木ようび",
+      "hiragana": "もく"
+    },
+    {
+      "id": 34,
+      "kanji": "金ようび",
+      "hiragana": "きん"
+    },
+    {
+      "id": 35,
+      "kanji": "お金もち",
+      "hiragana": "かね"
+    },
+    {
+      "id": 36,
+      "kanji": "土ようび",
+      "hiragana": "ど"
+    },
+    {
+      "id": 37,
+      "kanji": "土をまぜる",
+      "hiragana": "つち"
+    },
+    {
+      "id": 38,
+      "kanji": "おう金のよろい",
+      "hiragana": "ごん"
+    },
+    {
+      "id": 39,
+      "kanji": "山のぼり",
+      "hiragana": "やま"
+    },
+    {
+      "id": 40,
+      "kanji": "川のながれ",
+      "hiragana": "かわ"
+    },
+    {
+      "id": 41,
+      "kanji": "石ころ",
+      "hiragana": "いし"
+    },
+    {
+      "id": 42,
+      "kanji": "ほう石ばこ",
+      "hiragana": "せき"
+    },
+    {
+      "id": 43,
+      "kanji": "じ石にひっつく",
+      "hiragana": "しゃく"
+    },
+    {
+      "id": 44,
+      "kanji": "竹のおはし",
+      "hiragana": "たけ"
+    },
+    {
+      "id": 45,
+      "kanji": "田んぼ",
+      "hiragana": "た"
+    },
+    {
+      "id": 46,
+      "kanji": "花をつむ",
+      "hiragana": "はな"
+    },
+    {
+      "id": 47,
+      "kanji": "花だんにはいる",
+      "hiragana": "か"
+    },
+    {
+      "id": 48,
+      "kanji": "草むらにはいる",
+      "hiragana": "くさ"
+    },
+    {
+      "id": 49,
+      "kanji": "ざっ草をぬく",
+      "hiragana": "そう"
+    },
+    {
+      "id": 50,
+      "kanji": "林をとおる",
+      "hiragana": "はやし"
+    },
+    {
+      "id": 51,
+      "kanji": "森のくまさん",
+      "hiragana": "もり"
+    },
+    {
+      "id": 52,
+      "kanji": "森林",
+      "hiragana": "しんりん"
+    },
+    {
+      "id": 53,
+      "kanji": "天きよほう",
+      "hiragana": "てん"
+    },
+    {
+      "id": 54,
+      "kanji": "空たかくあがれ",
+      "hiragana": "そら"
+    },
+    {
+      "id": 55,
+      "kanji": "空きをいれる",
+      "hiragana": "くう"
+    },
+    {
+      "id": 56,
+      "kanji": "雨ふり",
+      "hiragana": "あめ"
+    },
+    {
+      "id": 57,
+      "kanji": "雨がっぱ",
+      "hiragana": "あま"
+    },
+    {
+      "id": 58,
+      "kanji": "空っぽになった",
+      "hiragana": "から"
+    },
+    {
+      "id": 59,
+      "kanji": "上にいく",
+      "hiragana": "うえ"
+    },
+    {
+      "id": 60,
+      "kanji": "さか上がり",
+      "hiragana": "あ"
+    },
+    {
+      "id": 61,
+      "kanji": "おく上",
+      "hiragana": "じょう"
+    },
+    {
+      "id": 62,
+      "kanji": "下にいく",
+      "hiragana": "した"
+    },
+    {
+      "id": 63,
+      "kanji": "きおんが下がる",
+      "hiragana": "さ"
+    },
+    {
+      "id": 64,
+      "kanji": "下水どう",
+      "hiragana": "げすい"
+    },
+    {
+      "id": 65,
+      "kanji": "左をあるく",
+      "hiragana": "ひだり"
+    },
+    {
+      "id": 66,
+      "kanji": "左せつする",
+      "hiragana": "さ"
+    },
+    {
+      "id": 67,
+      "kanji": "右がわつうこう",
+      "hiragana": "みぎ"
+    },
+    {
+      "id": 68,
+      "kanji": "右せつする",
+      "hiragana": "う"
+    },
+    {
+      "id": 69,
+      "kanji": "大きいイヌ",
+      "hiragana": "おお"
+    },
+    {
+      "id": 70,
+      "kanji": "大すきなきゅうしょく",
+      "hiragana": "だい"
+    },
+    {
+      "id": 71,
+      "kanji": "中からとびだす",
+      "hiragana": "なか"
+    },
+    {
+      "id": 72,
+      "kanji": "中ぐらいのはこ",
+      "hiragana": "ちゅう"
+    },
+    {
+      "id": 73,
+      "kanji": "小さいくり",
+      "hiragana": "ちい"
+    },
+    {
+      "id": 74,
+      "kanji": "大中小",
+      "hiragana": "大中小"
+    },
+    {
+      "id": 75,
+      "kanji": "上下左右",
+      "hiragana": "じょうげさゆう"
+    },
+    {
+      "id": 76,
+      "kanji": "目がさめる",
+      "hiragana": "め"
+    },
+    {
+      "id": 77,
+      "kanji": "１がっきの目ひょう",
+      "hiragana": "もく"
+    },
+    {
+      "id": 78,
+      "kanji": "耳がながい",
+      "hiragana": "みみ"
+    },
+    {
+      "id": 79,
+      "kanji": "口をあける",
+      "hiragana": "くち"
+    },
+    {
+      "id": 80,
+      "kanji": "ならけんのじん口",
+      "hiragana": "こう"
+    },
+    {
+      "id": 81,
+      "kanji": "はなを見る",
+      "hiragana": "み"
+    },
+    {
+      "id": 82,
+      "kanji": "手をあげる",
+      "hiragana": "て"
+    },
+    {
+      "id": 83,
+      "kanji": "あく手をする",
+      "hiragana": "しゅ"
+    },
+    {
+      "id": 84,
+      "kanji": "足あとをさがす",
+      "hiragana": "あし"
+    },
+    {
+      "id": 85,
+      "kanji": "おかねが足りない",
+      "hiragana": "た"
+    },
+    {
+      "id": 86,
+      "kanji": "えん足にいく",
+      "hiragana": "そく"
+    },
+    {
+      "id": 87,
+      "kanji": "しゃかい見がく",
+      "hiragana": "けん"
+    },
+    {
+      "id": 88,
+      "kanji": "おおぜいの人",
+      "hiragana": "人"
+    },
+    {
+      "id": 89,
+      "kanji": "四人ぶんのりょうり",
+      "hiragana": "よにん"
+    },
+    {
+      "id": 90,
+      "kanji": "アメリカ人",
+      "hiragana": "じん"
+    },
+    {
+      "id": 91,
+      "kanji": "男のひと",
+      "hiragana": "おとこ"
+    },
+    {
+      "id": 92,
+      "kanji": "女のひと",
+      "hiragana": "おんな"
+    },
+    {
+      "id": 93,
+      "kanji": "子どもとあそぶ",
+      "hiragana": "こ"
+    },
+    {
+      "id": 94,
+      "kanji": "男子トイレ",
+      "hiragana": "だんし"
+    },
+    {
+      "id": 95,
+      "kanji": "女子トイレ",
+      "hiragana": "じょし"
+    },
+    {
+      "id": 96,
+      "kanji": "力をいれる",
+      "hiragana": "ちから"
+    },
+    {
+      "id": 97,
+      "kanji": "せん力ではしる",
+      "hiragana": "りょく"
+    },
+    {
+      "id": 98,
+      "kanji": "犬とあそぶ",
+      "hiragana": "いぬ"
+    },
+    {
+      "id": 99,
+      "kanji": "けいさつ犬がはしる",
+      "hiragana": "けん"
+    },
+    {
+      "id": 100,
+      "kanji": "貝がらをあつめる",
+      "hiragana": "かい"
+    },
+    {
+      "id": 101,
+      "kanji": "虫をとる",
+      "hiragana": "むし"
+    },
+    {
+      "id": 102,
+      "kanji": "カブトムシのよう虫",
+      "hiragana": "ちゅう"
+    },
+    {
+      "id": 103,
+      "kanji": "学校にいこう",
+      "hiragana": "がっこう"
+    },
+    {
+      "id": 104,
+      "kanji": "かんじを学ぶ",
+      "hiragana": "まな"
+    },
+    {
+      "id": 105,
+      "kanji": "一年生",
+      "hiragana": "いちねんせい"
+    },
+    {
+      "id": 106,
+      "kanji": "年下のともだち",
+      "hiragana": "としした"
+    },
+    {
+      "id": 107,
+      "kanji": "生きものをさがす",
+      "hiragana": "い"
+    },
+    {
+      "id": 108,
+      "kanji": "生たまご",
+      "hiragana": "なま"
+    },
+    {
+      "id": 109,
+      "kanji": "生まれる",
+      "hiragana": "う"
+    },
+    {
+      "id": 110,
+      "kanji": "くさが生える",
+      "hiragana": "は"
+    },
+    {
+      "id": 111,
+      "kanji": "たん生び",
+      "hiragana": "じょう"
+    },
+    {
+      "id": 112,
+      "kanji": "先をあるく",
+      "hiragana": "さき"
+    },
+    {
+      "id": 113,
+      "kanji": "先生",
+      "hiragana": "せんせい"
+    },
+    {
+      "id": 114,
+      "kanji": "正かい",
+      "hiragana": "せい"
+    },
+    {
+      "id": 115,
+      "kanji": "しせいを正す",
+      "hiragana": "ただ"
+    },
+    {
+      "id": 116,
+      "kanji": "さく文をかく",
+      "hiragana": "ぶん"
+    },
+    {
+      "id": 117,
+      "kanji": "文くをいう",
+      "hiragana": "もん"
+    },
+    {
+      "id": 118,
+      "kanji": "本をよむ",
+      "hiragana": "本"
+    },
+    {
+      "id": 119,
+      "kanji": "名まえをよぶ",
+      "hiragana": "な"
+    },
+    {
+      "id": 120,
+      "kanji": "かん字をよむ",
+      "hiragana": "じ"
+    },
+    {
+      "id": 121,
+      "kanji": "文字をかく",
+      "hiragana": "もじ"
+    },
+    {
+      "id": 122,
+      "kanji": "立ちあがる",
+      "hiragana": "た"
+    },
+    {
+      "id": 123,
+      "kanji": "きょうはお休み",
+      "hiragana": "やす"
+    },
+    {
+      "id": 124,
+      "kanji": "休けいをする",
+      "hiragana": "きゅう"
+    },
+    {
+      "id": 125,
+      "kanji": "きれいな夕やけ",
+      "hiragana": "ゆう"
+    },
+    {
+      "id": 126,
+      "kanji": "気もちをこめる",
+      "hiragana": "き"
+    },
+    {
+      "id": 127,
+      "kanji": "なかまに入る",
+      "hiragana": "はい"
+    },
+    {
+      "id": 128,
+      "kanji": "おきに入り",
+      "hiragana": "い"
+    },
+    {
+      "id": 129,
+      "kanji": "そとに出る",
+      "hiragana": "で"
+    },
+    {
+      "id": 130,
+      "kanji": "しゅくだいを出す",
+      "hiragana": "だ"
+    },
+    {
+      "id": 131,
+      "kanji": "早くねる",
+      "hiragana": "はや"
+    },
+    {
+      "id": 132,
+      "kanji": "玉いれ",
+      "hiragana": "たま"
+    },
+    {
+      "id": 133,
+      "kanji": "えんま大王",
+      "hiragana": "だいおう"
+    },
+    {
+      "id": 134,
+      "kanji": "円をかく",
+      "hiragana": "えん"
+    },
+    {
+      "id": 135,
+      "kanji": "音がする",
+      "hiragana": "おと"
+    },
+    {
+      "id": 136,
+      "kanji": "音がくしつ",
+      "hiragana": "おん"
+    },
+    {
+      "id": 137,
+      "kanji": "赤いえのぐ",
+      "hiragana": "あか"
+    },
+    {
+      "id": 138,
+      "kanji": "白いくも",
+      "hiragana": "しろ"
+    },
+    {
+      "id": 139,
+      "kanji": "青むし",
+      "hiragana": "あお"
+    },
+    {
+      "id": 140,
+      "kanji": "くもの糸",
+      "hiragana": "いと"
+    },
+    {
+      "id": 141,
+      "kanji": "じどう車がはしる",
+      "hiragana": "しゃ"
+    },
+    {
+      "id": 142,
+      "kanji": "車にのる",
+      "hiragana": "くるま"
+    },
+    {
+      "id": 143,
+      "kanji": "町にでる",
+      "hiragana": "まち"
+    },
+    {
+      "id": 144,
+      "kanji": "村のひとたち",
+      "hiragana": "むら"
+    },
+    {
+      "id": 145,
+      "kanji": "まっ赤になる",
+      "hiragana": "か"
+    }
+  ]
+}
+
+

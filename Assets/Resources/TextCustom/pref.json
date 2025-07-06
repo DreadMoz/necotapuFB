@@ -1,0 +1,243 @@
+{
+  "title": "都道府県の名前",
+  "description": "日本の都道府県の名前が出てきます。都道府県についてもっと学びましょう。",
+  "timer": 40,
+  "random": 99,
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "北海道",
+      "hiragana": "ほっかいどう"
+    },
+    {
+      "id": 2,
+      "kanji": "青森県",
+      "hiragana": "あおもりけん"
+    },
+    {
+      "id": 3,
+      "kanji": "岩手県",
+      "hiragana": "いわてけん"
+    },
+    {
+      "id": 4,
+      "kanji": "宮城県",
+      "hiragana": "みやぎけん"
+    },
+    {
+      "id": 5,
+      "kanji": "秋田県",
+      "hiragana": "あきたけん"
+    },
+    {
+      "id": 6,
+      "kanji": "山形県",
+      "hiragana": "やまがたけん"
+    },
+    {
+      "id": 7,
+      "kanji": "福島県",
+      "hiragana": "ふくしまけん"
+    },
+    {
+      "id": 8,
+      "kanji": "茨城県",
+      "hiragana": "いばらきけん"
+    },
+    {
+      "id": 9,
+      "kanji": "栃木県",
+      "hiragana": "とちぎけん"
+    },
+    {
+      "id": 10,
+      "kanji": "群馬県",
+      "hiragana": "ぐんまけん"
+    },
+    {
+      "id": 11,
+      "kanji": "埼玉県",
+      "hiragana": "さいたまけん"
+    },
+    {
+      "id": 12,
+      "kanji": "千葉県",
+      "hiragana": "ちばけん"
+    },
+    {
+      "id": 13,
+      "kanji": "東京都",
+      "hiragana": "とうきょうと"
+    },
+    {
+      "id": 14,
+      "kanji": "神奈川県",
+      "hiragana": "かながわけん"
+    },
+    {
+      "id": 15,
+      "kanji": "新潟県",
+      "hiragana": "にいがたけん"
+    },
+    {
+      "id": 16,
+      "kanji": "富山県",
+      "hiragana": "とやまけん"
+    },
+    {
+      "id": 17,
+      "kanji": "石川県",
+      "hiragana": "いしかわけん"
+    },
+    {
+      "id": 18,
+      "kanji": "福井県",
+      "hiragana": "ふくいけん"
+    },
+    {
+      "id": 19,
+      "kanji": "山梨県",
+      "hiragana": "やまなしけん"
+    },
+    {
+      "id": 20,
+      "kanji": "長野県",
+      "hiragana": "ながのけん"
+    },
+    {
+      "id": 21,
+      "kanji": "岐阜県",
+      "hiragana": "ぎふけん"
+    },
+    {
+      "id": 22,
+      "kanji": "静岡県",
+      "hiragana": "しずおかけん"
+    },
+    {
+      "id": 23,
+      "kanji": "愛知県",
+      "hiragana": "あいちけん"
+    },
+    {
+      "id": 24,
+      "kanji": "三重県",
+      "hiragana": "みえけん"
+    },
+    {
+      "id": 25,
+      "kanji": "滋賀県",
+      "hiragana": "しがけん"
+    },
+    {
+      "id": 26,
+      "kanji": "京都府",
+      "hiragana": "きょうとふ"
+    },
+    {
+      "id": 27,
+      "kanji": "大阪府",
+      "hiragana": "おおさかふ"
+    },
+    {
+      "id": 28,
+      "kanji": "兵庫県",
+      "hiragana": "ひょうごけん"
+    },
+    {
+      "id": 29,
+      "kanji": "奈良県",
+      "hiragana": "ならけん"
+    },
+    {
+      "id": 30,
+      "kanji": "和歌山県",
+      "hiragana": "わかやまけん"
+    },
+    {
+      "id": 31,
+      "kanji": "鳥取県",
+      "hiragana": "とっとりけん"
+    },
+    {
+      "id": 32,
+      "kanji": "島根県",
+      "hiragana": "しまねけん"
+    },
+    {
+      "id": 33,
+      "kanji": "岡山県",
+      "hiragana": "おかやまけん"
+    },
+    {
+      "id": 34,
+      "kanji": "広島県",
+      "hiragana": "ひろしまけん"
+    },
+    {
+      "id": 35,
+      "kanji": "山口県",
+      "hiragana": "やまぐちけん"
+    },
+    {
+      "id": 36,
+      "kanji": "徳島県",
+      "hiragana": "とくしまけん"
+    },
+    {
+      "id": 37,
+      "kanji": "香川県",
+      "hiragana": "かがわけん"
+    },
+    {
+      "id": 38,
+      "kanji": "愛媛県",
+      "hiragana": "えひめけん"
+    },
+    {
+      "id": 39,
+      "kanji": "高知県",
+      "hiragana": "こうちけん"
+    },
+    {
+      "id": 40,
+      "kanji": "福岡県",
+      "hiragana": "ふくおかけん"
+    },
+    {
+      "id": 41,
+      "kanji": "佐賀県",
+      "hiragana": "さがけん"
+    },
+    {
+      "id": 42,
+      "kanji": "長崎県",
+      "hiragana": "ながさきけん"
+    },
+    {
+      "id": 43,
+      "kanji": "熊本県",
+      "hiragana": "くまもとけん"
+    },
+    {
+      "id": 44,
+      "kanji": "大分県",
+      "hiragana": "おおいたけん"
+    },
+    {
+      "id": 45,
+      "kanji": "宮崎県",
+      "hiragana": "みやざきけん"
+    },
+    {
+      "id": 46,
+      "kanji": "鹿児島県",
+      "hiragana": "かごしまけん"
+    },
+    {
+      "id": 47,
+      "kanji": "沖縄県",
+      "hiragana": "おきなわけん"
+    }
+  ]
+}

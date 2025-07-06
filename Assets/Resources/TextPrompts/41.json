@@ -1,0 +1,270 @@
+{
+  "title": "ぱぴぷぺぽまでのことば",
+  "description": "ぱぴぷぺぽのれんしゅうだよ",
+  "timer": 40,
+  "random": 30,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "パイプ",
+      "hiragana": "ぱいぷ"
+    },
+    {
+      "id": 2,
+      "kanji": "パパ",
+      "hiragana": "ぱぱ"
+    },
+    {
+      "id": 3,
+      "kanji": "パンツ",
+      "hiragana": "ぱんつ"
+    },
+    {
+      "id": 4,
+      "kanji": "パン",
+      "hiragana": "ぱん"
+    },
+    {
+      "id": 5,
+      "kanji": "ピザ",
+      "hiragana": "ぴざ"
+    },
+    {
+      "id": 6,
+      "kanji": "ピンク",
+      "hiragana": "ぴんく"
+    },
+    {
+      "id": 7,
+      "kanji": "ピアノ",
+      "hiragana": "ぴあの"
+    },
+    {
+      "id": 8,
+      "kanji": "ピーチ",
+      "hiragana": "ぴーち"
+    },
+    {
+      "id": 9,
+      "kanji": "プール",
+      "hiragana": "ぷーる"
+    },
+    {
+      "id": 10,
+      "kanji": "プリン",
+      "hiragana": "ぷりん"
+    },
+    {
+      "id": 11,
+      "kanji": "アップ",
+      "hiragana": "あっぷ"
+    },
+    {
+      "id": 12,
+      "kanji": "プロペラ",
+      "hiragana": "ぷろぺら"
+    },
+    {
+      "id": 13,
+      "kanji": "ペア",
+      "hiragana": "ぺあ"
+    },
+    {
+      "id": 14,
+      "kanji": "ペイント",
+      "hiragana": "ぺいんと"
+    },
+    {
+      "id": 15,
+      "kanji": "ペット",
+      "hiragana": "ぺっと"
+    },
+    {
+      "id": 16,
+      "kanji": "ペンキ",
+      "hiragana": "ぺんき"
+    },
+    {
+      "id": 17,
+      "kanji": "ポスト",
+      "hiragana": "ぽすと"
+    },
+    {
+      "id": 18,
+      "kanji": "ポット",
+      "hiragana": "ぽっと"
+    },
+    {
+      "id": 19,
+      "kanji": "ポテト",
+      "hiragana": "ぽてと"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "ぽんず"
+    },
+    {
+      "id": 21,
+      "kanji": "ポーカー",
+      "hiragana": "ぽーかー"
+    },
+    {
+      "id": 22,
+      "kanji": "ペペロンチーノ",
+      "hiragana": "ぺぺろんちーの"
+    },
+    {
+      "id": 23,
+      "kanji": "ポケット",
+      "hiragana": "ぽけっと"
+    },
+    {
+      "id": 24,
+      "kanji": "ポイント",
+      "hiragana": "ぽいんと"
+    },
+    {
+      "id": 25,
+      "kanji": "パイロット",
+      "hiragana": "ぱいろっと"
+    },
+    {
+      "id": 26,
+      "kanji": "パス",
+      "hiragana": "ぱす"
+    },
+    {
+      "id": 27,
+      "kanji": "パスタ",
+      "hiragana": "ぱすた"
+    },
+    {
+      "id": 28,
+      "kanji": "パセリ",
+      "hiragana": "ぱせり"
+    },
+    {
+      "id": 29,
+      "kanji": "パトカー",
+      "hiragana": "ぱとかー"
+    },
+    {
+      "id": 30,
+      "kanji": "パプリカ",
+      "hiragana": "ぱぷりか"
+    },
+    {
+      "id": 31,
+      "kanji": "パラソル",
+      "hiragana": "ぱらそる"
+    },
+    {
+      "id": 32,
+      "kanji": "ピエロ",
+      "hiragana": "ぴえろ"
+    },
+    {
+      "id": 33,
+      "kanji": "ピクニック",
+      "hiragana": "ぴくにっく"
+    },
+    {
+      "id": 34,
+      "kanji": "ピンポン",
+      "hiragana": "ぴんぽん"
+    },
+    {
+      "id": 35,
+      "kanji": "ピース",
+      "hiragana": "ぴーす"
+    },
+    {
+      "id": 36,
+      "kanji": "",
+      "hiragana": "はっぴ"
+    },
+    {
+      "id": 37,
+      "kanji": "プラス",
+      "hiragana": "ぷらす"
+    },
+    {
+      "id": 38,
+      "kanji": "プリント",
+      "hiragana": "ぷりんと"
+    },
+    {
+      "id": 39,
+      "kanji": "プログラミング",
+      "hiragana": "ぷろぐらみんぐ"
+    },
+    {
+      "id": 40,
+      "kanji": "プロレス",
+      "hiragana": "ぷろれす"
+    },
+    {
+      "id": 41,
+      "kanji": "ペガサス",
+      "hiragana": "ぺがさす"
+    },
+    {
+      "id": 42,
+      "kanji": "",
+      "hiragana": "ぺきん"
+    },
+    {
+      "id": 43,
+      "kanji": "ペン",
+      "hiragana": "ぺん"
+    },
+    {
+      "id": 44,
+      "kanji": "ペルー",
+      "hiragana": "ぺるー"
+    },
+    {
+      "id": 45,
+      "kanji": "ポエム",
+      "hiragana": "ぽえむ"
+    },
+    {
+      "id": 46,
+      "kanji": "ポニーテール",
+      "hiragana": "ぽにーてーる"
+    },
+    {
+      "id": 47,
+      "kanji": "ポンプ",
+      "hiragana": "ぽんぷ"
+    },
+    {
+      "id": 48,
+      "kanji": "ピーマン",
+      "hiragana": "ぴーまん"
+    },
+    {
+      "id": 49,
+      "kanji": "ピラミッド",
+      "hiragana": "ぴらみっど"
+    },
+    {
+      "id": 50,
+      "kanji": "パパのパジャマはパパパジャマ",
+      "hiragana": "ぱぱのぱじゃまはぱぱぱじゃま"
+    },
+    {
+      "id": 51,
+      "kanji": "ペンパイナッポーアッポーペン",
+      "hiragana": "ぺんぱいなっぽーあっぽーぺん"
+    },
+    {
+      "id": 52,
+      "kanji": "ピザピザピザピザピザピザピザピザ",
+      "hiragana": "ぴざぴざぴざぴざぴざぴざぴざぴざ"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-Assets/
+Assets/Script/GoogleServiceAccount.cs
 
 /[Ll]ibrary/
 /[Tt]emp/

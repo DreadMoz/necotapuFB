@@ -1,0 +1,435 @@
+{
+  "title": "やゆよ・わを・ーまでのことば",
+  "description": "やゆよ・わを・ーまでのことばの練習をしよう",
+  "timer": 60,
+  "random": 40,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "屋根",
+      "hiragana": "やね"
+    },
+    {
+      "id": 2,
+      "kanji": "山",
+      "hiragana": "やま"
+    },
+    {
+      "id": 3,
+      "kanji": "休み",
+      "hiragana": "やすみ"
+    },
+    {
+      "id": 4,
+      "kanji": "野菜",
+      "hiragana": "やさい"
+    },
+    {
+      "id": 5,
+      "kanji": "役目",
+      "hiragana": "やくめ"
+    },
+    {
+      "id": 6,
+      "kanji": "雪",
+      "hiragana": "ゆき"
+    },
+    {
+      "id": 7,
+      "kanji": "床",
+      "hiragana": "ゆか"
+    },
+    {
+      "id": 8,
+      "kanji": "夢",
+      "hiragana": "ゆめ"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "ゆれ"
+    },
+    {
+      "id": 10,
+      "kanji": "ヨーヨー",
+      "hiragana": "よーよー"
+    },
+    {
+      "id": 11,
+      "kanji": "夜明け",
+      "hiragana": "よあけ"
+    },
+    {
+      "id": 12,
+      "kanji": "ユーモア",
+      "hiragana": "ゆーもあ"
+    },
+    {
+      "id": 13,
+      "kanji": "横",
+      "hiragana": "よこ"
+    },
+    {
+      "id": 14,
+      "kanji": "ユーカリ",
+      "hiragana": "ゆーかり"
+    },
+    {
+      "id": 15,
+      "kanji": "予定",
+      "hiragana": "よてい"
+    },
+    {
+      "id": 16,
+      "kanji": "泡",
+      "hiragana": "あわ"
+    },
+    {
+      "id": 17,
+      "kanji": "岩",
+      "hiragana": "いわ"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "かわ"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "くわ"
+    },
+    {
+      "id": 20,
+      "kanji": "スキーヤー",
+      "hiragana": "すきーやー"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "きをつけ"
+    },
+    {
+      "id": 22,
+      "kanji": "絵を切る",
+      "hiragana": "えをきる"
+    },
+    {
+      "id": 23,
+      "kanji": "尾を踏む",
+      "hiragana": "おをふむ"
+    },
+    {
+      "id": 24,
+      "kanji": "ユー",
+      "hiragana": "ゆー"
+    },
+    {
+      "id": 25,
+      "kanji": "火を吹く",
+      "hiragana": "ひをふく"
+    },
+    {
+      "id": 26,
+      "kanji": "",
+      "hiragana": "うそをつく"
+    },
+    {
+      "id": 27,
+      "kanji": "",
+      "hiragana": "やむ"
+    },
+    {
+      "id": 28,
+      "kanji": "読む",
+      "hiragana": "よむ"
+    },
+    {
+      "id": 29,
+      "kanji": "お湯",
+      "hiragana": "おゆ"
+    },
+    {
+      "id": 30,
+      "kanji": "タイマー",
+      "hiragana": "たいまー"
+    },
+    {
+      "id": 31,
+      "kanji": "",
+      "hiragana": "まゆ"
+    },
+    {
+      "id": 32,
+      "kanji": "",
+      "hiragana": "ゆるい"
+    },
+    {
+      "id": 33,
+      "kanji": "",
+      "hiragana": "ゆいいつ"
+    },
+    {
+      "id": 34,
+      "kanji": "愉快",
+      "hiragana": "ゆかい"
+    },
+    {
+      "id": 35,
+      "kanji": "",
+      "hiragana": "ゆくえ"
+    },
+    {
+      "id": 36,
+      "kanji": "輸送",
+      "hiragana": "ゆそう"
+    },
+    {
+      "id": 37,
+      "kanji": "豊か",
+      "hiragana": "ゆたか"
+    },
+    {
+      "id": 38,
+      "kanji": "",
+      "hiragana": "ゆとり"
+    },
+    {
+      "id": 39,
+      "kanji": "余暇",
+      "hiragana": "よか"
+    },
+    {
+      "id": 40,
+      "kanji": "",
+      "hiragana": "ひをつける"
+    },
+    {
+      "id": 41,
+      "kanji": "",
+      "hiragana": "かをたたく"
+    },
+    {
+      "id": 42,
+      "kanji": "顔を洗う",
+      "hiragana": "かおをあらう"
+    },
+    {
+      "id": 43,
+      "kanji": "",
+      "hiragana": "を"
+    },
+    {
+      "id": 44,
+      "kanji": "弓矢",
+      "hiragana": "ゆみや"
+    },
+    {
+      "id": 45,
+      "kanji": "焼肉",
+      "hiragana": "やきにく"
+    },
+    {
+      "id": 46,
+      "kanji": "夕日",
+      "hiragana": "ゆうひ"
+    },
+    {
+      "id": 47,
+      "kanji": "夕焼け",
+      "hiragana": "ゆうやけ"
+    },
+    {
+      "id": 48,
+      "kanji": "余裕",
+      "hiragana": "よゆう"
+    },
+    {
+      "id": 49,
+      "kanji": "予約",
+      "hiragana": "よやく"
+    },
+    {
+      "id": 50,
+      "kanji": "",
+      "hiragana": "ようやく"
+    },
+    {
+      "id": 51,
+      "kanji": "予測",
+      "hiragana": "よそく"
+    },
+    {
+      "id": 52,
+      "kanji": "",
+      "hiragana": "ようせい"
+    },
+    {
+      "id": 53,
+      "kanji": "",
+      "hiragana": "やむをえぬ"
+    },
+    {
+      "id": 54,
+      "kanji": "",
+      "hiragana": "わし"
+    },
+    {
+      "id": 55,
+      "kanji": "",
+      "hiragana": "わた"
+    },
+    {
+      "id": 56,
+      "kanji": "私",
+      "hiragana": "わたし"
+    },
+    {
+      "id": 57,
+      "kanji": "幼稚",
+      "hiragana": "ようち"
+    },
+    {
+      "id": 58,
+      "kanji": "夜中",
+      "hiragana": "よなか"
+    },
+    {
+      "id": 59,
+      "kanji": "",
+      "hiragana": "よれよれ"
+    },
+    {
+      "id": 60,
+      "kanji": "",
+      "hiragana": "よい"
+    },
+    {
+      "id": 61,
+      "kanji": "",
+      "hiragana": "よし"
+    },
+    {
+      "id": 62,
+      "kanji": "",
+      "hiragana": "いいよ"
+    },
+    {
+      "id": 63,
+      "kanji": "",
+      "hiragana": "わら"
+    },
+    {
+      "id": 64,
+      "kanji": "",
+      "hiragana": "わーわー"
+    },
+    {
+      "id": 65,
+      "kanji": "割合",
+      "hiragana": "わりあい"
+    },
+    {
+      "id": 66,
+      "kanji": "ワクワク",
+      "hiragana": "わくわく"
+    },
+    {
+      "id": 67,
+      "kanji": "",
+      "hiragana": "わけ"
+    },
+    {
+      "id": 68,
+      "kanji": "",
+      "hiragana": "わすれる"
+    },
+    {
+      "id": 69,
+      "kanji": "ユーロ",
+      "hiragana": "ゆーろ"
+    },
+    {
+      "id": 70,
+      "kanji": "ワニ",
+      "hiragana": "わに"
+    },
+    {
+      "id": 71,
+      "kanji": "",
+      "hiragana": "やーやーやー"
+    },
+    {
+      "id": 72,
+      "kanji": "",
+      "hiragana": "まわる"
+    },
+    {
+      "id": 73,
+      "kanji": "",
+      "hiragana": "めいわく"
+    },
+    {
+      "id": 74,
+      "kanji": "",
+      "hiragana": "わたあめ"
+    },
+    {
+      "id": 75,
+      "kanji": "",
+      "hiragana": "きわめる"
+    },
+    {
+      "id": 76,
+      "kanji": "",
+      "hiragana": "やわらかい"
+    },
+    {
+      "id": 77,
+      "kanji": "手を組む",
+      "hiragana": "てをくむ"
+    },
+    {
+      "id": 78,
+      "kanji": "絵を描く",
+      "hiragana": "えをかく"
+    },
+    {
+      "id": 79,
+      "kanji": "",
+      "hiragana": "わをつくる"
+    },
+    {
+      "id": 80,
+      "kanji": "矢を放つ",
+      "hiragana": "やをはなつ"
+    },
+    {
+      "id": 81,
+      "kanji": "庭には二羽のニワトリ",
+      "hiragana": "にわにわにわのにわとり"
+    },
+    {
+      "id": 82,
+      "kanji": "私のタワシを渡した私たち",
+      "hiragana": "わたしのたわしをわたしたわたしたち"
+    },
+    {
+      "id": 83,
+      "kanji": "床はゆらゆら揺れる",
+      "hiragana": "ゆかはゆらゆらゆれる"
+    },
+    {
+      "id": 84,
+      "kanji": "横の余裕の良い子をよしよし",
+      "hiragana": "よこのよゆうのよいこをよしよし"
+    },
+    {
+      "id": 85,
+      "kanji": "おやおや八百屋はやや安い",
+      "hiragana": "おやおややおやはやややすい"
+    }
+  ]
+}

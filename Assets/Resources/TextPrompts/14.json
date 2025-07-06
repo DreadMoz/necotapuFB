@@ -1,0 +1,370 @@
+{
+  "title": "たちつてとまでのことば",
+  "description": "たちつてとまでのことばを打とう",
+  "timer": 60,
+  "random": 40,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "テスト",
+      "hiragana": "てすと"
+    },
+    {
+      "id": 2,
+      "kanji": "知識",
+      "hiragana": "ちしき"
+    },
+    {
+      "id": 3,
+      "kanji": "遅刻",
+      "hiragana": "ちこく"
+    },
+    {
+      "id": 4,
+      "kanji": "太鼓",
+      "hiragana": "たいこ"
+    },
+    {
+      "id": 5,
+      "kanji": "田植え",
+      "hiragana": "たうえ"
+    },
+    {
+      "id": 6,
+      "kanji": "知恵",
+      "hiragana": "ちえ"
+    },
+    {
+      "id": 7,
+      "kanji": "立つ",
+      "hiragana": "たつ"
+    },
+    {
+      "id": 8,
+      "kanji": "地域",
+      "hiragana": "ちいき"
+    },
+    {
+      "id": 9,
+      "kanji": "地下室",
+      "hiragana": "ちかしつ"
+    },
+    {
+      "id": 10,
+      "kanji": "戦う",
+      "hiragana": "たたかう"
+    },
+    {
+      "id": 11,
+      "kanji": "近く",
+      "hiragana": "ちかく"
+    },
+    {
+      "id": 12,
+      "kanji": "土",
+      "hiragana": "つち"
+    },
+    {
+      "id": 13,
+      "kanji": "筒",
+      "hiragana": "つつ"
+    },
+    {
+      "id": 14,
+      "kanji": "追突",
+      "hiragana": "ついとつ"
+    },
+    {
+      "id": 15,
+      "kanji": "杖",
+      "hiragana": "つえ"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "たこ"
+    },
+    {
+      "id": 17,
+      "kanji": "肩",
+      "hiragana": "かた"
+    },
+    {
+      "id": 18,
+      "kanji": "使う",
+      "hiragana": "つかう"
+    },
+    {
+      "id": 19,
+      "kanji": "鉄",
+      "hiragana": "てつ"
+    },
+    {
+      "id": 20,
+      "kanji": "手と足",
+      "hiragana": "てとあし"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "こたつ"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "てあて"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "したえ"
+    },
+    {
+      "id": 24,
+      "kanji": "停止",
+      "hiragana": "ていし"
+    },
+    {
+      "id": 25,
+      "kanji": "敵",
+      "hiragana": "てき"
+    },
+    {
+      "id": 26,
+      "kanji": "手先",
+      "hiragana": "てさき"
+    },
+    {
+      "id": 27,
+      "kanji": "手相",
+      "hiragana": "てそう"
+    },
+    {
+      "id": 28,
+      "kanji": "",
+      "hiragana": "たい"
+    },
+    {
+      "id": 29,
+      "kanji": "適当",
+      "hiragana": "てきとう"
+    },
+    {
+      "id": 30,
+      "kanji": "",
+      "hiragana": "たそく"
+    },
+    {
+      "id": 31,
+      "kanji": "タイツ",
+      "hiragana": "たいつ"
+    },
+    {
+      "id": 32,
+      "kanji": "到達",
+      "hiragana": "とうたつ"
+    },
+    {
+      "id": 33,
+      "kanji": "逃走",
+      "hiragana": "とうそう"
+    },
+    {
+      "id": 34,
+      "kanji": "土地",
+      "hiragana": "とち"
+    },
+    {
+      "id": 35,
+      "kanji": "年下",
+      "hiragana": "としした"
+    },
+    {
+      "id": 36,
+      "kanji": "年越し",
+      "hiragana": "としこし"
+    },
+    {
+      "id": 37,
+      "kanji": "年上",
+      "hiragana": "としうえ"
+    },
+    {
+      "id": 38,
+      "kanji": "凍結",
+      "hiragana": "とうけつ"
+    },
+    {
+      "id": 39,
+      "kanji": "",
+      "hiragana": "といいち"
+    },
+    {
+      "id": 40,
+      "kanji": "大分",
+      "hiragana": "おおいた"
+    },
+    {
+      "id": 41,
+      "kanji": "高知",
+      "hiragana": "こうち"
+    },
+    {
+      "id": 42,
+      "kanji": "愛知",
+      "hiragana": "あいち"
+    },
+    {
+      "id": 43,
+      "kanji": "",
+      "hiragana": "とうこう"
+    },
+    {
+      "id": 44,
+      "kanji": "時",
+      "hiragana": "とき"
+    },
+    {
+      "id": 45,
+      "kanji": "滝",
+      "hiragana": "たき"
+    },
+    {
+      "id": 46,
+      "kanji": "北",
+      "hiragana": "きた"
+    },
+    {
+      "id": 47,
+      "kanji": "",
+      "hiragana": "うたうたえ"
+    },
+    {
+      "id": 48,
+      "kanji": "地下鉄",
+      "hiragana": "ちかてつ"
+    },
+    {
+      "id": 49,
+      "kanji": "大会",
+      "hiragana": "たいかい"
+    },
+    {
+      "id": 50,
+      "kanji": "",
+      "hiragana": "あつあつ"
+    },
+    {
+      "id": 51,
+      "kanji": "抵抗",
+      "hiragana": "ていこう"
+    },
+    {
+      "id": 52,
+      "kanji": "打て",
+      "hiragana": "うて"
+    },
+    {
+      "id": 53,
+      "kanji": "",
+      "hiragana": "あて"
+    },
+    {
+      "id": 54,
+      "kanji": "靴",
+      "hiragana": "くつ"
+    },
+    {
+      "id": 55,
+      "kanji": "",
+      "hiragana": "さて"
+    },
+    {
+      "id": 56,
+      "kanji": "糸",
+      "hiragana": "いと"
+    },
+    {
+      "id": 57,
+      "kanji": "外",
+      "hiragana": "そと"
+    },
+    {
+      "id": 58,
+      "kanji": "",
+      "hiragana": "うち"
+    },
+    {
+      "id": 59,
+      "kanji": "",
+      "hiragana": "かちかち"
+    },
+    {
+      "id": 60,
+      "kanji": "",
+      "hiragana": "きち"
+    },
+    {
+      "id": 61,
+      "kanji": "明日",
+      "hiragana": "あした"
+    },
+    {
+      "id": 60,
+      "kanji": "",
+      "hiragana": "ちち"
+    },
+    {
+      "id": 61,
+      "kanji": "",
+      "hiragana": "てくてく"
+    },
+    {
+      "id": 62,
+      "kanji": "",
+      "hiragana": "てけてけ"
+    },
+    {
+      "id": 63,
+      "kanji": "",
+      "hiragana": "てこ"
+    },
+    {
+      "id": 64,
+      "kanji": "地下",
+      "hiragana": "ちか"
+    },
+    {
+      "id": 65,
+      "kanji": "",
+      "hiragana": "ちいく"
+    },
+    {
+      "id": 66,
+      "kanji": "家畜",
+      "hiragana": "かちく"
+    },
+    {
+      "id": 67,
+      "kanji": "地形",
+      "hiragana": "ちけい"
+    },
+    {
+      "id": 68,
+      "kanji": "机と椅子と太鼓",
+      "hiragana": "つくえといすとたいこ"
+    },
+    {
+      "id": 69,
+      "kanji": "暖かい靴下",
+      "hiragana": "あたたかいくつした"
+    },
+    {
+      "id": 70,
+      "kanji": "キツツキと肩叩き",
+      "hiragana": "きつつきとかたたたき"
+    }
+  ]
+}

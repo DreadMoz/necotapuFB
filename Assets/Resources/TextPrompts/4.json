@@ -1,0 +1,210 @@
+{
+  "title": "あいうえおランダム",
+  "description": "あいうえおまでのことばのれんしゅう",
+  "timer": 30,
+  "random": 99,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "あ"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "い"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "う"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "え"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "お"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "あ"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "い"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "う"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "え"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "お"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "あ"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "い"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "う"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "え"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "お"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "あ"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "い"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "う"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "え"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "お"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "あ"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "い"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "う"
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": "え"
+    },
+    {
+      "id": 25,
+      "kanji": "",
+      "hiragana": "お"
+    },
+    {
+      "id": 26,
+      "kanji": "",
+      "hiragana": "あ"
+    },
+    {
+      "id": 27,
+      "kanji": "",
+      "hiragana": "い"
+    },
+    {
+      "id": 28,
+      "kanji": "",
+      "hiragana": "う"
+    },
+    {
+      "id": 29,
+      "kanji": "",
+      "hiragana": "え"
+    },
+    {
+      "id": 30,
+      "kanji": "",
+      "hiragana": "お"
+    },
+    {
+      "id": 31,
+      "kanji": "",
+      "hiragana": "ああ"
+    },
+    {
+      "id": 32,
+      "kanji": "",
+      "hiragana": "いい"
+    },
+    {
+      "id": 33,
+      "kanji": "",
+      "hiragana": "うう"
+    },
+    {
+      "id": 34,
+      "kanji": "",
+      "hiragana": "ええ"
+    },
+    {
+      "id": 35,
+      "kanji": "",
+      "hiragana": "おお"
+    },
+    {
+      "id": 36,
+      "kanji": "",
+      "hiragana": "ああ"
+    },
+    {
+      "id": 37,
+      "kanji": "",
+      "hiragana": "いい"
+    },
+    {
+      "id": 38,
+      "kanji": "",
+      "hiragana": "うう"
+    },
+    {
+      "id": 39,
+      "kanji": "",
+      "hiragana": "ええ"
+    },
+    {
+      "id": 40,
+      "kanji": "",
+      "hiragana": "おお"
+    }
+  ]
+}

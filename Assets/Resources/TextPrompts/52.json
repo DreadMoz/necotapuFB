@@ -1,0 +1,130 @@
+{
+  "title": "りゃりゅりょ・ぎゃぎゅぎょランダム",
+  "description": "りゃりゅりょ・ぎゃぎゅぎょをランダムに打てるようになろう",
+  "timer": 40,
+  "random": 99,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "りゃ"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "りゅ"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "りょ"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "ぎゃ"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "ぎゅ"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "ぎょ"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "りゃ"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "りゅ"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "りょ"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "ぎゃ"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "ぎゅ"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "ぎょ"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "りゃ"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "りゅ"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "りょ"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "ぎゃ"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "ぎゅ"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "ぎょ"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "りゃりゃ"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "りゅりゅ"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "りょりょ"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "ぎゃぎゃ"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "ぎゅぎゅ"
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": "ぎょぎょ"
+    }
+  ]
+}

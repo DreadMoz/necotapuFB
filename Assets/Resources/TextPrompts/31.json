@@ -1,0 +1,191 @@
+{
+  "title": "ちいさい「っ」のきそ",
+  "description": "ちいさい「っ」を打てるようになろう",
+  "timer": 0,
+  "random": 0,
+  "hide": 0,
+  "messages": [
+    {
+      "count": 0,
+      "description": "ちいさい「っ」だよ。これは「っ」のつぎのもじを2回うつんだ。「A」「T」「T」「I」とうってね"
+    },
+    {
+      "count": 1,
+      "description": "「K」「O」「T」「T」「I」"
+    },
+    {
+      "count": 2,
+      "description": "「R」「A」「K」「K」「O」"
+    },
+    {
+      "count": 3,
+      "description": "「O」「S」「S」「U」"
+    },
+    {
+      "count": 4,
+      "description": "かんたんでしょ。なれていってね。「N」「A」「T」「T」「U」"
+    },
+    {
+      "count": 5,
+      "description": "「N」「A」「T」「T」「U」"
+    },
+    {
+      "count": 6,
+      "description": "「N」「E」「K」「K」「O」"
+    },
+    {
+      "count": 7,
+      "description": "「N」「E」「T」「T」「O」"
+    },
+    {
+      "count": 8,
+      "description": "「N」「O」「K」「K」「U」"
+    },
+    {
+      "count": 9,
+      "description": "「H」「O」「T」「T」「O」"
+    },
+    {
+      "count": 10,
+      "description": "「M」「A」「K」「K」「A」"
+    },
+    {
+      "count": 11,
+      "description": "「M」「A」「T」「T」「O」"
+    },
+    {
+      "count": 12,
+      "description": "「R」「A」「K」「K」「A」"
+    },
+    {
+      "count": 13,
+      "description": "「Y」「A」「T」「T」「O」"
+    },
+    {
+      "count": 14,
+      "description": "「Y」「O」「T」「T」「U」"
+    },
+    {
+      "count": 15,
+      "description": "「K」「I」「K」「K」「U」"
+    },
+    {
+      "count": 16,
+      "description": "「W」「A」「K」「K」「A」"
+    },
+    {
+      "count": 17,
+      "description": "「K」「I」「T」「T」「E」"
+    },
+    {
+      "count": 18,
+      "description": "「Y」「O」「T」「T」「O」"
+    },
+    {
+      "count": 19,
+      "description": "「M」「U」「T」「T」「U」"
+    }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "あっち"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "こっち"
+    },
+    {
+      "id": 3,
+      "kanji": "ラッコ",
+      "hiragana": "らっこ"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "おっす"
+    },
+    {
+      "id": 5,
+      "kanji": "ナッツ",
+      "hiragana": "なっつ"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "ねっこ"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "ねっと"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "のっく"
+    },
+    {
+      "id": 9,
+      "kanji": "ホット",
+      "hiragana": "ほっと"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "まっか"
+    },
+    {
+      "id": 11,
+      "kanji": "マット",
+      "hiragana": "まっと"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "らっか"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "やっと"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "よっつ"
+    },
+    {
+      "id": 15,
+      "kanji": "キック",
+      "hiragana": "きっく"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "わっか"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "きって"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "よっと"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "むっつ"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "まっかっか"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b954d327897ac4cacf477718b430f2, type: 3}
+  m_Name: ducks
+  m_EditorClassIdentifier: 
+  itemNo: 160
+  itemName: "\u304D\u3044\u308D\u30A2\u30D2\u30EB"
+  itemType: 1
+  itemPrice: 1200
+  itemImage: {fileID: 21300000, guid: d0f0a9a256d10409fa7a79db0cbc103d, type: 3}
+  itemMemo: "\u304D\u3044\u308D\u306E\u30A2\u30D2\u30EB\u3067\u3059\u3088\u3002\u304B\u3076\u308B\u306E\u304B\u306A\uFF1F"

@@ -1,0 +1,350 @@
+{
+  "title": "日本の食べ物",
+  "description": "日本といえばこれ！という食べものをタイピングにしました。",
+  "timer": 60,
+  "random": 30,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "刺身",
+      "hiragana": "さしみ"
+    },
+    {
+      "id": 2,
+      "kanji": "柿の葉寿司",
+      "hiragana": "かきのはずし"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "すし"
+    },
+    {
+      "id": 4,
+      "kanji": "天ぷら",
+      "hiragana": "てんぷら"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "しゃぶしゃぶ"
+    },
+    {
+      "id": 6,
+      "kanji": "蕎麦",
+      "hiragana": "そば"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "うどん"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "とんかつ"
+    },
+    {
+      "id": 9,
+      "kanji": "味噌汁",
+      "hiragana": "みそしる"
+    },
+    {
+      "id": 10,
+      "kanji": "焼き肉",
+      "hiragana": "やきにく"
+    },
+    {
+      "id": 11,
+      "kanji": "鰻",
+      "hiragana": "うなぎ"
+    },
+    {
+      "id": 12,
+      "kanji": "餃子",
+      "hiragana": "ぎょうざ"
+    },
+    {
+      "id": 13,
+      "kanji": "カレーライス",
+      "hiragana": "かれーらいす"
+    },
+    {
+      "id": 14,
+      "kanji": "カレーうどん",
+      "hiragana": "かれーうどん"
+    },
+    {
+      "id": 15,
+      "kanji": "ラーメン",
+      "hiragana": "らーめん"
+    },
+    {
+      "id": 16,
+      "kanji": "コロッケ",
+      "hiragana": "ころっけ"
+    },
+    {
+      "id": 17,
+      "kanji": "オムライス",
+      "hiragana": "おむらいす"
+    },
+    {
+      "id": 18,
+      "kanji": "スパゲッティ",
+      "hiragana": "すぱげってぃ"
+    },
+    {
+      "id": 19,
+      "kanji": "ナポリタン",
+      "hiragana": "なぽりたん"
+    },
+    {
+      "id": 20,
+      "kanji": "アンパン",
+      "hiragana": "あんぱん"
+    },
+    {
+      "id": 21,
+      "kanji": "納豆",
+      "hiragana": "なっとう"
+    },
+    {
+      "id": 22,
+      "kanji": "卵かけご飯",
+      "hiragana": "たまごかけごはん"
+    },
+    {
+      "id": 23,
+      "kanji": "馬刺し",
+      "hiragana": "ばさし"
+    },
+    {
+      "id": 24,
+      "kanji": "お好み焼き",
+      "hiragana": "おこのみやき"
+    },
+    {
+      "id": 25,
+      "kanji": "海鮮丼",
+      "hiragana": "かいせんどん"
+    },
+    {
+      "id": 26,
+      "kanji": "カツ丼",
+      "hiragana": "かつどん"
+    },
+    {
+      "id": 27,
+      "kanji": "親子丼",
+      "hiragana": "おやこどん"
+    },
+    {
+      "id": 28,
+      "kanji": "牛丼",
+      "hiragana": "ぎゅうどん"
+    },
+    {
+      "id": 29,
+      "kanji": "天丼",
+      "hiragana": "てんどん"
+    },
+    {
+      "id": 30,
+      "kanji": "",
+      "hiragana": "おでん"
+    },
+    {
+      "id": 31,
+      "kanji": "茶碗蒸し",
+      "hiragana": "ちゃわんむし"
+    },
+    {
+      "id": 32,
+      "kanji": "鯛めし",
+      "hiragana": "たいめし"
+    },
+    {
+      "id": 33,
+      "kanji": "お雑煮",
+      "hiragana": "おぞうに"
+    },
+    {
+      "id": 34,
+      "kanji": "",
+      "hiragana": "きんぴらごぼう"
+    },
+    {
+      "id": 35,
+      "kanji": "肉じゃが",
+      "hiragana": "にくじゃが"
+    },
+    {
+      "id": 36,
+      "kanji": "筑前煮",
+      "hiragana": "ちくぜんに"
+    },
+    {
+      "id": 37,
+      "kanji": "",
+      "hiragana": "たけのこごはん"
+    },
+    {
+      "id": 38,
+      "kanji": "",
+      "hiragana": "おにぎり"
+    },
+    {
+      "id": 39,
+      "kanji": "いなり寿司",
+      "hiragana": "いなりずし"
+    },
+    {
+      "id": 40,
+      "kanji": "松茸ごはん",
+      "hiragana": "まつたけごはん"
+    },
+    {
+      "id": 41,
+      "kanji": "揚げ出し豆腐",
+      "hiragana": "あげだしどうふ"
+    },
+    {
+      "id": 42,
+      "kanji": "焼き魚",
+      "hiragana": "やきざかな"
+    },
+    {
+      "id": 43,
+      "kanji": "煮魚",
+      "hiragana": "にざかな"
+    },
+    {
+      "id": 44,
+      "kanji": "すき焼き",
+      "hiragana": "すきやき"
+    },
+    {
+      "id": 45,
+      "kanji": "冷ややっこ",
+      "hiragana": "ひややっこ"
+    },
+    {
+      "id": 46,
+      "kanji": "豆腐ステーキ",
+      "hiragana": "とうふすてーき"
+    },
+    {
+      "id": 47,
+      "kanji": "湯豆腐",
+      "hiragana": "ゆどうふ"
+    },
+    {
+      "id": 48,
+      "kanji": "煮物",
+      "hiragana": "にもの"
+    },
+    {
+      "id": 49,
+      "kanji": "冷麦",
+      "hiragana": "ひやむぎ"
+    },
+    {
+      "id": 50,
+      "kanji": "",
+      "hiragana": "ところてん"
+    },
+    {
+      "id": 51,
+      "kanji": "ちらし寿司",
+      "hiragana": "ちらしずし"
+    },
+    {
+      "id": 52,
+      "kanji": "お茶漬け",
+      "hiragana": "おちゃづけ"
+    },
+    {
+      "id": 53,
+      "kanji": "茶そば",
+      "hiragana": "ちゃそば"
+    },
+    {
+      "id": 54,
+      "kanji": "うな重",
+      "hiragana": "うなじゅう"
+    },
+    {
+      "id": 55,
+      "kanji": "鶏肉の照り焼き",
+      "hiragana": "とりにくのてりやき"
+    },
+    {
+      "id": 56,
+      "kanji": "天ぷらそば",
+      "hiragana": "てんぷらそば"
+    },
+    {
+      "id": 57,
+      "kanji": "ざるそば",
+      "hiragana": "ざるそば"
+    },
+    {
+      "id": 58,
+      "kanji": "油揚げ",
+      "hiragana": "あぶらあげ"
+    },
+    {
+      "id": 59,
+      "kanji": "焼き鳥",
+      "hiragana": "やきとり"
+    },
+    {
+      "id": 60,
+      "kanji": "出汁巻き卵",
+      "hiragana": "だしまきたまご"
+    },
+    {
+      "id": 61,
+      "kanji": "卵焼き",
+      "hiragana": "たまごやき"
+    },
+    {
+      "id": 62,
+      "kanji": "茶碗蒸し",
+      "hiragana": "ちゃわんむし"
+    },
+    {
+      "id": 63,
+      "kanji": "炊き込みご飯",
+      "hiragana": "たきこみごはん"
+    },
+    {
+      "id": 64,
+      "kanji": "かきフライ",
+      "hiragana": "かきふらい"
+    },
+    {
+      "id": 65,
+      "kanji": "煮込みうどん",
+      "hiragana": "にこみうどん"
+    },
+    {
+      "id": 66,
+      "kanji": "五目寿司",
+      "hiragana": "ごもくずし"
+    },
+    {
+      "id": 67,
+      "kanji": "鶏の唐揚げ",
+      "hiragana": "とりのからあげ"
+    },
+    {
+      "id": 68,
+      "kanji": "ひじきの煮物",
+      "hiragana": "ひじきのにもの"
+    }
+  ]
+}

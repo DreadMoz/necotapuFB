@@ -1,0 +1,350 @@
+{
+  "title": "りゃりゅりょ・ぎゃぎゅぎょまでの言葉",
+  "description": "りゃりゅりょ・ぎゃぎゅぎょの練習",
+  "timer": 60,
+  "random": 40,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "牛乳",
+      "hiragana": "ぎゅうにゅう"
+    },
+    {
+      "id": 2,
+      "kanji": "ギャング",
+      "hiragana": "ぎゃんぐ"
+    },
+    {
+      "id": 3,
+      "kanji": "餃子",
+      "hiragana": "ぎょうざ"
+    },
+    {
+      "id": 4,
+      "kanji": "料理",
+      "hiragana": "りょうり"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "りゅうぐうじょう"
+    },
+    {
+      "id": 6,
+      "kanji": "料金",
+      "hiragana": "りょうきん"
+    },
+    {
+      "id": 7,
+      "kanji": "魚介",
+      "hiragana": "ぎょかい"
+    },
+    {
+      "id": 8,
+      "kanji": "人魚",
+      "hiragana": "にんぎょ"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "りょう"
+    },
+    {
+      "id": 10,
+      "kanji": "了解",
+      "hiragana": "りょうかい"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "ぎょうせい"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "ぎょうてん"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "ぎょうぎょうしい"
+    },
+    {
+      "id": 14,
+      "kanji": "牛肉",
+      "hiragana": "ぎゅうにく"
+    },
+    {
+      "id": 15,
+      "kanji": "略図",
+      "hiragana": "りゃくず"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "ぎゅうぎゅう"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "ぎょろぎょろ"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "ぎゃふん"
+    },
+    {
+      "id": 19,
+      "kanji": "流星群",
+      "hiragana": "りゅうせいぐん"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "ぎゅうどん"
+    },
+    {
+      "id": 21,
+      "kanji": "漂流",
+      "hiragana": "ひょうりゅう"
+    },
+    {
+      "id": 22,
+      "kanji": "諸行無常",
+      "hiragana": "しょぎょうむじょう"
+    },
+    {
+      "id": 23,
+      "kanji": "略",
+      "hiragana": "りゃく"
+    },
+    {
+      "id": 24,
+      "kanji": "略図",
+      "hiragana": "りゃくず"
+    },
+    {
+      "id": 25,
+      "kanji": "",
+      "hiragana": "ありゃりゃ"
+    },
+    {
+      "id": 26,
+      "kanji": "",
+      "hiragana": "えんりゃこりゃ"
+    },
+    {
+      "id": 27,
+      "kanji": "",
+      "hiragana": "こりゃこりゃ"
+    },
+    {
+      "id": 28,
+      "kanji": "",
+      "hiragana": "そりゃ"
+    },
+    {
+      "id": 29,
+      "kanji": "硫酸",
+      "hiragana": "りゅうさん"
+    },
+    {
+      "id": 30,
+      "kanji": "竜",
+      "hiragana": "りゅう"
+    },
+    {
+      "id": 31,
+      "kanji": "電流",
+      "hiragana": "でんりゅう"
+    },
+    {
+      "id": 32,
+      "kanji": "恐竜",
+      "hiragana": "きょうりゅう"
+    },
+    {
+      "id": 33,
+      "kanji": "流行",
+      "hiragana": "りゅうこう"
+    },
+    {
+      "id": 34,
+      "kanji": "流出",
+      "hiragana": "りゅうしゅつ"
+    },
+    {
+      "id": 35,
+      "kanji": "水流",
+      "hiragana": "すいりゅう"
+    },
+    {
+      "id": 36,
+      "kanji": "両手",
+      "hiragana": "りょうて"
+    },
+    {
+      "id": 37,
+      "kanji": "料金",
+      "hiragana": "りょうきん"
+    },
+    {
+      "id": 38,
+      "kanji": "漁師・猟師",
+      "hiragana": "りょうし"
+    },
+    {
+      "id": 39,
+      "kanji": "料理",
+      "hiragana": "りょうり"
+    },
+    {
+      "id": 40,
+      "kanji": "旅館",
+      "hiragana": "りょかん"
+    },
+    {
+      "id": 41,
+      "kanji": "両替",
+      "hiragana": "りょうがえ"
+    },
+    {
+      "id": 42,
+      "kanji": "逆転",
+      "hiragana": "ぎゃくてん"
+    },
+    {
+      "id": 43,
+      "kanji": "逆風",
+      "hiragana": "ぎゃくふう"
+    },
+    {
+      "id": 44,
+      "kanji": "逆流",
+      "hiragana": "ぎゃくりゅう"
+    },
+    {
+      "id": 45,
+      "kanji": "逆光",
+      "hiragana": "ぎゃっこう"
+    },
+    {
+      "id": 46,
+      "kanji": "ギャグ",
+      "hiragana": "ぎゃぐ"
+    },
+    {
+      "id": 47,
+      "kanji": "ギャップ",
+      "hiragana": "ぎゃっぷ"
+    },
+    {
+      "id": 48,
+      "kanji": "逆境",
+      "hiragana": "ぎゃっきょう"
+    },
+    {
+      "id": 49,
+      "kanji": "",
+      "hiragana": "ぎゃっ"
+    },
+    {
+      "id": 50,
+      "kanji": "牛タン",
+      "hiragana": "ぎゅうたん"
+    },
+    {
+      "id": 51,
+      "kanji": "闘牛",
+      "hiragana": "とうぎゅう"
+    },
+    {
+      "id": 52,
+      "kanji": "乳牛",
+      "hiragana": "にゅうぎゅう"
+    },
+    {
+      "id": 53,
+      "kanji": "和牛",
+      "hiragana": "わぎゅう"
+    },
+    {
+      "id": 54,
+      "kanji": "牛舎",
+      "hiragana": "ぎゅうしゃ"
+    },
+    {
+      "id": 55,
+      "kanji": "牛革",
+      "hiragana": "ぎゅうかわ"
+    },
+    {
+      "id": 56,
+      "kanji": "牛丼",
+      "hiragana": "ぎゅうどん"
+    },
+    {
+      "id": 57,
+      "kanji": "反逆",
+      "hiragana": "はんぎゃく"
+    },
+    {
+      "id": 58,
+      "kanji": "行脚",
+      "hiragana": "あんぎゃ"
+    },
+    {
+      "id": 59,
+      "kanji": "両足",
+      "hiragana": "りょうあし"
+    },
+    {
+      "id": 60,
+      "kanji": "猟銃",
+      "hiragana": "りょうじゅう"
+    },
+    {
+      "id": 61,
+      "kanji": "粒子",
+      "hiragana": "りゅうし"
+    },
+    {
+      "id": 62,
+      "kanji": "略語",
+      "hiragana": "りゃくご"
+    },
+    {
+      "id": 63,
+      "kanji": "略字",
+      "hiragana": "りゃくじ"
+    },
+    {
+      "id": 64,
+      "kanji": "行基",
+      "hiragana": "ぎょうき"
+    },
+    {
+      "id": 65,
+      "kanji": "行列",
+      "hiragana": "ぎょうれつ"
+    },
+    {
+      "id": 66,
+      "kanji": "牛舎乳牛でぎゅうぎゅう",
+      "hiragana": "ぎゅうしゃにゅうぎゅうでぎゅうぎゅう"
+    },
+    {
+      "id": 67,
+      "kanji": "行基ギョロギョロ仰々しく漁業",
+      "hiragana": "ぎょうきぎょろぎょろぎょうぎょうしくぎょぎょう"
+    },
+    {
+      "id": 68,
+      "kanji": "漁師の両手の料理の料金",
+      "hiragana": "りょうしのりょうてのりょうりのりょうきん"
+    }
+  ]
+}

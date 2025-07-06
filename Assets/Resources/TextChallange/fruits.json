@@ -1,0 +1,263 @@
+{
+  "title": "くだもの",
+  "description": "いろいろな果物の名前が出てきます。",
+  "timer": 60,
+  "random": 40,
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "りんご"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "みかん"
+    },
+    {
+      "id": 3,
+      "kanji": "バナナ",
+      "hiragana": "ばなな"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "ぶどう"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "いちご"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "さくらんぼ"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "すいか"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "もも"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "なし"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "かき"
+    },
+    {
+      "id": 11,
+      "kanji": "レモン",
+      "hiragana": "れもん"
+    },
+    {
+      "id": 12,
+      "kanji": "グレープフルーツ",
+      "hiragana": "ぐれーぷふるーつ"
+    },
+    {
+      "id": 13,
+      "kanji": "パイナップル",
+      "hiragana": "ぱいなっぷる"
+    },
+    {
+      "id": 14,
+      "kanji": "メロン",
+      "hiragana": "めろん"
+    },
+    {
+      "id": 15,
+      "kanji": "キウイ",
+      "hiragana": "きうい"
+    },
+    {
+      "id": 16,
+      "kanji": "パパイヤ",
+      "hiragana": "ぱぱいや"
+    },
+    {
+      "id": 17,
+      "kanji": "マンゴー",
+      "hiragana": "まんごー"
+    },
+    {
+      "id": 18,
+      "kanji": "ライチ",
+      "hiragana": "らいち"
+    },
+    {
+      "id": 19,
+      "kanji": "アボカド",
+      "hiragana": "あぼかど"
+    },
+    {
+      "id": 20,
+      "kanji": "ブルーベリー",
+      "hiragana": "ぶるーべりー"
+    },
+    {
+      "id": 21,
+      "kanji": "クランベリー",
+      "hiragana": "くらんべりー"
+    },
+    {
+      "id": 22,
+      "kanji": "ラズベリー",
+      "hiragana": "らずべりー"
+    },
+    {
+      "id": 23,
+      "kanji": "ブラックベリー",
+      "hiragana": "ぶらっくべりー"
+    },
+    {
+      "id": 24,
+      "kanji": "ココナッツ",
+      "hiragana": "ここなっつ"
+    },
+    {
+      "id": 25,
+      "kanji": "パッションフルーツ",
+      "hiragana": "ぱっしょんふるーつ"
+    },
+    {
+      "id": 26,
+      "kanji": "グアバ",
+      "hiragana": "ぐあば"
+    },
+    {
+      "id": 27,
+      "kanji": "ドラゴンフルーツ",
+      "hiragana": "どらごんふるーつ"
+    },
+    {
+      "id": 28,
+      "kanji": "ドリアン",
+      "hiragana": "どりあん"
+    },
+    {
+      "id": 29,
+      "kanji": "ザクロ",
+      "hiragana": "ざくろ"
+    },
+    {
+      "id": 30,
+      "kanji": "アンズ",
+      "hiragana": "あんず"
+    },
+    {
+      "id": 31,
+      "kanji": "プラム",
+      "hiragana": "ぷらむ"
+    },
+    {
+      "id": 32,
+      "kanji": "プルーン",
+      "hiragana": "ぷるーん"
+    },
+    {
+      "id": 33,
+      "kanji": "ビワ",
+      "hiragana": "びわ"
+    },
+    {
+      "id": 34,
+      "kanji": "アセロラ",
+      "hiragana": "あせろら"
+    },
+    {
+      "id": 35,
+      "kanji": "マンゴスチン",
+      "hiragana": "まんごすちん"
+    },
+    {
+      "id": 36,
+      "kanji": "アケビ",
+      "hiragana": "あけび"
+    },
+    {
+      "id": 37,
+      "kanji": "ジャックフルーツ",
+      "hiragana": "じゃっくふるーつ"
+    },
+    {
+      "id": 38,
+      "kanji": "スモモ",
+      "hiragana": "すもも"
+    },
+    {
+      "id": 39,
+      "kanji": "カリン",
+      "hiragana": "かりん"
+    },
+    {
+      "id": 40,
+      "kanji": "ブンタン",
+      "hiragana": "ぶんたん"
+    },
+    {
+      "id": 41,
+      "kanji": "ダイダイ",
+      "hiragana": "だいだい"
+    },
+    {
+      "id": 42,
+      "kanji": "ナツメ",
+      "hiragana": "なつめ"
+    },
+    {
+      "id": 43,
+      "kanji": "梅",
+      "hiragana": "うめ"
+    },
+    {
+      "id": 44,
+      "kanji": "リンゴ",
+      "hiragana": "りんご"
+    },
+    {
+      "id": 45,
+      "kanji": "オレンジ",
+      "hiragana": "おれんじ"
+    },
+    {
+      "id": 46,
+      "kanji": "ミラクルフルーツ",
+      "hiragana": "みらくるふるーつ"
+    },
+    {
+      "id": 47,
+      "kanji": "カシス",
+      "hiragana": "かしす"
+    },
+    {
+      "id": 48,
+      "kanji": "ゴールデンキウイ",
+      "hiragana": "ごーるでんきうい"
+    },
+    {
+      "id": 49,
+      "kanji": "キンカン",
+      "hiragana": "きんかん"
+    },
+    {
+      "id": 50,
+      "kanji": "イチジク",
+      "hiragana": "いちじく"
+    },
+    {
+      "id": 51,
+      "kanji": "スモモも桃も桃のうち",
+      "hiragana": "すもももももももものうち"
+    }
+  ]
+}

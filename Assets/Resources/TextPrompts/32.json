@@ -1,0 +1,335 @@
+{
+  "title": "「ん」とちいさい「っ」までのことば",
+  "description": "「ん」とちいさい「っ」までのことばの練習をしよう",
+  "timer": 50,
+  "random": 30,
+  "hide": 0,
+  "messages": [],
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "マッハ",
+      "hiragana": "まっは"
+    },
+    {
+      "id": 2,
+      "kanji": "キック",
+      "hiragana": "きっく"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "らっこ"
+    },
+    {
+      "id": 4,
+      "kanji": "ナッツ",
+      "hiragana": "なっつ"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "ねっこ"
+    },
+    {
+      "id": 6,
+      "kanji": "ネット",
+      "hiragana": "ねっと"
+    },
+    {
+      "id": 7,
+      "kanji": "切手",
+      "hiragana": "きって"
+    },
+    {
+      "id": 8,
+      "kanji": "落下",
+      "hiragana": "らっか"
+    },
+    {
+      "id": 9,
+      "kanji": "四つ",
+      "hiragana": "よっつ"
+    },
+    {
+      "id": 10,
+      "kanji": "六つ",
+      "hiragana": "むっつ"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "わっか"
+    },
+    {
+      "id": 12,
+      "kanji": "ヨット",
+      "hiragana": "よっと"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "きっと"
+    },
+    {
+      "id": 14,
+      "kanji": "ノック",
+      "hiragana": "のっく"
+    },
+    {
+      "id": 15,
+      "kanji": "ヒット",
+      "hiragana": "ひっと"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "あんこ"
+    },
+    {
+      "id": 17,
+      "kanji": "インコ",
+      "hiragana": "いんこ"
+    },
+    {
+      "id": 18,
+      "kanji": "缶",
+      "hiragana": "かん"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "かんかん"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "さんさん"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "さんしん"
+    },
+    {
+      "id": 22,
+      "kanji": "簡単",
+      "hiragana": "かんたん"
+    },
+    {
+      "id": 23,
+      "kanji": "安心",
+      "hiragana": "あんしん"
+    },
+    {
+      "id": 24,
+      "kanji": "温泉",
+      "hiragana": "おんせん"
+    },
+    {
+      "id": 25,
+      "kanji": "運転",
+      "hiragana": "うんてん"
+    },
+    {
+      "id": 26,
+      "kanji": "印鑑",
+      "hiragana": "いんかん"
+    },
+    {
+      "id": 27,
+      "kanji": "今夜",
+      "hiragana": "こんや"
+    },
+    {
+      "id": 28,
+      "kanji": "単位",
+      "hiragana": "たんい"
+    },
+    {
+      "id": 29,
+      "kanji": "安易",
+      "hiragana": "あんい"
+    },
+    {
+      "id": 30,
+      "kanji": "恋愛",
+      "hiragana": "れんあい"
+    },
+    {
+      "id": 31,
+      "kanji": "",
+      "hiragana": "まって"
+    },
+    {
+      "id": 32,
+      "kanji": "",
+      "hiragana": "おっとっと"
+    },
+    {
+      "id": 33,
+      "kanji": "ミックスナッツ",
+      "hiragana": "みっくすなっつ"
+    },
+    {
+      "id": 34,
+      "kanji": "納豆",
+      "hiragana": "なっとう"
+    },
+    {
+      "id": 35,
+      "kanji": "",
+      "hiragana": "かっとう"
+    },
+    {
+      "id": 36,
+      "kanji": "",
+      "hiragana": "こっそり"
+    },
+    {
+      "id": 37,
+      "kanji": "真っ白",
+      "hiragana": "まっしろ"
+    },
+    {
+      "id": 38,
+      "kanji": "ロケット",
+      "hiragana": "ろけっと"
+    },
+    {
+      "id": 39,
+      "kanji": "レッスン",
+      "hiragana": "れっすん"
+    },
+    {
+      "id": 40,
+      "kanji": "復活",
+      "hiragana": "ふっかつ"
+    },
+    {
+      "id": 41,
+      "kanji": "コックさん",
+      "hiragana": "こっくさん"
+    },
+    {
+      "id": 42,
+      "kanji": "オットセイ",
+      "hiragana": "おっとせい"
+    },
+    {
+      "id": 43,
+      "kanji": "結果",
+      "hiragana": "けっか"
+    },
+    {
+      "id": 44,
+      "kanji": "ヘルメット",
+      "hiragana": "へるめっと"
+    },
+    {
+      "id": 45,
+      "kanji": "真っ青",
+      "hiragana": "まっさお"
+    },
+    {
+      "id": 46,
+      "kanji": "マッチ",
+      "hiragana": "まっち"
+    },
+    {
+      "id": 47,
+      "kanji": "",
+      "hiragana": "もっきん"
+    },
+    {
+      "id": 48,
+      "kanji": "",
+      "hiragana": "てっきん"
+    },
+    {
+      "id": 49,
+      "kanji": "",
+      "hiragana": "もっと"
+    },
+    {
+      "id": 50,
+      "kanji": "ハット",
+      "hiragana": "はっと"
+    },
+    {
+      "id": 51,
+      "kanji": "アイロン",
+      "hiragana": "あいろん"
+    },
+    {
+      "id": 52,
+      "kanji": "コイン",
+      "hiragana": "こいん"
+    },
+    {
+      "id": 53,
+      "kanji": "",
+      "hiragana": "みかん"
+    },
+    {
+      "id": 54,
+      "kanji": "先生",
+      "hiragana": "せんせい"
+    },
+    {
+      "id": 55,
+      "kanji": "安心",
+      "hiragana": "あんしん"
+    },
+    {
+      "id": 56,
+      "kanji": "",
+      "hiragana": "きんせん"
+    },
+    {
+      "id": 57,
+      "kanji": "森林",
+      "hiragana": "しんりん"
+    },
+    {
+      "id": 58,
+      "kanji": "専門店",
+      "hiragana": "せんもんてん"
+    },
+    {
+      "id": 59,
+      "kanji": "親近感",
+      "hiragana": "しんきんかん"
+    },
+    {
+      "id": 60,
+      "kanji": "日記",
+      "hiragana": "にっき"
+    },
+    {
+      "id": 61,
+      "kanji": "鳥取",
+      "hiragana": "とっとり"
+    },
+    {
+      "id": 62,
+      "kanji": "きっとすっとネット切って待ってる",
+      "hiragana": "きっとすっとねっときってまってる"
+    },
+    {
+      "id": 63,
+      "kanji": "やっとナッツ６つ取って切って食った",
+      "hiragana": "やっとなっつむっつとってきってくった"
+    },
+    {
+      "id": 64,
+      "kanji": "新幹線に真犯人",
+      "hiragana": "しんかんせんにしんはんにん"
+    },
+    {
+      "id": 65,
+      "kanji": "坦々麺とワンタン麺と天津飯",
+      "hiragana": "たんたんめんとわんたんめんとてんしんはん"
+    }
+  ]
+}
