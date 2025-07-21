@@ -15,6 +15,7 @@ using TMPro;
 using Shapes2D;
 using System.Linq;
 using System.Diagnostics.Tracing;
+using UnityEngine.EventSystems;
 
 public class TypingSoft : MonoBehaviour
 {
@@ -1085,12 +1086,12 @@ public class TypingSoft : MonoBehaviour
         Event e = Event.current;
         var isPushedShiftKey = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
-        var inputStr = ConvertKeyCodeToStr(e.keyCode, isPushedShiftKey);
-        if (e.type == EventType.KeyDown && inputStr.Equals(" "))
+        // スペースキーの特別処理
+        if (e.type == EventType.KeyDown && e.keyCode == KeyCode.Space)
         {
             if (spaceStart)     // スペースでスタート状態のとき
             {
-                AssistKeyboardObj.pushKeyAction(inputStr);
+                AssistKeyboardObj.pushKeyAction(" ");
                 // スペースでスタート状態を解除する
                 spaceStart = false;
                 UIH.text = "";
@@ -1110,7 +1111,7 @@ public class TypingSoft : MonoBehaviour
             }
             else if (spaceEnd)    // スペースで終了状態のとき
             {
-                AssistKeyboardObj.pushKeyAction(inputStr);
+                AssistKeyboardObj.pushKeyAction(" ");
                 if (!goNextScene)
                 {
                     gm.savedata.Status[st.Gold] = totalSeeker;      // 所持シーカー
@@ -1131,16 +1132,18 @@ public class TypingSoft : MonoBehaviour
         if (isInputValid && e.type == EventType.KeyDown && e.keyCode != KeyCode.None
         && !Input.GetMouseButton(0) && !Input.GetMouseButton(1) && !Input.GetMouseButton(2))
         {
-            var inputMouse = ConvertKeyCodeToStr(e.keyCode, isPushedShiftKey);
-            AssistKeyboardObj.pushKeyAction(inputMouse);
-
-            double currentTime = Time.realtimeSinceStartup;
-            // タイピングで使用する文字以外は受け付けない
-            // Esc など画面遷移などで使うキーと競合を避ける
-            if (!inputMouse.Equals(""))
+            // デバッグ情報を追加
+            Debug.Log($"Key pressed: {e.keyCode}, Character: '{e.character}', Shift: {isPushedShiftKey}");
+            
+            // ConvertKeyCodeToStrを使用して文字を取得
+            string inputChar = ConvertKeyCodeToStr(e.keyCode, isPushedShiftKey);
+            Debug.Log($"Converted to: '{inputChar}'");
+            
+            // 文字が出力される場合のみ処理
+            if (!string.IsNullOrEmpty(inputChar))
             {
-                // 正誤チェック
-                StartCoroutine(TypingCheck(inputMouse));
+                AssistKeyboardObj.pushKeyAction(inputChar);
+                StartCoroutine(TypingCheck(inputChar));
             }
         }
     }
@@ -1207,9 +1210,9 @@ public class TypingSoft : MonoBehaviour
         int keyType = gm.savedata.Settings[se.Capital];
         switch (key)
         {
-            // かな入力用に便宜的にタブ文字を Shift+0 に割り当てている
+            // 数字キー（共通）
             case KeyCode.Alpha0:
-                return isShiftkeyPushed ? "\t" : "0";
+                return isShiftkeyPushed ? ")" : "0";
             case KeyCode.Alpha1:
                 return isShiftkeyPushed ? "!" : "1";
             case KeyCode.Alpha2:
@@ -1228,6 +1231,8 @@ public class TypingSoft : MonoBehaviour
                 return isShiftkeyPushed ? "(" : "8";
             case KeyCode.Alpha9:
                 return isShiftkeyPushed ? ")" : "9";
+            
+            // アルファベット（共通）
             case KeyCode.A:
                 return isShiftkeyPushed ? "A" : "a";
             case KeyCode.B:
@@ -1280,40 +1285,88 @@ public class TypingSoft : MonoBehaviour
                 return isShiftkeyPushed ? "Y" : "y";
             case KeyCode.Z:
                 return isShiftkeyPushed ? "Z" : "z";
+            
+            // 記号（デバイスによって異なる）
             case KeyCode.Minus:
                 return isShiftkeyPushed ? "=" : "-";
-            case KeyCode.Caret:
-                return isShiftkeyPushed ? "~" : "^";
-            case KeyCode.BackQuote:
-                return isShiftkeyPushed ? "`" : "@";
+            case KeyCode.Equals:
+                return isShiftkeyPushed ? "+" : "=";
             case KeyCode.LeftBracket:
                 if (keyType == 1) {
-                    return isShiftkeyPushed ? "`" : "@";
+                    // Chromebook: [
+                    return isShiftkeyPushed ? "{" : "[";
                 } else if (keyType == 2) {
+                    // iPad: [
                     return isShiftkeyPushed ? "{" : "[";
                 } else {
+                    // Macbook: [
                     return isShiftkeyPushed ? "{" : "[";
                 }
             case KeyCode.RightBracket:
-                return isShiftkeyPushed ? "}" : "]";
-            case KeyCode.Equals:
-                return isShiftkeyPushed ? "+" : ";";
+                if (keyType == 1) {
+                    // Chromebook: ]
+                    return isShiftkeyPushed ? "}" : "]";
+                } else if (keyType == 2) {
+                    // iPad: ]
+                    return isShiftkeyPushed ? "}" : "]";
+                } else {
+                    // Macbook: ]
+                    return isShiftkeyPushed ? "}" : "]";
+                }
+            case KeyCode.Backslash:
+                if (keyType == 1) {
+                    // Chromebook: \
+                    return isShiftkeyPushed ? "|" : "\\";
+                } else if (keyType == 2) {
+                    // iPad: \
+                    return isShiftkeyPushed ? "|" : "\\";
+                } else {
+                    // Macbook: \
+                    return isShiftkeyPushed ? "|" : "\\";
+                }
             case KeyCode.Semicolon:
-                return isShiftkeyPushed ? "+" : ";";
-            case KeyCode.Colon:
-                return isShiftkeyPushed ? "*" : ":";
+                if (keyType == 1) {
+                    // Chromebook: ;
+                    return isShiftkeyPushed ? ":" : ";";
+                } else if (keyType == 2) {
+                    // iPad: ;
+                    return isShiftkeyPushed ? ":" : ";";
+                } else {
+                    // Macbook: ;
+                    return isShiftkeyPushed ? ":" : ";";
+                }
+            case KeyCode.Quote:
+                if (keyType == 1) {
+                    // Chromebook: '
+                    return isShiftkeyPushed ? "\"" : "'";
+                } else if (keyType == 2) {
+                    // iPad: '
+                    return isShiftkeyPushed ? "\"" : "'";
+                } else {
+                    // Macbook: '
+                    return isShiftkeyPushed ? "\"" : "'";
+                }
             case KeyCode.Comma:
                 return isShiftkeyPushed ? "<" : ",";
             case KeyCode.Period:
                 return isShiftkeyPushed ? ">" : ".";
             case KeyCode.Slash:
                 return isShiftkeyPushed ? "?" : "/";
+            case KeyCode.BackQuote:
+                if (keyType == 1) {
+                    // Chromebook: `
+                    return isShiftkeyPushed ? "~" : "`";
+                } else if (keyType == 2) {
+                    // iPad: `
+                    return isShiftkeyPushed ? "~" : "`";
+                } else {
+                    // Macbook: `
+                    return isShiftkeyPushed ? "~" : "`";
+                }
             case KeyCode.Underscore:
                 return "_";
             case KeyCode.Space:
                 return " ";
-            case KeyCode.Backslash:
-                return isShiftkeyPushed ? "|" : "Yen";
             default:
                 return "";
         }

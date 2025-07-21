@@ -259,7 +259,7 @@ public class TitleSky : MonoBehaviour
         {
             if (lastName.text != gm.savedata.LastName) {    // ラストネームが更新されていたら
                 gm.savedata.updateLastName(lastName.text);  // メモリのラストネーム更新
-                string saveLocalJson = gm.savedata.CompileGameDataForLocal(gm.savedata);    // localStrage保存用データ作成
+                string saveLocalJson = gm.savedata.SerializeForFirebase();    // 新しい構造でFirebase保存用データ作成
                 gm.connection.saveLocal(saveLocalJson);     // localStrage更新
             }
             Debug.Log("拡張機能正常データあり");
@@ -280,38 +280,16 @@ public class TitleSky : MonoBehaviour
         }
         else
         {
-            SerializableSympleStatusData userData = JsonUtility.FromJson<SerializableSympleStatusData>(jsonMsg);
-
-            if (userData != null)
+            // 新しい構造でFirebaseから読み込む
+            try
             {
-                List<object> dataList = new List<object> {
-                    userData.email,
-                    userData.ou,
-                    userData.lastName,
-                    userData.gold,
-                    userData.stage,
-                    userData.ranking,
-                    userData.name,
-                    userData.rightHand,
-                    userData.glasses,
-                    userData.head,
-                    userData.leftHand,
-                    userData.catBody,
-                    userData.catFace,
-                    userData.nickName,
-                    userData.kpm,
-                    userData.kpms
-                };
-
-                dataList.AddRange(userData.medals);
-                dataList.AddRange(userData.items);
-
-                gm.savedata.LoadAllDataFromGss(dataList);
-                Debug.Log("dataList: " + dataList);
+                gm.savedata.DeserializeFromFirebase(jsonMsg);
+                Debug.Log("Firebaseデータを読み込みました。");
                 messageText.text = "クラウドデータを読み込みました。";
             }
-            else
+            catch (Exception ex)
             {
+                Debug.LogError("Firebaseデータの読み込みに失敗: " + ex.Message);
                 messageText.text += "\nクラウドデータに問題が生じました。";
             }
             showStart();

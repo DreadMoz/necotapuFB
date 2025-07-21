@@ -171,6 +171,7 @@ MonoBehaviour:
   db: {fileID: 11400000, guid: f6a63b7d1998548f6babf3974cb219e7, type: 2}
   savedata: {fileID: 11400000, guid: 53736ca5c0e474c06821507c23ae53df, type: 2}
   connection: {fileID: 239772581}
+  firebaseConfig: {fileID: 0}
   kpmRatio: 0.8
   setting: {fileID: 575468857}
   player: {fileID: 11456791}

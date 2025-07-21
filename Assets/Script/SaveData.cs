@@ -79,80 +79,65 @@ public class ExRank
     public int Kpm { get; set; }
 }
 
-// GASステータス
-[System.Serializable]
-public class SerializableSympleStatusData
+
+
+
+
+
+
+[Serializable]
+public class PlayerData
 {
-    public string email;
-    public string ou;
-    public string lastName;
-    public int gold;
-    public int stage;
-    public int ranking;
-    public string name;
-    public int rightHand;
-    public int glasses;
-    public int head;
-    public int leftHand;
-    public int catBody;
-    public int catFace;
-    public int nickName;
-    public int kpm;
-    public string kpms;
-    public string[] medals;
-    public string[] items;
+    // プレイヤー情報
+    public string Email { get; set; }
+    public string UserName { get; set; }
+    public string Ou { get; set; }
+    public string LastName { get; set; }
+    
+    // ステータス
+    public int Gold { get; set; }
+    public int Stage { get; set; }
+    public int Ranking { get; set; }
+    public int Kpm { get; set; }
+    
+    // 装備（全7項目）
+    public int RightHand { get; set; }
+    public int Head { get; set; }
+    public int Glasses { get; set; }
+    public int LeftHand { get; set; }
+    public int CatBody { get; set; }
+    public int CatFace { get; set; }
+    public int NickName { get; set; }
+    
+    // インベントリ・アイテム
+    public int[] Inventory { get; set; } = new int[60];
+    public bool[] Items { get; set; } = new bool[256];
+    
+    // メダル・KPM履歴・設定
+    public int[] Medals { get; set; } = new int[100];
+    public int[] Kpms { get; set; } = new int[8];
+    public int[] Settings { get; set; } = new int[10];
+    
+    // タイピング履歴
+    public Dictionary<int, TypingResult> TypingResults { get; set; } = new Dictionary<int, TypingResult>();
 }
 
-// 拡張機能ステータス
 [Serializable]
-public class SerializableStatusData
+public class TypingResult
 {
-    public string Email;
-    public string Ou;
-    public string LastName;
-    public int Gold;
-    public int Stage;
-    public int Ranking;
-    public string Name;
-    public int RightHand;
-    public int Glasses;
-    public int Head;
-    public int LeftHand;
-    public int CatBody;
-    public int CatFace;
-    public int NickName;
-    public int Kpm;
-    public int[] Inventory;
-    public string[] Items;
-    public string[] Medals;
-    public string Kpms;
-    public int[] Settings;
-    // 必要に応じて他のフィールドも追加
-}
-
-// Gemini送信用データ
-[Serializable]
-public class SerializableGemini
-{
-    public string FirstName;
-    public int Gold;
-    public string Stage;
-    public int Ranking;
-    public string typingTitle;
-    public int maxCombo;
-    public int resultKpm;
-    public int averageKpm;
-    public List<string> mistypedSentences;
-    public SerializableGemini()
-    {
-        mistypedSentences = new List<string>(); // リストの初期化
-    }
+    public int Count { get; set; }
+    public int TotalKpmSum { get; set; }
+    public int TotalAccuracySum { get; set; }
 }
 
 [CreateAssetMenu(fileName = "SaveData", menuName = "SaveData")]
 public class SaveData : ScriptableObject
 {
     System.Random random = new System.Random(); // Random オブジェクトのインスタンスを作成
+    
+    // 新しいデータ構造
+    [SerializeField] public PlayerData PlayerData = new PlayerData();
+    
     // ExRankのリストを作成
     public List<ExRank> ExRankings = new List<ExRank>();
 
@@ -307,62 +292,102 @@ public class SaveData : ScriptableObject
         Settings[se.LastLogin] = today.Year * 10000 + today.Month * 100 + today.Day;
         Settings[se.Capital] = 0;
         Settings[se.KeyType] = 1;
+
+        // 新しい構造も初期化
+        MigrateToNewStructure();
+    }
+
+    // 既存データから新しい構造への移行
+    public void MigrateToNewStructure()
+    {
+        PlayerData.Email = Email;
+        PlayerData.UserName = UserName;
+        PlayerData.Ou = Ou;
+        PlayerData.LastName = LastName;
+        PlayerData.Gold = Status[st.Gold];
+        PlayerData.Stage = Status[st.Server];
+        PlayerData.Ranking = Status[st.Rank];
+        PlayerData.Kpm = Status[st.Kpm];
+        PlayerData.RightHand = Equipment[eq.RightHand];
+        PlayerData.Head = Equipment[eq.Head];
+        PlayerData.Glasses = Equipment[eq.Glasses];
+        PlayerData.LeftHand = Equipment[eq.LeftHand];
+        PlayerData.CatBody = Equipment[eq.CatBody];
+        PlayerData.CatFace = Equipment[eq.CatFace];
+        PlayerData.NickName = Equipment[eq.NickName];
+        PlayerData.Inventory = Inventory;
+        PlayerData.Items = Items;
+        PlayerData.Medals = Medals;
+        PlayerData.Kpms = Kpms;
+        PlayerData.Settings = Settings;
+    }
+
+    // 新しい構造から既存データへの復元
+    public void RestoreFromNewStructure()
+    {
+        Email = PlayerData.Email;
+        UserName = PlayerData.UserName;
+        Ou = PlayerData.Ou;
+        LastName = PlayerData.LastName;
+        Status[st.Gold] = PlayerData.Gold;
+        Status[st.Server] = PlayerData.Stage;
+        Status[st.Rank] = PlayerData.Ranking;
+        Status[st.Kpm] = PlayerData.Kpm;
+        Equipment[eq.RightHand] = PlayerData.RightHand;
+        Equipment[eq.Head] = PlayerData.Head;
+        Equipment[eq.Glasses] = PlayerData.Glasses;
+        Equipment[eq.LeftHand] = PlayerData.LeftHand;
+        Equipment[eq.CatBody] = PlayerData.CatBody;
+        Equipment[eq.CatFace] = PlayerData.CatFace;
+        Equipment[eq.NickName] = PlayerData.NickName;
+        Inventory = PlayerData.Inventory;
+        Items = PlayerData.Items;
+        Medals = PlayerData.Medals;
+        Kpms = PlayerData.Kpms;
+        Settings = PlayerData.Settings;
+    }
+
+    // 新しい構造でFirebaseに保存するためのシリアライズ
+    public string SerializeForFirebase()
+    {
+        return JsonConvert.SerializeObject(PlayerData);
+    }
+
+    // 新しい構造でFirebaseから読み込むためのデシリアライズ
+    public void DeserializeFromFirebase(string json)
+    {
+        PlayerData = JsonConvert.DeserializeObject<PlayerData>(json);
+        RestoreFromNewStructure(); // 既存データにも反映
+    }
+
+    // タイピング結果を更新
+    public void UpdateTypingResult(int promptId, int kpm, int accuracy)
+    {
+        if (!PlayerData.TypingResults.ContainsKey(promptId))
+        {
+            PlayerData.TypingResults[promptId] = new TypingResult();
+        }
+        
+        var result = PlayerData.TypingResults[promptId];
+        result.Count++;
+        result.TotalKpmSum += kpm;
+        result.TotalAccuracySum += accuracy;
     }
 
     // 拡張機能からステータスデータを取得する。
     public void setStatusFromLocal(string statusData)
      {
         Debug.Log("Received Status JSON: " + statusData);
-        // JSONデータのトップレベルを取得
-        var wrappedData = JsonConvert.DeserializeObject<Dictionary<string, SerializableStatusData>>(statusData);
-        
-        if (wrappedData.TryGetValue("statusData", out SerializableStatusData exData))
+        // 新しい構造でFirebaseから読み込む
+        try
         {
-            // ApiStatus に値を設定
-            Email = exData.Email;
-            Ou = exData.Ou;
-            LastName = exData.LastName;
-            Status[st.Gold] = exData.Gold;
-
-            // ExRank に値を設定
-            Status[st.Server] = exData.Stage;
-            Status[st.Rank] = exData.Ranking;
-            UserName = exData.Name;
-            Equipment[eq.RightHand] = exData.RightHand;
-            Equipment[eq.Glasses] = exData.Glasses;
-            Equipment[eq.Head] = exData.Head;
-            Equipment[eq.LeftHand] = exData.LeftHand;
-            Equipment[eq.CatBody] = exData.CatBody;
-            Equipment[eq.CatFace] = exData.CatFace;
-            Equipment[eq.NickName] = exData.NickName;
-            Status[st.Kpm] = exData.Kpm;
-
-            // ここは配列40のコピー
-            for (int i = 0; i < Inventory.Length; i++)
-            {
-                Inventory[i] = exData.Inventory[i];
-            }
-
-            // ここはlong[4]をbool[100]に変換
-            DecodeItemData(exData.Items);
-
-            // ここはlong[5]をint[100]に変換
-            DecodeMedalData(exData.Medals);
-
-            // ここは配列8<-文字列
-            DecodeKpmData(exData.Kpms);
-
-            // ここは配列10のコピー
-            for (int i = 0; i < Settings.Length; i++)
-            {
-                Settings[i] = exData.Settings[i];
-            }
+            DeserializeFromFirebase(statusData);
+            Debug.Log("Firebaseデータを読み込みました。");
         }
-        else
+        catch (Exception ex)
         {
-            Debug.LogError("Failed to deserialize statusData.");
+            Debug.LogError("Firebaseデータの読み込みに失敗: " + ex.Message);
         }
-    // testEncodeMedals();      // デバッグで使用した。Medalエンコード->デコードテスト
     }
 
     // 拡張機能なし GSSから最低限のデータ取得
@@ -390,7 +415,7 @@ public class SaveData : ScriptableObject
             Status[st.Kpm] = Convert.ToInt32(list[14]);
 
             // ここは配列8<-文字列
-            DecodeKpmData(list[15].ToString());
+            // DecodeKpmData(list[15].ToString()); // 削除済み
 
             string[] gssMedals = new string[5];
             gssMedals[0] = list[16].ToString();
@@ -400,7 +425,7 @@ public class SaveData : ScriptableObject
             gssMedals[4] = list[20].ToString();
 
             // ここはlong[5]をint[100]に変換
-            DecodeMedalData(gssMedals);
+            // DecodeMedalData(gssMedals); // 削除済み
 
             string[] gssItems = new string[4];
             gssItems[0] = list[21].ToString();
@@ -409,9 +434,12 @@ public class SaveData : ScriptableObject
             gssItems[3] = list[24].ToString();
 
             // ここはlong[4]をbool[100]に変換
-            DecodeItemData(gssItems);
+            // DecodeItemData(gssItems); // 削除済み
 
             setInventoryFromItems();
+            
+            // 新しい構造にも反映
+            MigrateToNewStructure();
         }
         catch (FormatException ex)
         {
@@ -441,203 +469,22 @@ public class SaveData : ScriptableObject
         }
     }
 
-    public void DecodeItemData(string[] itemData)
-    {
-        // 各 long 値をビット単位で調べる
-        for (int i = 0; i < itemData.Length; i++)
-        {
-            ulong currentItemData = ulong.Parse(itemData[i]);
-            for (int bit = 0; bit < 64; bit++)
-            {
-                // currentItemData から特定のビット位置の値を取得
-                bool isItemPresent = (currentItemData & (1UL << bit)) != 0;
-                // 計算したビット位置に応じた items 配列の位置に値をセット
-                Items[i * 64 + bit] = isItemPresent;
-            }
-        }
-    }
 
-    public void DecodeMedalData(string[] medalCode)
-    {
-        ulong mask = 0b111; // 3ビットを取り出すためのマスク
 
-        for (int i = 0; i < medalCode.Length; i++)
-        {
-            ulong medal = ulong.Parse(medalCode[i]);
-            for (int j = 0; j < 20; j++)
-            {
-                // encodedValues[i]から3ビットずつ切り出して、配列に格納
-                // 最下位ビットから開始するため、シフトするビット数を調整
-                Medals[i * 20 + j] = (int)((medal >> (j * 3)) & mask);
-            }
-        }
-    }
 
-    public void DecodeKpmData(string rkpm)
-    {
-        int arrayIndex = 7;
 
-        // 文字列の末尾から3文字ずつ取得していく
-        for (int i = rkpm.Length; i > 0; i -= 3)
-        {
-            // 3文字の部分文字列を取得
-            string part = rkpm.Substring(Math.Max(i - 3, 0), i - Math.Max(i - 3, 0));
-            Kpms[arrayIndex] = int.Parse(part);
-            arrayIndex--;
-        }
-    }
 
-    // 拡張機能に保存するためのデータを現在のゲームデータから作る。
-    public string CompileGameDataForLocal(SaveData sd)
-    {
-        SerializableStatusData data = new SerializableStatusData
-        {
-            Email = sd.Email,
-            Ou = sd.Ou,
-            LastName = sd.LastName,
-            Gold = sd.Status[st.Gold],
 
-            Stage = sd.Status[st.Server],
-            Ranking = sd.Status[st.Rank],
-            Name = sd.UserName,
-            RightHand = sd.Equipment[eq.RightHand],
-            Glasses = sd.Equipment[eq.Glasses],
-            Head = sd.Equipment[eq.Head],
-            LeftHand = sd.Equipment[eq.LeftHand],
-            CatBody = sd.Equipment[eq.CatBody],
-            CatFace = sd.Equipment[eq.CatFace],
-            NickName = sd.Equipment[eq.NickName],
-            Kpm = sd.Status[st.Kpm],
 
-            Inventory = sd.Inventory,
-            Items = EncodeItemData(sd.Items),
-            Medals = EncodeMedalData(sd.Medals),
-            Kpms = EncodeKpmData(sd.Kpms),
-            Settings = sd.Settings,
-        };
 
-        // statusDataプロパティを持つ新しいオブジェクトを作成し、JSONにシリアライズ
-        var wrappedData = new { statusData = data };
-        Debug.Log("wrappedData(SaveData): " + JsonConvert.SerializeObject(wrappedData));    // ログ出力を追加
-        return JsonConvert.SerializeObject(wrappedData);
-    }
 
-    // GSSに保存するためのデータを現在のゲームデータから作る。
-    public string CompileGameDataForGss(SaveData sd)
-    {
-        SerializableStatusData data = new SerializableStatusData
-        {
-            Email = sd.Email,
-            Ou = sd.Ou,
-            LastName = sd.LastName,
-            Gold = sd.Status[st.Gold],
 
-            Stage = sd.Status[st.Server],
-            Ranking = sd.Status[st.Rank],
-            Name = sd.UserName,
-            RightHand = sd.Equipment[eq.RightHand],
-            Glasses = sd.Equipment[eq.Glasses],
-            Head = sd.Equipment[eq.Head],
-            LeftHand = sd.Equipment[eq.LeftHand],
-            CatBody = sd.Equipment[eq.CatBody],
-            CatFace = sd.Equipment[eq.CatFace],
-            NickName = sd.Equipment[eq.NickName],
-            Kpm = sd.Status[st.Kpm],
 
-            Items = EncodeItemData(sd.Items),
-            Medals = EncodeMedalData(sd.Medals),
-            Kpms = EncodeKpmData(sd.Kpms),
-        };
 
-        // statusDataプロパティを持つ新しいオブジェクトを作成し、JSONにシリアライズ
-        Debug.Log("wrappedData(GssSaveData): " + JsonConvert.SerializeObject(data));    // ログ出力を追加
-        return JsonConvert.SerializeObject(data);
-    }
 
-    // Geminiに送るためのデータを現在のゲームデータから作る。
-    public string CompileGeminiData(SaveData sd, string server)
-    {
-        SerializableGemini data = new SerializableGemini
-        {
-            FirstName = sd.UserName,
-            Gold = sd.Status[st.Gold],
-            Stage = server,
-            Ranking = sd.Status[st.Rank],
-            typingTitle = GameManager.TypingTitle,
-            maxCombo = GameManager.MaxCombo,
-            resultKpm = GameManager.NewKpm,
-            averageKpm = sd.Status[st.Kpm],
-            mistypedSentences = GameManager.MistypedSentences,
-        };
 
-        // statusDataプロパティを持つ新しいオブジェクトを作成し、JSONにシリアライズ
-        Debug.Log("wrappedData(GeminiData): " + JsonConvert.SerializeObject(data));    // ログ出力を追加
-        return JsonConvert.SerializeObject(data);
-    }
 
-    public string[] EncodeItemData(bool[] items)
-    {
-        ulong[] encodedItems = new ulong[4];
-        string[] returnItems = new string[4];
-        for (int i = 0; i < items.Length; i++)
-        {
-            if (items[i])
-            {
-                int itemIndex = i / 64;
-                int bitPosition = i % 64;
-                encodedItems[itemIndex] |= (1UL << bitPosition);
-            }
-        }
-        for(int i = 0; i < encodedItems.Length; i++)
-        {
-            returnItems[i] = encodedItems[i].ToString();
-        }
-        return returnItems;
-    }
-    public void testEncodeMedals()
-    {
-        int[] test1 = new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-        int[] test2 = new int[] {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
-        int[] test3 = new int[] {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3};
-        int[] test4 = new int[] {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4};
-        int[] test5 = new int[] {5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5};
-        int[] test0 = new int[] {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        string[] returnString = EncodeMedalData(test4);
-        DecodeMedalData(returnString);
-    }
-    public string[] EncodeMedalData(int[] medals)
-    {
-        ulong[] encodedMedals = new ulong[5];
-        string[] returnMedals = new string[5];
-        for (int i = 0; i < medals.Length; i++)
-        {
-            int medalIndex = i / 20;
-            int bitPosition = (i % 20) * 3;
-            encodedMedals[medalIndex] |= ((ulong)medals[i] << bitPosition);
-        }
-        for(int i = 0; i < encodedMedals.Length; i++)
-        {
-            returnMedals[i] = encodedMedals[i].ToString();
-        }
-        return returnMedals;
-    }
-    public string EncodeKpmData(int[] kpms)
-    {
-        StringBuilder sb = new StringBuilder();
-        for (int i = kpms.Length - 1; i >= 0; i--)
-        {
-            // 最初の要素以外は3桁になるように0でパディング
-            if (i == 0 && kpms[i] <= 999)
-            {
-                sb.Insert(0, kpms[i].ToString());
-            }
-            else
-            {
-                sb.Insert(0, kpms[i].ToString("D3"));
-            }
-        }
-        return sb.ToString();
-    }
+
 
     public int getBlankInventoryIndex()
     {
@@ -725,5 +572,102 @@ public class SaveData : ScriptableObject
             }
         }
         return total; // 計算された合計値を返す
+    }
+
+    // テスト用メソッド
+    public void TestMigration()
+    {
+        Debug.Log("=== 移行テスト開始 ===");
+        
+        // 1. 既存データを設定
+        Email = "test@example.com";
+        UserName = "TestUser";
+        Status[st.Gold] = 1000;
+        Equipment[eq.RightHand] = 5;
+        Inventory[0] = 10;
+        Items[0] = true;
+        Medals[0] = 3;
+        Kpms[0] = 150;
+        Settings[se.Volume] = 50;
+        
+        Debug.Log($"既存データ設定完了: Email={Email}, Gold={Status[st.Gold]}");
+        
+        // 2. 新しい構造に移行
+        MigrateToNewStructure();
+        
+        Debug.Log($"移行完了: Email={PlayerData.Email}, Gold={PlayerData.Gold}");
+        
+        // 3. 新しい構造から復元
+        RestoreFromNewStructure();
+        
+        Debug.Log($"復元完了: Email={Email}, Gold={Status[st.Gold]}");
+        
+        // 4. データの整合性チェック
+        bool isConsistent = Email == PlayerData.Email && 
+                           Status[st.Gold] == PlayerData.Gold &&
+                           Equipment[eq.RightHand] == PlayerData.RightHand;
+        
+        Debug.Log($"データ整合性チェック: {(isConsistent ? "OK" : "NG")}");
+        
+        Debug.Log("=== 移行テスト終了 ===");
+    }
+
+    // タイピング結果テスト
+    public void TestTypingResult()
+    {
+        Debug.Log("=== タイピング結果テスト開始 ===");
+        
+        // 1. タイピング結果を追加
+        UpdateTypingResult(1, 150, 95);
+        UpdateTypingResult(1, 160, 90);
+        UpdateTypingResult(2, 140, 85);
+        
+        Debug.Log($"お題1の結果: Count={PlayerData.TypingResults[1].Count}, " +
+                  $"平均KPM={PlayerData.TypingResults[1].TotalKpmSum / PlayerData.TypingResults[1].Count}, " +
+                  $"平均正解率={PlayerData.TypingResults[1].TotalAccuracySum / PlayerData.TypingResults[1].Count}");
+        
+        Debug.Log($"お題2の結果: Count={PlayerData.TypingResults[2].Count}, " +
+                  $"平均KPM={PlayerData.TypingResults[2].TotalKpmSum / PlayerData.TypingResults[2].Count}, " +
+                  $"平均正解率={PlayerData.TypingResults[2].TotalAccuracySum / PlayerData.TypingResults[2].Count}");
+        
+        Debug.Log("=== タイピング結果テスト終了 ===");
+    }
+
+    // Firebaseシリアライズテスト
+    public void TestFirebaseSerialization()
+    {
+        Debug.Log("=== Firebaseシリアライズテスト開始 ===");
+        
+        // 1. データを設定
+        PlayerData.Email = "test@example.com";
+        PlayerData.UserName = "TestUser";
+        PlayerData.Gold = 1000;
+        PlayerData.RightHand = 5;
+        PlayerData.Inventory[0] = 10;
+        PlayerData.Items[0] = true;
+        PlayerData.Medals[0] = 3;
+        PlayerData.Kpms[0] = 150;
+        PlayerData.Settings[se.Volume] = 50;
+        
+        // 2. シリアライズ
+        string json = SerializeForFirebase();
+        Debug.Log($"シリアライズ結果: {json}");
+        
+        // 3. デシリアライズ
+        PlayerData newPlayerData = new PlayerData();
+        var tempPlayerData = PlayerData;
+        PlayerData = newPlayerData;
+        DeserializeFromFirebase(json);
+        
+        Debug.Log($"デシリアライズ結果: Email={PlayerData.Email}, Gold={PlayerData.Gold}");
+        
+        // 4. データの整合性チェック
+        bool isConsistent = tempPlayerData.Email == PlayerData.Email && 
+                           tempPlayerData.Gold == PlayerData.Gold &&
+                           tempPlayerData.RightHand == PlayerData.RightHand;
+        
+        Debug.Log($"データ整合性チェック: {(isConsistent ? "OK" : "NG")}");
+        
+        Debug.Log("=== Firebaseシリアライズテスト終了 ===");
     }
 }

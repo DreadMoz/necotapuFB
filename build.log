@@ -1,0 +1,57 @@
+Unity Editor version:    6000.0.43f1 (97272b72f107)
+Branch:                  6000.0/release
+Build type:              Release
+Batch mode:              YES
+macOS version:           Version 15.5 (Build 24F74)
+Darwin version:          24.5.0
+Architecture:            arm64
+Running under Rosetta:   NO
+Available memory:        16384 MB
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Successfully connected to the License Client on channel: "LicenseClient-moryo" at "2025-07-20T07:17:28.336087Z"
+[Licensing::Client] Error: Code 10 while verifying Licensing Client signature (process Id: 24272, path: "/Applications/Unity Hub.app/Contents/Frameworks/UnityLicensingClient_V1.app/Contents/MacOS/Unity.Licensing.Client")
+[Licensing::Module] Error: LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.17.0+aa6cfba
+  Session Id:              f098799c00714392bc2051a046d7846e
+  Correlation Id:          c4fab88b3a4707b5c8ae90c9d0408591
+  External correlation Id: 7523199013211589445
+  Machine Id:              r6uq7Q5PklJ2MCZLTGkqMPRIoto=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-moryo" (connect: 0.00s, validation: 0.02s, handshake: 0.42s)
+[Licensing::IpcConnector] Successfully connected to the License Notification on channel: "LicenseClient-moryo-notifications" at "2025-07-20T07:17:28.769088Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully updated license
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Serial number assigned to: "F4-4SBJ-8MDN-YRUZ-YY3S-XXXX"
+[Licensing::Module] Serial number assigned to: "15668068784874-UnityPersXXXX"
+Pro License: NO
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Serial number assigned to: "F4-4SBJ-8MDN-YRUZ-YY3S-XXXX"
+[Licensing::Module] Serial number assigned to: "15668068784874-UnityPersXXXX"
+Launching external process: /Applications/Unity/Hub/Editor/6000.0.43f1/Unity.app/Contents/Resources/PackageManager/Server/UnityPackageManager
+
+COMMAND LINE ARGUMENTS:
+/Applications/Unity/Hub/Editor/6000.0.43f1/Unity.app/Contents/MacOS/Unity
+-batchmode
+-quit
+-projectPath
+/Users/moryo/necotapuFB
+-buildTarget
+WebGL
+-executeMethod
+BuildScript.BuildWebGL
+-logFile
+build.log
+Successfully changed project path to: /Users/moryo/necotapuFB
+/Users/moryo/necotapuFB
+It looks like another Unity instance is running with this project open.
+
+Multiple Unity instances cannot open the same project.
+
+Project: /Users/moryo/necotapuFB
+Fatal Error! It looks like another Unity instance is running with this project open.
+
+Multiple Unity instances cannot open the same project.
+
+Project: /Users/moryo/necotapuFB
+[Package Manager] Server process was shutdown

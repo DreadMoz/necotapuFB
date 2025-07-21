@@ -1,4 +1,50 @@
 mergeInto(LibraryManager.library, {
+    // Firebase関連の関数
+    setFirebaseConfig: function(configPointer) {
+        var config = UTF8ToString(configPointer);
+        setFirebaseConfig(config);
+    },
+    
+    savePlayerDataJS: function(playerIdPointer, jsonDataPointer) {
+        var playerId = UTF8ToString(playerIdPointer);
+        var jsonData = UTF8ToString(jsonDataPointer);
+        savePlayerDataJS(playerId, jsonData);
+    },
+    
+    loadPlayerDataJS: function(playerIdPointer) {
+        var playerId = UTF8ToString(playerIdPointer);
+        loadPlayerDataJS(playerId);
+    },
+    
+    checkAuthStateJS: function() {
+        checkAuthStateJS();
+    },
+    
+    signInAnonymouslyJS: function() {
+        signInAnonymouslyJS();
+    },
+    
+    signInWithGoogleJS: function() {
+        signInWithGoogleJS();
+    },
+    
+    signInWithMicrosoftJS: function() {
+        signInWithMicrosoftJS();
+    },
+    
+    signInWithEmailJS: function(emailPointer, passwordPointer) {
+        var email = UTF8ToString(emailPointer);
+        var password = UTF8ToString(passwordPointer);
+        signInWithEmailJS(email, password);
+    },
+    
+    createUserWithEmailJS: function(emailPointer, passwordPointer) {
+        var email = UTF8ToString(emailPointer);
+        var password = UTF8ToString(passwordPointer);
+        createUserWithEmailJS(email, password);
+    },
+    
+    // 既存の関数
     GetOAuth: function() {
         getOAuth();
     },

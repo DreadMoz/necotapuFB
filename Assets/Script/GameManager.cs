@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public DataBase db;
     public SaveData savedata;
     public Connection connection;
+    [SerializeField] public FirebaseConfig firebaseConfig;  // Firebase設定
     public static int openHour = 0;            // 開店時間
     public static int closeHour = 23;          // 閉店時間
 
@@ -657,14 +658,16 @@ public class GameManager : MonoBehaviour
 
     public void exportLocal()
     {
-        string saveLocalJson = savedata.CompileGameDataForLocal(savedata);
+        // 新しい構造でFirebaseに保存するためのJSONを生成
+        string saveLocalJson = savedata.SerializeForFirebase();
         connection.saveLocal(saveLocalJson);
         exportGas();        // 毎回GASアクセス要求。index.htmlで２４ｈに１回に制限される。
     }
 
     public void exportGas()
     {
-        string saveGasObject = savedata.CompileGameDataForGss(savedata);
+        // 新しい構造でFirebaseに保存するためのJSONを生成
+        string saveGasObject = savedata.SerializeForFirebase();
         connection.saveGas(saveGasObject);
     }
 
@@ -682,7 +685,20 @@ public class GameManager : MonoBehaviour
     {
         recalculateKpm();
         getRanking();
-        string promptData = savedata.CompileGeminiData(savedata, db.GetServerList()[savedata.Status[st.Server]]);
+        // Gemini用のデータを新しい構造で生成
+        var geminiData = new
+        {
+            FirstName = savedata.UserName,
+            Gold = savedata.Status[st.Gold],
+            Stage = db.GetServerList()[savedata.Status[st.Server]],
+            Ranking = savedata.Status[st.Rank],
+            typingTitle = TypingTitle,
+            maxCombo = MaxCombo,
+            resultKpm = NewKpm,
+            averageKpm = savedata.Status[st.Kpm],
+            mistypedSentences = MistypedSentences
+        };
+        string promptData = JsonConvert.SerializeObject(geminiData);
         #if UNITY_WEBGL && !UNITY_EDITOR
             connection.throughGemini(promptData);
         #endif
