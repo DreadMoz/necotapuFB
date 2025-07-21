@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "WebGL",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
