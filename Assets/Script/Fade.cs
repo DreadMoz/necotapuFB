@@ -136,18 +136,5 @@ public class Fade : MonoBehaviour
         timer = 0.0f;
         fadeOut = false;
         compFadeOut = true;
-        
-#if !UNITY_EDITOR
-        // 現在の時刻を取得
-        int currentHour = System.DateTime.Now.Hour;
-
-        // 許可された時間範囲内かどうかをチェック
-        if (currentHour < GameManager.openHour || currentHour >= GameManager.closeHour)
-        {
-            GameManager.SceneNo = scene.Night;
-            SceneManager.LoadScene("TitleScene"); // タイトルシーンに遷移
-            return;
-        }
-#endif
     }
 }

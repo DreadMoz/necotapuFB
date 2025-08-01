@@ -155,27 +155,27 @@ public class TitleSky : MonoBehaviour
     public void StartButton()
     {
 //        gm.savedata.testEncodeMedals();   // Medalデバッグ
-        if (loginFlg == 0)  // 初回ログイン時
+        if (loginFlg == 0)
         {
             startButton.SetActive(false);   // ログイン完了まで一旦消す
             guestButton.SetActive(false);   // ログイン完了まで一旦消す
-            gm.connection.enetLogin();    // OAuthログインHTMLへ
+//            gm.connection.enetLogin();    // OAuthログイン。
         }
-        else if (loginFlg == 1) // ２回目以降のログイン時
+        else if (loginFlg == 1)
         {
             if (!firstPush)
             {
-                fade.StartFadeOut();    // ワールドシーンへのフェードアウト
+                fade.StartFadeOut();
                 firstPush = true;
             }
         }
-        else if (loginFlg == 2) // 初回「つくる」時
+        else if (loginFlg == 2)
         {
-            selectNeco();   // ねこ選び
+            selectNeco();
         }
+
     }
 
-    // gm.connection.enetLogin() OAuthログインの後HTMLから(GAS管理者権限でアカウント情報取得後)
     public void finishOAuth(string jsonUserInfo)
     {
         userData.SetActive(true);
@@ -190,15 +190,16 @@ public class TitleSky : MonoBehaviour
         StartCoroutine(LoadImage(userInfo.picture));
         messageText.text = userInfo.message;
 
+        gm.savedata.updateLastName(userInfo.lastName);
+        gm.exportLocal();  // lastName更新データ保存ローカル＆GSS
 
         if (userInfo.access == "true")  // いいネットなら照合成功
         {
-            gm.connection.loadLocal(); // ローカルデータをロードする 自動でHTMLとのやり取りが続く
+//            gm.connection.loadLocal(); // ローカルデータをロードする
         }
         reLogin.SetActive(true); // ログアウトボタン表示
     }
 
-    // localStrageからデータの読み込みに成功した時呼ばれる
     public void finishDataLoadExtStatus(string statusDataJson)
     {
         message.SetActive(true);
@@ -248,26 +249,23 @@ public class TitleSky : MonoBehaviour
     {
         Text messageText = message.GetComponentInChildren<Text>();
 
-        if (gm.savedata.Equipment[eq.CatBody] == 0)        // ねこボディあるかないかでlocalStrageの正当性を判定
+        if (gm.savedata.Equipment[eq.CatBody] == 0)        // ねこボディなし
         {
             Debug.Log("ネコボディなしGASアクセスへ");
             messageText.text += "クラウドにデータがあるかさがしてきます・・・";
             gm.savedata.Settings[se.CatNum] = 0;        // NPC表示なし
-            gm.connection.loadGas();    // GSSアクセス。
+            // gm.connection.loadGas();    // GSSアクセス。
         }
         else
         {
-            if (lastName.text != gm.savedata.LastName) {    // ラストネームが更新されていたら
-                gm.savedata.updateLastName(lastName.text);  // メモリのラストネーム更新
-                string saveLocalJson = gm.savedata.SerializeForFirebase();    // 新しい構造でFirebase保存用データ作成
-                gm.connection.saveLocal(saveLocalJson);     // localStrage更新
-            }
             Debug.Log("拡張機能正常データあり");
             messageText.text += "ほぞんデータがみつかったよ。スタートしましょう。";
             showStart();
         }
     }
 
+    // 明日のイベントではゲストプレイのみ使用するためコメントアウト
+    /*
     public void finishDataLoadGas(string jsonMsg)
     {
         reLogin.SetActive(true);
@@ -280,27 +278,65 @@ public class TitleSky : MonoBehaviour
         }
         else
         {
-            // 新しい構造でFirebaseから読み込む
-            try
+            SerializableSympleStatusData userData = JsonUtility.FromJson<SerializableSympleStatusData>(jsonMsg);
+
+            if (userData != null)
             {
-                gm.savedata.DeserializeFromFirebase(jsonMsg);
-                Debug.Log("Firebaseデータを読み込みました。");
+                List<object> dataList = new List<object> {
+                    userData.email,
+                    userData.ou,
+                    userData.lastName,
+                    userData.gold,
+                    userData.stage,
+                    userData.ranking,
+                    userData.name,
+                    userData.rightHand,
+                    userData.glasses,
+                    userData.head,
+                    userData.leftHand,
+                    userData.catBody,
+                    userData.catFace,
+                    userData.nickName,
+                    userData.kpm,
+                    userData.kpms
+                };
+
+                // medals配列の各要素を個別に追加
+                if (userData.medals != null)
+                {
+                    foreach (int medal in userData.medals)
+                    {
+                        dataList.Add(medal);
+                    }
+                }
+                
+                // items配列の各要素を個別に追加
+                if (userData.items != null)
+                {
+                    foreach (int item in userData.items)
+                    {
+                        dataList.Add(item);
+                    }
+                }
+
+                gm.savedata.LoadAllDataFromGss(dataList);
+                Debug.Log("dataList: " + dataList);
                 messageText.text = "クラウドデータを読み込みました。";
             }
-            catch (Exception ex)
+            else
             {
-                Debug.LogError("Firebaseデータの読み込みに失敗: " + ex.Message);
                 messageText.text += "\nクラウドデータに問題が生じました。";
             }
             showStart();
         }
     }
+    */
 
     private void showStart()
     {
         if (gm.savedata.Equipment[eq.CatBody] != 0)
         {
-            gm.connection.getRanking();
+            // gm.connection.getRanking();
             cat.setChara(gm.savedata.Equipment[eq.CatBody]);
             cat.changeEquipHands(gm.savedata.Equipment[eq.RightHand], gm.savedata.Equipment[eq.LeftHand], gm.checkBagItem());
             cat.changeEquipHead(gm.savedata.Equipment[eq.Head]);
@@ -354,7 +390,7 @@ public class TitleSky : MonoBehaviour
         cat.changeEquipHead(0);
         cat.changeEquipGlasses(0);
 
-        gm.connection.googleLogout();
+        // gm.connection.googleLogout();
     }
 
     public void finishLogout()
@@ -457,8 +493,11 @@ public class TitleSky : MonoBehaviour
     {
         if (!firstPush)
         {
+            // ゲストモードはキーボードを大文字にする
+            gm.savedata.Settings[se.Capital] = 1;
+            
             GameManager.guestMode = true;
-            GameManager.TypingDataPath = "TextCustom/heijoEvent";
+            GameManager.TypingDataPath = "TextCustom/ehontenEvent";
             GameManager.SceneNo = (int)scene.Typing;
             SceneManager.LoadScene("typingStage"); // タイピングシーンに遷移
             firstPush = true;

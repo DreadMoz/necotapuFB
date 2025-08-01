@@ -141,10 +141,10 @@ private void getDummyOAuth()
                     ""Stage"": 7,
                     ""Ranking"": 87,
                     ""Name"": ""moru"",
-                    ""RightHand"": 3,
-                    ""Glasses"": 0,
-                    ""Head"": 0,
-                    ""LeftHand"": 0,
+                    ""RightHand"": 6,
+                    ""Glasses"": 121,
+                    ""Head"": 155,
+                    ""LeftHand"": 3,
                     ""CatBody"": 202,
                     ""CatFace"": 0,
                     ""NickName"": 0,
@@ -396,6 +396,6 @@ private void getDummyOAuth()
         {
             gssData = @"{}";
         }
-        title.finishDataLoadGas(gssData);
+//        title.finishDataLoadGas(gssData);
 }
 }

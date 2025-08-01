@@ -24,6 +24,14 @@ mergeInto(LibraryManager.library, {
         signInAnonymouslyJS();
     },
     
+    signInAsGuestJS: function() {
+        signInAsGuestJS();
+    },
+    
+    signOutJS: function() {
+        signOutJS();
+    },
+    
     signInWithGoogleJS: function() {
         signInWithGoogleJS();
     },

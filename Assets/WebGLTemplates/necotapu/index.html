@@ -3,414 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | FirebaseTest</title>
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Firebase SDK -->
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, OAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-        
-        // Firebase設定（Unity側から動的に取得）
-        let firebaseConfig = null;
-        let app = null;
-        let auth = null;
-        let db = null;
-        
-        // Unity側からFirebase設定を受け取る
-        window.setFirebaseConfig = function(config) {
-            console.log("Firebase設定を受信:", config);
-            try {
-                firebaseConfig = JSON.parse(config);
-                console.log("Firebase設定を解析:", firebaseConfig);
-                initializeFirebase();
-            } catch (error) {
-                console.error("Firebase設定の解析に失敗:", error);
-            }
-        };
-        
-        // Firebase初期化
-        function initializeFirebase() {
-            console.log("=== Firebase初期化開始 ===");
-            console.log("firebaseConfig:", firebaseConfig);
-            
-            try {
-                console.log("Firebase App初期化中...");
-                app = initializeApp(firebaseConfig);
-                console.log("Firebase App初期化成功:", app);
-                
-                console.log("Firebase Auth初期化中...");
-                auth = getAuth(app);
-                console.log("Firebase Auth初期化成功:", auth);
-                
-                console.log("Firebase Firestore初期化中...");
-                db = getFirestore(app);
-                console.log("Firebase Firestore初期化成功:", db);
-                
-                console.log("Firebase initialized successfully");
-                
-                // 実際のFirebaseアクセステスト
-                // console.log("=== Firebaseアクセステスト開始 ===");
-                // testFirebaseConnection();
-                
-                // Unity側に初期化完了を通知
-                if (typeof myGameInstance !== 'undefined' && myGameInstance) {
-                    console.log("Unity ready, sending Firebase initialization success");
-                    // SendMessageを遅延実行してFirebaseManagerの作成を待つ
-                    setTimeout(() => {
-                        // 複数の方法でSendMessageを試行
-                        try {
-                            myGameInstance.SendMessage("FirebaseTest", "OnFirebaseInitialized", "success");
-                            console.log("SendMessage sent successfully");
-                        } catch (error) {
-                            console.warn("SendMessage failed, trying alternative method:", error);
-                            // 代替方法：全GameObjectに送信
-                            myGameInstance.SendMessage("", "OnFirebaseInitialized", "success");
-                        }
-                    }, 3000); // 3秒に延長
-                } else {
-                    console.log("myGameInstance not ready, setting firebaseInitialized flag");
-                    // myGameInstanceが利用可能になったときに通知するためのフラグ
-                    window.firebaseInitialized = true;
-                    console.log("firebaseInitialized flag set to true");
-                    
-                    // Unity側への通知を試行（複数回試行）
-                    let attemptCount = 0;
-                    const trySendMessage = () => {
-                        attemptCount++;
-                        if (typeof myGameInstance !== 'undefined' && myGameInstance) {
-                            console.log(`Unity became ready after Firebase init, sending notification (attempt ${attemptCount})`);
-                            try {
-                                myGameInstance.SendMessage("FirebaseTest", "OnFirebaseInitialized", "success");
-                                console.log("SendMessage sent successfully on attempt", attemptCount);
-                            } catch (error) {
-                                console.warn("SendMessage failed on attempt", attemptCount, ":", error);
-                                if (attemptCount < 10) {
-                                    setTimeout(trySendMessage, 1000);
-                                }
-                            }
-                        } else if (attemptCount < 10) {
-                            setTimeout(trySendMessage, 1000);
-                        } else {
-                            console.error("Failed to send Firebase initialization message after 10 attempts");
-                        }
-                    };
-                    setTimeout(trySendMessage, 1000);
-                }
-            } catch (error) {
-                console.error("Firebase initialization failed:", error);
-                if (typeof myGameInstance !== 'undefined' && myGameInstance) {
-                    myGameInstance.SendMessage("FirebaseTest", "OnFirebaseInitialized", "error");
-                }
-            }
-        }
-        
-        // Firebase接続テスト
-        function testFirebaseConnection() {
-            console.log("Firebase接続テスト実行中...");
-            
-            // 1. ネットワーク接続テスト
-            fetch('https://necotapufb.firebaseapp.com/')
-                .then(response => {
-                    console.log("Firebase URL接続成功:", response.status);
-                    return response.text();
-                })
-                .then(data => {
-                    console.log("Firebase URL応答:", data.substring(0, 100) + "...");
-                })
-                .catch(error => {
-                    console.error("Firebase URL接続失敗:", error);
-                });
-            
-            // 2. 匿名認証テスト
-            if (auth) {
-                console.log("匿名認証テスト実行中...");
-                signInAnonymously(auth)
-                    .then((result) => {
-                        console.log("匿名認証成功:", result.user.uid);
-                        console.log("Firebaseアクセス確認完了");
-                        
-                        // 3. Firestore書き込みテスト
-                        testFirestoreWrite(result.user.uid);
-                    })
-                    .catch((error) => {
-                        console.error("匿名認証失敗:", error);
-                        console.error("Firebaseアクセス失敗");
-                    });
-            } else {
-                console.error("Firebase Auth not available for testing");
-            }
-        }
-        
-        // Firestore書き込みテスト
-        function testFirestoreWrite(userId) {
-            console.log("=== Firestore書き込みテスト開始 ===");
-            
-            // Firestoreのインポートを確認
-            if (typeof getFirestore === 'undefined') {
-                console.error("Firestore not imported");
-                return;
-            }
-            
-            const db = getFirestore();
-            const testData = {
-                userId: userId,                    // 匿名認証で生成されたユーザーID
-                testMessage: "Firebaseアクセステスト",  // テストメッセージ
-                timestamp: new Date().toISOString(), // 現在のタイムスタンプ
-                randomValue: Math.floor(Math.random() * 1000), // 0-999のランダム値
-                testType: "WebGL書き込みテスト"        // テストタイプ
-            };
-            
-            console.log("書き込むデータ:", testData);
-            
-            // Firestoreにデータを書き込み
-            addDoc(collection(db, "test_access"), testData)
-                .then((docRef) => {
-                    console.log("✅ Firestore書き込み成功！");
-                    console.log("ドキュメントID:", docRef.id);
-                    console.log("Firebaseアクセス証明完了！");
-                    console.log("Firebase Consoleで test_access コレクションを確認してください");
-                })
-                .catch((error) => {
-                    console.error("❌ Firestore書き込み失敗:", error);
-                    console.error("Firebaseアクセス失敗の証明");
-                });
-        }
-        
-        // 匿名認証
-        window.signInAnonymouslyJS = function() {
-            console.log("=== 匿名認証開始 ===");
-            console.log("auth:", auth);
-            console.log("auth type:", typeof auth);
-            
-            if (!auth) {
-                console.error("Firebase Auth not initialized");
-                return;
-            }
-            
-            console.log("Firebase Auth初期化済み、認証実行中...");
-            signInAnonymously(auth)
-                .then((result) => {
-                    console.log("Anonymous sign-in successful:", result.user.uid);
-                    const authInfo = {
-                        userId: result.user.uid,
-                        email: null,
-                        displayName: "ゲスト" + Math.floor(Math.random() * 9000 + 1000),
-                        authMethod: "Anonymous",
-                        isGuest: true,
-                        authenticatedAt: new Date().toISOString()
-                    };
-                    if (typeof myGameInstance !== 'undefined' && myGameInstance) {
-                        console.log("Unity側に認証成功を通知:", "AutoAuthManager", "OnAuthSuccess");
-                        // 複数のGameObject名を試行
-                        myGameInstance.SendMessage("AutoAuthManager", "OnAuthSuccess", JSON.stringify(authInfo));
-                        myGameInstance.SendMessage("FirebaseTest", "OnAuthSuccess", JSON.stringify(authInfo));
-                        myGameInstance.SendMessage("AutoAuthTest", "OnAuthSuccess", JSON.stringify(authInfo));
-                    } else {
-                        console.error("Unity側への通知失敗: myGameInstance not available");
-                    }
-                })
-                .catch((error) => {
-                    console.error("Anonymous sign-in failed:", error);
-                    if (typeof myGameInstance !== 'undefined' && myGameInstance) {
-                        myGameInstance.SendMessage("AutoAuthManager", "OnAuthFailed", error.message);
-                    }
-                });
-        };
-        
-        // Google認証
-        window.signInWithGoogleJS = function() {
-            if (!auth) {
-                console.error("Firebase Auth not initialized");
-                return;
-            }
-            
-            const provider = new GoogleAuthProvider();
-            signInWithPopup(auth, provider)
-                .then((result) => {
-                    console.log("Google sign-in successful:", result.user.uid);
-                    const authInfo = {
-                        userId: result.user.uid,
-                        email: result.user.email,
-                        displayName: result.user.displayName,
-                        authMethod: "Google",
-                        isGuest: false,
-                        authenticatedAt: new Date().toISOString()
-                    };
-                    if (typeof myGameInstance !== 'undefined' && myGameInstance) {
-                        myGameInstance.SendMessage("AutoAuthManager", "OnAuthSuccess", JSON.stringify(authInfo));
-                    }
-                })
-                .catch((error) => {
-                    console.error("Google sign-in failed:", error.code, error.message, error.email, error.credential);
-                    // Unity側にも詳細なエラー内容を渡す
-                    myGameInstance.SendMessage("FirebaseTest", "OnAuthFailed", JSON.stringify(error));
-                });
-        };
-        
-        // Microsoft認証
-        window.signInWithMicrosoftJS = function() {
-            if (!auth) {
-                console.error("Firebase Auth not initialized");
-                return;
-            }
-            
-            const provider = new OAuthProvider('microsoft.com');
-            signInWithPopup(auth, provider)
-                .then((result) => {
-                    console.log("Microsoft sign-in successful:", result.user.uid);
-                    const authInfo = {
-                        userId: result.user.uid,
-                        email: result.user.email,
-                        displayName: result.user.displayName,
-                        authMethod: "Microsoft",
-                        isGuest: false,
-                        authenticatedAt: new Date().toISOString()
-                    };
-                    if (typeof myGameInstance !== 'undefined' && myGameInstance) {
-                        myGameInstance.SendMessage("AutoAuthManager", "OnAuthSuccess", JSON.stringify(authInfo));
-                    }
-                })
-                .catch((error) => {
-                    console.error("Microsoft sign-in failed:", error);
-                    if (typeof myGameInstance !== 'undefined' && myGameInstance) {
-                        myGameInstance.SendMessage("AutoAuthManager", "OnAuthFailed", error.message);
-                    }
-                });
-        };
-        
-        // メール認証（ログイン）
-        window.signInWithEmailJS = function(email, password) {
-            if (!auth) {
-                console.error("Firebase Auth not initialized");
-                return;
-            }
-            
-            signInWithEmailAndPassword(auth, email, password)
-                .then((result) => {
-                    console.log("Email sign-in successful:", result.user.uid);
-                    if (myGameInstance) {
-                        myGameInstance.SendMessage("FirebaseTest", "OnAuthStateChanged", "authenticated");
-                    }
-                })
-                .catch((error) => {
-                    console.error("Email sign-in failed:", error);
-                    if (myGameInstance) {
-                        myGameInstance.SendMessage("FirebaseTest", "OnAuthStateChanged", "error");
-                    }
-                });
-        };
-        
-        // メール認証（新規登録）
-        window.createUserWithEmailJS = function(email, password) {
-            if (!auth) {
-                console.error("Firebase Auth not initialized");
-                return;
-            }
-            
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((result) => {
-                    console.log("Email registration successful:", result.user.uid);
-                    if (myGameInstance) {
-                        myGameInstance.SendMessage("FirebaseTest", "OnAuthStateChanged", "authenticated");
-                    }
-                })
-                .catch((error) => {
-                    console.error("Email registration failed:", error);
-                    if (myGameInstance) {
-                        myGameInstance.SendMessage("FirebaseTest", "OnAuthStateChanged", "error");
-                    }
-                });
-        };
-        
-        // プレイヤーデータを保存
-        window.savePlayerDataJS = function(playerId, jsonData) {
-            if (!db || !auth.currentUser) {
-                console.error("Firebase not initialized or user not authenticated");
-                return;
-            }
-            
-            const docRef = doc(db, "playerData", playerId);
-            setDoc(docRef, JSON.parse(jsonData))
-                .then(() => {
-                    console.log("Player data saved successfully");
-                    if (myGameInstance) {
-                        myGameInstance.SendMessage("FirebaseTest", "OnPlayerDataSaved", "success");
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error saving player data:", error);
-                    if (myGameInstance) {
-                        myGameInstance.SendMessage("FirebaseTest", "OnPlayerDataSaved", "error");
-                    }
-                });
-        };
-        
-        // プレイヤーデータを読み込み
-        window.loadPlayerDataJS = function(playerId) {
-            if (!db || !auth.currentUser) {
-                console.error("Firebase not initialized or user not authenticated");
-                return;
-            }
-            
-            const docRef = doc(db, "playerData", playerId);
-            getDoc(docRef)
-                .then((docSnap) => {
-                    if (docSnap.exists()) {
-                        const data = docSnap.data();
-                        console.log("Player data loaded:", data);
-                        if (myGameInstance) {
-                            myGameInstance.SendMessage("FirebaseTest", "OnPlayerDataLoaded", JSON.stringify(data));
-                        }
-                    } else {
-                        console.log("No player data found");
-                        if (myGameInstance) {
-                            myGameInstance.SendMessage("FirebaseTest", "OnPlayerDataLoaded", "");
-                        }
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error loading player data:", error);
-                    if (myGameInstance) {
-                        myGameInstance.SendMessage("FirebaseTest", "OnPlayerDataLoaded", "error");
-                    }
-                });
-        };
-        
-        // 認証状態チェック
-        window.checkAuthStateJS = function() {
-            if (!auth) {
-                console.error("Firebase Auth not initialized");
-                return;
-            }
-            
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    console.log("User is signed in:", user.uid);
-                    if (myGameInstance) {
-                        myGameInstance.SendMessage("FirebaseTest", "OnAuthStateChanged", "authenticated");
-                    }
-                } else {
-                    console.log("User is signed out");
-                    if (myGameInstance) {
-                        myGameInstance.SendMessage("FirebaseTest", "OnAuthStateChanged", "signed_out");
-                    }
-                }
-            });
-        };
-        
-    </script>
+    <title>Unity WebGL Player | typingWorld</title>
+    <link rel="shortcut icon" href="https://dreadmoz.github.io/necotapuFB/WebGL/favicon.ico">
+    <link rel="stylesheet" href="https://dreadmoz.github.io/necotapuFB/WebGL/style.css">
 </head>
 <body>
     <div id="unity-container" class="unity-desktop">
-        <!-- Googleログインボタン追加 -->
-        <button id="googleSignInBtn" style="position:absolute; left:50%; top:10px; transform:translateX(-50%); z-index:1000; padding:10px 24px; font-size:16px; background:#fff; border:1px solid #4285F4; color:#4285F4; border-radius:4px; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
-            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" style="height:20px; vertical-align:middle; margin-right:8px;">Googleでログイン
-        </button>
-        <canvas id="unity-canvas" width={{{ WIDTH }}} height={{{ HEIGHT }}}></canvas>
+        <canvas id="unity-canvas" width=1366 height=768></canvas>
         <div id="unity-loading-bar">
             <div id="unity-logo"></div>
             <div id="unity-progress-bar-empty">
@@ -420,12 +19,10 @@
         <div id="unity-warning"> </div>
         <div id="unity-footer">
             <div id="unity-webgl-logo"></div>
-            <div id="unity-fullscreen-button"></div>
-            <div id="unity-build-title">全画面</div>
         </div>
     </div>
 
-    <script type="module">
+    <script type="module">// Import the functions you need from the SDKs you need
         var userInfo = null;
         let myGameInstance = null; // グローバルスコープで定義
 
@@ -433,7 +30,7 @@
         var canvas = document.querySelector("#unity-canvas");
         var loadingBar = document.querySelector("#unity-loading-bar");
         var progressBarFull = document.querySelector("#unity-progress-bar-full");
-        var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+//        var fullscreenButton = document.querySelector("#unity-fullscreen-button");
         var warningBanner = document.querySelector("#unity-warning");
 
         function unityShowBanner(msg, type) {
@@ -458,15 +55,15 @@
         function fitWindowCanvasSize(){
           
           var winHeight = window.innerHeight;
-          const isViewUnderBar = true;  //falseにすると下部のバーが画面外に表示
+          const isViewUnderBar = false;  //falseにすると下部のバーが画面外に表示
           if (isViewUnderBar){
             const barHeight = 18*2;            //下部のバーサイズ
             const barHeightMargin = 10*2;      //下部の追加余白サイズ
             winHeight = winHeight - barHeight - barHeightMargin;
           }
           const winWidth = window.innerWidth;
-          const appWidth = "{{{ WIDTH }}}";
-          const appHeight = "{{{ HEIGHT }}}";
+          const appWidth = "1366";
+          const appHeight = "768";
           const scale = Math.min((winWidth / appWidth), (winHeight / appHeight));
           const fixWidth = (appWidth * scale);
           const fixHeight = (appHeight * scale);
@@ -495,10 +92,47 @@
           codeUrl: buildUrl + "/WebGL.wasm",
           streamingAssetsUrl: "StreamingAssets",
           companyName: "DefaultCompany",
-          productName: "FirebaseTest",
-          productVersion: "1.0.0",
+          productName: "TestingGAS",
+          productVersion: "1.1.7",
           showBanner: unityShowBanner,
         };
+        
+        function checkVersionAndUpdate() {
+          const localVersionKey = "userVersion"; // ローカルストレージに保存するキー
+          const appVersion = config.productVersion; // `config` からバージョンを取得
+
+          // ローカルストレージからバージョンを取得
+          const localVersion = localStorage.getItem(localVersionKey);
+          console.log(`アプリバージョン: ${appVersion}, ローカルバージョン: ${localVersion}`);
+
+          // バージョンが一致している場合、何もしないで終了
+          if (localVersion === appVersion) {
+            console.log("バージョンが一致しています。キャッシュクリアは不要です。");
+            loadUnity(); // Unityをロード
+            return;
+          }
+          
+          // ローカルバージョンが存在しないか、異なる場合の処理
+          console.log("バージョンが異なる、または存在しません。キャッシュを削除して更新を実行します。");
+          const dbName = "UnityCache"; // Unityが使用するIndexedDB名
+          const request = indexedDB.deleteDatabase(dbName);
+
+          request.onsuccess = function () {
+            console.log("IndexedDBキャッシュを削除しました。");
+            localStorage.setItem(localVersionKey, appVersion); // ローカルバージョンを更新
+            loadUnity(); // Unityをロード
+          };
+
+          request.onerror = function (event) {
+            console.error("IndexedDBキャッシュの削除に失敗しました: ", event);
+            loadUnity(); // 削除失敗時もUnityをロード
+          };
+
+          request.onblocked = function () {
+            console.warn("IndexedDBキャッシュの削除がブロックされました。他のタブでUnityが使用されている可能性があります。");
+            loadUnity(); // ブロック時でもUnityをロード
+          };
+        }
 
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
           // Mobile device style: fill the whole browser client area with the game canvas:
@@ -517,70 +151,177 @@
         }
         loadingBar.style.display = "block";
 
+        function loadUnity() {
         var script = document.createElement("script");
         script.src = loaderUrl;
         script.onload = () => {
           createUnityInstance(canvas, config, (progress) => {
               progressBarFull.style.width = 100 * progress + "%";
           }).then((unityInstance) => {
-              console.log("Unity instance created successfully");
               myGameInstance = unityInstance;
+              window.unityInstance = unityInstance; // Firebase認証用に追加
               loadingBar.style.display = "none";
-              fullscreenButton.onclick = () => {
-                  unityInstance.SetFullscreen(1);
-              };
-              
-              // Firebase初期化が完了している場合は通知
-              if (window.firebaseInitialized) {
-                  console.log("Unity ready, notifying Firebase initialization success");
-                  // SendMessageを遅延実行してFirebaseManagerの作成を待つ
-                  setTimeout(() => {
-                      try {
-                          myGameInstance.SendMessage("FirebaseTest", "OnFirebaseInitialized", "success");
-                          console.log("SendMessage sent successfully from Unity ready");
-                      } catch (error) {
-                          console.warn("SendMessage failed from Unity ready, trying alternative:", error);
-                          myGameInstance.SendMessage("", "OnFirebaseInitialized", "success");
-                      }
-                  }, 3000);
-              } else {
-                  console.log("Unity ready, but Firebase not initialized yet");
-                  // Firebase初期化を待機するためのポーリング
-                  let checkCount = 0;
-                  const checkFirebaseInit = () => {
-                      checkCount++;
-                      console.log(`Checking Firebase initialization... (attempt ${checkCount})`);
-                      if (window.firebaseInitialized) {
-                          console.log("Firebase initialized after Unity ready, sending notification");
-                          // SendMessageを遅延実行してFirebaseManagerの作成を待つ
-                          setTimeout(() => {
-                              try {
-                                  myGameInstance.SendMessage("FirebaseTest", "OnFirebaseInitialized", "success");
-                                  console.log("SendMessage sent successfully from polling");
-                              } catch (error) {
-                                  console.warn("SendMessage failed from polling, trying alternative:", error);
-                                  myGameInstance.SendMessage("", "OnFirebaseInitialized", "success");
-                              }
-                          }, 3000);
-                      } else if (checkCount < 10) {
-                          setTimeout(checkFirebaseInit, 500);
-                      } else {
-                          console.error("Firebase initialization check timeout");
-                      }
-                  };
-                  setTimeout(checkFirebaseInit, 500);
-              }
+
+//              fullscreenButton.onclick = () => {
+//                  unityInstance.SetFullscreen(1);
+//              };
+
           }).catch((message) => {
-              console.error("Unity instance creation failed:", message);
               alert(message);
           });
           windowResizeEvent();
         };
         document.body.appendChild(script);
+        }
+        // ページロード時にバージョンチェックを実行
+        checkVersionAndUpdate();
 
-        // Googleログインボタンのクリックイベント
-        document.getElementById('googleSignInBtn').addEventListener('click', function() {
-            window.signInWithGoogleJS();
+        //######################################################
+        // Firebase認証機能
+        //######################################################
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, GoogleAuthProvider, OAuthProvider, signInWithPopup, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        // Firebase設定
+        const firebaseConfig = {
+            apiKey: "AIzaSyAlz5pYr-M5MzY_es94f2zNphBBMiJ5TXs",
+            authDomain: "necotapufb.firebaseapp.com",
+            projectId: "necotapufb",
+            storageBucket: "necotapufb.firebasestorage.app",
+            messagingSenderId: "794942101336",
+            appId: "1:794942101336:web:e244937b77bb056a43772d",
+            databaseURL: "https://necotapufb.firebaseio.com"
+        };
+
+        // Firebase初期化
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // ログ出力関数
+        function addLog(message) {
+            console.log(`[${new Date().toLocaleTimeString()}] ${message}`);
+        }
+
+        // Unityから呼び出せる認証関数
+        window.startGoogleAuthFromUnity = function() {
+            addLog("=== UnityからGoogle認証開始 ===");
+            
+            if (!auth) {
+                addLog("Firebase認証が初期化されていません");
+                return;
+            }
+            
+            const provider = new GoogleAuthProvider();
+            addLog("GoogleAuthProvider作成完了");
+            
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    addLog("✅ Google認証成功");
+                    addLog(`ユーザーID: ${result.user.uid}`);
+                    addLog(`メールアドレス: ${result.user.email}`);
+                    addLog(`表示名: ${result.user.displayName}`);
+                    
+                    // Unityに認証情報を送信
+                    const authInfo = {
+                        userId: result.user.uid,
+                        email: result.user.email,
+                        displayName: result.user.displayName,
+                        authMethod: "Google",
+                        isGuest: false,
+                        authenticatedAt: new Date().toISOString()
+                    };
+                    
+                    // Unityに認証情報を送信
+                    if (window.unityInstance) {
+                        window.unityInstance.SendMessage('AuthManager', 'OnAuthSuccess', JSON.stringify(authInfo));
+                        addLog("認証情報をUnityに送信完了");
+                    }
+                })
+                .catch((error) => {
+                    addLog(`❌ Google認証失敗: ${error.message}`);
+                });
+        };
+
+        // Unityから呼び出せるMicrosoft認証関数
+        window.startMicrosoftAuthFromUnity = function() {
+            addLog("=== UnityからMicrosoft認証開始 ===");
+            
+            if (!auth) {
+                addLog("Firebase認証が初期化されていません");
+                return;
+            }
+            
+            const provider = new OAuthProvider('microsoft.com');
+            addLog("MicrosoftAuthProvider作成完了");
+            
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    addLog("✅ Microsoft認証成功");
+                    addLog(`ユーザーID: ${result.user.uid}`);
+                    addLog(`メールアドレス: ${result.user.email}`);
+                    addLog(`表示名: ${result.user.displayName}`);
+                    
+                    // Unityに認証情報を送信
+                    const authInfo = {
+                        userId: result.user.uid,
+                        email: result.user.email,
+                        displayName: result.user.displayName,
+                        authMethod: "Microsoft",
+                        isGuest: false,
+                        authenticatedAt: new Date().toISOString()
+                    };
+                    
+                    // Unityに認証情報を送信
+                    if (window.unityInstance) {
+                        window.unityInstance.SendMessage('AuthManager', 'OnAuthSuccess', JSON.stringify(authInfo));
+                        addLog("認証情報をUnityに送信完了");
+                    }
+                })
+                .catch((error) => {
+                    addLog(`❌ Microsoft認証失敗: ${error.message}`);
+                });
+        };
+
+        // Unityから呼び出せるゲスト認証関数
+        window.startGuestAuthFromUnity = function() {
+            addLog("=== Unityからゲスト認証開始 ===");
+            
+            if (!auth) {
+                addLog("Firebase認証が初期化されていません");
+                return;
+            }
+            
+            signInAnonymously(auth)
+                .then((result) => {
+                    addLog("✅ ゲスト認証成功");
+                    addLog(`ユーザーID: ${result.user.uid}`);
+                    
+                    // Unityに認証情報を送信
+                    const authInfo = {
+                        userId: result.user.uid,
+                        email: "",
+                        displayName: "ゲストユーザー",
+                        authMethod: "Guest",
+                        isGuest: true,
+                        authenticatedAt: new Date().toISOString()
+                    };
+                    
+                    // Unityに認証情報を送信
+                    if (window.unityInstance) {
+                        window.unityInstance.SendMessage('AuthManager', 'OnAuthSuccess', JSON.stringify(authInfo));
+                        addLog("認証情報をUnityに送信完了");
+                    }
+                })
+                .catch((error) => {
+                    addLog(`❌ ゲスト認証失敗: ${error.message}`);
+                });
+        };
+
+        // ページ読み込み時の処理
+        document.addEventListener('DOMContentLoaded', function() {
+            addLog("=== ページ読み込み開始 ===");
+            addLog("Firebase設定完了");
+            addLog("Unityからポップアップ認証システム準備完了");
         });
     </script>
 </body>

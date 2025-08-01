@@ -21,7 +21,7 @@ MonoBehaviour:
   databaseURL: https://necotapufb.firebaseio.com
   collectionName: playerData
   enableGoogleAuth: 1
-  enableMicrosoftAuth: 0
+  enableMicrosoftAuth: 1
   enableAnonymousAuth: 1
   googleClientId: 
   microsoftClientId: 

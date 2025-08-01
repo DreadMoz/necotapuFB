@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.13059373, g: 0.20172095, b: 0.36123845, a: 1}
+  m_IndirectSpecularColor: {r: 0.1044121, g: 0.15733048, b: 0.2781628, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -314,8 +314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a746d83724c4bf5829a7f8b40324cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 529254024}
-  title: {fileID: 992936578}
 --- !u!1 &172241937
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,7 +883,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 992936578}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TitleSky, Assembly-CSharp
         m_MethodName: confirmNeco
         m_Mode: 1
@@ -1687,7 +1685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   db: {fileID: 11400000, guid: f6a63b7d1998548f6babf3974cb219e7, type: 2}
   savedata: {fileID: 11400000, guid: 53736ca5c0e474c06821507c23ae53df, type: 2}
-  connection: {fileID: 133407441}
+  firebaseConfig: {fileID: 0}
   kpmRatio: 0.05
   setting: {fileID: 0}
   player: {fileID: 994566807}
@@ -1815,7 +1813,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 992936578}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TitleSky, Assembly-CSharp
         m_MethodName: updownNeco
         m_Mode: 1
@@ -1949,7 +1947,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 992936578}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TitleSky, Assembly-CSharp
         m_MethodName: googleLogout
         m_Mode: 1
@@ -2459,7 +2457,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 992936578}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TitleSky, Assembly-CSharp
         m_MethodName: nextNeco
         m_Mode: 1
@@ -2881,7 +2879,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 992936579}
-  - component: {fileID: 992936578}
+  - component: {fileID: 992936580}
   m_Layer: 0
   m_Name: TitleScene
   m_TagString: Untagged
@@ -2889,7 +2887,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &992936578
+--- !u!4 &992936579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992936577}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1072.7, y: 259, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &992936580
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2898,7 +2911,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 992936577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a86a28b5c0f21142854ec1507b0a62f, type: 3}
+  m_Script: {fileID: 11500000, guid: 66cb973040b7a47bfa7431f6eb112f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 0.5
@@ -2923,21 +2936,6 @@ MonoBehaviour:
   confirmButton: {fileID: 288632614}
   ashiato: {fileID: 246828329}
   deverop: {fileID: 1601968420}
---- !u!4 &992936579
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992936577}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1072.7, y: 259, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &994566807 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7031553045946190738, guid: 93f91d3dd290c9d4e8d30dfa31201048, type: 3}
@@ -4780,7 +4778,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 992936578}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TitleSky, Assembly-CSharp
         m_MethodName: testFinishDataLoad
         m_Mode: 1
@@ -5027,8 +5025,8 @@ RectTransform:
   m_GameObject: {fileID: 1500066099}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1627095558}
   m_Father: {fileID: 195278424}
@@ -5036,7 +5034,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -512, y: -328}
+  m_AnchoredPosition: {x: -17, y: 46}
   m_SizeDelta: {x: 260, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1500066101
@@ -5083,7 +5081,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 992936578}
+      - m_Target: {fileID: 992936580}
         m_TargetAssemblyTypeName: TitleSky, Assembly-CSharp
         m_MethodName: onGuestMode
         m_Mode: 1
@@ -6547,7 +6545,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 992936578}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TitleSky, Assembly-CSharp
         m_MethodName: prevNeco
         m_Mode: 1
@@ -6899,7 +6897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2065377201
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6967,7 +6965,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 992936578}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TitleSky, Assembly-CSharp
         m_MethodName: StartButton
         m_Mode: 1

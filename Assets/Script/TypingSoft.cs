@@ -175,6 +175,7 @@ public class TypingSoft : MonoBehaviour
     private int nextMessageNo;
     private Message nextMessage;
     private bool isForceQuit = false;
+    private bool isWaitingForReturnKey = false; // ゲストモードでリザルト表示後にキー入力を待つフラグ
     private int mailReplaceNo = -1;
 
 
@@ -926,6 +927,9 @@ public class TypingSoft : MonoBehaviour
             {
                 panelMessage.SetActive(false);
             }
+            
+            // ゲストモードではキー入力を待つフラグを設定
+            isWaitingForReturnKey = true;
         }
 
         gm.savedata.Settings[se.GachaCnt] ++;
@@ -1129,15 +1133,24 @@ public class TypingSoft : MonoBehaviour
             }
         }
 
+        // ゲストモードでリザルト表示後にEnterキーでタイトル画面に戻る
+        if (GameManager.guestMode && isWaitingForReturnKey && e.type == EventType.KeyDown && e.keyCode == KeyCode.Return)
+        {
+            Debug.Log("ゲストモード: Enterキーでタイトル画面に戻ります");
+            GameManager.SceneNo = (int)scene.Title;
+            SceneManager.LoadScene("TitleScene");
+            return;
+        }
+
         if (isInputValid && e.type == EventType.KeyDown && e.keyCode != KeyCode.None
         && !Input.GetMouseButton(0) && !Input.GetMouseButton(1) && !Input.GetMouseButton(2))
         {
-            // デバッグ情報を追加
-            Debug.Log($"Key pressed: {e.keyCode}, Character: '{e.character}', Shift: {isPushedShiftKey}");
+            // デバッグ情報を追加（コメントアウト）
+            // Debug.Log($"Key pressed: {e.keyCode}, Character: '{e.character}', Shift: {isPushedShiftKey}");
             
             // ConvertKeyCodeToStrを使用して文字を取得
             string inputChar = ConvertKeyCodeToStr(e.keyCode, isPushedShiftKey);
-            Debug.Log($"Converted to: '{inputChar}'");
+            // Debug.Log($"Converted to: '{inputChar}'");
             
             // 文字が出力される場合のみ処理
             if (!string.IsNullOrEmpty(inputChar))
@@ -1203,9 +1216,9 @@ public class TypingSoft : MonoBehaviour
     /// </summary>
     private string ConvertKeyCodeToStr(KeyCode key, bool isShiftkeyPushed)
     {
-        if (key != 0) {     // デバッグ用
-            Debug.Log("key: " + key);
-            END.text = "key: " + key;
+        if (key != 0) {     // デバッグ用（コメントアウト）
+            // Debug.Log("key: " + key);
+            // END.text = "key: " + key;
         }
         int keyType = gm.savedata.Settings[se.Capital];
         switch (key)

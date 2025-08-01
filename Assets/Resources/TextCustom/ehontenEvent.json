@@ -1,0 +1,308 @@
+{
+  "title": "がっこうにあるものとどうぶつのなまえ",
+  "description": "がっこうにあるものとどうぶつのなまえをタイピングしましょう。",
+  "timer": 60,
+  "random": 99,
+  "themes": [
+    {
+      "id": 1,
+      "kanji": "",
+      "hiragana": "つくえ"
+    },
+    {
+      "id": 2,
+      "kanji": "",
+      "hiragana": "いぬ"
+    },
+    {
+      "id": 3,
+      "kanji": "",
+      "hiragana": "いす"
+    },
+    {
+      "id": 4,
+      "kanji": "",
+      "hiragana": "おひるね"
+    },
+    {
+      "id": 5,
+      "kanji": "",
+      "hiragana": "ほん"
+    },
+    {
+      "id": 6,
+      "kanji": "",
+      "hiragana": "うさぎ"
+    },
+    {
+      "id": 7,
+      "kanji": "",
+      "hiragana": "えんぴつ"
+    },
+    {
+      "id": 8,
+      "kanji": "",
+      "hiragana": "きりん"
+    },
+    {
+      "id": 9,
+      "kanji": "",
+      "hiragana": "けしごむ"
+    },
+    {
+      "id": 10,
+      "kanji": "",
+      "hiragana": "ぞう"
+    },
+    {
+      "id": 11,
+      "kanji": "",
+      "hiragana": "かばん"
+    },
+    {
+      "id": 12,
+      "kanji": "",
+      "hiragana": "くま"
+    },
+    {
+      "id": 13,
+      "kanji": "",
+      "hiragana": "せんせい"
+    },
+    {
+      "id": 14,
+      "kanji": "",
+      "hiragana": "うま"
+    },
+    {
+      "id": 15,
+      "kanji": "",
+      "hiragana": "いろえんぴつ"
+    },
+    {
+      "id": 16,
+      "kanji": "",
+      "hiragana": "さる"
+    },
+    {
+      "id": 17,
+      "kanji": "",
+      "hiragana": "こくばん"
+    },
+    {
+      "id": 18,
+      "kanji": "",
+      "hiragana": "ひつじ"
+    },
+    {
+      "id": 19,
+      "kanji": "",
+      "hiragana": "でんき"
+    },
+    {
+      "id": 20,
+      "kanji": "",
+      "hiragana": "ねずみ"
+    },
+    {
+      "id": 21,
+      "kanji": "",
+      "hiragana": "とけい"
+    },
+    {
+      "id": 22,
+      "kanji": "",
+      "hiragana": "うし"
+    },
+    {
+      "id": 23,
+      "kanji": "",
+      "hiragana": "まど"
+    },
+    {
+      "id": 24,
+      "kanji": "",
+      "hiragana": "ぶた"
+    },
+    {
+      "id": 25,
+      "kanji": "",
+      "hiragana": "くれよん"
+    },
+    {
+      "id": 26,
+      "kanji": "",
+      "hiragana": "とり"
+    },
+    {
+      "id": 27,
+      "kanji": "",
+      "hiragana": "はさみ"
+    },
+    {
+      "id": 28,
+      "kanji": "",
+      "hiragana": "かえる"
+    },
+    {
+      "id": 29,
+      "kanji": "",
+      "hiragana": "のり"
+    },
+    {
+      "id": 30,
+      "kanji": "",
+      "hiragana": "かめ"
+    },
+    {
+      "id": 31,
+      "kanji": "",
+      "hiragana": "ふでばこ"
+    },
+    {
+      "id": 32,
+      "kanji": "",
+      "hiragana": "ごはん"
+    },
+    {
+      "id": 33,
+      "kanji": "",
+      "hiragana": "えのぐ"
+    },
+    {
+      "id": 34,
+      "kanji": "",
+      "hiragana": "きつね"
+    },
+    {
+      "id": 35,
+      "kanji": "",
+      "hiragana": "おりがみ"
+    },
+    {
+      "id": 36,
+      "kanji": "",
+      "hiragana": "たぬき"
+    },
+    {
+      "id": 37,
+      "kanji": "",
+      "hiragana": "じしゃく"
+    },
+    {
+      "id": 38,
+      "kanji": "",
+      "hiragana": "ねこ"
+    },
+    {
+      "id": 39,
+      "kanji": "",
+      "hiragana": "えほん"
+    },
+    {
+      "id": 40,
+      "kanji": "",
+      "hiragana": "くつ"
+    },
+    {
+      "id": 41,
+      "kanji": "",
+      "hiragana": "すなば"
+    },
+    {
+      "id": 42,
+      "kanji": "",
+      "hiragana": "うさぎ"
+    },
+    {
+      "id": 43,
+      "kanji": "",
+      "hiragana": "くるま"
+    },
+    {
+      "id": 44,
+      "kanji": "",
+      "hiragana": "きりん"
+    },
+    {
+      "id": 45,
+      "kanji": "",
+      "hiragana": "えんぴつ"
+    },
+    {
+      "id": 46,
+      "kanji": "",
+      "hiragana": "ぞう"
+    },
+    {
+      "id": 47,
+      "kanji": "",
+      "hiragana": "ねこたぷ"
+    },
+    {
+      "id": 48,
+      "kanji": "",
+      "hiragana": "おべんとう"
+    },
+    {
+      "id": 49,
+      "kanji": "",
+      "hiragana": "ぼうし"
+    },
+    {
+      "id": 50,
+      "kanji": "",
+      "hiragana": "てれび"
+    },
+    {
+      "id": 51,
+      "kanji": "",
+      "hiragana": "ぱそこん"
+    },
+    {
+      "id": 52,
+      "kanji": "",
+      "hiragana": "おてんき"
+    },
+    {
+      "id": 53,
+      "kanji": "",
+      "hiragana": "あめ"
+    },
+    {
+      "id": 54,
+      "kanji": "",
+      "hiragana": "おたんじょうび"
+    },
+    {
+      "id": 55,
+      "kanji": "",
+      "hiragana": "なつやすみ"
+    },
+    {
+      "id": 56,
+      "kanji": "",
+      "hiragana": "うみ"
+    },
+    {
+      "id": 57,
+      "kanji": "",
+      "hiragana": "かわ"
+    },
+    {
+      "id": 58,
+      "kanji": "",
+      "hiragana": "やま"
+    },
+    {
+      "id": 59,
+      "kanji": "",
+      "hiragana": "しょうがっこう"
+    },
+    {
+      "id": 60,
+      "kanji": "",
+      "hiragana": "おもちゃ"
+    }
+  ]
+} 

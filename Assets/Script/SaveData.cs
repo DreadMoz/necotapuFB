@@ -62,6 +62,29 @@ public class SerializableRankingData
     public string[][] rankingData;
 }
 
+[System.Serializable]
+public class SerializableSympleStatusData
+{
+    public string email;
+    public string ou;
+    public string lastName;
+    public int gold;
+    public int stage;
+    public int ranking;
+    public string name;
+    public int rightHand;
+    public int glasses;
+    public int head;
+    public int leftHand;
+    public int catBody;
+    public int catFace;
+    public int nickName;
+    public int kpm;
+    public int kpms;
+    public int[] medals;
+    public int[] items;
+}
+
 // 拡張機能ランキング
 [Serializable]
 public class ExRank

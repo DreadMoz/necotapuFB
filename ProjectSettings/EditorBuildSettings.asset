@@ -5,17 +5,23 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/0Scenes/FirebaseTest.unity
     guid: 8242cc833b36a43e4bcf99a3ade7c67b
   - enabled: 0
+    path: Assets/0Scenes/AuthTest.unity
+    guid: be431dcee547747a9bccabba63d99a0a
+  - enabled: 1
     path: Assets/0Scenes/TitleScene.unity
     guid: 4295eae57a36e41c9b833868cba7d233
-  - enabled: 0
+  - enabled: 1
     path: Assets/0Scenes/WorldScene.unity
     guid: 2c6d3474ba41549018e4160ffbc0dbdd
-  - enabled: 0
+  - enabled: 1
     path: Assets/0Scenes/TypingStage.unity
     guid: 96dfe08931b604909ac527a08379893a
+  - enabled: 0
+    path: Assets/0Scenes/AuthTestScene.unity
+    guid: 5212510ce5caa45a3a00b686f504c1ad
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d579169d021ab41a5acaed2fa93f36d1, type: 2}
