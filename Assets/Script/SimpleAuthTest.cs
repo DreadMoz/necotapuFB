@@ -78,7 +78,7 @@ public class SimpleAuthTest : MonoBehaviour
             Debug.Log($"Firebase設定を送信: {configJson}");
             
             // JavaScript側に設定を送信
-            setFirebaseConfig(configJson);
+            setFirebaseConfigJslib(configJson);
         #else
             Debug.Log("エディタ環境: Firebase設定送信をスキップ");
         #endif
@@ -86,7 +86,7 @@ public class SimpleAuthTest : MonoBehaviour
 
     // JavaScript側との連携メソッド
     [System.Runtime.InteropServices.DllImport("__Internal")]
-    private static extern void setFirebaseConfig(string config);
+    private static extern void setFirebaseConfigJslib(string config);
 
     /// <summary>
     /// Firebase初期化完了時のコールバック

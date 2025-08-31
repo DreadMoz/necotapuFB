@@ -4,6 +4,18 @@
 #
 Assets/Script/GoogleServiceAccount.cs
 
+# Firebase設定ファイル（機密情報）
+Assets/ScriptableObject/FirebaseConfig.asset
+Assets/ScriptableObject/FirebaseConfig.asset.meta
+
+# AppSettings（セキュリティ重視）
+Assets/ScriptableObject/AppSettings.asset
+Assets/ScriptableObject/AppSettings.asset.meta
+
+# 生成されたHTMLファイル（機密情報を含む）
+Assets/WebGLTemplates/necotapu/index.html
+Assets/WebGLTemplates/necotapu/index.html.meta
+
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/

@@ -1124,8 +1124,8 @@ public class TypingSoft : MonoBehaviour
                     {
                         return;     // イベント用に固まらせる
 
-                        GameManager.SceneNo = (int)scene.Heijo;   // ワールドシーン平城京
-                        GameManager.eventHeijo = false;
+//                        GameManager.SceneNo = (int)scene.Heijo;   // ワールドシーン平城京
+//                        GameManager.eventHeijo = false;
                     }
                     SceneManager.LoadScene("WorldScene");           // ワールドシーンに遷移
                     goNextScene = true;

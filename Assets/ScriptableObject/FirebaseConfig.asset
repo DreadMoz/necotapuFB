@@ -18,10 +18,5 @@ MonoBehaviour:
   storageBucket: necotapufb.firebasestorage.app
   messagingSenderId: 794942101336
   appId: 1:794942101336:web:e244937b77bb056a43772d
-  databaseURL: https://necotapufb.firebaseio.com
-  collectionName: playerData
-  enableGoogleAuth: 1
-  enableMicrosoftAuth: 1
-  enableAnonymousAuth: 1
-  googleClientId: 
-  microsoftClientId: 
+  databaseUrl: https://necotapufb-default-rtdb.firebaseio.com
+  isProduction: 0

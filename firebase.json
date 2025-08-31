@@ -3,8 +3,22 @@
     "public": "WebGL",
     "ignore": [
       "firebase.json",
+      "firebase.test.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "headers": [
+      {
+        "source": "**/*.unityweb",
+        "headers": [{
+          "key": "Content-Encoding",
+          "value": "br"
+        }]
+      }
     ]
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
   }
 }

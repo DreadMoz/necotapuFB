@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
     private int heijoWindow = 0;
     private int keepOutCount = 0;
 
-    private bool goNextScene = false;    // 次のシーンに遷移するためのフラグ
+//    private bool goNextScene = false;    // 次のシーンに遷移するためのフラグ
 
     void Start()
     {

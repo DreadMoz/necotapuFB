@@ -33,6 +33,11 @@
 //        var fullscreenButton = document.querySelector("#unity-fullscreen-button");
         var warningBanner = document.querySelector("#unity-warning");
 
+        /**
+         * Unityの警告バナーを表示・管理する
+         * @param {string} msg - 表示するメッセージ
+         * @param {string} type - メッセージタイプ ('error', 'warning')
+         */
         function unityShowBanner(msg, type) {
           function updateBannerVisibility() {
               warningBanner.style.display = warningBanner.children.length ? "block" : "none";
@@ -51,7 +56,10 @@
           updateBannerVisibility();
         }
 
-        //ウインドウサイズに合わせキャンバスサイズを変更
+        /**
+         * ウィンドウサイズに合わせてUnityキャンバスのサイズを調整する
+         * アスペクト比を保ちながら、ウィンドウ内に収まるようにスケーリング
+         */
         function fitWindowCanvasSize(){
           
           var winHeight = window.innerHeight;
@@ -71,7 +79,10 @@
           canvas.style.width = fixWidth + 'px';
           canvas.style.height = fixHeight + 'px';
         }
-        //ウインドウのリサイズ時の処理
+        /**
+         * ウィンドウリサイズ時のイベントハンドラーを設定
+         * リサイズ完了後300msでキャンバスサイズを調整（パフォーマンス最適化）
+         */
         function windowResizeEvent(){
           var timeoutId = 0;
           const resizeDelay = 300;  //リサイズが完了したと判断する時間
@@ -87,52 +98,59 @@
         var buildUrl = "Build";
         var loaderUrl = buildUrl + "/WebGL.loader.js";
         var config = {
-          dataUrl: buildUrl + "/WebGL.data",
-          frameworkUrl: buildUrl + "/WebGL.framework.js",
-          codeUrl: buildUrl + "/WebGL.wasm",
+          dataUrl: buildUrl + "/WebGL.data.unityweb",
+          frameworkUrl: buildUrl + "/WebGL.framework.js.unityweb",
+          codeUrl: buildUrl + "/WebGL.wasm.unityweb",
           streamingAssetsUrl: "StreamingAssets",
           companyName: "DefaultCompany",
           productName: "TestingGAS",
-          productVersion: "1.1.7",
+          productVersion: "unset", // UnityのWebGLビルド設定から自動で取得できないため、明示的に設定
+
           showBanner: unityShowBanner,
         };
         
-        function checkVersionAndUpdate() {
-          const localVersionKey = "userVersion"; // ローカルストレージに保存するキー
-          const appVersion = config.productVersion; // `config` からバージョンを取得
+        /**
+         * LocalStorageからデータを読み込む関数
+         * @returns {Promise<Object>} LocalStorageから読み込まれたデータとロード元を示すフラグ
+         */
+        window.LoadDataFromLocal = function() {
+            return new Promise((resolve) => {
+                try {
+                    const statusAccountKey = window.getAccountSpecificKey('statusData');
+                    const storedStatusData = localStorage.getItem(statusAccountKey);
+                    
+                    const rankingAccountKey = window.getAccountSpecificKey('rankingData');
+                    const storedRankingData = localStorage.getItem(rankingAccountKey);
 
-          // ローカルストレージからバージョンを取得
-          const localVersion = localStorage.getItem(localVersionKey);
-          console.log(`アプリバージョン: ${appVersion}, ローカルバージョン: ${localVersion}`);
+                    const result = {
+                        statusData: null,
+                        rankingData: null,
+                        source: 'local' // ロード元がLocalStorageであることを示すフラグ
+                    };
 
-          // バージョンが一致している場合、何もしないで終了
-          if (localVersion === appVersion) {
-            console.log("バージョンが一致しています。キャッシュクリアは不要です。");
-            loadUnity(); // Unityをロード
-            return;
-          }
-          
-          // ローカルバージョンが存在しないか、異なる場合の処理
-          console.log("バージョンが異なる、または存在しません。キャッシュを削除して更新を実行します。");
-          const dbName = "UnityCache"; // Unityが使用するIndexedDB名
-          const request = indexedDB.deleteDatabase(dbName);
+                    if (storedStatusData) {
+                        result.statusData = JSON.parse(storedStatusData);
+                        console.log(`LocalStorageからステータスデータを読み込みました (${statusAccountKey}):`, result.statusData);
+                    } else {
+                        console.log(`LocalStorageにステータスデータが見つかりません (${statusAccountKey})`);
+                    }
 
-          request.onsuccess = function () {
-            console.log("IndexedDBキャッシュを削除しました。");
-            localStorage.setItem(localVersionKey, appVersion); // ローカルバージョンを更新
-            loadUnity(); // Unityをロード
-          };
+                    if (storedRankingData) {
+                        result.rankingData = JSON.parse(storedRankingData);
+                        console.log(`LocalStorageからランキングデータを読み込みました (${rankingAccountKey}):`, result.rankingData);
+                    } else {
+                        console.log(`LocalStorageにランキングデータが見つかりません (${rankingAccountKey})`);
+                    }
 
-          request.onerror = function (event) {
-            console.error("IndexedDBキャッシュの削除に失敗しました: ", event);
-            loadUnity(); // 削除失敗時もUnityをロード
-          };
+                    resolve(result);
 
-          request.onblocked = function () {
-            console.warn("IndexedDBキャッシュの削除がブロックされました。他のタブでUnityが使用されている可能性があります。");
-            loadUnity(); // ブロック時でもUnityをロード
-          };
-        }
+                } catch (e) {
+                    console.error("データの解析中にエラーが発生しました:", e);
+                    resolve({ statusData: null, rankingData: null, source: 'local', error: e });
+                }
+            });
+        };
+
 
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
           // Mobile device style: fill the whole browser client area with the game canvas:
@@ -151,6 +169,10 @@
         }
         loadingBar.style.display = "block";
 
+        /**
+         * Unity WebGLアプリケーションをロードする
+         * ローダースクリプトを動的に追加し、Unityインスタンスを作成
+         */
         function loadUnity() {
         var script = document.createElement("script");
         script.src = loaderUrl;
@@ -173,36 +195,372 @@
         };
         document.body.appendChild(script);
         }
-        // ページロード時にバージョンチェックを実行
-        checkVersionAndUpdate();
+        // Unityを直接ロード
+        loadUnity();
 
         //######################################################
         // Firebase認証機能
         //######################################################
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, GoogleAuthProvider, OAuthProvider, signInWithPopup, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getAuth, GoogleAuthProvider, OAuthProvider, signInWithPopup, signInAnonymously, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, collection, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // Firebase設定
-        const firebaseConfig = {
-            apiKey: "AIzaSyAlz5pYr-M5MzY_es94f2zNphBBMiJ5TXs",
-            authDomain: "necotapufb.firebaseapp.com",
-            projectId: "necotapufb",
-            storageBucket: "necotapufb.firebasestorage.app",
-            messagingSenderId: "794942101336",
-            appId: "1:794942101336:web:e244937b77bb056a43772d",
-            databaseURL: "https://necotapufb.firebaseio.com"
-        };
+        // Firebase設定（設定テンプレートから読み込み）
+        let firebaseConfig = null;
+        window.app = null;
+        window.auth = null;
+        let isProduction = false;
 
-        // Firebase初期化
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+        /**
+         * プロフィール画像を処理し、アニメーションGIFの場合は最初のフレームを静止画に変換します。
+         * UnityがアニメーションGIFを直接読み込めない問題に対応。
+         * @param {string} url - 元の画像URL
+         * @returns {Promise<string|null>} 処理された画像URL（データURLまたは元のURL）、またはエラー時にnull
+         */
+        async function processPhotoURLForUnity(url) {
+            if (!url) {
+                return null;
+            }
 
-        // ログ出力関数
+            try {
+                // 画像をダウンロード
+                const response = await fetch(url);
+                const blob = await response.blob();
+                
+                // Content-TypeでGIFを判定
+                if (blob.type === 'image/gif') {
+                    console.log("アニメーションGIFを検出しました。最初のフレームを静止画に変換します。");
+                    return new Promise((resolve) => {
+                        const img = new Image();
+                        img.onload = () => {
+                            const canvas = document.createElement('canvas');
+                            canvas.width = img.width;
+                            canvas.height = img.height;
+                            const ctx = canvas.getContext('2d');
+                            ctx.drawImage(img, 0, 0);
+                            // PNGまたはJPEGに変換（透過を考慮しPNG優先）
+                            const dataUrl = canvas.toDataURL('image/png'); 
+                            resolve(dataUrl);
+                        };
+                        img.onerror = (e) => {
+                            console.error("GIFのロードに失敗しました (Imageオブジェクト):", e);
+                            resolve(url); // 変換失敗時は元のURLを返す
+                        };
+                        img.src = URL.createObjectURL(blob);
+                    });
+                } else {
+                    return url; // GIFでなければそのままのURLを返す
+                }
+            } catch (error) {
+                console.error("プロフィール画像の処理中にエラーが発生しました:", error);
+                return url; // エラー時は元のURLを返す
+            }
+        }
+        
+        /**
+         * ログメッセージをコンソールに出力する（タイムスタンプ付き）
+         * @param {string} message - 出力するメッセージ
+         */
         function addLog(message) {
             console.log(`[${new Date().toLocaleTimeString()}] ${message}`);
         }
 
-        // Unityから呼び出せる認証関数
+        /**
+         * アカウント固有のキーを生成
+         * @param {string} baseKey - ベースとなるキー名
+         * @returns {string} アカウント固有のキー
+         */
+        window.getAccountSpecificKey = function(baseKey) {
+            var currentUser = null;
+            if (typeof window.auth !== 'undefined' && window.auth.currentUser) {
+                currentUser = window.auth.currentUser;
+            }
+            
+            if (currentUser && currentUser.email) {
+                // メールアドレスをキーに含める（特殊文字を除去）
+                var emailKey = currentUser.email.replace(/[^a-zA-Z0-9]/g, '_');
+                return baseKey + '_' + emailKey;
+            } else {
+                // ユーザーが認証されていない場合はデフォルトキー
+                return baseKey + '_anonymous';
+            }
+        };
+
+        /**
+         * 一括データ読み込みの内部実装
+         */
+        window.loadAllDataFromFirestore = function() {
+            console.log("Firebaseから一括データ読み込み開始");
+            
+            // 1. ユーザ情報を読み込み
+            if (typeof window.loadFirestoreUserData === 'function') {
+                window.loadFirestoreUserData();
+            } else {
+                console.error("❌ loadFirestoreUserData関数が見つかりません");
+            }
+            
+            // 2. ランキング情報を読み込み（後で実装予定）
+            // TODO: ランキング情報取得処理を実装
+            console.log("ランキング情報読み込み: 後で実装予定");
+            
+            // 3. アプリバージョン情報を読み込み
+            if (typeof window.checkAppVersion === 'function') {
+                window.checkAppVersion().then((versionInfo) => {
+                    console.log("アプリバージョン情報取得成功:", versionInfo);
+                    // Unityに結果を送信
+                    if (window.unityInstance) {
+                        if (versionInfo && versionInfo.version) {
+                            window.unityInstance.SendMessage('AppVersionManager', 'OnFirebaseVersionReceived', versionInfo.version);
+                        } else {
+                            window.unityInstance.SendMessage('AppVersionManager', 'OnFirebaseVersionReceived', '');
+                        }
+                    }
+                }).catch((error) => {
+                    console.error("アプリバージョン情報取得エラー:", error);
+                    // エラーの場合は空文字を送信
+                    if (window.unityInstance) {
+                        window.unityInstance.SendMessage('AppVersionManager', 'OnFirebaseVersionReceived', '');
+                    }
+                });
+            } else {
+                console.error("❌ checkAppVersion関数が見つかりません");
+            }
+        };
+
+        /**
+         * Firebase認証状態監視を設定
+         */
+        function setupAuthStateListener() {
+            console.log("🔍 Firebase認証状態監視を設定");
+            
+            onAuthStateChanged(window.auth, async (user) => {
+                if (user) {
+                    console.log("✅ onAuthStateChanged: 認証済みユーザーを検出", user.uid);
+                    console.log("   メール:", user.email);
+                    console.log("   表示名:", user.displayName);
+                    
+                    // リロード後かどうかをチェック
+                    const reloadFlag = localStorage.getItem('forceReloadInProgress');
+                    if (reloadFlag === 'true') {
+                        console.log("🔄 強制リロード後の認証状態復元を検出");
+                        await handlePostReloadAuth(user); // await を追加
+                    } else {
+                        console.log("🆕 通常の認証状態変更を検出");
+                        // 通常の認証プロセス（Unity側に送信）
+                        if (window.unityInstance) {
+                            const processedPhotoURL = await processPhotoURLForUnity(user.photoURL); // ここを修正
+                            const authInfo = {
+                                userId: user.uid,
+                                email: user.email,
+                                displayName: user.displayName,
+                                photoURL: processedPhotoURL, // 処理済みのURLを使用
+                                authMethod: user.providerData[0]?.providerId || "unknown",
+                                isGuest: user.isAnonymous,
+                                authenticatedAt: new Date().toISOString()
+                            };
+                            window.unityInstance.SendMessage('AuthManager', 'OnAuthSuccess', JSON.stringify(authInfo));
+                        }
+                    }
+                } else {
+                    console.log("ℹ️ onAuthStateChanged: 未認証状態");
+                    // リロードフラグをクリア（認証が失われた場合）
+                    localStorage.removeItem('forceReloadInProgress');
+                }
+            });
+        }
+
+        /**
+         * 強制リロード後の認証状態復元処理
+         */
+        async function handlePostReloadAuth(user) { // async を追加
+            console.log("🔄 リロード後の自動データロード処理を開始");
+            
+            // リロードフラグをクリア
+            localStorage.removeItem('forceReloadInProgress');
+            
+            // LocalStorageにデータがあるかチェック
+            const accountKey = window.getAccountSpecificKey('statusData');
+            const localData = localStorage.getItem(accountKey);
+            
+            if (localData) {
+                console.log("💾 LocalStorageからデータを復元してゲーム開始");
+                
+                // Unity側に認証情報とデータを送信
+                if (window.unityInstance) {
+                    const processedPhotoURL = await processPhotoURLForUnity(user.photoURL); // ここを修正
+                    const authInfo = {
+                        userId: user.uid,
+                        email: user.email,
+                        displayName: user.displayName,
+                        photoURL: processedPhotoURL, // 処理済みのURLを使用
+                        authMethod: user.providerData[0]?.providerId || "unknown",
+                        isGuest: user.isAnonymous,
+                        authenticatedAt: new Date().toISOString()
+                    };
+                    
+                    // 認証情報を送信
+                    window.unityInstance.SendMessage('AuthManager', 'OnAuthSuccess', JSON.stringify(authInfo));
+                    
+                    // データを送信
+                    window.unityInstance.SendMessage('FirestoreConnection', 'OnLoadComplete', localData);
+                    
+                    console.log("✅ リロード後の自動復元完了");
+                }
+            } else {
+                console.log("⚠️ LocalStorageにデータなし - 通常のデータロード処理に移行");
+                
+                // Unity側に認証情報を送信（通常フロー）
+                if (window.unityInstance) {
+                    const processedPhotoURL = await processPhotoURLForUnity(user.photoURL); // ここを修正
+                    const authInfo = {
+                        userId: user.uid,
+                        email: user.email,
+                        displayName: user.displayName,
+                        photoURL: processedPhotoURL, // 処理済みのURLを使用
+                        authMethod: user.providerData[0]?.providerId || "unknown",
+                        isGuest: user.isAnonymous,
+                        authenticatedAt: new Date().toISOString()
+                    };
+                    window.unityInstance.SendMessage('AuthManager', 'OnAuthSuccess', JSON.stringify(authInfo));
+                }
+            }
+        }
+
+        /**
+         * Unity側からFirebase設定を受け取って初期化する関数
+         * UnityのScriptableObjectから取得した設定値を使用
+         */
+        window.initializeFirebaseFromUnity = function() {
+            addLog("=== Firebase初期化開始 ===");
+            
+            // Unity側から設定値が設定されるまで待機
+            const checkConfig = setInterval(() => {
+                if (window.unityServiceToken && window.unityAppCode && window.unityProjectCode && window.unityAuthDomain && window.unityStorageBucket && window.unityMessagingSenderCode && window.unityDatabaseURL) {
+                    clearInterval(checkConfig);
+                    addLog("Unity側からFirebase設定を受信完了");
+                    
+                    // Firebase設定オブジェクトを作成
+                    const firebaseConfig = {
+                    apiKey: window.unityServiceToken,
+                    authDomain: window.unityAuthDomain,
+                    projectId: window.unityProjectCode,
+                    storageBucket: window.unityStorageBucket,
+                    messagingSenderId: window.unityMessagingSenderCode,
+                    appId: window.unityAppCode,
+                    databaseURL: window.unityDatabaseURL
+                };
+                
+                    addLog("Firebase設定オブジェクト作成完了");
+                
+                    try {
+                // Firebase初期化
+                        addLog("initializeApp開始...");
+                        window.app = initializeApp(firebaseConfig);
+                        addLog("✅ initializeApp完了");
+                        
+                        addLog("getAuth開始...");
+                        window.auth = getAuth(window.app);
+                        addLog("✅ getAuth完了");
+                        
+                        addLog("getFirestore開始...");
+                        window.db = getFirestore(window.app);
+                        addLog("✅ getFirestore完了");
+                        
+                        // 認証状態監視を開始
+                        addLog("認証状態監視を開始...");
+                        setupAuthStateListener();
+                        
+                        addLog("✅ Firebase初期化完了");
+                        addLog("認証システム準備完了");
+                    } catch (error) {
+                        addLog(`❌ Firebase初期化失敗: ${error.message}`);
+                        addLog(`エラー詳細: ${error.stack}`);
+                    }
+            } else {
+                addLog("Unity側からのFirebase設定受信待ち...");
+                }
+            }, 1000);
+        }
+
+        /**
+         * Unityから呼び出されるFirestore保存関数
+         * Unityから受け取ったデータをFirestoreに保存
+         */
+        window.saveToFirestoreFromUnity = function(data) {
+            console.log("saveToFirestoreFromUnity: Firebaseにデータを保存開始", data);
+            
+            try {
+                // Firebase SDKの読み込み状態をチェック
+                if (!window.app || !window.auth) {
+                    console.error("❌ Firebase SDKが読み込まれていません");
+                    if (window.unityInstance) {
+                        window.unityInstance.SendMessage('FirestoreConnection', 'OnSaveComplete', 'error');
+                    }
+                    return;
+                }
+                
+                // Firebase SDKを使用してFirestoreに書き込み
+                const db = window.db;
+                const user = window.auth.currentUser;
+                
+                if (user) {
+                    console.log("認証済みユーザー:", user.uid);
+                    
+                    // データの存在チェック
+                    const userDocRef = doc(db, 'users', user.uid);
+                    getDoc(userDocRef)
+                    .then((docSnapshot) => {
+                        if (docSnapshot.exists()) {
+                            console.log("既存データを上書きします");
+                            // 既存データがある場合は上書き
+                            return setDoc(userDocRef, {
+                                data: JSON.parse(data),
+                                updatedAt: serverTimestamp()
+                            });
+                        } else {
+                            console.log("新規データとして登録します");
+                            // データがない場合は新規登録
+                            return setDoc(userDocRef, {
+                                data: JSON.parse(data),
+                                createdAt: serverTimestamp(),
+                                updatedAt: serverTimestamp()
+                            });
+                        }
+                    })
+                    .then(() => {
+                        console.log("✅ Firestoreにデータを保存完了");
+                        // Unity側に成功を通知
+                        if (window.unityInstance) {
+                            window.unityInstance.SendMessage('FirestoreConnection', 'OnSaveComplete', 'success');
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("❌ Firestore保存エラー:", error);
+                        // Unity側にエラーを通知
+                        if (window.unityInstance) {
+                            window.unityInstance.SendMessage('FirestoreConnection', 'OnSaveComplete', 'error');
+                        }
+                    });
+                } else {
+                    console.error("❌ ユーザーが認証されていません");
+                    // Unity側にエラーを通知
+                    if (window.unityInstance) {
+                        window.unityInstance.SendMessage('FirestoreConnection', 'OnSaveComplete', 'error');
+                    }
+                }
+            } catch (error) {
+                console.error("❌ saveToFirestoreFromUnityでエラーが発生:", error);
+                // Unity側にエラーを通知
+                if (window.unityInstance) {
+                    window.unityInstance.SendMessage('FirestoreConnection', 'OnSaveComplete', 'error');
+                }
+            }
+        };
+
+        /**
+         * Unityから呼び出されるGoogle認証関数
+         * ポップアップでGoogleログインを実行し、認証成功時にUnityに結果を送信
+         */
         window.startGoogleAuthFromUnity = function() {
             addLog("=== UnityからGoogle認証開始 ===");
             
@@ -214,18 +572,22 @@
             const provider = new GoogleAuthProvider();
             addLog("GoogleAuthProvider作成完了");
             
+            // シンプルな認証実装
             signInWithPopup(auth, provider)
-                .then((result) => {
+                .then(async (result) => { // async を追加
                     addLog("✅ Google認証成功");
                     addLog(`ユーザーID: ${result.user.uid}`);
                     addLog(`メールアドレス: ${result.user.email}`);
                     addLog(`表示名: ${result.user.displayName}`);
+                    
+                    const processedPhotoURL = await processPhotoURLForUnity(result.user.photoURL); // ここを修正
                     
                     // Unityに認証情報を送信
                     const authInfo = {
                         userId: result.user.uid,
                         email: result.user.email,
                         displayName: result.user.displayName,
+                        photoURL: processedPhotoURL, // 処理済みのURLを使用
                         authMethod: "Google",
                         isGuest: false,
                         authenticatedAt: new Date().toISOString()
@@ -242,7 +604,10 @@
                 });
         };
 
-        // Unityから呼び出せるMicrosoft認証関数
+        /**
+         * Unityから呼び出されるMicrosoft認証関数
+         * ポップアップでMicrosoftログインを実行し、認証成功時にUnityに結果を送信
+         */
         window.startMicrosoftAuthFromUnity = function() {
             addLog("=== UnityからMicrosoft認証開始 ===");
             
@@ -254,18 +619,22 @@
             const provider = new OAuthProvider('microsoft.com');
             addLog("MicrosoftAuthProvider作成完了");
             
+            try {
             signInWithPopup(auth, provider)
-                .then((result) => {
+                .then(async (result) => { // async を追加
                     addLog("✅ Microsoft認証成功");
                     addLog(`ユーザーID: ${result.user.uid}`);
                     addLog(`メールアドレス: ${result.user.email}`);
                     addLog(`表示名: ${result.user.displayName}`);
+                    
+                    const processedPhotoURL = await processPhotoURLForUnity(result.user.photoURL); // ここを修正
                     
                     // Unityに認証情報を送信
                     const authInfo = {
                         userId: result.user.uid,
                         email: result.user.email,
                         displayName: result.user.displayName,
+                        photoURL: processedPhotoURL, // 処理済みのURLを使用
                         authMethod: "Microsoft",
                         isGuest: false,
                         authenticatedAt: new Date().toISOString()
@@ -279,10 +648,167 @@
                 })
                 .catch((error) => {
                     addLog(`❌ Microsoft認証失敗: ${error.message}`);
+                    });
+            } catch (error) {
+                addLog(`❌ Microsoft認証実行エラー: ${error.message}`);
+            }
+        };
+
+        /**
+         * Unityから呼び出されるFirestoreデータ存在チェック関数（非同期版）
+         * 現在認証されているユーザーのデータが存在するかチェック
+         */
+        window.checkFirestoreUserDataExists = function() {
+            return new Promise((resolve, reject) => {
+                if (!window.app || !window.auth || !window.db) {
+                    reject("Firebaseが初期化されていません");
+                    return;
+                }
+                
+                const user = window.auth.currentUser;
+                if (!user) {
+                    reject("ユーザーが認証されていません");
+                    return;
+                }
+                
+                console.log(`Firestoreデータ存在チェック開始: ${user.uid}`);
+                
+                const userDocRef = doc(window.db, 'users', user.uid);
+                getDoc(userDocRef)
+                .then((docSnapshot) => {
+                    const exists = docSnapshot.exists();
+                    console.log(`ユーザーデータ存在チェック結果: ${exists ? '存在' : '存在しない'} (UID: ${user.uid})`);
+                    resolve(exists);
+                })
+                .catch((error) => {
+                    console.error("Firestoreデータ存在チェックエラー:", error);
+                    reject(error);
+                });
+            });
+        };
+
+
+
+        /**
+         * Unityから呼び出されるアプリバージョン取得関数
+         * Firestoreからアプリバージョン情報を取得
+         */
+        window.checkAppVersion = async function() {
+            try {
+                console.log("アプリバージョン取得開始");
+                
+                if (!window.db) {
+                    console.error("Firestoreが初期化されていません");
+                    return null;
+                }
+                
+                // app_versionsコレクションのcurrentドキュメントからバージョン情報を取得
+                const versionDocRef = doc(window.db, "app_versions", "current");
+                const versionDoc = await getDoc(versionDocRef);
+                
+                if (versionDoc.exists()) {
+                    const versionData = versionDoc.data();
+                    console.log("アプリバージョン情報取得成功:", versionData);
+                    return versionData;
+                } else {
+                    console.log("アプリバージョンドキュメントが存在しません");
+                    return null;
+                }
+            } catch (error) {
+                console.error("アプリバージョン取得中にエラーが発生:", error);
+                return null;
+            }
+        };
+
+        /**
+         * Unityから呼び出されるFirestoreデータロード関数
+         * 現在認証されているユーザーのデータをFirestoreから取得
+         * @returns {Promise<Object>} Firestoreから読み込まれたデータとロード元を示すフラグ
+         */
+        window.loadFirestoreUserData = function() {
+            return new Promise((resolve, reject) => {
+                console.log("Firestoreデータロード開始");
+                
+                if (!window.app || !window.auth || !window.db) {
+                    console.error("Firebaseが初期化されていません");
+                    reject({ error: "Firebaseが初期化されていません", source: 'firebase' });
+                    return;
+                }
+                
+                const user = window.auth.currentUser;
+                if (!user) {
+                    console.error("ユーザーが認証されていません");
+                    reject({ error: "ユーザーが認証されていません", source: 'firebase' });
+                    return;
+                }
+                
+                console.log(`Firestoreデータロード開始: ${user.uid}`);
+                
+                const userDocRef = doc(window.db, 'users', user.uid);
+                getDoc(userDocRef)
+                .then((docSnapshot) => {
+                    const result = { statusData: null, rankingData: null, source: 'firebase' }; // ロード元がFirebaseであることを示すフラグ
+                    if (docSnapshot.exists()) {
+                        const userData = docSnapshot.data();
+                        console.log("✅ 既存ユーザー: Firestoreからデータを取得:", userData);
+                        
+                        if (userData.data) {
+                            // LocalStorageに自動保存（リロード後の高速起動用）
+                            const accountKey = window.getAccountSpecificKey('statusData');
+                            localStorage.setItem(accountKey, JSON.stringify(userData.data));
+                            console.log("💾 FirestoreデータをLocalStorageに自動保存:", accountKey);
+                            result.statusData = userData.data;
+                        } else {
+                            console.log("🆕 新規ユーザー: データ構造が未初期化 - 空データで解決");
+                        }
+                    } else {
+                        console.log("🆕 新規ユーザー: ユーザーデータ未作成 - 空データで解決");
+                    }
+                    resolve(result);
+                })
+                .catch((error) => {
+                    console.error("🆕 新規ユーザー: Firestoreアクセスエラー（権限未設定の可能性） - 空データで解決:", error);
+                    resolve({ statusData: null, rankingData: null, source: 'firebase', error: error }); // エラー時もresolveして処理続行
+                });
+            });
+        };
+
+        /**
+         * Unityから呼び出されるログアウト関数
+         * Firebase認証からログアウトし、結果をUnityに送信
+         */
+        window.signOutFromUnity = function() {
+            addLog("=== Unityからログアウト開始 ===");
+            
+            if (!auth) {
+                addLog("Firebase認証が初期化されていません");
+                if (window.unityInstance) {
+                    window.unityInstance.SendMessage('AuthManager', 'OnSignOutComplete', 'error');
+                }
+                return;
+            }
+            
+            signOut(auth)
+                .then(() => {
+                    addLog("✅ Firebaseログアウト完了");
+                    // Unityにログアウト完了を通知
+                    if (window.unityInstance) {
+                        window.unityInstance.SendMessage('AuthManager', 'OnSignOutComplete', 'success');
+                    }
+                })
+                .catch((error) => {
+                    addLog(`❌ Firebaseログアウトエラー: ${error.message}`);
+                    // Unityにエラーを通知
+                    if (window.unityInstance) {
+                        window.unityInstance.SendMessage('AuthManager', 'OnSignOutComplete', 'error');
+                    }
                 });
         };
 
-        // Unityから呼び出せるゲスト認証関数
+        /**
+         * Unityから呼び出されるゲスト認証関数
+         * 匿名認証を実行し、認証成功時にUnityに結果を送信
+         */
         window.startGuestAuthFromUnity = function() {
             addLog("=== Unityからゲスト認証開始 ===");
             
@@ -292,15 +818,18 @@
             }
             
             signInAnonymously(auth)
-                .then((result) => {
+                .then(async (result) => { // async を追加
                     addLog("✅ ゲスト認証成功");
                     addLog(`ユーザーID: ${result.user.uid}`);
+                    
+                    const processedPhotoURL = await processPhotoURLForUnity(result.user.photoURL); // ここを修正
                     
                     // Unityに認証情報を送信
                     const authInfo = {
                         userId: result.user.uid,
                         email: "",
                         displayName: "ゲストユーザー",
+                        photoURL: processedPhotoURL, // 処理済みのURLを使用
                         authMethod: "Guest",
                         isGuest: true,
                         authenticatedAt: new Date().toISOString()
@@ -320,8 +849,11 @@
         // ページ読み込み時の処理
         document.addEventListener('DOMContentLoaded', function() {
             addLog("=== ページ読み込み開始 ===");
-            addLog("Firebase設定完了");
+            addLog("Unity側からFirebase設定を待機中...");
             addLog("Unityからポップアップ認証システム準備完了");
+            
+            // Unity側からFirebase設定を受け取って初期化
+            window.initializeFirebaseFromUnity();
         });
     </script>
 </body>

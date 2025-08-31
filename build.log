@@ -8,17 +8,17 @@ Architecture:            arm64
 Running under Rosetta:   NO
 Available memory:        16384 MB
 [Licensing::Module] Trying to connect to existing licensing client channel...
-[Licensing::IpcConnector] Successfully connected to the License Client on channel: "LicenseClient-moryo" at "2025-07-20T07:17:28.336087Z"
-[Licensing::Client] Error: Code 10 while verifying Licensing Client signature (process Id: 24272, path: "/Applications/Unity Hub.app/Contents/Frameworks/UnityLicensingClient_V1.app/Contents/MacOS/Unity.Licensing.Client")
+[Licensing::IpcConnector] Successfully connected to the License Client on channel: "LicenseClient-moryo" at "2025-08-02T11:59:44.93868Z"
+[Licensing::Client] Error: Code 10 while verifying Licensing Client signature (process Id: 63302, path: "/Applications/Unity Hub.app/Contents/Frameworks/UnityLicensingClient_V1.app/Contents/MacOS/Unity.Licensing.Client")
 [Licensing::Module] Error: LicensingClient has failed validation; ignoring
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.17.0+aa6cfba
-  Session Id:              f098799c00714392bc2051a046d7846e
-  Correlation Id:          c4fab88b3a4707b5c8ae90c9d0408591
-  External correlation Id: 7523199013211589445
+  Session Id:              085a9ef94f0f42e99be7b56668dc2286
+  Correlation Id:          3d23fb1f5f9c5dafda8261c05cd16288
+  External correlation Id: 534071058691882589
   Machine Id:              r6uq7Q5PklJ2MCZLTGkqMPRIoto=
-[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-moryo" (connect: 0.00s, validation: 0.02s, handshake: 0.42s)
-[Licensing::IpcConnector] Successfully connected to the License Notification on channel: "LicenseClient-moryo-notifications" at "2025-07-20T07:17:28.769088Z"
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-moryo" (connect: 0.00s, validation: 0.02s, handshake: 0.30s)
+[Licensing::IpcConnector] Successfully connected to the License Notification on channel: "LicenseClient-moryo-notifications" at "2025-08-02T11:59:45.256595Z"
 [Licensing::Module] Error: Access token is unavailable; failed to update
 [Licensing::Client] Successfully updated license
 [Licensing::Client] Successfully resolved entitlement details
@@ -35,11 +35,9 @@ COMMAND LINE ARGUMENTS:
 -batchmode
 -quit
 -projectPath
-/Users/moryo/necotapuFB
+.
 -buildTarget
 WebGL
--executeMethod
-BuildScript.BuildWebGL
 -logFile
 build.log
 Successfully changed project path to: /Users/moryo/necotapuFB

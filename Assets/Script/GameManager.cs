@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.XR;
 using System.Linq;
 using Newtonsoft.Json;
+using System.Runtime.InteropServices;
 
 
 public class scene
@@ -26,8 +27,11 @@ public class GameManager : MonoBehaviour
     public DataBase db;
     public SaveData savedata;
     [SerializeField] public FirebaseConfig firebaseConfig;  // Firebase設定
+    [DllImport("__Internal")]
+    private static extern void SaveStatusToLocalJslib(string json); // 関数名をJSLibに合わせて変更
+    [SerializeField] public FirestoreConnection firestoreConnection;  // Firebase保存用
     public static int openHour = 0;            // 開店時間
-    public static int closeHour = 23;          // 閉店時間
+    public static int closeHour = 24;          // 閉店時間
 
 
     static public int SceneNo { get; set; }
@@ -229,6 +233,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // ゲーム開始時にSaveDataを確実に初期化
+        
         if (SceneNo != (int)scene.Title)
         {
         }
@@ -659,8 +665,12 @@ public class GameManager : MonoBehaviour
     {
         // 新しい構造でFirebaseに保存するためのJSONを生成
         string saveLocalJson = savedata.SerializeForFirebase();
-        // connection.saveLocal(saveLocalJson); // 一時的に無効化
-        exportGas();        // 毎回GASアクセス要求。index.htmlで２４ｈに１回に制限される。
+        
+        // 1. ブラウザに保存（毎回実行）
+        SaveStatusToLocalJslib(saveLocalJson); // 関数名を変更
+        
+        // 2. 23時間制限チェック付きでFirebaseに保存
+        firestoreConnection.SaveToFirestore(saveLocalJson);
     }
 
     public void exportGas()
