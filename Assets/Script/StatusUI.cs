@@ -34,8 +34,8 @@ public class StatusUI : MonoBehaviour
 
     public void dispStatus()
     {
-        TMPHeadName.text = gm.savedata.UserName + gm.getNickname(gm.savedata.Equipment[eq.NickName]);
-        TMPName.text = gm.savedata.UserName + gm.getNickname(gm.savedata.Equipment[eq.NickName]);
+        TMPHeadName.text = gm.savedata.UserName + gm.getNickname(gm.savedata.Equipment[eq.NicknameNo]);
+        TMPName.text = gm.savedata.UserName + gm.getNickname(gm.savedata.Equipment[eq.NicknameNo]);
         TMPGold.text = gm.savedata.Status[st.Gold].ToString() + " ｼｰｶｰ";
         TMPServer.text = "サーバー：" + gm.db.GetServerList()[gm.savedata.Status[st.Server]];
         TMPWpm.text = "1分間に" + gm.savedata.Status[st.Kpm] + "キー";

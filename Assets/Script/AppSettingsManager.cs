@@ -37,6 +37,7 @@ public class AppSettingsManager : MonoBehaviour
         SetMessagingSenderCode(firebaseConfig.MessagingSenderId);
         SetDatabaseURL(firebaseConfig.DatabaseUrl);
         SetProductionMode(firebaseConfig.IsProduction);
+        FirebaseConfigLoadedJslib(); // Firebase設定完了をJS側に通知
         #endif
     }
     
@@ -67,7 +68,7 @@ public class AppSettingsManager : MonoBehaviour
     [System.Runtime.InteropServices.DllImport("__Internal")]
     private static extern void SetProductionMode(bool isProduction);
     
-
-    
+    [System.Runtime.InteropServices.DllImport("__Internal")]
+    private static extern void FirebaseConfigLoadedJslib(); // 追加：Firebase設定完了をJS側に通知
 
 }

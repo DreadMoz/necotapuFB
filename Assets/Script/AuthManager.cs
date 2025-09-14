@@ -465,14 +465,14 @@ namespace necotapuFB
                 Debug.Log("認証成功処理完了 - ログイン情報表示を実行");
 
                 // 認証成功後にアプリバージョンをチェック
-                if (AppVersionManager.Instance != null)
-                {
-                    AppVersionManager.Instance.CheckFirebaseVersion();
-                }
-                else
-                {
-                    Debug.LogError("AuthManager: AppVersionManager.Instance が見つかりません");
-                }
+                // if (AppVersionManager.Instance != null)
+                // {
+                //     AppVersionManager.Instance.CheckFirebaseVersion();
+                // }
+                // else
+                // {
+                //     Debug.LogError("AuthManager: AppVersionManager.Instance が見つかりません");
+                // }
 
                 Debug.Log($"ログイン成功: {currentAuthInfo.email} - Firestoreチェックを開始");
                 

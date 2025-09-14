@@ -39,7 +39,7 @@ public class eq
     public const int LeftHand = 3;
     public const int CatBody = 4;
     public const int CatFace = 5;
-    public const int NickName = 6;
+    public const int NicknameNo = 6;
 }
 // Gold,Server,Rank,userName
 public class se
@@ -104,6 +104,7 @@ public class ExRank
     public int CatFace { get; set; }
     public int NicknameNo { get; set; }
     public int Kpm { get; set; }
+    public int Stage { get; set; } // ここにStageプロパティを追加しますにゃん！
 }
 
 
@@ -242,17 +243,17 @@ public class SaveData : ScriptableObject
         necotapuFB.AuthManager authManager = FindObjectOfType<necotapuFB.AuthManager>();
         if (authManager != null && authManager.CurrentAuthInfo != null)
         {
-            savedata.Uid = authManager.CurrentAuthInfo.userId;
+            Uid = authManager.CurrentAuthInfo.userId;
             Debug.Log($"setNewDataFB: UIDをSaveDataに設定: {authManager.CurrentAuthInfo.userId}");
         }
         else
         {
             Debug.LogError("setNewDataFB: AuthManagerまたはAuthInfoが見つからないか、UIDが取得できません。");
         }
-        savedata.Email = googleMail;
-        savedata.UserName = googleFirstName;
-        savedata.AuthMethod = authType;
-        savedata.LastName = googleLastName;
+        Email = googleMail;
+        UserName = googleFirstName;
+        AuthMethod = authType;
+        LastName = googleLastName;
         
         // Status配列に設定
         Status[st.Gold] = 100;      // ゴールド
@@ -267,7 +268,7 @@ public class SaveData : ScriptableObject
         Equipment[eq.LeftHand] = 0;     // 左手
         Equipment[eq.CatBody] = catBody; // ねこボディ
         Equipment[eq.CatFace] = 0;      // ねこ顔
-        Equipment[eq.NickName] = 0;     // ニックネーム
+        Equipment[eq.NicknameNo] = 0;     // ニックネーム
         
         // インベントリ・アイテム
         for (int i = 0; i < Inventory.Length; i++)

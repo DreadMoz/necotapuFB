@@ -109,18 +109,6 @@ public class TitleSky : MonoBehaviour
         animator = player.GetComponent<Animator>(); // Playerのアニメーターを取得
         animator.SetFloat("goroSpeed", 1.0f);
         
-        // TitleSky開始時にSaveDataを確実に初期化
-        if (gm != null && gm.savedata != null)
-        {
-            gm.savedata.InitializeEmptyData();
-            Debug.Log("TitleSky: SaveDataの初期化完了");
-        }
-        else
-        {
-            Debug.LogError("TitleSky: gmまたはgm.savedataがnullです");
-        }
-
-        
 #if !UNITY_EDITOR
 
         if (GameManager.SceneNo == scene.Night)
@@ -304,7 +292,7 @@ public class TitleSky : MonoBehaviour
                 CheckDailyReset();
                     
                     // Firebaseデータロード完了メッセージを表示
-                    messageText.text = "✅ サーバーからデータをロードしたよ。スタートしよう！";
+                    DisplayLoadCompleteMessage("firebase");
                     
                     // 装備データを反映
                     Debug.Log($"FinishDataLoadExtStatus: 装備情報を反映 - CatBody: {gm.savedata.Equipment[eq.CatBody]}, RightHand: {gm.savedata.Equipment[eq.RightHand]}, LeftHand: {gm.savedata.Equipment[eq.LeftHand]}, Head: {gm.savedata.Equipment[eq.Head]}, Glasses: {gm.savedata.Equipment[eq.Glasses]}");
@@ -385,8 +373,7 @@ public class TitleSky : MonoBehaviour
         
         // ローカルデータでゲームを開始
         message.SetActive(true);
-        Text messageText = message.GetComponentInChildren<Text>();
-        messageText.text = "🌐 ローカルデータの方が新しいため、ローカルデータをロードしたよ。スタートしよう！";
+        DisplayLoadCompleteMessage("local");
         
         // 装備データを反映
         Debug.Log($"UseLocalData: 装備情報を反映 - CatBody: {gm.savedata.Equipment[eq.CatBody]}, RightHand: {gm.savedata.Equipment[eq.RightHand]}, LeftHand: {gm.savedata.Equipment[eq.LeftHand]}, Head: {gm.savedata.Equipment[eq.Head]}, Glasses: {gm.savedata.Equipment[eq.Glasses]}");
@@ -409,8 +396,7 @@ public class TitleSky : MonoBehaviour
         Debug.Log("UseFirebaseData: サーバーデータの方が新しい - サーバーデータを使用");
         
         // Firebaseデータでゲームを開始（既存の処理を使用）
-        Text messageText = message.GetComponentInChildren<Text>();
-        messageText.text = "✅ サーバーからデータをロードしたよ。スタートしよう！";
+        DisplayLoadCompleteMessage("firebase");
         FinishDataLoadExtStatus(pendingFirebaseData);
     }
 
@@ -436,6 +422,10 @@ public class TitleSky : MonoBehaviour
         else if (source == "local")
         {
             messageText.text = "🌐 ブラウザからデータをロードしたよ。スタートしよう！";
+        }
+        else if (source == "new_user") // 新規ユーザー用のメッセージを追加
+        {
+            messageText.text = "🐱 新しいねこが生まれたよ！ゲームをスタートしよう！";
         }
         else
         {
@@ -824,7 +814,7 @@ public class TitleSky : MonoBehaviour
 
         // 保存したばかりのデータを直接利用してデータロード完了処理を実行
         string savedDataJson = gm.savedata.SerializeForFirebase();
-        FinishDataLoadExtStatus(savedDataJson);
+        DisplayLoadCompleteMessage("new_user"); // 新規作成完了メッセージを表示
 
         // UIボタンを非表示
         standupButton.SetActive(false);
@@ -833,7 +823,11 @@ public class TitleSky : MonoBehaviour
         confirmButton.SetActive(false);
         reLogin.SetActive(false);
         
-        // StartButtonの表示とテキスト設定、loginFlgの設定はFinishDataLoadExtStatus内で適切に行われる
+        // StartButtonの表示とテキスト設定、loginFlgの設定を行う
+        TMP_Text buttonText = startButton.GetComponentInChildren<TMP_Text>();
+        buttonText.text = "スタート"; // テキストを「スタート」に設定
+        startButton.SetActive(true); // スタートボタンをアクティブにする
+        loginFlg = 1; // ログインフラグを1（既存ユーザー状態）に設定
 
         // メッセージを更新
     }

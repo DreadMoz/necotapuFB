@@ -27,8 +27,10 @@ public class GameManager : MonoBehaviour
     public DataBase db;
     public SaveData savedata;
     [SerializeField] public FirebaseConfig firebaseConfig;  // Firebase設定
+    
     [DllImport("__Internal")]
     private static extern void SaveStatusToLocalJslib(string json); // 関数名をJSLibに合わせて変更
+    
     [SerializeField] public FirestoreConnection firestoreConnection;  // Firebase保存用
     public static int openHour = 0;            // 開店時間
     public static int closeHour = 24;          // 閉店時間
@@ -663,6 +665,7 @@ public class GameManager : MonoBehaviour
 
     public void exportLocal()
     {
+#if UNITY_WEBGL && !UNITY_EDITOR
         // 新しい構造でFirebaseに保存するためのJSONを生成
         string saveLocalJson = savedata.SerializeForFirebase();
         
@@ -671,6 +674,25 @@ public class GameManager : MonoBehaviour
         
         // 2. 23時間制限チェック付きでFirebaseに保存
         firestoreConnection.SaveToFirestore(saveLocalJson);
+        
+        // 3. ランキングデータをFirebaseに保存（現在のユーザー自身のデータのみ）
+        ExRank userRankingData = new ExRank
+        {
+            Uid = savedata.Uid,
+            FirstName = savedata.UserName,
+            Kpm = savedata.Status[st.Kpm],
+            RightHand = savedata.Equipment[eq.RightHand],
+            Glasses = savedata.Equipment[eq.Glasses],
+            Head = savedata.Equipment[eq.Head],
+            LeftHand = savedata.Equipment[eq.LeftHand],
+            CatBody = savedata.Equipment[eq.CatBody],
+            CatFace = savedata.Equipment[eq.CatFace],
+            NicknameNo = savedata.Equipment[eq.NicknameNo],
+            Ranking = savedata.Status[st.Rank], // 現在のRankingも保存
+            Stage = savedata.Status[st.Server]  // 現在のStageも保存
+        };
+        firestoreConnection.SaveRankingToFirestore(userRankingData);
+#endif
     }
 
     public void exportGas()
@@ -747,10 +769,11 @@ public class GameManager : MonoBehaviour
     {
         try
         {
-            var rankingData = JsonConvert.DeserializeObject<SerializableRankingData>(rankingDataJson);
-            if (rankingData != null && rankingData.rankingData != null)
+            // string rankingDataJson を直接 List<ExRank> にデシリアライズするように修正
+            var rankingList = JsonConvert.DeserializeObject<List<ExRank>>(rankingDataJson);
+            if (rankingList != null)
             {
-                savedata.setRankingFromLocal(JsonConvert.SerializeObject(rankingData));
+                savedata.setRankingFromLocal(rankingList); // List<ExRank> を直接渡す
                 Debug.Log("ランキングデータをロードしました。");
             }
             else

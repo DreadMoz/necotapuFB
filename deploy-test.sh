@@ -6,7 +6,7 @@ echo "🚀 Deploying to TEST environment..."
 firebase use firetyping-ad101
 
 # テスト環境にデプロイ
-firebase deploy --only hosting
+firebase deploy --only hosting --debug
 
 echo "✅ Test deployment completed!"
 echo "🌐 Test URL: https://firetyping-ad101.web.app"

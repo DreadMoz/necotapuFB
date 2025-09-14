@@ -73,7 +73,7 @@ public class Ranking : MonoBehaviour
                 // RankBoardのUIコンポーネントにデータを設定
                 gm.savedata.Status[st.Rank] = rankingNo + 1;
                 myRankBoard.transform.Find("Rank").GetComponent<TextMeshProUGUI>().text = gm.savedata.Status[st.Rank].ToString();
-                myRankBoard.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = gm.savedata.UserName + gm.getNickname(gm.savedata.Equipment[eq.NickName]);
+                myRankBoard.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = gm.savedata.UserName + gm.getNickname(gm.savedata.Equipment[eq.NicknameNo]);
                 myRankBoard.transform.Find("Kpm").GetComponent<TextMeshProUGUI>().text = gm.savedata.Status[st.Kpm].ToString();
                 myBordSet = 1;
                 statusBord.dispStatus();
@@ -85,7 +85,7 @@ public class Ranking : MonoBehaviour
             // RankBoardのUIコンポーネントにデータを設定
             rankingNo = rank.Ranking + myBordSet;
             newRankBoard.transform.Find("Rank").GetComponent<TextMeshProUGUI>().text = rankingNo.ToString();
-            newRankBoard.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = rank.Name + gm.getNickname(rank.NickName);
+            newRankBoard.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = rank.FirstName + gm.getNickname(rank.NicknameNo);
             newRankBoard.transform.Find("Kpm").GetComponent<TextMeshProUGUI>().text = rank.Kpm.ToString();
             count++;
         }
@@ -96,7 +96,7 @@ public class Ranking : MonoBehaviour
                 // RankBoardのUIコンポーネントにデータを設定
                 gm.savedata.Status[st.Rank] = rankingNo + 1;
                 myRankBoard.transform.Find("Rank").GetComponent<TextMeshProUGUI>().text = gm.savedata.Status[st.Rank].ToString();
-                myRankBoard.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = gm.savedata.UserName + gm.getNickname(gm.savedata.Equipment[eq.NickName]);
+                myRankBoard.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = gm.savedata.UserName + gm.getNickname(gm.savedata.Equipment[eq.NicknameNo]);
                 myRankBoard.transform.Find("Kpm").GetComponent<TextMeshProUGUI>().text = gm.savedata.Status[st.Kpm].ToString();
                 statusBord.dispStatus();
         }

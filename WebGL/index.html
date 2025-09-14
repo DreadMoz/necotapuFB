@@ -105,7 +105,6 @@
           companyName: "DefaultCompany",
           productName: "TestingGAS",
           productVersion: "unset", // UnityのWebGLビルド設定から自動で取得できないため、明示的に設定
-
           showBanner: unityShowBanner,
         };
         
@@ -137,6 +136,11 @@
 
                     if (storedRankingData) {
                         result.rankingData = JSON.parse(storedRankingData);
+                        // 既存のランキングデータが単一オブジェクトの場合、配列に変換
+                        if (!Array.isArray(result.rankingData)) {
+                            result.rankingData = [result.rankingData];
+                            console.log("LocalStorageランキングデータを配列に変換しました。");
+                        }
                         console.log(`LocalStorageからランキングデータを読み込みました (${rankingAccountKey}):`, result.rankingData);
                     } else {
                         console.log(`LocalStorageにランキングデータが見つかりません (${rankingAccountKey})`);
@@ -203,7 +207,7 @@
         //######################################################
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, GoogleAuthProvider, OAuthProvider, signInWithPopup, signInAnonymously, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, collection, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getFirestore, collection, doc, setDoc, getDoc, getDocs, serverTimestamp, query, orderBy, limit, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         // Firebase設定（設定テンプレートから読み込み）
         let firebaseConfig = null;
@@ -292,39 +296,39 @@
         window.loadAllDataFromFirestore = function() {
             console.log("Firebaseから一括データ読み込み開始");
             
-            // 1. ユーザ情報を読み込み
-            if (typeof window.loadFirestoreUserData === 'function') {
-                window.loadFirestoreUserData();
-            } else {
-                console.error("❌ loadFirestoreUserData関数が見つかりません");
-            }
-            
-            // 2. ランキング情報を読み込み（後で実装予定）
-            // TODO: ランキング情報取得処理を実装
-            console.log("ランキング情報読み込み: 後で実装予定");
-            
-            // 3. アプリバージョン情報を読み込み
-            if (typeof window.checkAppVersion === 'function') {
-                window.checkAppVersion().then((versionInfo) => {
-                    console.log("アプリバージョン情報取得成功:", versionInfo);
-                    // Unityに結果を送信
-                    if (window.unityInstance) {
-                        if (versionInfo && versionInfo.version) {
-                            window.unityInstance.SendMessage('AppVersionManager', 'OnFirebaseVersionReceived', versionInfo.version);
-                        } else {
-                            window.unityInstance.SendMessage('AppVersionManager', 'OnFirebaseVersionReceived', '');
-                        }
-                    }
-                }).catch((error) => {
-                    console.error("アプリバージョン情報取得エラー:", error);
-                    // エラーの場合は空文字を送信
-                    if (window.unityInstance) {
-                        window.unityInstance.SendMessage('AppVersionManager', 'OnFirebaseVersionReceived', '');
-                    }
-                });
-            } else {
-                console.error("❌ checkAppVersion関数が見つかりません");
-            }
+            // ユーザデータ、ランキングデータ、アプリバージョンデータを全て取得するためのPromise.all
+            Promise.all([
+                typeof window.loadFirestoreUserData === 'function' ? window.loadFirestoreUserData() : Promise.resolve({ statusData: null, source: 'none' }),
+                typeof window.getNecoRank === 'function' ? window.getNecoRank() : Promise.resolve([]),
+                typeof window.checkAppVersion === 'function' ? window.checkAppVersion() : Promise.resolve(null)
+            ])
+            .then(([userDataResult, rankingList, versionInfo]) => {
+                console.log("一括データ読み込み完了:", { userDataResult, rankingList, versionInfo });
+    
+                // Unityに全データを送信
+                if (window.unityInstance) {
+                    const allData = {
+                        statusData: userDataResult.statusData,
+                        rankingData: rankingList,
+                        appVersion: versionInfo ? versionInfo.version : '',
+                        source: userDataResult.source // FirebaseからかLocalStorageからかを伝える
+                    };
+                    window.unityInstance.SendMessage('FirestoreConnection', 'OnAllDataLoadComplete', JSON.stringify(allData));
+                }
+            })
+            .catch(error => {
+                console.error("一括データ読み込み中にエラーが発生しました:", error);
+                // エラーの場合もUnityに通知
+                if (window.unityInstance) {
+                    const allData = {
+                        statusData: null,
+                        rankingData: [],
+                        appVersion: '',
+                        source: 'error'
+                    };
+                    window.unityInstance.SendMessage('FirestoreConnection', 'OnAllDataLoadComplete', JSON.stringify(allData));
+                }
+            });
         };
 
         /**
@@ -432,55 +436,54 @@
          */
         window.initializeFirebaseFromUnity = function() {
             addLog("=== Firebase初期化開始 ===");
-            
-            // Unity側から設定値が設定されるまで待機
-            const checkConfig = setInterval(() => {
-                if (window.unityServiceToken && window.unityAppCode && window.unityProjectCode && window.unityAuthDomain && window.unityStorageBucket && window.unityMessagingSenderCode && window.unityDatabaseURL) {
-                    clearInterval(checkConfig);
-                    addLog("Unity側からFirebase設定を受信完了");
-                    
-                    // Firebase設定オブジェクトを作成
-                    const firebaseConfig = {
-                    apiKey: window.unityServiceToken,
-                    authDomain: window.unityAuthDomain,
-                    projectId: window.unityProjectCode,
-                    storageBucket: window.unityStorageBucket,
-                    messagingSenderId: window.unityMessagingSenderCode,
-                    appId: window.unityAppCode,
-                    databaseURL: window.unityDatabaseURL
-                };
-                
-                    addLog("Firebase設定オブジェクト作成完了");
-                
-                    try {
+            addLog("Unity側からのFirebase設定受信待ちを開始します。");
+            // 設定完了は onFirebaseConfigLoaded で処理されるため、ここでは何もせず待機
+        };
+
+        /**
+         * Unity側からFirebase設定が完了したときに呼び出されるコールバック
+         */
+        window.onFirebaseConfigLoaded = function() {
+            addLog("Unity側からFirebase設定を受信完了。Firebase初期化を開始します。");
+
+            // Firebase設定オブジェクトを作成
+            const firebaseConfig = {
+                apiKey: window.unityServiceToken,
+                authDomain: window.unityAuthDomain,
+                projectId: window.unityProjectCode,
+                storageBucket: window.unityStorageBucket,
+                messagingSenderId: window.unityMessagingSenderCode,
+                appId: window.unityAppCode,
+                databaseURL: window.unityDatabaseURL
+            };
+
+            addLog("Firebase設定オブジェクト作成完了");
+
+            try {
                 // Firebase初期化
-                        addLog("initializeApp開始...");
-                        window.app = initializeApp(firebaseConfig);
-                        addLog("✅ initializeApp完了");
-                        
-                        addLog("getAuth開始...");
-                        window.auth = getAuth(window.app);
-                        addLog("✅ getAuth完了");
-                        
-                        addLog("getFirestore開始...");
-                        window.db = getFirestore(window.app);
-                        addLog("✅ getFirestore完了");
-                        
-                        // 認証状態監視を開始
-                        addLog("認証状態監視を開始...");
-                        setupAuthStateListener();
-                        
-                        addLog("✅ Firebase初期化完了");
-                        addLog("認証システム準備完了");
-                    } catch (error) {
-                        addLog(`❌ Firebase初期化失敗: ${error.message}`);
-                        addLog(`エラー詳細: ${error.stack}`);
-                    }
-            } else {
-                addLog("Unity側からのFirebase設定受信待ち...");
-                }
-            }, 1000);
-        }
+                addLog("initializeApp開始...");
+                window.app = initializeApp(firebaseConfig);
+                addLog("✅ initializeApp完了");
+
+                addLog("getAuth開始...");
+                window.auth = getAuth(window.app);
+                addLog("✅ getAuth完了");
+
+                addLog("getFirestore開始...");
+                window.db = getFirestore(window.app);
+                addLog("✅ getFirestore完了");
+
+                // 認証状態監視を開始
+                addLog("認証状態監視を開始...");
+                setupAuthStateListener();
+
+                addLog("✅ Firebase初期化完了");
+                addLog("認証システム準備完了");
+            } catch (error) {
+                addLog(`❌ Firebase初期化失敗: ${error.message}`);
+                addLog(`エラー詳細: ${error.stack}`);
+            }
+        };
 
         /**
          * Unityから呼び出されるFirestore保存関数
@@ -771,6 +774,149 @@
                     resolve({ statusData: null, rankingData: null, source: 'firebase', error: error }); // エラー時もresolveして処理続行
                 });
             });
+        };
+
+        /**
+         * Unityから呼び出されるランキングデータ取得関数
+         * Firestoreからランキングデータを取得
+         * @returns {Promise<Array<Object>>} ランキングデータの配列
+         */
+        window.getNecoRank = function() {
+            return new Promise(async (resolve, reject) => {
+                console.log("ランキングデータロード開始");
+                
+                if (!window.db) {
+                    console.error("Firestoreが初期化されていません");
+                    reject([]);
+                    return;
+                }
+                
+                const user = window.auth.currentUser;
+                if (!user) {
+                    console.error("ユーザーが認証されていません。ランキングデータを取得できません。");
+                    resolve([]);
+                    return;
+                }
+
+                try {
+                    // まず、現在のユーザーのKPMとステージを取得
+                    const userDocRef = doc(window.db, 'users', user.uid);
+                    const userDoc = await getDoc(userDocRef);
+                    let currentUserKpm = 0;
+                    let currentUserStage = 0;
+
+                    if (userDoc.exists() && userDoc.data() && userDoc.data().data && userDoc.data().data.Status) {
+                        // SaveData.cs の st.Kpm (3) と st.Server (1) に対応
+                        currentUserKpm = userDoc.data().data.Status[3] || 0; 
+                        currentUserStage = userDoc.data().data.Status[1] || 0; 
+                        console.log(`現在のユーザーKPM: ${currentUserKpm}, ステージ: ${currentUserStage}`);
+                    } else {
+                        console.warn("ユーザーKPMまたはステージ情報が見つかりません。デフォルト値を使用します。");
+                    }
+
+                    // 新規ユーザー（ステージ0）の場合は、ランキングデータをフェッチしない
+                    if (currentUserStage === 0) {
+                        console.log("新規ユーザー（ステージ0）のため、ランキングデータを取得せず空リストを返します。");
+                        localStorage.setItem(window.getAccountSpecificKey('rankingData'), JSON.stringify([]));
+                        resolve([]);
+                        return;
+                    }
+
+                    // rankings コレクションから、同じステージのユーザーをKPM降順で150人取得
+                    const rankingsRef = collection(window.db, 'rankings');
+                    // ステージが0の場合はKPMが最も高いユーザー150人を対象とする
+                    let q;
+                    if (currentUserStage === 0) {
+                        console.log("ステージ0のため、全ユーザーからKPM上位150人を取得します。");
+                        q = query(rankingsRef, orderBy('Kpm', 'desc'), limit(150));
+                    } else {
+                        console.log(`ステージ ${currentUserStage} のユーザーをKPM降順で150人取得します。`);
+                        q = query(rankingsRef, where('Stage', '==', currentUserStage), orderBy('Kpm', 'desc'), limit(150));
+                    }
+                    
+                    const querySnapshot = await getDocs(q);
+                    const rankingList = [];
+                    
+                    querySnapshot.forEach((doc) => {
+                        const rankData = doc.data();
+                        rankingList.push({
+                            Uid: rankData.Uid || "",
+                            Ranking: rankData.Ranking || 0, // 取得した順位を使用（FireFunctionで計算されることを想定）
+                            FirstName: rankData.FirstName || "",
+                            RightHand: rankData.RightHand || 0,
+                            Glasses: rankData.Glasses || 0,
+                            Head: rankData.Head || 0,
+                            LeftHand: rankData.LeftHand || 0,
+                            CatBody: rankData.CatBody || 0,
+                            CatFace: rankData.CatFace || 0,
+                            NicknameNo: rankData.NicknameNo || 0,
+                            Kpm: rankData.Kpm || 0
+                        });
+                    });
+                    
+                    // LocalStorageに自動保存
+                    const rankingAccountKey = window.getAccountSpecificKey('rankingData');
+                    localStorage.setItem(rankingAccountKey, JSON.stringify(rankingList));
+                    console.log("💾 FirestoreランキングデータをLocalStorageに自動保存:", rankingAccountKey);
+                    
+                    console.log("✅ ランキングデータ取得成功:", rankingList);
+                    resolve(rankingList);
+                    
+                } catch (error) {
+                    console.error("ランキングデータ取得中にエラーが発生:", error);
+                    reject([]);
+                }
+            });
+        };
+
+        /**
+         * Unityから呼び出されるランキングデータ保存関数
+         * Unityから受け取った単一のランキングデータをFirestoreに保存
+         */
+        window.saveFirestoreRankingDataFromUnity = async function(rankingDataJson) {
+            console.log("saveFirestoreRankingDataFromUnity: ランキングデータを保存開始", rankingDataJson);
+
+            try {
+                if (!window.app || !window.auth || !window.db) {
+                    console.error("❌ Firebase SDKが読み込まれていません");
+                    if (window.unityInstance) {
+                        window.unityInstance.SendMessage('FirestoreConnection', 'OnRankingSaveComplete', 'error');
+                    }
+                    return;
+                }
+
+                const db = window.db;
+                const user = window.auth.currentUser;
+
+                if (user) {
+                    const userRankingData = JSON.parse(rankingDataJson); // 単一のExRankオブジェクトをパース
+                    // rankings コレクションに保存（UIDをドキュメントIDとして使用）
+                    const rankingDocRef = doc(db, 'rankings', user.uid);
+
+                    // LocalStorageに保存
+                    const rankingAccountKey = window.getAccountSpecificKey('rankingData');
+                    localStorage.setItem(rankingAccountKey, JSON.stringify([userRankingData])); // 配列として保存
+                    console.log("💾 LocalStorageにランキングデータを保存:", rankingAccountKey);
+
+                    // Firestoreに保存
+                    await setDoc(rankingDocRef, userRankingData, { merge: true });
+                    console.log("✅ Firestoreにランキングデータを保存完了:", user.uid);
+
+                    if (window.unityInstance) {
+                        window.unityInstance.SendMessage('FirestoreConnection', 'OnRankingSaveComplete', 'success');
+                    }
+                } else {
+                    console.error("❌ ユーザーが認証されていません。ランキングデータを保存できません。");
+                    if (window.unityInstance) {
+                        window.unityInstance.SendMessage('FirestoreConnection', 'OnRankingSaveComplete', 'error');
+                    }
+                }
+            } catch (error) {
+                console.error("❌ saveFirestoreRankingDataFromUnityでエラーが発生:", error);
+                if (window.unityInstance) {
+                    window.unityInstance.SendMessage('FirestoreConnection', 'OnRankingSaveComplete', 'error');
+                }
+            }
         };
 
         /**

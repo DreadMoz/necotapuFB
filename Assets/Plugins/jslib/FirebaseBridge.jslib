@@ -210,8 +210,6 @@ mergeInto(LibraryManager.library, {
         this.setFirebaseConfigJslib(config);
     },
     
-    // ===== Connection.csで使用されている古い関数（ビルドエラー解決用） =====
-    
 
     
     // ユーザデータの最新性を判定（アイテム数 → ゴールド数の順）
@@ -504,6 +502,22 @@ mergeInto(LibraryManager.library, {
         }
     },
     
+    // ランキングデータ保存のためのJSLib関数 (C#から直接呼び出される)
+    saveFirestoreRankingDataFromUnityJslib: function(rankingDataJsonPointer) {
+        console.log("saveFirestoreRankingDataFromUnity JSLib: ランキングデータを保存開始");
+        const rankingDataJson = UTF8ToString(rankingDataJsonPointer);
+
+        // HTML側の関数を呼び出すように変更
+        if (typeof window.saveFirestoreRankingDataFromUnity === 'function') {
+            window.saveFirestoreRankingDataFromUnity(rankingDataJson);
+        } else {
+            console.error("❌ window.saveFirestoreRankingDataFromUnity関数が見つかりません");
+            if (window.unityInstance) {
+                window.unityInstance.SendMessage('FirestoreConnection', 'OnRankingSaveComplete', 'error');
+            }
+        }
+    },
+
     // アプリバージョン管理
     CheckAppVersionJslib: function() {
         console.log("CheckAppVersionJslib: -> LoadAllDataFromFirestoreWithLimitJslib を呼び出しますにゃん。");
@@ -556,20 +570,17 @@ mergeInto(LibraryManager.library, {
             // ユーザデータ、ランキングデータ、アプリバージョンデータを全て取得するためのPromise.all
             Promise.all([
                 typeof window.loadFirestoreUserData === 'function' ? window.loadFirestoreUserData() : Promise.resolve({ statusData: null, source: 'none' }),
-                typeof window.getNecoRank === 'function' ? new Promise(resolve => {
-                    window.getNecoRank();
-                    resolve(true);
-                }) : Promise.resolve(false),
+                typeof window.getNecoRank === 'function' ? window.getNecoRank() : Promise.resolve([]),
                 typeof window.checkAppVersion === 'function' ? window.checkAppVersion() : Promise.resolve(null)
             ])
-            .then(([userDataResult, rankingDataLoaded, versionInfo]) => {
-                console.log("一括データ読み込み完了:", { userDataResult, rankingDataLoaded, versionInfo });
+            .then(([userDataResult, rankingList, versionInfo]) => {
+                console.log("一括データ読み込み完了:", { userDataResult, rankingList, versionInfo });
     
                     // Unityに全データを送信
                     if (window.unityInstance) {
                         const allData = {
                             statusData: userDataResult.statusData,
-                            rankingData: null, // 後でランキングデータをここに追加
+                            rankingData: rankingList, // 取得したランキングデータを設定
                             appVersion: versionInfo ? versionInfo.version : '',
                             source: userDataResult.source // FirebaseからかLocalStorageからかを伝える
                         };
@@ -586,7 +597,7 @@ mergeInto(LibraryManager.library, {
                     if (window.unityInstance) {
                         const allData = {
                             statusData: null,
-                            rankingData: null,
+                            rankingData: [], // エラー時は空のリストを送信
                             appVersion: '',
                             source: 'error'
                         };
@@ -601,7 +612,7 @@ mergeInto(LibraryManager.library, {
                     if (window.unityInstance) {
                         const allData = {
                             statusData: localDataResult.statusData,
-                            rankingData: localDataResult.rankingData,
+                            rankingData: localDataResult.rankingData, // LocalStorageから取得したランキングデータを設定
                             appVersion: '', // ローカルストレージからの読み込み時はアプリバージョンを取得しない
                             source: localDataResult.source // LocalStorageからロードされたことを伝える
                         };
@@ -612,7 +623,7 @@ mergeInto(LibraryManager.library, {
                     if (window.unityInstance) {
                         const allData = {
                             statusData: null,
-                            rankingData: null,
+                            rankingData: [], // エラー時は空のリストを送信
                             appVersion: '',
                             source: 'error'
                         };
@@ -622,4 +633,14 @@ mergeInto(LibraryManager.library, {
                 // ローカルストレージからの読み込み時はアクセス時刻を更新しない (ねこ隊長のご指示通り)
             }
         },
+
+    // Unity側からFirebase設定完了の通知を受け取る
+    FirebaseConfigLoadedJslib: function() {
+        console.log("FirebaseConfigLoadedJslib: UnityからFirebase設定完了通知を受信しました。");
+        if (typeof window.onFirebaseConfigLoaded === 'function') {
+            window.onFirebaseConfigLoaded();
+        } else {
+            console.error("❌ window.onFirebaseConfigLoaded関数が見つかりません");
+        }
+    },
 });

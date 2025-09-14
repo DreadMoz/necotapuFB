@@ -12,7 +12,7 @@ public class NpcManager : MonoBehaviour
     public int numberOfNPCs = 10; // 生成するNPCの数、デフォルトは10
     List<int> pickedPlayers = new List<int>();   // NPCとして登場するユーザーの順位
 
-    private int maxUser = 149;
+    // private int maxUser = 149; // 不要になったため削除
 
     void Start()
     {
@@ -20,38 +20,62 @@ public class NpcManager : MonoBehaviour
 
     void shufflePlayers()
     {
-        List<int> playerPool = new List<int>();
-        for (int i = 1; i < maxUser; i++)
+        pickedPlayers.Clear(); // 既存のpickedPlayersをクリア
+        Debug.Log($"shufflePlayers: gm.savedata.ExRankings.Count = {gm.savedata.ExRankings.Count}");
+
+        if (gm.savedata.ExRankings == null || gm.savedata.ExRankings.Count <= 1)
         {
-            playerPool.Add(i);
+            // ランキングデータがない、または自分自身しかいない場合はNPCを生成しない
+            Debug.Log("shufflePlayers: ランキングデータが不足しているため、NPCをを生成しません。");
+            return;
         }
 
-        for (int I = 0; I < numberOfNPCs; I++)
+        List<int> playerPool = new List<int>();
+        // 現在のユーザー（ExRankings[0]と仮定）を除く、他のプレイヤーのインデックスをプールに追加
+        for (int i = 0; i < gm.savedata.ExRankings.Count; i++)
+        {
+            // 現在のユーザー自身のデータはNPCとして選択しない
+            if (gm.savedata.ExRankings[i].Uid != gm.savedata.Uid)
+            {
+                playerPool.Add(i);
+            }
+        }
+        Debug.Log($"shufflePlayers: playerPool.Count = {playerPool.Count}");
+
+        int playersToPick = Mathf.Min(numberOfNPCs, playerPool.Count);
+        Debug.Log($"shufflePlayers: playersToPick = {playersToPick}");
+
+        for (int I = 0; I < playersToPick; I++)
         {
             if (playerPool.Count == 0) {
-                Debug.LogError("No more players to pick.");
+                Debug.LogError("shufflePlayers: playerPoolが空になりました。これ以上プレイヤーを選べません。");
                 break;
             }
             int randomIndex = Random.Range(0, playerPool.Count);
             pickedPlayers.Add(playerPool[randomIndex]);
             playerPool.RemoveAt(randomIndex);
         }
+        Debug.Log($"shufflePlayers: pickedPlayers.Count = {pickedPlayers.Count}");
     }
 
     public void SpawnNPCs()
     {
-        Debug.Log("ランキング数"+gm.savedata.ExRankings.Count);
-        if (gm.savedata.ExRankings.Count == 0 || gm.savedata.ExRankings[0].Name == "")
+        Debug.Log("SpawnNPCs: ランキング数"+gm.savedata.ExRankings.Count);
+        Debug.Log($"SpawnNPCs: gm.savedata.ExRankings == null : { (gm.savedata.ExRankings == null).ToString() }");
+        if (gm.savedata.ExRankings == null || gm.savedata.ExRankings.Count == 0 || (gm.savedata.ExRankings.Count == 1 && gm.savedata.ExRankings[0].Uid == gm.savedata.Uid))
         {
-            Debug.Log("SpawnNPCs:ExRankingsが空なのでNPCを作りません。");
+            Debug.Log("SpawnNPCs:ExRankingsが空、または自分自身のデータのみなのでNPCを作りません。");
             return;
         }
 
         shufflePlayers();
-        // 生成するNPCの数をスポーンポイントの数と比較し、小さい方を使用
-        int spawnCount = Mathf.Min(numberOfNPCs, spawnPoints.Length);
-        if (spawnPoints.Length < numberOfNPCs) {
-            Debug.LogError("Not enough spawn points for the number of NPCs.");
+
+        // 生成するNPCの数をスポーンポイントの数と、実際にpickedPlayersにあるプレイヤーの数と比較し、小さい方を使用
+        int actualSpawnCount = Mathf.Min(pickedPlayers.Count, spawnPoints.Length);
+        Debug.Log($"SpawnNPCs: actualSpawnCount = {actualSpawnCount}, spawnPoints.Length = {spawnPoints.Length}, pickedPlayers.Count = {pickedPlayers.Count}");
+        
+        if (spawnPoints.Length < actualSpawnCount) {
+            Debug.LogError("SpawnNPCs: スポーンポイントがNPCの数に対して不足しています。");
         }
 
         // 既存のNPCをクリア
@@ -61,12 +85,16 @@ public class NpcManager : MonoBehaviour
         }
 
         // 指定された数だけNPCをスポーン
-        for (int i = 0; i < spawnCount; i++)
+        for (int i = 0; i < actualSpawnCount; i++)
         {
-            if (i >= pickedPlayers.Count || pickedPlayers[i] >= gm.savedata.ExRankings.Count) {
-                Debug.LogError($"Invalid player index: {i}, pickedPlayers length: {pickedPlayers.Count}, ExRankings count: {gm.savedata.ExRankings.Count}");
-                continue; // 無効なインデックスをスキップ
+            // pickedPlayersはshufflePlayersで既に適切なインデックスが設定されているはずなので、
+            // ここでの追加チェックは不要ですが、念のためログは残しておきます。
+            if (pickedPlayers.Count == 0 || i >= pickedPlayers.Count)
+            {
+                Debug.LogError($"SpawnNPCs: pickedPlayersに十分なプレイヤーがいません。NPCの生成を停止します。現在まで {i} 体生成済み。");
+                break;
             }
+            
             // Y軸周りでランダムな角度を選択
             Quaternion randomRotation = Quaternion.Euler(0, Random.Range(110, 220), 0);
             // NPCプレハブのインスタンスを生成し、指定された位置に配置
@@ -77,15 +105,12 @@ public class NpcManager : MonoBehaviour
 
             if (chibiCatScript != null)
             {
-                if (gm.savedata.ExRankings.Count > 0)
-                {
-                    chibiCatScript.setName(gm.savedata.ExRankings[pickedPlayers[i]].Name + gm.getNickname(gm.savedata.ExRankings[pickedPlayers[i]].NickName));
-                    chibiCatScript.setChara(gm.savedata.ExRankings[pickedPlayers[i]].CatBody);
-                    chibiCatScript.releaseAllEquip();
-                    chibiCatScript.changeEquipHands(gm.savedata.ExRankings[pickedPlayers[i]].RightHand, gm.savedata.ExRankings[pickedPlayers[i]].LeftHand, 0);
-                    chibiCatScript.changeEquipHead(gm.savedata.ExRankings[pickedPlayers[i]].Head);
-                    chibiCatScript.changeEquipGlasses(gm.savedata.ExRankings[pickedPlayers[i]].Glasses);
-                }
+                chibiCatScript.setName(gm.savedata.ExRankings[pickedPlayers[i]].FirstName + gm.getNickname(gm.savedata.ExRankings[pickedPlayers[i]].NicknameNo));
+                chibiCatScript.setChara(gm.savedata.ExRankings[pickedPlayers[i]].CatBody);
+                chibiCatScript.releaseAllEquip();
+                chibiCatScript.changeEquipHands(gm.savedata.ExRankings[pickedPlayers[i]].RightHand, gm.savedata.ExRankings[pickedPlayers[i]].LeftHand, 0);
+                chibiCatScript.changeEquipHead(gm.savedata.ExRankings[pickedPlayers[i]].Head);
+                chibiCatScript.changeEquipGlasses(gm.savedata.ExRankings[pickedPlayers[i]].Glasses);
             }
         }
     }
