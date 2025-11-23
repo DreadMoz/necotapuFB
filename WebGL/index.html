@@ -155,6 +155,66 @@
             });
         };
 
+        // ユーザーデータバージョン比較関数
+        // 引数: localDataJson (JSON文字列), firebaseDataJson (JSON文字列)
+        // 戻り値: "local" または "firebase"
+        window.compareUserDataVersion = (localDataJson, firebaseDataJson) => {
+            try {
+                const local = JSON.parse(localDataJson);
+                const firebase = JSON.parse(firebaseDataJson);
+
+                // アイテム数をカウント
+                let localItemCount = 0;
+                if (local.Items) {
+                    local.Items.forEach(item => {
+                        if (item) localItemCount++;
+                    });
+                }
+
+                let firebaseItemCount = 0;
+                if (firebase.Items) {
+                    firebase.Items.forEach(item => {
+                        if (item) firebaseItemCount++;
+                    });
+                }
+
+                console.log(`HTML バージョン比較: ローカルアイテム数=${localItemCount}, Firebaseアイテム数=${firebaseItemCount}`);
+
+                // アイテム数で比較
+                if (localItemCount > firebaseItemCount) {
+                    console.log("HTML: ローカルデータの方が新しい（アイテム数が多い）");
+                    return "local";
+                } else if (localItemCount < firebaseItemCount) {
+                    console.log("HTML: Firebaseデータの方が新しい（アイテム数が多い）");
+                    return "firebase";
+                }
+
+                // アイテム数が同じ場合、ゴールド数で比較
+                // Status[0]がゴールドに相当すると仮定
+                const localGold = (local.Status && local.Status.length > 0) ? local.Status[0] : 0;
+                const firebaseGold = (firebase.Status && firebase.Status.length > 0) ? firebase.Status[0] : 0;
+
+                console.log(`HTML ユーザデータバージョン比較: ローカルゴールド=${localGold}, Firebaseゴールド=${firebaseGold}`);
+
+                if (localGold > firebaseGold) {
+                    console.log("HTML: ローカルデータの方が新しい（ゴールドが多い）");
+                    return "local";
+                } else if (localGold < firebaseGold) {
+                    console.log("HTML: Firebaseデータの方が新しい（ゴールドが多い）");
+                    return "firebase";
+                }
+
+                // 両方同じ場合はFirebaseを優先
+                console.log("HTML: ユーザデータが同じ - Firebaseを優先");
+                return "firebase";
+
+            } catch (e) {
+                console.error(`HTML ユーザデータバージョン比較中にエラーが発生: ${e.message}`);
+                // エラーの場合はFirebaseを優先
+                return "firebase";
+            }
+        };
+
 
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
           // Mobile device style: fill the whole browser client area with the game canvas:
@@ -207,7 +267,7 @@
         //######################################################
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, GoogleAuthProvider, OAuthProvider, signInWithPopup, signInAnonymously, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, collection, doc, setDoc, getDoc, getDocs, serverTimestamp, query, orderBy, limit, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getFirestore, collection, doc, setDoc, getDoc, getDocs, serverTimestamp, query, orderBy, limit, where, writeBatch } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         // Firebase設定（設定テンプレートから読み込み）
         let firebaseConfig = null;
@@ -405,9 +465,6 @@
                     // 認証情報を送信
                     window.unityInstance.SendMessage('AuthManager', 'OnAuthSuccess', JSON.stringify(authInfo));
                     
-                    // データを送信
-                    window.unityInstance.SendMessage('FirestoreConnection', 'OnLoadComplete', localData);
-                    
                     console.log("✅ リロード後の自動復元完了");
                 }
             } else {
@@ -486,6 +543,82 @@
         };
 
         /**
+         * Unityから呼び出される統合データ保存関数
+         * ユーザデータとランキングデータをまとめて保存 (Batched Write)
+         */
+        window.saveCombinedDataToFBFromUnity = async function(combinedDataJson) {
+            console.log("saveCombinedDataToFBFromUnity: 統合データを保存開始");
+
+            try {
+                if (!window.app || !window.auth || !window.db) {
+                    console.error("❌ Firebase SDKが読み込まれていません");
+                    if (window.unityInstance) {
+                        window.unityInstance.SendMessage('FirestoreConnection', 'OnSaveComplete', 'error');
+                    }
+                    return;
+                }
+
+                const db = window.db;
+                const user = window.auth.currentUser;
+
+                if (!user) {
+                    console.error("❌ ユーザーが認証されていません");
+                    if (window.unityInstance) {
+                        window.unityInstance.SendMessage('FirestoreConnection', 'OnSaveComplete', 'error');
+                    }
+                    return;
+                }
+
+                const combinedData = JSON.parse(combinedDataJson);
+                console.log("保存データ:", combinedData);
+
+                // バッチ処理の開始
+                const batch = writeBatch(db);
+
+                // 1. ユーザーデータの保存
+                if (combinedData.statusData) {
+                    const userDocRef = doc(db, 'users', user.uid);
+                    batch.set(userDocRef, {
+                        data: JSON.parse(combinedData.statusData),
+                        updatedAt: serverTimestamp()
+                    }, { merge: true });
+                    console.log("Batch: ユーザーデータをセット");
+                }
+
+                // 2. ランキングデータの保存
+                if (combinedData.rankingData && combinedData.rankingData.length > 0) {
+                    // 配列の最初の要素（自分自身）を使用
+                    const myRankData = combinedData.rankingData[0];
+                    if (myRankData) {
+                         const rankingDocRef = doc(db, 'rankings', user.uid);
+                         batch.set(rankingDocRef, myRankData, { merge: true });
+                         console.log("Batch: ランキングデータをセット");
+                    }
+                }
+
+                // バッチコミット
+                await batch.commit();
+                console.log("✅ Firestoreに統合データを一括保存完了 (Batch)");
+                
+                // LocalStorageにも保存 (Ranking)
+                if (combinedData.rankingData) {
+                    const rankingAccountKey = window.getAccountSpecificKey('rankingData');
+                    localStorage.setItem(rankingAccountKey, JSON.stringify(combinedData.rankingData));
+                }
+
+                if (window.unityInstance) {
+                    window.unityInstance.SendMessage('FirestoreConnection', 'OnSaveComplete', 'success');
+                }
+
+            } catch (error) {
+                console.error("❌ saveCombinedDataToFBFromUnityでエラーが発生:", error);
+                if (window.unityInstance) {
+                    window.unityInstance.SendMessage('FirestoreConnection', 'OnSaveComplete', 'error');
+                }
+            }
+        };
+
+        /**
          * Unityから呼び出されるFirestore保存関数
          * Unityから受け取ったデータをFirestoreに保存
          */
@@ -559,7 +692,7 @@
                 }
             }
         };
-
+        
         /**
          * Unityから呼び出されるGoogle認証関数
          * ポップアップでGoogleログインを実行し、認証成功時にUnityに結果を送信
@@ -597,10 +730,10 @@
                     };
                     
                     // Unityに認証情報を送信
-                    if (window.unityInstance) {
-                        window.unityInstance.SendMessage('AuthManager', 'OnAuthSuccess', JSON.stringify(authInfo));
-                        addLog("認証情報をUnityに送信完了");
-                    }
+                    // if (window.unityInstance) {
+                    //     window.unityInstance.SendMessage('AuthManager', 'OnAuthSuccess', JSON.stringify(authInfo));
+                    //     addLog("認証情報をUnityに送信完了");
+                    // }
                 })
                 .catch((error) => {
                     addLog(`❌ Google認証失敗: ${error.message}`);
@@ -644,10 +777,10 @@
                     };
                     
                     // Unityに認証情報を送信
-                    if (window.unityInstance) {
-                        window.unityInstance.SendMessage('AuthManager', 'OnAuthSuccess', JSON.stringify(authInfo));
-                        addLog("認証情報をUnityに送信完了");
-                    }
+                    // if (window.unityInstance) {
+                    //     window.unityInstance.SendMessage('AuthManager', 'OnAuthSuccess', JSON.stringify(authInfo));
+                    //     addLog("認証情報をUnityに送信完了");
+                    // }
                 })
                 .catch((error) => {
                     addLog(`❌ Microsoft認証失敗: ${error.message}`);
@@ -982,10 +1115,10 @@
                     };
                     
                     // Unityに認証情報を送信
-                    if (window.unityInstance) {
-                        window.unityInstance.SendMessage('AuthManager', 'OnAuthSuccess', JSON.stringify(authInfo));
-                        addLog("認証情報をUnityに送信完了");
-                    }
+                    // if (window.unityInstance) {
+                    //     window.unityInstance.SendMessage('AuthManager', 'OnAuthSuccess', JSON.stringify(authInfo));
+                    //     addLog("認証情報をUnityに送信完了");
+                    // }
                 })
                 .catch((error) => {
                     addLog(`❌ ゲスト認証失敗: ${error.message}`);

@@ -10,12 +10,12 @@ public class FirestoreConnection : MonoBehaviour
     public static FirestoreConnection Instance { get; private set; }
 
     // Firebaseアクセス制限の設定（時間単位）
-    [SerializeField] private int firebaseAccessLimitHours = 1;
+    [SerializeField] private int firebaseAccessLimitHoursLoad = 1;
+    [SerializeField] private int firebaseAccessLimitHoursSave = 1;
+    // Firebaseからのデータロード成功フラグ
+    public bool IsFirebaseLoadedSuccessfully { get; private set; }
     
     [SerializeField] private GameManager gm;
-
-    // Firebaseからデータが正常にロードされたかどうかを示すフラグ
-    private bool isFirebaseDataLoaded = false;
 
     void Awake()
     {
@@ -26,7 +26,8 @@ public class FirestoreConnection : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        Debug.Log($"FirestoreConnection: Awakeで設定されている制限時間は {firebaseAccessLimitHours} 時間です"); // ここにログを追加
+        Debug.Log($"FirestoreConnection: Awakeで設定されているLoad制限時間は {firebaseAccessLimitHoursLoad} 時間です"); // ここにログを追加
+        Debug.Log($"FirestoreConnection: Awakeで設定されているSave制限時間は {firebaseAccessLimitHoursSave} 時間です"); // ここにログを追加
     }
 
     // JSLibから受け取る統合データ構造
@@ -37,6 +38,7 @@ public class FirestoreConnection : MonoBehaviour
         public List<ExRank> rankingData; // ここを ExRank から List<ExRank> に戻します
         public string appVersion;
         public string source; // データロード元 ('firebase' or 'local')
+        public bool isFirebaseAccessed; // Firebaseへのアクセスが成功したかどうかのフラグ
     }
 
 #if UNITY_WEBGL
@@ -55,15 +57,15 @@ public class FirestoreConnection : MonoBehaviour
     
     // 制限時間を設定
     [DllImport("__Internal")]
-    private static extern void SetFirebaseAccessLimitHoursJslib(int hours);
+    private static extern void SetFirebaseAccessLimitHoursJslib(int loadHours, int saveHours);
 
     // 新しい統合データロード完了コールバック
     [DllImport("__Internal")]
     private static extern void OnAllDataLoadCompleteJslib(string allDataJson);
 
-    // ランキングデータ保存のためのJSLib関数
+    // 追加：統合データ保存のためのJSLib関数
     [DllImport("__Internal")]
-    private static extern void saveFirestoreRankingDataFromUnityJslib(string rankingDataJson);
+    private static extern void SaveCombinedDataToFBJslib(string combinedDataJson, string limitHours);
 
 #endif
 
@@ -73,9 +75,9 @@ public class FirestoreConnection : MonoBehaviour
     public void LoadFromFirestore()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-        Debug.Log($"FirestoreConnection: {firebaseAccessLimitHours}時間制限付きでFirestoreからデータを読み込み開始");
+        Debug.Log($"FirestoreConnection: {firebaseAccessLimitHoursLoad}時間制限付きでFirestoreからデータを読み込み開始");
         // 制限時間を引数で渡して実行
-        LoadAllDataFromFirestoreWithLimitJslib(firebaseAccessLimitHours.ToString());
+        LoadAllDataFromFirestoreWithLimitJslib(firebaseAccessLimitHoursLoad.ToString());
 #else
         Debug.Log("FirestoreConnection: エディタ環境 - ダミーデータを使用");
         GetDummyFirestoreData();
@@ -88,16 +90,9 @@ public class FirestoreConnection : MonoBehaviour
     public void SaveToFirestore(string dataPointer)
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-        if (!isFirebaseDataLoaded)
-        {
-            Debug.LogWarning("FirestoreConnection: Firebaseからデータがロードされていないため、Firebaseへの保存をスキップしました。");
-            // Firebaseに保存しない場合でも、LocalStorageには保存する可能性を考慮
-            // this.SaveToLocalJslib(dataPointer); // 必要であればLocalStorage保存を呼び出す
-            return;
-        }
-        Debug.Log($"FirestoreConnection: {firebaseAccessLimitHours}時間制限付きでFirestoreにデータを保存");
+        Debug.Log($"FirestoreConnection: {firebaseAccessLimitHoursLoad}時間制限付きでFirestoreにデータを保存");
         // 制限時間を引数で渡して実行
-        SaveToFirestoreWithLimitJslib(dataPointer, firebaseAccessLimitHours.ToString());
+        SaveToFirestoreWithLimitJslib(dataPointer, firebaseAccessLimitHoursLoad.ToString());
 #else
         Debug.Log("FirestoreConnection: エディタ環境 - 保存をスキップ");
 #endif
@@ -120,8 +115,7 @@ public class FirestoreConnection : MonoBehaviour
                 setFirebaseConfigJslib(configJson);
                 
                 // 制限時間も設定
-                SetFirebaseAccessLimitHoursJslib(firebaseAccessLimitHours);
-                Debug.Log($"制限時間を設定: {firebaseAccessLimitHours}時間");
+                SetFirebaseAccessLimitHoursJslib(firebaseAccessLimitHoursLoad,firebaseAccessLimitHoursSave);
             }
             else
             {
@@ -170,7 +164,7 @@ public class FirestoreConnection : MonoBehaviour
         
         if (FindObjectOfType<TitleSky>() != null)
         {
-            FindObjectOfType<TitleSky>().FinishDataLoadExtStatus(statusJson);
+            FindObjectOfType<TitleSky>().SetUserData(statusJson);
         }
         else
         {
@@ -218,8 +212,8 @@ public class FirestoreConnection : MonoBehaviour
         
         try
         {
-            // 全データ一括ロード関数を呼び出し、23時間制限を適用しますにゃん。
-            LoadAllDataFromFirestoreWithLimitJslib(firebaseAccessLimitHours.ToString());
+            // 全データ一括ロード関数を呼び出し、23時間制限を適用します。
+            LoadAllDataFromFirestoreWithLimitJslib(firebaseAccessLimitHoursLoad.ToString());
             Debug.Log("FirestoreConnection: データロード要求を送信");
         }
         catch (System.Exception e)
@@ -242,56 +236,6 @@ public class FirestoreConnection : MonoBehaviour
         // 直接データロードを実行
         LoadUserData();
     }
-
-    /// <summary>
-    /// JavaScript側からのデータロード完了コールバック
-    /// </summary>
-    /// <param name="dataJson">ロードされたデータのJSON文字列</param>
-    public void OnLoadComplete(string dataJson)
-    {
-        Debug.Log($"FirestoreConnection: データロード完了 - {dataJson}");
-        
-        if (dataJson == "error" || dataJson == "{}")
-        {
-            Debug.Log("🆕 FirestoreConnection: 新規ユーザー - 新規作成処理に移行");
-            // 新規ユーザーの場合、新規作成処理を実行
-            if (FindObjectOfType<TitleSky>() != null)
-            {
-                Debug.Log("FirestoreConnection: 新規作成処理を実行");
-                FindObjectOfType<TitleSky>().CreateNewCatAfterError();
-            }
-            else
-            {
-                Debug.LogError("FirestoreConnection: TitleSkyが見つかりません");
-            }
-        }
-        else
-        {
-            try
-            {
-                // バージョン比較を実行してからデータを設定
-                if (FindObjectOfType<TitleSky>() != null)
-                {
-                    FindObjectOfType<TitleSky>().CompareAndSetData(dataJson);
-                    Debug.Log("FirestoreConnection: バージョン比較完了");
-                }
-                else
-                {
-                    Debug.LogError("FirestoreConnection: TitleSkyが見つかりません");
-                }
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogError($"FirestoreConnection: データ設定エラー: {e.Message}");
-            }
-        }
-        
-        // startButtonを表示（データロード完了後）
-        if (FindObjectOfType<TitleSky>() != null)
-        {
-            FindObjectOfType<TitleSky>().ShowStartButton();
-        }
-    }
     
     /// <summary>
     /// JavaScript側からの統合データロード完了コールバック
@@ -300,7 +244,7 @@ public class FirestoreConnection : MonoBehaviour
     public void OnAllDataLoadComplete(string allDataJson)
     {
         Debug.Log($"FirestoreConnection: 統合データロード完了 - {allDataJson}");
-        Debug.Log($"FirestoreConnection: Firebaseアクセス制限時間は {firebaseAccessLimitHours} 時間です。");
+        Debug.Log($"FirestoreConnection: Firebaseアクセス制限時間は {firebaseAccessLimitHoursLoad} 時間です。");
 
         try
         {
@@ -309,34 +253,17 @@ public class FirestoreConnection : MonoBehaviour
             if (allData == null)
             {
                 Debug.LogError("FirestoreConnection: 統合データがnullです");
-                isFirebaseDataLoaded = false; // エラー時はフラグをfalseに
                 return;
             }
             
             // ユーザーデータ（statusData）の処理
             if (allData.statusData != null)
             {
-                Debug.Log("FirestoreConnection: ユーザーデータをGameManagerに設定");
-                // GameManager.savedataに設定
-                gm.savedata.SetData(Newtonsoft.Json.JsonConvert.SerializeObject(allData.statusData));
-                // TitleSkyのデータ設定ロジックを呼び出す
                 if (FindObjectOfType<TitleSky>() != null)
                 {
-                    // TitleSky.CompareAndSetDataがFirebaseデータを採用した場合にのみisFirebaseDataLoadedをtrueにする
-                    // 現状のTitleSky.CompareAndSetDataの実装では、どちらのデータが採用されたか直接返さないため、
-                    // ここではロード元がfirebaseであればtrueと仮定。厳密な比較はTitleSky側で行われている。
-                    FindObjectOfType<TitleSky>().CompareAndSetData(Newtonsoft.Json.JsonConvert.SerializeObject(allData.statusData));
-                    if (allData.source == "firebase")
-                    {
-                        isFirebaseDataLoaded = true;
-                        Debug.Log("FirestoreConnection: Firebaseデータが正常にロードされました。");
-                    }
-                    else
-                    {
-                        isFirebaseDataLoaded = false;
-                        Debug.LogWarning("FirestoreConnection: ローカルデータまたはエラーにより、Firebaseデータはロードされませんでした。");
-                    }
+                    FindObjectOfType<TitleSky>().SetUserData(Newtonsoft.Json.JsonConvert.SerializeObject(allData.statusData));
                 }
+                IsFirebaseLoadedSuccessfully = true; // Firebaseからデータが正常にロードされた
             }
             else
             {
@@ -346,7 +273,6 @@ public class FirestoreConnection : MonoBehaviour
                 {
                     FindObjectOfType<TitleSky>().CreateNewCatAfterError(); // 既存の新規作成処理を呼び出し
                 }
-                isFirebaseDataLoaded = false; // データなしのためフラグをfalseに
             }
 
             // ランキングデータ（rankingData）の処理
@@ -354,12 +280,12 @@ public class FirestoreConnection : MonoBehaviour
             {
                 Debug.Log("FirestoreConnection: ランキングデータをGameManagerに設定");
                 // 単一のExRankオブジェクトをList<ExRank>に変換して渡すように修正
-                gm.savedata.setRankingFromLocal(allData.rankingData);
+                gm.savedata.setRankingFromFirebaseOrLocal(allData.rankingData);
             }
             else
             {
                 Debug.Log("FirestoreConnection: ランキングデータがありません。空のリストを設定します。");
-                gm.savedata.setRankingFromLocal(new System.Collections.Generic.List<ExRank>()); // 空のリストを渡す
+                gm.savedata.setRankingFromFirebaseOrLocal(new System.Collections.Generic.List<ExRank>()); // 空のリストを渡す
             }
 
             // アプリバージョン（appVersion）の処理
@@ -385,6 +311,7 @@ public class FirestoreConnection : MonoBehaviour
             {
                 FindObjectOfType<TitleSky>().ShowStartButton();
             }
+            IsFirebaseLoadedSuccessfully = allData.isFirebaseAccessed; // JSLibから渡されたフラグで更新
         }
         catch (System.Exception e)
         {
@@ -395,6 +322,7 @@ public class FirestoreConnection : MonoBehaviour
             {
                 FindObjectOfType<TitleSky>().CreateNewCatAfterError();
             }
+            IsFirebaseLoadedSuccessfully = false; // エラーが発生したため、Firebaseロードは失敗 (isFirebaseAccessedもfalseになるはず)
         }
     }
 
@@ -404,14 +332,8 @@ public class FirestoreConnection : MonoBehaviour
     public void SaveInitialData(string initialDataJson)
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-        if (!isFirebaseDataLoaded)
-        {
-            Debug.LogWarning("FirestoreConnection: Firebaseからデータがロードされていないため、初期データのFirebaseへの保存をスキップしました。");
-            Debug.Log($"初期データはLocalStorageに保存されます: {initialDataJson}"); // LocalStorageへの保存は別途実装が必要
-            return;
-        }
         Debug.Log("FirestoreConnection: WebGL環境 - Firebaseに初期データを保存");
-        SaveToFirestoreJslib(initialDataJson);
+        SaveToFirestoreJslib(initialDataJson);      // ２３時間縛り無視
 #else
         Debug.Log("FirestoreConnection: エディタ環境 - 初期データ保存をスキップ");
         Debug.Log($"保存される初期データ: {initialDataJson}");
@@ -439,27 +361,6 @@ public class FirestoreConnection : MonoBehaviour
     }
 
     /// <summary>
-    /// Firebaseにランキングデータを保存
-    /// </summary>
-    public void SaveRankingToFirestore(ExRank userRankingData)
-    {
-#if UNITY_WEBGL && !UNITY_EDITOR
-        Debug.Log("FirestoreConnection: WebGL環境 - Firebaseにランキングデータを保存");
-        try
-        {
-            string rankingDataJson = Newtonsoft.Json.JsonConvert.SerializeObject(userRankingData);
-            saveFirestoreRankingDataFromUnityJslib(rankingDataJson);
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError($"FirestoreConnection: ランキングデータ保存エラー: {e.Message}");
-        }
-#else
-        Debug.Log("FirestoreConnection: エディタ環境 - ランキングデータ保存をスキップ");
-#endif
-    }
-
-    /// <summary>
     /// ランキング保存完了時のコールバック
     /// </summary>
     /// <param name="result">保存結果（'success'、'error'）</param>
@@ -475,5 +376,24 @@ public class FirestoreConnection : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 統合データをFirebaseに保存（ユーザデータとランキングデータ）
+    /// </summary>
+    public void SaveCombinedDataToFB(string combinedDataJson)
+    {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        Debug.Log("FirestoreConnection: WebGL環境 - 統合データ（ユーザー＆ランキング）をFirebaseに保存");
+        try
+        {
+            SaveCombinedDataToFBJslib(combinedDataJson, firebaseAccessLimitHoursSave.ToString());
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"FirestoreConnection: 統合データ保存JSLib呼び出しエラー: {e.Message}");
+        }
+#else
+        Debug.Log("FirestoreConnection: エディタ環境 - 統合データ保存をスキップ");
+#endif
+    }
 }
 

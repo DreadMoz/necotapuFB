@@ -128,18 +128,12 @@ public class TitleSky : MonoBehaviour
         TMP_Text buttonText = startButton.GetComponentInChildren<TMP_Text>();
         buttonText.text = "ログイン";
         gm.savedata.Settings[se.GachaCnt] = 1;      // ボーナスダイヤの初期値
-
-        // Firebase設定をhJSに送信
-        // if (firestoreConnection != null)
-        // {
-        //     firestoreConnection.SendFirebaseConfig();
-        // }
         
         // AuthManagerの認証成功イベントを購読
         var authManager = FindObjectOfType<necotapuFB.AuthManager>();
         if (authManager != null)
         {
-            authManager.OnAuthenticationSuccess += OnAuthenticationSuccess;
+            authManager.OnAuthenticationSuccess += OnAuthSuccess;
             Debug.Log("OnAuthenticationSuccessイベントを購読しました");
         }
 
@@ -201,7 +195,7 @@ public class TitleSky : MonoBehaviour
     /// <summary>
     /// Unityエディタ環境での認証成功時の処理 
     /// </summary>
-    public void OnAuthenticationSuccess(necotapuFB.AuthInfo authInfo)
+    public void OnAuthSuccess(necotapuFB.AuthInfo authInfo)
     {
         Debug.Log($"OnAuthenticationSuccess: Unityエディタ環境での認証成功 - 呼び出し元: {System.Environment.StackTrace}");
         
@@ -247,86 +241,23 @@ public class TitleSky : MonoBehaviour
             Debug.Log($"アカウントが変更されました: '{gm.savedata.Email}' → '{authInfo.email}' - データをクリア");
             ClearGameData();
         }
-        else
-        {
-            Debug.Log("同じアカウントでのログイン - データクリアをスキップ");
-        }
 
-        reLogin.SetActive(true); // ログアウトボタン表示
+        userData.SetActive(true);   // ユーザー情報を表示
+        reLogin.SetActive(true);    // ログアウトボタン表示
         
         Debug.Log($"ログイン情報表示完了: {authInfo.email} ({authInfo.displayName})");
-        Debug.Log("認証成功処理完了 - ログイン情報表示を実行");
         
-        CheckAccount();
-        Debug.Log("checkAccount関数を呼び出してUIを更新");
-    }
-
-    public void FinishDataLoadExtStatus(string statusDataJson)
-    {
-        message.SetActive(true);
-        Text messageText = message.GetComponentInChildren<Text>();
-
-        try
+        // データロードを開始
+        if (firestoreConnection == null)
         {
-            if (statusDataJson != null)
-            {
-                try
-                {
-                    // Firebaseからロードしたデータを直接ゲームデータに設定
-                    gm.savedata.DeserializeFromFirebase(statusDataJson);
-                    
-                    // ユーザー名を最新のGoogleアカウント情報で更新
-                    UpdateUserInfoFromAuth();
-
-                    // Firebaseから全データを一括取得（ユーザー情報、ランキング情報、バージョン情報）
-                    // if (AppVersionManager.Instance != null)
-                    // {
-                    //     AppVersionManager.Instance.LoadAllDataFromFirebase();
-                    // }
-                    // else
-                    // {
-                    //     Debug.LogError("TitleSky: AppVersionManager.Instance が見つかりません");
-                    // }
-                    
-                    ouText.text = gm.savedata.AuthMethod;
-                CheckDailyReset();
-                    
-                    // Firebaseデータロード完了メッセージを表示
-                    DisplayLoadCompleteMessage("firebase");
-                    
-                    // 装備データを反映
-                    Debug.Log($"FinishDataLoadExtStatus: 装備情報を反映 - CatBody: {gm.savedata.Equipment[eq.CatBody]}, RightHand: {gm.savedata.Equipment[eq.RightHand]}, LeftHand: {gm.savedata.Equipment[eq.LeftHand]}, Head: {gm.savedata.Equipment[eq.Head]}, Glasses: {gm.savedata.Equipment[eq.Glasses]}");
-                    cat.setChara(gm.savedata.Equipment[eq.CatBody]);
-                    cat.changeEquipHands(gm.savedata.Equipment[eq.RightHand], gm.savedata.Equipment[eq.LeftHand], gm.checkBagItem());
-                    cat.changeEquipHead(gm.savedata.Equipment[eq.Head]);
-                    cat.changeEquipGlasses(gm.savedata.Equipment[eq.Glasses]);
-
-                    // データロード後、既存データ処理を実行してUIを更新
-                    UseExistingData();
-                    
-                if (gm.savedata.getTotalMedal() >= 264)     // 0~65 * 4
-                {
-                    ashiato.SetActive(true);
-                }
-                }
-                catch (Exception ex)
-                {
-                    Debug.LogError($"Firebaseデータの解析に失敗: {ex.Message}");
-                    messageText.text = "データの読み込みに失敗しました。";
-                }
-            }
-            else
-            {
-                Debug.Log("ステータスデータがnull");
-            }
+            Debug.LogError("FirestoreConnectionが見つかりません");
         }
-        catch (Exception ex)
+        else
         {
-            messageText.text = "データを読み込む時にエラーが発生しました: ";
-            Debug.LogError("データの読み込み中に例外発生: " + ex);
+            firestoreConnection.LoadUserData();
         }
     }
-    
+
     /// <summary>
     /// 強制再読み込みが必要な場合にAppVersionManagerから呼ばれるハンドラ
     /// </summary>
@@ -337,76 +268,53 @@ public class TitleSky : MonoBehaviour
         messageText.text = "最新のアプリのバージョンが見つかりました。ロードするにゃん。";
         message.SetActive(true); // メッセージウィンドウを表示
     }
-
-    /// <summary>
-    /// Firebaseデータとローカルデータを比較して、新しい方で開始
-    /// </summary>
-    public void CompareAndSetData(string firebaseDataJson)
-    {
-        Debug.Log("CompareAndSetData: バージョン比較開始");
-        
-        try
-        {
-            // Firebaseデータを保存
-            pendingFirebaseData = firebaseDataJson;
-            
-            // ローカルデータを取得
-            var localDataJson = gm.savedata.SerializeForFirebase();
-            
-            // バージョン比較は新しいAppVersionManagerで処理されるため、ここではFirebaseデータを使用
-            FinishDataLoadExtStatus(firebaseDataJson);
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"バージョン比較中にエラーが発生: {ex.Message}");
-            // エラーの場合はFirebaseデータを使用
-            FinishDataLoadExtStatus(firebaseDataJson);
-        }
-    }
-    
-    /// <summary>
-    /// バージョン比較結果：ローカルデータを使用
-    /// </summary>
-    public void UseLocalData()
-    {
-        Debug.Log("UseLocalData: ローカルデータの方が新しい - ローカルデータを使用");
-        
-        // ローカルデータでゲームを開始
-        message.SetActive(true);
-        DisplayLoadCompleteMessage("local");
-        
-        // 装備データを反映
-        Debug.Log($"UseLocalData: 装備情報を反映 - CatBody: {gm.savedata.Equipment[eq.CatBody]}, RightHand: {gm.savedata.Equipment[eq.RightHand]}, LeftHand: {gm.savedata.Equipment[eq.LeftHand]}, Head: {gm.savedata.Equipment[eq.Head]}, Glasses: {gm.savedata.Equipment[eq.Glasses]}");
-        cat.setChara(gm.savedata.Equipment[eq.CatBody]);
-        cat.changeEquipHands(gm.savedata.Equipment[eq.RightHand], gm.savedata.Equipment[eq.LeftHand], gm.checkBagItem());
-        cat.changeEquipHead(gm.savedata.Equipment[eq.Head]);
-        cat.changeEquipGlasses(gm.savedata.Equipment[eq.Glasses]);
-        
-        if (gm.savedata.getTotalMedal() >= 264)     // 0~65 * 4
-        {
-            ashiato.SetActive(true);
-        }
-    }
     
     /// <summary>
     /// バージョン比較結果：Firebaseデータを使用
     /// </summary>
-    public void UseFirebaseData()
+    public void SetUserData(string jsonData)
     {
-        Debug.Log("UseFirebaseData: サーバーデータの方が新しい - サーバーデータを使用");
-        
-        // Firebaseデータでゲームを開始（既存の処理を使用）
-        DisplayLoadCompleteMessage("firebase");
-        FinishDataLoadExtStatus(pendingFirebaseData);
+        message.SetActive(true);
+        Text messageText = message.GetComponentInChildren<Text>();
+
+        try
+        {
+            // Firebaseからロードしたデータを直接ゲームデータに設定
+            gm.savedata.DeserializeFromFirebaseOrLocal(jsonData);
+            
+            // ユーザー名を最新のGoogleアカウント情報で更新
+            UpdateUserInfoFromAuth();
+            
+            ouText.text = gm.savedata.AuthMethod;
+            CheckDailyReset();
+            
+            // 装備データを反映
+            Debug.Log($"FinishDataLoadExtStatus: 装備情報を反映 - CatBody: {gm.savedata.Equipment[eq.CatBody]}, RightHand: {gm.savedata.Equipment[eq.RightHand]}, LeftHand: {gm.savedata.Equipment[eq.LeftHand]}, Head: {gm.savedata.Equipment[eq.Head]}, Glasses: {gm.savedata.Equipment[eq.Glasses]}");
+            cat.setChara(gm.savedata.Equipment[eq.CatBody]);
+            cat.changeEquipHands(gm.savedata.Equipment[eq.RightHand], gm.savedata.Equipment[eq.LeftHand], gm.checkBagItem());
+            cat.changeEquipHead(gm.savedata.Equipment[eq.Head]);
+            cat.changeEquipGlasses(gm.savedata.Equipment[eq.Glasses]);
+
+            // データロード後、既存データ処理を実行してUIを更新
+            UseExistingData();
+            
+            if (gm.savedata.getTotalMedal() >= 264)     // 0~65 * 4
+            {
+                ashiato.SetActive(true);
+            }
+        }
+        catch (Exception ex)
+        {
+            messageText.text = "データを読み込む時にエラーが発生しました: ";
+            Debug.LogError("データの読み込み中に例外発生: " + ex);
+        }
     }
+    
 
     // 認証情報を保存する変数
     private string currentFirstName = "";
     private string currentLastName = "";
     private string currentEmail = "";
-    
-    // バージョン比較用の変数
-    private string pendingFirebaseData = "";
 
     /// <summary>
     /// ロード完了メッセージを表示
@@ -417,15 +325,15 @@ public class TitleSky : MonoBehaviour
         Text messageText = message.GetComponentInChildren<Text>();
         if (source == "firebase")
         {
-            messageText.text = "✅ サーバーからデータをロードしたよ。スタートしよう！";
+            messageText.text = "サーバーからデータをロードしたよ。スタートしよう！";
         }
         else if (source == "local")
         {
-            messageText.text = "🌐 ブラウザからデータをロードしたよ。スタートしよう！";
+            messageText.text = "ブラウザからデータをロードしたよ。スタートしよう！";
         }
         else if (source == "new_user") // 新規ユーザー用のメッセージを追加
         {
-            messageText.text = "🐱 新しいねこが生まれたよ！ゲームをスタートしよう！";
+            messageText.text = "新しいねこが生まれたよ！ゲームをスタートしよう！";
         }
         else
         {
@@ -541,7 +449,7 @@ public class TitleSky : MonoBehaviour
             {
                 Debug.Log("ユーザー情報が更新されました - Firebaseに保存を実行");
                 // 更新された情報をFirebaseに保存
-                gm.savedata.saveToFirebase();
+                gm.savedata.saveInitialDataToFirebase();
             }
             else
             {
@@ -568,30 +476,6 @@ public class TitleSky : MonoBehaviour
         }
     }
 
-    private void checkLocalData()
-    {
-        Text messageText = message.GetComponentInChildren<Text>();
-
-        // アカウント情報があるかどうかで判定
-        if (!string.IsNullOrEmpty(gm.savedata.Email) && !string.IsNullOrEmpty(gm.savedata.UserName))
-        {
-            animator.SetBool("Standup", false);
-            // アカウント情報が存在する場合（既存ユーザー）
-            Debug.Log("既存アカウント情報あり - 既存データを使用");
-            messageText.text = "🌐 ブラウザからデータをロードしたよ。スタートしよう！";
-            
-            // 既存データがある場合の処理を実行
-            UseExistingData();
-        }
-        else
-        {
-            // アカウント情報がない場合（新規ユーザー）
-            Debug.Log("新規ユーザー - ねこを作成");
-            messageText.text = "🆕 新規ユーザーです。いっしょにたびをするねこをえらんでね。";
-            CreateNewCat();
-        }
-    }
-
     /// <summary>
     /// 新規ユーザーの新規作成処理
     /// </summary>
@@ -608,43 +492,18 @@ public class TitleSky : MonoBehaviour
         Debug.Log("CreateNewCatAfterError: 新規ユーザーフラグ設定完了");
     }
 
-    private void CheckAccount()
-    {
-        Debug.Log("CheckAccount: アカウント情報をチェック");
-        
-        // 認証情報を設定
-        currentEmail = mailText.text;
-        currentFirstName = firstName.text;
-        currentLastName = lastName.text;
-        
-        // ユーザー情報を表示
-        userData.SetActive(true);
-        
-        // データロードを開始
-        if (firestoreConnection != null)
-        {
-            firestoreConnection.LoadUserData();
-        }
-        else
-        {
-            Debug.LogError("FirestoreConnectionが見つかりません");
-        }
-    }
-    
     /// <summary>
     /// 既存データがある場合の処理
     /// </summary>
     private void UseExistingData()
     {
-        Debug.Log("UseExistingData: 既存データを使用");
-        
         // 既存の配列からねこデータを設定（装備は既にFinishDataLoadExtStatusで反映済み）
         Debug.Log($"UseExistingData: 既存配列装備情報 - CatBody: {gm.savedata.Equipment[eq.CatBody]}, RightHand: {gm.savedata.Equipment[eq.RightHand]}, LeftHand: {gm.savedata.Equipment[eq.LeftHand]}, Head: {gm.savedata.Equipment[eq.Head]}, Glasses: {gm.savedata.Equipment[eq.Glasses]}");
         
         // ボタンテキストを「スタート」に設定
             TMP_Text buttonText = startButton.GetComponentInChildren<TMP_Text>();
             buttonText.text = "スタート";
-        startButton.SetActive(true);
+            startButton.SetActive(true);
         
         // ログインフラグを1に設定（既存ユーザー）
             loginFlg = 1;
@@ -683,8 +542,8 @@ public class TitleSky : MonoBehaviour
     public void ShowStartButton()
     {
         Debug.Log("ShowStartButton: スタートボタンを表示");
-        // このメソッドは「ボタンを表示する」だけの役割
-        // 実際の処理は、ユーザーがボタンを押した時にStartButton()で実行される
+        TMP_Text buttonText = startButton.GetComponentInChildren<TMP_Text>();
+        buttonText.text = "スタート";
         startButton.SetActive(true);
     }
 
@@ -770,24 +629,6 @@ public class TitleSky : MonoBehaviour
         buttonText.text = "ログイン";
     }
 
-    public void handleDataError()
-    {
-        Debug.Log("handleDataError");
-        checkLocalData();
-    }
-
-    public void OnRequestTimeout()
-    {
-        Debug.Log("OnRequestTimeout");
-        checkLocalData();
-    }
-
-    public void handleInitialData()
-    {
-        Debug.Log("handleInitialData");
-        checkLocalData();
-    }
-
     private void selectNeco()
     {
         Text messageText = message.GetComponentInChildren<Text>();
@@ -810,10 +651,10 @@ public class TitleSky : MonoBehaviour
         Debug.Log($"confirmNeco: 設定後の既存配列装備情報 - CatBody: {gm.savedata.Equipment[eq.CatBody]}, RightHand: {gm.savedata.Equipment[eq.RightHand]}, LeftHand: {gm.savedata.Equipment[eq.LeftHand]}, Head: {gm.savedata.Equipment[eq.Head]}, Glasses: {gm.savedata.Equipment[eq.Glasses]}");
         
         // Firebaseに初期データを保存（SaveData.csのメソッドを使用）
-        gm.savedata.saveToFirebase();
+        gm.savedata.saveInitialDataToFirebase();
 
         // 保存したばかりのデータを直接利用してデータロード完了処理を実行
-        string savedDataJson = gm.savedata.SerializeForFirebase();
+        string savedDataJson = gm.savedata.SerializeForFB();
         DisplayLoadCompleteMessage("new_user"); // 新規作成完了メッセージを表示
 
         // UIボタンを非表示
@@ -885,4 +726,13 @@ public class TitleSky : MonoBehaviour
         GameManager.eventHeijo = true;
         onGuestMode();
     }
+
+    /// <summary>
+    /// ユーザデータの最新性を判定（アイテム数 → ゴールド数の順）
+    /// FirebaseBridge.jslibから移動したロジックをC#で実装
+    /// </summary>
+    /// <param name="localDataJson">ローカルデータのJSON文字列</param>
+    /// <param name="firebaseDataJson">FirebaseデータのJSON文字列</param>
+    /// <returns>"local" または "firebase"</returns>
+    // CompareUserDataVersionInternal メソッドを削除します (JSLibに移動したため)
 }

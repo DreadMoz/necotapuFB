@@ -921,7 +921,7 @@ public class TypingSoft : MonoBehaviour
             if (GameManager.eventHeijo)
             {
                 panelMessage.SetActive(true);
-                gm.exportLocal();
+                gm.saveGameData();
             }
             else
             {

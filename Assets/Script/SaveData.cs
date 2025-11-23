@@ -210,7 +210,7 @@ public class SaveData : ScriptableObject
     }
 
     // 拡張機能からランキング一覧を取得する。
-    public void setRankingFromLocal(List<ExRank> newRankings)
+    public void setRankingFromFirebaseOrLocal(List<ExRank> newRankings)
     {
         Debug.Log("Received Ranking List. Updating ExRankings.");
 
@@ -323,22 +323,22 @@ public class SaveData : ScriptableObject
     }
 
     // SaveDataの構造をそのままFirebaseに保存するためのシリアライズ
-    public string SerializeForFirebase()
+    public string SerializeForFB()
     {
         return JsonUtility.ToJson(this);
     }
 
     /// <summary>
-    /// 現在のデータをFirebaseに保存
+    /// 初期データをFirebaseに保存
     /// </summary>
-    public void saveToFirebase()
+    public void saveInitialDataToFirebase()
     {
-        Debug.Log("SaveData: Firebaseにデータを保存開始");
+        Debug.Log("SaveData: Firebaseに初期データを保存開始");
         
         try
         {
-            // 既存のSerializeForFirebaseを使用してJSONに変換
-            string firebaseJson = SerializeForFirebase();
+            // 既存のSerializeForFBを使用してJSONに変換
+            string firebaseJson = SerializeForFB();
             Debug.Log($"Firebase用JSON: {firebaseJson}");
             
             // FirestoreConnectionを使用してFirebaseに保存
@@ -359,30 +359,11 @@ public class SaveData : ScriptableObject
         }
     }
 
-    // SaveDataの構造をそのままFirebaseから読み込むためのデシリアライズ
-    public void DeserializeFromFirebase(string json)
+    // SaveDataの構造をそのままFirebaseまたはローカルから読み込むためのデシリアライズ
+    public void DeserializeFromFirebaseOrLocal(string json)
     {
         JsonUtility.FromJsonOverwrite(json, this);
     }
-
-
-
-    // 拡張機能からステータスデータを取得する。
-    public void setStatusFromLocal(string statusData)
-     {
-        Debug.Log("Received Status JSON: " + statusData);
-        // 新しい構造でFirebaseから読み込む
-        try
-        {
-            DeserializeFromFirebase(statusData);
-            Debug.Log("Firebaseデータを読み込みました。");
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError("Firebaseデータの読み込みに失敗: " + ex.Message);
-        }
-    }
-
 
     public int getBlankInventoryIndex()
     {

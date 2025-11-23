@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.038624447, g: 0.054592915, b: 0.09733042, a: 1}
+  m_IndirectSpecularColor: {r: 0.12979463, g: 0.20020786, b: 0.35983342, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1637,7 +1637,6 @@ MonoBehaviour:
   db: {fileID: 11400000, guid: f6a63b7d1998548f6babf3974cb219e7, type: 2}
   savedata: {fileID: 11400000, guid: 53736ca5c0e474c06821507c23ae53df, type: 2}
   firebaseConfig: {fileID: 11400000, guid: d1d23da6e3e3c46fdbad2164517fa121, type: 2}
-  connection: {fileID: 0}
   firestoreConnection: {fileID: 0}
   kpmRatio: 0.05
   setting: {fileID: 0}
@@ -2981,7 +2980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8355194e553a24393a04a4f011f49c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firebaseConfig: {fileID: 11400000, guid: d1d23da6e3e3c46fdbad2164517fa121, type: 2}
+  firebaseConfig: {fileID: 11400000, guid: ed09520d53c36429598860d614ad6951, type: 2}
 --- !u!4 &1018792776
 Transform:
   m_ObjectHideFlags: 0
@@ -6134,9 +6133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb500e0d92b049ab8efef50430114fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firebaseAccessLimitHours: 23
+  firebaseAccessLimitHours: 1
   gm: {fileID: 529254024}
-  title: {fileID: 992936580}
 --- !u!4 &1769249110
 Transform:
   m_ObjectHideFlags: 0

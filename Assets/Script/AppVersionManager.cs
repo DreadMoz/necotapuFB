@@ -68,23 +68,6 @@ namespace necotapuFB
         }
         
         /// <summary>
-        /// Firebaseから全データを一括取得（ユーザ情報、ランキング情報、バージョン情報）
-        /// </summary>
-        public void LoadAllDataFromFirebase()
-        {
-            Debug.Log("Firebaseから全データを一括取得開始");
-            
-            // FirebaseBridge.jslibを使用して一括データ取得
-            #if UNITY_WEBGL && !UNITY_EDITOR
-                // WebGL環境ではjslibを使用（23時間制限付き）
-                LoadAllDataFromFirestoreWithLimitJslib("23");
-            #else
-                Debug.Log("エディタ環境: 一括データ取得をスキップ");
-                OnVersionCheckComplete?.Invoke("editor");
-            #endif
-        }
-        
-        /// <summary>
         /// Firebaseからバージョン情報を受信（jslibから呼び出される）
         /// </summary>
         /// <param name="firebaseVersion">Firebaseのバージョン</param>
@@ -126,9 +109,6 @@ namespace necotapuFB
             {
                 Debug.Log("バージョンは最新です");
                 forceReload = false;
-                
-                // バージョンが最新の場合、データロードを実行
-                // LoadAllDataFromFirebase(); // 無限ループの原因となるため、引き続きコメントアウト
             }
             
             OnVersionCheckComplete?.Invoke("success");

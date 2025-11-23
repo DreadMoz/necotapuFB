@@ -439,7 +439,7 @@ namespace necotapuFB
         }
 
         /// <summary>
-        /// 認証成功時の処理 JSから呼ばれる
+        /// 認証成功時の処理 (JSの onAuthStateChanged または 認証完了時 に呼ばれる)
         /// </summary>
         public void OnAuthSuccess(string authData)
         {
@@ -461,18 +461,6 @@ namespace necotapuFB
                 
                 // 認証状態を保存
                 SaveAuthState(currentAuthInfo);
-                
-                Debug.Log("認証成功処理完了 - ログイン情報表示を実行");
-
-                // 認証成功後にアプリバージョンをチェック
-                // if (AppVersionManager.Instance != null)
-                // {
-                //     AppVersionManager.Instance.CheckFirebaseVersion();
-                // }
-                // else
-                // {
-                //     Debug.LogError("AuthManager: AppVersionManager.Instance が見つかりません");
-                // }
 
                 Debug.Log($"ログイン成功: {currentAuthInfo.email} - Firestoreチェックを開始");
                 
@@ -759,7 +747,6 @@ namespace necotapuFB
                 // 認証状態を保存
                 SaveAuthState(currentAuthInfo);
                 
-                Debug.Log("認証情報の保存完了");
             }
             catch (Exception e)
             {

@@ -99,7 +99,7 @@ public class Setting : MonoBehaviour
             Debug.Log("Width:" + screenWidth + "  Height:" + screenHeight);
             transform.position = new Vector2(screenWidth * 0.5f, screenHeight * 2);
             isWindowShown = false; // 非表示に設定
-            gm.exportLocal();
+            gm.saveGameData();
 
             worldAudio.volume = volumeSlider.value * 0.01f;    // スライダー値をボリュームに
             if (muteSlider.value == 1)

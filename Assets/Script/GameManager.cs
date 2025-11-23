@@ -237,6 +237,9 @@ public class GameManager : MonoBehaviour
     {
         // ゲーム開始時にSaveDataを確実に初期化
         
+        // FirestoreConnectionのインスタンスを確実に取得
+        firestoreConnection = FirestoreConnection.Instance;
+
         if (SceneNo != (int)scene.Title)
         {
         }
@@ -552,7 +555,7 @@ public class GameManager : MonoBehaviour
         }
         if (!noChangeFlg)
         {
-            exportLocal();  // インベントリ変更後のデータ保存ローカル＆GSS
+            saveGameData();  // インベントリ変更後のデータ保存ローカル＆GSS
         }
         oldInventory = null;        // データクリア
         oldEquip = null;
@@ -663,19 +666,23 @@ public class GameManager : MonoBehaviour
         return ret;
     }
 
-    public void exportLocal()
+[System.Serializable]
+public class CombinedSaveData
+{
+    public string statusData; // SaveDataのJSON文字列
+    public List<ExRank> rankingData; // ExRankオブジェクトのリスト
+}
+
+    public void saveGameData()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
         // 新しい構造でFirebaseに保存するためのJSONを生成
-        string saveLocalJson = savedata.SerializeForFirebase();
+        string saveLocalJson = savedata.SerializeForFB();
         
         // 1. ブラウザに保存（毎回実行）
         SaveStatusToLocalJslib(saveLocalJson); // 関数名を変更
         
-        // 2. 23時間制限チェック付きでFirebaseに保存
-        firestoreConnection.SaveToFirestore(saveLocalJson);
-        
-        // 3. ランキングデータをFirebaseに保存（現在のユーザー自身のデータのみ）
+        // 2. ランキングデータをセット（現在のユーザー自身のデータのみ）
         ExRank userRankingData = new ExRank
         {
             Uid = savedata.Uid,
@@ -691,14 +698,32 @@ public class GameManager : MonoBehaviour
             Ranking = savedata.Status[st.Rank], // 現在のRankingも保存
             Stage = savedata.Status[st.Server]  // 現在のStageも保存
         };
-        firestoreConnection.SaveRankingToFirestore(userRankingData);
+        // 3.ユーザーデータとランキングデータを一つのオブジェクトにまとめる
+        CombinedSaveData combinedData = new CombinedSaveData 
+        {
+            statusData = saveLocalJson, // 既存のユーザーデータJSON
+            rankingData = new List<ExRank> { userRankingData } // ランキングデータオブジェクトをリストにラップ
+        };
+        string combinedJson = JsonConvert.SerializeObject(combinedData);
+
+        // 4.Firebaseに保存（２３時間縛りあり）
+
+        if (firestoreConnection != null && firestoreConnection.IsFirebaseLoadedSuccessfully)
+        {
+            firestoreConnection.SaveCombinedDataToFB(combinedJson);
+        }
+        else
+        {
+            Debug.LogWarning("Firebaseからのデータロードが成功していないため、Firebaseへの保存をスキップします。");
+        }
+
 #endif
     }
 
     public void exportGas()
     {
         // 新しい構造でFirebaseに保存するためのJSONを生成
-        string saveGasObject = savedata.SerializeForFirebase();
+        string saveGasObject = savedata.SerializeForFB();
         // connection.saveGas(saveGasObject); // 一時的に無効化
     }
 
@@ -773,7 +798,7 @@ public class GameManager : MonoBehaviour
             var rankingList = JsonConvert.DeserializeObject<List<ExRank>>(rankingDataJson);
             if (rankingList != null)
             {
-                savedata.setRankingFromLocal(rankingList); // List<ExRank> を直接渡す
+                savedata.setRankingFromFirebaseOrLocal(rankingList); // List<ExRank> を直接渡す
                 Debug.Log("ランキングデータをロードしました。");
             }
             else

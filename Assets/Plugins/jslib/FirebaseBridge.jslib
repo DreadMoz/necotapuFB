@@ -1,14 +1,13 @@
-
-
-
 mergeInto(LibraryManager.library, {
     // ===== 制限時間設定 =====
-    firebaseAccessLimitHours: 23, // デフォルト値
+    firebaseAccessLimitHoursLoad: 23, // デフォルト値
+    firebaseAccessLimitHoursSave: 23, // デフォルト値
     
     // Unity側から制限時間を設定
-    SetFirebaseAccessLimitHoursJslib: function(hours) {
-        this.firebaseAccessLimitHours = hours;
-        console.log(`制限時間を${hours}時間に設定しました`);
+    SetFirebaseAccessLimitHoursJslib: function(loadHours, saveHours) {
+        this.firebaseAccessLimitHoursLoad = loadHours;
+        this.firebaseAccessLimitHoursSave = saveHours;
+        console.log(`jslib内制限時間Loadを${loadHours}, Saveを${saveHours}時間に設定しました`);
     },
     
     // Firebase設定値の受け渡し
@@ -95,7 +94,7 @@ mergeInto(LibraryManager.library, {
         }
     },
     
-    // Firestoreデータ保存（橋渡し専用）
+    // Firestoreユーザーデータ保存（橋渡し専用）
     SaveToFirestoreJslib: function(dataPointer) {
         var data = UTF8ToString(dataPointer);
         console.log("SaveToFirestoreJslib: Unityからデータを受信", data);
@@ -210,146 +209,6 @@ mergeInto(LibraryManager.library, {
         this.setFirebaseConfigJslib(config);
     },
     
-
-    
-    // ユーザデータの最新性を判定（アイテム数 → ゴールド数の順）
-    compareUserDataVersion: function(localData, firebaseData) {
-        try {
-            // ローカルデータをパース
-            var local = JSON.parse(localData);
-            var firebase = firebaseData;
-            
-            // アイテム数をカウント
-            var localItemCount = 0;
-            var firebaseItemCount = 0;
-            
-            if (local.Items && Array.isArray(local.Items)) {
-                for (var i = 0; i < local.Items.length; i++) {
-                    if (local.Items[i] === true) localItemCount++;
-                }
-            }
-            
-            if (firebase.Items && Array.isArray(firebase.Items)) {
-                for (var i = 0; i < firebase.Items.length; i++) {
-                    if (firebase.Items[i] === true) firebaseItemCount++;
-                }
-            }
-            
-            console.log(`バージョン比較: ローカルアイテム数=${localItemCount}, Firebaseアイテム数=${firebaseItemCount}`);
-            
-            // アイテム数で比較
-            if (localItemCount > firebaseItemCount) {
-                console.log("ローカルデータの方が新しい（アイテム数が多い）");
-                return "local";
-            } else if (localItemCount < firebaseItemCount) {
-                console.log("Firebaseデータの方が新しい（アイテム数が多い）");
-                return "firebase";
-            }
-            
-            // アイテム数が同じ場合、ゴールド数で比較
-            var localGold = local.Status && local.Status[0] ? local.Status[0] : 0;
-            var firebaseGold = firebase.Status && firebase.Status[0] ? firebase.Status[0] : 0;
-            
-            console.log(`ユーザデータバージョン比較: ローカルゴールド=${localGold}, Firebaseゴールド=${firebaseGold}`);
-            
-            if (localGold > firebaseGold) {
-                console.log("ローカルデータの方が新しい（ゴールドが多い）");
-                return "local";
-            } else if (localGold < firebaseGold) {
-                console.log("Firebaseデータの方が新しい（ゴールドが多い）");
-                return "firebase";
-            }
-            
-            // 両方同じ場合はFirebaseを優先
-            console.log("ユーザデータが同じ - Firebaseを優先");
-            return "firebase";
-            
-        } catch (e) {
-            console.error("ユーザデータバージョン比較中にエラーが発生:", e);
-            // エラーの場合はFirebaseを優先
-            return "firebase";
-        }
-    },
-    
-    // Unityから呼び出されるユーザデータバージョン比較関数
-    CompareUserDataVersion: function(localDataPointer, firebaseDataPointer) {
-        var localData = UTF8ToString(localDataPointer);
-        var firebaseData = UTF8ToString(firebaseDataPointer);
-        
-        console.log("CompareUserDataVersion: Unityからユーザデータバージョン比較要求");
-        
-        // ユーザデータバージョン比較を実行
-        // ユーザデータバージョン比較ロジックを直接実装
-        try {
-            // ローカルデータをパース
-            var local = JSON.parse(localData);
-            var firebase = JSON.parse(firebaseData);
-            
-            // アイテム数をカウント
-            var localItemCount = 0;
-            var firebaseItemCount = 0;
-            
-            if (local.Items && Array.isArray(local.Items)) {
-                for (var i = 0; i < local.Items.length; i++) {
-                    if (local.Items[i] === true) localItemCount++;
-                }
-            }
-            
-            if (firebase.Items && Array.isArray(firebase.Items)) {
-                for (var i = 0; i < firebase.Items.length; i++) {
-                    if (firebase.Items[i] === true) firebaseItemCount++;
-                }
-            }
-            
-            console.log(`ユーザデータバージョン比較: ローカルアイテム数=${localItemCount}, Firebaseアイテム数=${firebaseItemCount}`);
-            
-            // アイテム数で比較
-            var result = "firebase"; // デフォルト
-            if (localItemCount > firebaseItemCount) {
-                console.log("ローカルデータの方が新しい（アイテム数が多い）");
-                result = "local";
-            } else if (localItemCount < firebaseItemCount) {
-                console.log("Firebaseデータの方が新しい（アイテム数が多い）");
-                result = "firebase";
-            } else {
-                // アイテム数が同じ場合、ゴールド数で比較
-                var localGold = local.Status && local.Status[0] ? local.Status[0] : 0;
-                var firebaseGold = firebase.Status && local.Status[0] ? firebase.Status[0] : 0;
-                
-                console.log(`ユーザデータバージョン比較: ローカルゴールド=${localGold}, Firebaseゴールド=${firebaseGold}`);
-                
-                if (localGold > firebaseGold) {
-                    console.log("ローカルデータの方が新しい（ゴールドが多い）");
-                    result = "local";
-                } else if (localGold < firebaseGold) {
-                    console.log("Firebaseデータの方が新しい（ゴールドが多い）");
-                    result = "firebase";
-                } else {
-                    console.log("ユーザデータが同じ - Firebaseを優先");
-                    result = "firebase";
-                }
-            }
-        } catch (e) {
-            console.error("ユーザデータバージョン比較中にエラーが発生:", e);
-            var result = "firebase"; // エラーの場合はFirebaseを優先
-        }
-        
-        console.log(`ユーザデータバージョン比較結果: ${result}`);
-        
-        // Unityに結果を送信
-        if (window.unityInstance) {
-            if (result === "local") {
-                // ローカルデータの方が新しい場合
-                window.unityInstance.SendMessage('TitleScene', 'UseLocalData');
-            } else {
-                // Firebaseデータの方が新しい場合
-                window.unityInstance.SendMessage('TitleScene', 'UseFirebaseData');
-            }
-        } else {
-            console.error("Unityインスタンスが見つかりません");
-        }
-    },
-    
     // データ管理
     SaveStatusToLocalJslib: function(dataPointer) {
         var data = UTF8ToString(dataPointer);
@@ -451,15 +310,159 @@ mergeInto(LibraryManager.library, {
         }
     },
     
+    // 一括ロード機能（23時間制限付き）- ユーザ情報、ランキング情報、バージョン情報を一気に取得
+    LoadAllDataFromFirestoreWithLimitJslib: function(limitHours) {
+        var hours = parseInt(UTF8ToString(limitHours));
+        console.log("LoadAllDataFromFirestoreWithLimitJslib: 一括ロード開始（制限付き）");
+        
+        // 最終的にUnityに送信するデータ
+        let finalStatusData = null;
+        let finalRankingList = [];
+        let finalAppVersion = '';
+        let finalSource = 'none';
 
-    // セーブ機能（23時間制限付き）
+        let localStatusData = null;
+        let localRankingData = [];
+        let firebaseStatusData = null;
+        let firebaseRankingData = [];
+        let firebaseAppVersionData = null;
+
+        let isFirebaseAccessed = false; // Firebaseへのアクセスが成功したかどうかのフラグ
+
+        // 1. 常にLocalStorageからのデータ読み込みを試行
+        window.LoadDataFromLocal().then(async (localResult) => { // async を追加
+            localStatusData = localResult.statusData;
+            localRankingData = localResult.rankingData;
+            
+            // 2. Firebaseへのアクセス制限チェック
+            var lastAccessKey = "lastFirebaseAccess_loadAll_" + window.getAccountSpecificKey('statusData').split('_')[1];
+            var lastAccessTime = localStorage.getItem(lastAccessKey);
+            var canAccessFirebase = false;
+            
+            if (!lastAccessTime) {
+                console.log("loadAll: 初回Firebaseアクセス - 制限なし");
+                canAccessFirebase = true;
+            } else {
+                var lastAccess = new Date(lastAccessTime);
+                var now = new Date();
+                var timeDiff = now.getTime() - lastAccess.getTime();
+                var hoursDiff = timeDiff / (1000 * 60 * 60);
+                
+                if (hoursDiff >= hours) {
+                    console.log(`loadAll: ${hours}時間経過 - Firebaseアクセス可能`);
+                    canAccessFirebase = true;
+                } else {
+                    console.log(`loadAll: Firebase制限中 - あと${(hours - hoursDiff).toFixed(2)}時間待機必要`);
+                }
+            }
+
+            // 3. Firebaseアクセスが可能な場合のみFirebaseからデータ読み込み
+            if (canAccessFirebase) {
+                console.log("Firebaseからデータ（ユーザ、ランキング、バージョン）を一括読み込み");
+                try {
+                    const [userDataResult, rankingList, versionInfo] = await Promise.all([
+                        typeof window.loadFirestoreUserData === 'function' ? window.loadFirestoreUserData() : Promise.resolve({ statusData: null, source: 'none' }),
+                        typeof window.getNecoRank === 'function' ? window.getNecoRank() : Promise.resolve([]),
+                        typeof window.checkAppVersion === 'function' ? window.checkAppVersion() : Promise.resolve(null)
+                    ]);
+                    firebaseStatusData = userDataResult.statusData;
+                    firebaseRankingData = rankingList;
+                    firebaseAppVersionData = versionInfo;
+
+                    // アクセス時刻を記録（成功時のみ）
+                    var now = new Date();
+                    localStorage.setItem(lastAccessKey, now.toISOString());
+                    isFirebaseAccessed = true; // Firebaseにアクセス成功
+
+                    // Firebaseからの読み込みに成功した場合、ランキングデータはLocalStorageに自動保存
+                    if (firebaseRankingData && firebaseRankingData.length > 0) {
+                        const rankingAccountKey = window.getAccountSpecificKey('rankingData');
+                        localStorage.setItem(rankingAccountKey, JSON.stringify(firebaseRankingData));
+                        console.log("💾 FirebaseランキングデータをLocalStorageに自動保存 (LoadAllData):", rankingAccountKey);
+                    }
+                    // アクセス時刻を記録（成功時のみ）
+                    var now = new Date();
+                    localStorage.setItem(lastAccessKey, now.toISOString());
+                    isFirebaseAccessed = true; // Firebaseにアクセス成功
+
+                } catch (error) {
+                    console.error("Firebase一括データ読み込み中にエラーが発生しました:", error);
+                    // エラー時もデータはnullとして続行
+                }
+            }
+
+            // 4. 最強データを決定
+            finalStatusData = localStatusData; // デフォルトはローカルデータ
+            finalRankingList = localRankingData; // デフォルトはローカルランキング
+            finalAppVersion = firebaseAppVersionData ? firebaseAppVersionData.version : '';// アプリバージョンはFirebase
+            finalSource = 'local';
+
+            // ユーザーデータ比較
+            if (firebaseStatusData && localStatusData) {
+                // HTML側のバージョン比較関数を呼び出す（window.compareUserDataVersionが存在する場合）
+                if (typeof window.compareUserDataVersion === 'function') {
+                    const compareResult = window.compareUserDataVersion(JSON.stringify(localStatusData), JSON.stringify(firebaseStatusData));
+                    if (compareResult === 'firebase') {
+                        finalStatusData = firebaseStatusData;
+                        finalRankingList = firebaseRankingData;
+                        finalSource = 'firebase';
+                    } else {
+                        // ローカルデータが最強の場合（現状維持）
+                        console.log("JSLib: ローカルデータが最強と判断");
+                    }
+                } else {
+                    // HTML側に比較関数がない場合、Firebaseデータを優先
+                    console.warn("JSLib: window.compareUserDataVersion が見つかりません。Firebaseデータをデフォルトで優先します。");
+                    finalStatusData = firebaseStatusData;
+                    finalRankingList = firebaseRankingData;
+                    finalSource = 'firebase';
+                }
+            } else if (firebaseStatusData && !localStatusData) {
+                // ローカルデータがない場合はFirebaseデータを採用
+                finalStatusData = firebaseStatusData;
+                finalRankingList = firebaseRankingData;
+                finalSource = 'firebase';
+            } else if (!firebaseStatusData && !localStatusData) {
+                // 両方ない場合はnullのまま（新規ユーザーと判断）
+                finalStatusData = null;
+                finalSource = 'none';
+            }
+
+            // 5. Unityに決定された最強データを送信
+            if (window.unityInstance) {
+                const allData = {
+                    statusData: finalStatusData,
+                    rankingData: finalRankingList,
+                    appVersion: finalAppVersion,
+                    source: finalSource,
+                    isFirebaseAccessed: isFirebaseAccessed // Firebaseアクセス成功フラグを追加
+                };
+                window.unityInstance.SendMessage('FirestoreConnection', 'OnAllDataLoadComplete', JSON.stringify(allData));
+            }
+        })
+        .catch(error => {
+            console.error("LoadAllDataFromFirestoreWithLimitJslib全体でエラーが発生:", error);
+            // 何らかの理由でPromiseチェーン全体が失敗した場合、Unityにエラーを通知
+            if (window.unityInstance) {
+                const allData = {
+                    statusData: null,
+                    rankingData: [],
+                    appVersion: '',
+                    source: 'error',
+                    isFirebaseAccessed: false // エラー時はfalse
+                };
+                window.unityInstance.SendMessage('FirestoreConnection', 'OnAllDataLoadComplete', JSON.stringify(allData));
+            }
+        });
+    },
+
+    // 初期データセーブ機能（23時間制限付き）
     SaveToFirestoreWithLimitJslib: function(dataPointer, limitHours) {
         var data = UTF8ToString(dataPointer);
         var hours = parseInt(UTF8ToString(limitHours));
-        console.log("SaveToFirestoreWithLimitJslib: 制限付きセーブ開始");
         
         // 制限チェック（アカウント固有）
-                        var lastAccessKey = "lastFirebaseAccess_save_" + window.getAccountSpecificKey('statusData').split('_')[1];
+        var lastAccessKey = "lastFirebaseAccess_save_" + window.getAccountSpecificKey('statusData').split('_')[1];
         var lastAccessTime = localStorage.getItem(lastAccessKey);
         var canAccess = "false";
         
@@ -491,148 +494,75 @@ mergeInto(LibraryManager.library, {
             } else {
                 console.error("❌ saveToFirestoreFromUnity関数が見つかりません");
             }
-        } else {
-            console.log("Firebaseアクセス制限中 - ブラウザに保存");
-            this.SaveStatusToLocalJslib(dataPointer);
-            console.log("データをブラウザに保存しました");
-            
-            if (window.unityInstance) {
-                window.unityInstance.SendMessage('FirestoreConnection', 'OnSaveComplete', 'limited');
-            }
-        }
-    },
-    
-    // ランキングデータ保存のためのJSLib関数 (C#から直接呼び出される)
-    saveFirestoreRankingDataFromUnityJslib: function(rankingDataJsonPointer) {
-        console.log("saveFirestoreRankingDataFromUnity JSLib: ランキングデータを保存開始");
-        const rankingDataJson = UTF8ToString(rankingDataJsonPointer);
-
-        // HTML側の関数を呼び出すように変更
-        if (typeof window.saveFirestoreRankingDataFromUnity === 'function') {
-            window.saveFirestoreRankingDataFromUnity(rankingDataJson);
-        } else {
-            console.error("❌ window.saveFirestoreRankingDataFromUnity関数が見つかりません");
-            if (window.unityInstance) {
-                window.unityInstance.SendMessage('FirestoreConnection', 'OnRankingSaveComplete', 'error');
-            }
         }
     },
 
-    // アプリバージョン管理
-    CheckAppVersionJslib: function() {
-        console.log("CheckAppVersionJslib: -> LoadAllDataFromFirestoreWithLimitJslib を呼び出しますにゃん。");
-        this.LoadAllDataFromFirestoreWithLimitJslib("23");
-    },
-    
-    // ロード機能（23時間制限付き）
-    LoadFromFirestoreWithLimitJslib: function(limitHours) {
-        console.log("LoadFromFirestoreWithLimitJslib: -> LoadAllDataFromFirestoreWithLimitJslib を呼び出しますにゃん。");
-        this.LoadAllDataFromFirestoreWithLimitJslib(limitHours);
-    },
-    
-    // 一括ロード機能（23時間制限付き）- ユーザ情報、ランキング情報、バージョン情報を一気に取得
-    LoadAllDataFromFirestoreWithLimitJslib: function(limitHours) {
-        var hours = parseInt(UTF8ToString(limitHours));
-        console.log("LoadAllDataFromFirestoreWithLimitJslib: 一括ロード開始（制限付き）");
-        
-        // まず、ブラウザにデータがあるかチェック
-        var accountKey = window.getAccountSpecificKey('statusData');
-        var storedStatusData = localStorage.getItem(accountKey);
-        
-        // === 共通のFirebaseアクセス制限ロジック ===
-        var lastAccessKey = "lastFirebaseAccess_loadAll_" + window.getAccountSpecificKey('statusData').split('_')[1];
+    // 追加：統合データ保存のためのJSLib関数
+    SaveCombinedDataToFBJslib: function(combinedDataJsonPointer, limitHoursPointer) {
+        console.log("SaveCombinedDataToFBJslib: 統合データを保存開始");
+        const combinedDataJson = UTF8ToString(combinedDataJsonPointer);
+        const hours = parseInt(UTF8ToString(limitHoursPointer));
+
+        // 制限チェック（アカウント固有）
+        var lastAccessKey = "lastFirebaseAccess_saveCombined_" + window.getAccountSpecificKey('statusData').split('_')[1];
         var lastAccessTime = localStorage.getItem(lastAccessKey);
         var canAccess = "false";
         
         if (!lastAccessTime) {
-            console.log("loadAll: 初回アクセス - 制限なし");
+            console.log("saveCombined: 初回アクセス - 制限なし");
             canAccess = "true";
         } else {
             var lastAccess = new Date(lastAccessTime);
-            var now = new Date();
-            var timeDiff = now.getTime() - lastAccess.getTime();
-            var hoursDiff = timeDiff / (1000 * 60 * 60);
-            
-            if (hoursDiff >= hours) {
-                console.log(`loadAll: ${hours}時間経過 - アクセス可能`);
-                canAccess = "true";
+            console.log(`DEBUG: SaveCombined - lastAccessKey: ${lastAccessKey}`);
+            console.log(`DEBUG: SaveCombined - lastAccessTime (Raw): "${lastAccessTime}"`);
+            console.log(`DEBUG: SaveCombined - Parsed lastAccess (Date object): ${lastAccess}`);
+            console.log(`DEBUG: SaveCombined - lastAccess.getTime(): ${lastAccess.getTime()}`);
+
+            // lastAccess が有効な日付かどうかをチェック
+            if (isNaN(lastAccess.getTime())) {
+                console.log(`DEBUG: SaveCombined - Parsed lastAccess is Invalid Date.`);
+                console.warn(`saveCombined: 記録された最終アクセス時刻が不正です (${lastAccessTime})。初回アクセスとして処理します。`);
+                canAccess = "true"; // 初回アクセスとして扱う
+                // 不正な値をクリアし、次回からは正しい形式で保存されるようにする
+                localStorage.removeItem(lastAccessKey);
             } else {
-                console.log(`loadAll: 制限中 - あと${(hours - hoursDiff).toFixed(2)}時間待機必要`);
-                canAccess = "false";
+                var now = new Date();
+                var timeDiff = now.getTime() - lastAccess.getTime();
+                var hoursDiff = timeDiff / (1000 * 60 * 60);
+                console.log(`DEBUG: SaveCombined - now.getTime(): ${now.getTime()}`);
+                console.log(`DEBUG: SaveCombined - timeDiff: ${timeDiff}`);
+                console.log(`DEBUG: SaveCombined - hoursDiff: ${hoursDiff}`);
+                
+                if (hoursDiff >= hours) {
+                    console.log(`saveCombined: ${hours}時間経過 - アクセス可能`);
+                    canAccess = "true";
+                } else {
+                    console.log(`saveCombined: 制限中 - あと${(hours - hoursDiff).toFixed(2)}時間待機必要`);
+                    canAccess = "false";
+                    if (window.unityInstance) {
+                        // アクセス制限中の場合はUnityに"limited"を通知
+                        window.unityInstance.SendMessage('FirestoreConnection', 'OnSaveComplete', 'limited');
+                    }
+                }
             }
         }
-
-        // --- データロード処理 --- 
-        // LocalStorageにデータが「ない」場合、またはFirebaseアクセスが「可能」な場合
-        if (!storedStatusData || canAccess === "true") {
-            console.log("Firebaseから全データ（ユーザ、ランキング、バージョン）を一括読み込み");
-            
-            // ユーザデータ、ランキングデータ、アプリバージョンデータを全て取得するためのPromise.all
-            Promise.all([
-                typeof window.loadFirestoreUserData === 'function' ? window.loadFirestoreUserData() : Promise.resolve({ statusData: null, source: 'none' }),
-                typeof window.getNecoRank === 'function' ? window.getNecoRank() : Promise.resolve([]),
-                typeof window.checkAppVersion === 'function' ? window.checkAppVersion() : Promise.resolve(null)
-            ])
-            .then(([userDataResult, rankingList, versionInfo]) => {
-                console.log("一括データ読み込み完了:", { userDataResult, rankingList, versionInfo });
-    
-                    // Unityに全データを送信
-                    if (window.unityInstance) {
-                        const allData = {
-                            statusData: userDataResult.statusData,
-                            rankingData: rankingList, // 取得したランキングデータを設定
-                            appVersion: versionInfo ? versionInfo.version : '',
-                            source: userDataResult.source // FirebaseからかLocalStorageからかを伝える
-                        };
-                        window.unityInstance.SendMessage('FirestoreConnection', 'OnAllDataLoadComplete', JSON.stringify(allData));
-                    }
-                    
-                    // アクセス時刻を記録（成功時のみ）
-                    var now = new Date();
-                    localStorage.setItem(lastAccessKey, now.toISOString());
-                })
-                .catch(error => {
-                    console.error("一括データ読み込み中にエラーが発生しました:", error);
-                    // エラーの場合もUnityに通知
-                    if (window.unityInstance) {
-                        const allData = {
-                            statusData: null,
-                            rankingData: [], // エラー時は空のリストを送信
-                            appVersion: '',
-                            source: 'error'
-                        };
-                        window.unityInstance.SendMessage('FirestoreConnection', 'OnAllDataLoadComplete', JSON.stringify(allData));
-                    }
-                });
-    
-            } else { // Firebaseアクセスが「不可」で、LocalStorageにデータが「ある」場合
-                console.log("Firebaseアクセス制限中 - ブラウザから読み込み");
-                // LocalStorageからデータを読み込み、Unityに送信
-                window.LoadDataFromLocal().then((localDataResult) => {
-                    if (window.unityInstance) {
-                        const allData = {
-                            statusData: localDataResult.statusData,
-                            rankingData: localDataResult.rankingData, // LocalStorageから取得したランキングデータを設定
-                            appVersion: '', // ローカルストレージからの読み込み時はアプリバージョンを取得しない
-                            source: localDataResult.source // LocalStorageからロードされたことを伝える
-                        };
-                        window.unityInstance.SendMessage('FirestoreConnection', 'OnAllDataLoadComplete', JSON.stringify(allData));
-                    }
-                }).catch(error => {
-                    console.error("LocalStorageからの読み込み中にエラーが発生しました:", error);
-                    if (window.unityInstance) {
-                        const allData = {
-                            statusData: null,
-                            rankingData: [], // エラー時は空のリストを送信
-                            appVersion: '',
-                            source: 'error'
-                        };
-                        window.unityInstance.SendMessage('FirestoreConnection', 'OnAllDataLoadComplete', JSON.stringify(allData));
-                    }
-                });
-                // ローカルストレージからの読み込み時はアクセス時刻を更新しない (ねこ隊長のご指示通り)
+        
+        if (canAccess === "true") {
+            console.log("Firebaseアクセス可能 - 統合データを保存");
+            // HTML側の関数を呼び出す
+            if (typeof window.saveCombinedDataToFBFromUnity === 'function') {
+                window.saveCombinedDataToFBFromUnity(combinedDataJson);
+                // アクセス時刻を記録
+                var now = new Date();
+                localStorage.setItem(lastAccessKey, now.toISOString());
+            } else {
+                console.error("❌ window.saveCombinedDataToFBFromUnity関数が見つかりません");
+                if (window.unityInstance) {
+                    window.unityInstance.SendMessage('FirestoreConnection', 'OnSaveComplete', 'error');
+                }
             }
-        },
+        }
+    },
 
     // Unity側からFirebase設定完了の通知を受け取る
     FirebaseConfigLoadedJslib: function() {

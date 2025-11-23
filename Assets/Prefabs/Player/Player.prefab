@@ -93,9 +93,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7700812938084356392}
     m_Modifications:
+    - target: {fileID: 3175014665397142669, guid: 75a119e77f76a4224b808860dd6c2d16, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4825930753644073805, guid: 75a119e77f76a4224b808860dd6c2d16, type: 3}
       propertyPath: m_Name
       value: neco
+      objectReference: {fileID: 0}
+    - target: {fileID: 5136992731449918299, guid: 75a119e77f76a4224b808860dd6c2d16, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5227608959435394332, guid: 75a119e77f76a4224b808860dd6c2d16, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -152,6 +160,14 @@ PrefabInstance:
     - target: {fileID: 6020414224657050825, guid: 75a119e77f76a4224b808860dd6c2d16, type: 3}
       propertyPath: m_ReceiveShadows
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147135574515623527, guid: 75a119e77f76a4224b808860dd6c2d16, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990903396730334687, guid: 75a119e77f76a4224b808860dd6c2d16, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8134447070696389733, guid: 75a119e77f76a4224b808860dd6c2d16, type: 3}
       propertyPath: m_CastShadows
