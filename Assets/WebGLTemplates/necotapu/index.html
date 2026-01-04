@@ -20,6 +20,30 @@
         <div id="unity-footer">
             <div id="unity-webgl-logo"></div>
         </div>
+        
+        <!-- ログインオーバーレイ (Unityの上に表示) -->
+        <div id="login-overlay" style="display:none; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:100; justify-content:center; align-items:center; flex-direction:column;">
+            <div style="background:rgba(255, 255, 255, 0.9); padding:30px; border-radius:15px; text-align:center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; width: 90%;">
+                <h2 style="margin-top:0; color:#333;">ログイン方法を選択</h2>
+                <p style="color:#666; margin-bottom:20px;">ゲームデータを保存するためにログインしてください</p>
+                
+                <button id="btn-google" style="display:block; width:100%; padding:12px; margin:10px 0; border:none; border-radius:5px; background:#4285F4; color:white; font-size:16px; cursor:pointer; font-weight:bold;">
+                    Googleでログイン
+                </button>
+                
+                <button id="btn-microsoft" style="display:block; width:100%; padding:12px; margin:10px 0; border:none; border-radius:5px; background:#2F2F2F; color:white; font-size:16px; cursor:pointer; font-weight:bold;">
+                    Microsoftでログイン
+                </button>
+                
+                <button id="btn-guest" style="display:block; width:100%; padding:12px; margin:10px 0; border:none; border-radius:5px; background:#888; color:white; font-size:16px; cursor:pointer; font-weight:bold;">
+                    ゲストで開始
+                </button>
+                
+                <button id="btn-cancel" style="margin-top:15px; padding:8px 20px; border:1px solid #ccc; border-radius:5px; background:transparent; color:#666; cursor:pointer;">
+                    キャンセル
+                </button>
+            </div>
+        </div>
     </div>
 
     <script type="module">// Import the functions you need from the SDKs you need
@@ -885,100 +909,142 @@
         };
         
         /**
-         * Unityから呼び出されるGoogle認証関数
-         * ポップアップでGoogleログインを実行し、認証成功時にUnityに結果を送信
+         * Unityから呼び出されるログインオーバーレイ表示関数
          */
-        window.startGoogleAuthFromUnity = function() {
-            addLog("=== UnityからGoogle認証開始 ===");
-            
+        window.showLoginOverlay = function() {
+            const overlay = document.getElementById('login-overlay');
+            if (overlay) {
+                overlay.style.display = 'flex';
+            }
+        };
+
+        /**
+         * ログインオーバーレイ非表示関数
+         */
+        window.hideLoginOverlay = function() {
+            const overlay = document.getElementById('login-overlay');
+            if (overlay) {
+                overlay.style.display = 'none';
+            }
+            // キャンセルされたことをUnityに通知
+            if (window.unityInstance) {
+                window.unityInstance.SendMessage('AuthManager', 'ResetAuthFlag');
+            }
+        };
+
+        // オーバーレイのボタンイベント設定
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnGoogle = document.getElementById('btn-google');
+            const btnMicrosoft = document.getElementById('btn-microsoft');
+            const btnGuest = document.getElementById('btn-guest');
+            const btnCancel = document.getElementById('btn-cancel');
+
+            if (btnGoogle) {
+                btnGoogle.onclick = () => {
+                    // HTMLボタンのクリックイベント内なのでポップアップブロックされない
+                    startGoogleAuth();
+                };
+            }
+            if (btnMicrosoft) {
+                btnMicrosoft.onclick = () => {
+                    startMicrosoftAuth();
+                };
+            }
+            if (btnGuest) {
+                btnGuest.onclick = () => {
+                    startGuestAuth();
+                };
+            }
+            if (btnCancel) {
+                btnCancel.onclick = () => {
+                    window.hideLoginOverlay();
+                };
+            }
+        });
+
+        /**
+         * Google認証の実装 (HTMLボタンから呼ばれる)
+         */
+        function startGoogleAuth() {
+            addLog("=== HTMLボタンからGoogle認証開始 ===");
             if (!auth) {
                 addLog("Firebase認証が初期化されていません");
                 return;
             }
             
             const provider = new GoogleAuthProvider();
-            addLog("GoogleAuthProvider作成完了");
-            
-            // シンプルな認証実装
             signInWithPopup(auth, provider)
-                .then(async (result) => { // async を追加
+                .then(async (result) => {
                     addLog("✅ Google認証成功");
-                    addLog(`ユーザーID: ${result.user.uid}`);
-                    addLog(`メールアドレス: ${result.user.email}`);
-                    addLog(`表示名: ${result.user.displayName}`);
-                    
-                    const processedPhotoURL = await processPhotoURLForUnity(result.user.photoURL); // ここを修正
-                    
-                    // Unityに認証情報を送信
-                    const authInfo = {
-                        userId: result.user.uid,
-                        email: result.user.email,
-                        displayName: result.user.displayName,
-                        photoURL: processedPhotoURL, // 処理済みのURLを使用
-                        authMethod: "Google",
-                        isGuest: false,
-                        authenticatedAt: new Date().toISOString()
-                    };
-                    
-                    // Unityに認証情報を送信
-                    // if (window.unityInstance) {
-                    //     window.unityInstance.SendMessage('AuthManager', 'OnAuthSuccess', JSON.stringify(authInfo));
-                    //     addLog("認証情報をUnityに送信完了");
-                    // }
+                    window.hideLoginOverlay();
+                    // 成功後の処理は onAuthStateChanged が行う
                 })
                 .catch((error) => {
                     addLog(`❌ Google認証失敗: ${error.message}`);
+                    if (window.unityInstance) {
+                        window.unityInstance.SendMessage('AuthManager', 'OnAuthFailed', error.message);
+                    }
                 });
-        };
+        }
 
         /**
-         * Unityから呼び出されるMicrosoft認証関数
-         * ポップアップでMicrosoftログインを実行し、認証成功時にUnityに結果を送信
+         * Microsoft認証の実装
          */
-        window.startMicrosoftAuthFromUnity = function() {
-            addLog("=== UnityからMicrosoft認証開始 ===");
-            
-            if (!auth) {
-                addLog("Firebase認証が初期化されていません");
-                return;
-            }
+        function startMicrosoftAuth() {
+            addLog("=== HTMLボタンからMicrosoft認証開始 ===");
+            if (!auth) return;
             
             const provider = new OAuthProvider('microsoft.com');
-            addLog("MicrosoftAuthProvider作成完了");
-            
-            try {
             signInWithPopup(auth, provider)
-                .then(async (result) => { // async を追加
+                .then(async (result) => {
                     addLog("✅ Microsoft認証成功");
-                    addLog(`ユーザーID: ${result.user.uid}`);
-                    addLog(`メールアドレス: ${result.user.email}`);
-                    addLog(`表示名: ${result.user.displayName}`);
-                    
-                    const processedPhotoURL = await processPhotoURLForUnity(result.user.photoURL); // ここを修正
-                    
-                    // Unityに認証情報を送信
-                    const authInfo = {
-                        userId: result.user.uid,
-                        email: result.user.email,
-                        displayName: result.user.displayName,
-                        photoURL: processedPhotoURL, // 処理済みのURLを使用
-                        authMethod: "Microsoft",
-                        isGuest: false,
-                        authenticatedAt: new Date().toISOString()
-                    };
-                    
-                    // Unityに認証情報を送信
-                    // if (window.unityInstance) {
-                    //     window.unityInstance.SendMessage('AuthManager', 'OnAuthSuccess', JSON.stringify(authInfo));
-                    //     addLog("認証情報をUnityに送信完了");
-                    // }
+                    window.hideLoginOverlay();
                 })
                 .catch((error) => {
                     addLog(`❌ Microsoft認証失敗: ${error.message}`);
-                    });
-            } catch (error) {
-                addLog(`❌ Microsoft認証実行エラー: ${error.message}`);
-            }
+                    if (window.unityInstance) {
+                        window.unityInstance.SendMessage('AuthManager', 'OnAuthFailed', error.message);
+                    }
+                });
+        }
+
+        /**
+         * ゲスト認証の実装
+         */
+        function startGuestAuth() {
+            addLog("=== HTMLボタンからゲスト認証開始 ===");
+            if (!auth) return;
+            
+            signInAnonymously(auth)
+                .then((result) => {
+                    addLog("✅ ゲスト認証成功");
+                    window.hideLoginOverlay();
+                })
+                .catch((error) => {
+                    addLog(`❌ ゲスト認証失敗: ${error.message}`);
+                    if (window.unityInstance) {
+                        window.unityInstance.SendMessage('AuthManager', 'OnAuthFailed', error.message);
+                    }
+                });
+        }
+
+        /**
+         * Unityから呼び出されるGoogle認証関数 (後方互換用 - 今後はオーバーレイを使用)
+         * ポップアップブロックされる可能性があるため非推奨
+         */
+        window.startGoogleAuthFromUnity = function() {
+            addLog("⚠️ startGoogleAuthFromUnityが呼ばれました。オーバーレイを表示します。");
+            window.showLoginOverlay();
+        };
+
+        window.startMicrosoftAuthFromUnity = function() {
+            addLog("⚠️ startMicrosoftAuthFromUnityが呼ばれました。オーバーレイを表示します。");
+            window.showLoginOverlay();
+        };
+
+        window.startGuestAuthFromUnity = function() {
+            addLog("⚠️ startGuestAuthFromUnityが呼ばれました。オーバーレイを表示します。");
+            window.showLoginOverlay();
         };
 
         /**
@@ -1232,6 +1298,43 @@
             // Unity側からFirebase設定を受け取って初期化
             window.initializeFirebaseFromUnity();
         });
-    </script>
-</body>
+        //######################################################
+        // キー入力連携 (JS -> Unity)
+        // OS/ブラウザ依存のキーマップ問題を回避するため、
+        // JS側で解決された文字コードをUnityに送信する。
+        //######################################################
+        document.addEventListener('keydown', function(event) {
+            // ゲーム画面以外（inputタグなど）への入力は無視
+            if (document.activeElement.tagName === 'INPUT' || 
+                document.activeElement.tagName === 'TEXTAREA') {
+                return;
+            }
+
+            // Unityインスタンスが存在しない場合は何もしない
+            if (!window.unityInstance) return;
+
+            // Enterキー
+            if (event.key === 'Enter') {
+                console.log("Key down (JS): Enter -> Sending to Unity");
+                window.unityInstance.SendMessage('TypingSoft', 'HandleExternalInput', 'Enter');
+                return;
+            }
+
+            // 単一文字キー (記号含む: @, [, ], a, A, etc.)
+            // Shiftなどの修飾キー単体は length > 1 なので除外される
+            // F1, ArrowUp なども length > 1 なので除外される
+            if (event.key.length === 1) {
+                console.log(`Key down (JS): '${event.key}' -> Sending to Unity`);
+                // イベントをUnityに送信
+                window.unityInstance.SendMessage('TypingSoft', 'HandleExternalInput', event.key);
+                
+                // スペースキーなどでスクロールすると困るため無効化
+                if (event.key === ' ') {
+                    event.preventDefault();
+                }
+            }
+        });
+
+      </script>
+  </body>
 </html>

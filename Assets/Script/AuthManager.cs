@@ -736,11 +736,13 @@ namespace necotapuFB
 
         /// <summary>
         /// 認証フラグをリセット（JavaScript側から呼び出し）
+        /// キャンセル扱いとしてイベントを発火
         /// </summary>
         public void ResetAuthFlag()
         {
-            Debug.Log("ResetAuthFlag: 認証フラグをリセットしました");
+            Debug.Log("ResetAuthFlag: 認証フラグをリセットしました（キャンセル扱い）");
             isAuthenticating = false;
+            OnAuthenticationFailed?.Invoke(AuthResult.Cancelled);
         }
 
         /// <summary>

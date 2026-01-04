@@ -231,6 +231,7 @@ public class TypingSoft : MonoBehaviour
 
     void Start()
     {
+        this.gameObject.name = "TypingSoft"; // JS連携用に名前を固定
         lPlayer.SetActive(false);
         Fukidashi.SetActive(false);
 
@@ -1084,9 +1085,120 @@ public class TypingSoft : MonoBehaviour
         }
         return 3;
     }
-    
+
+    //---------------------------------------------------------
+    // 外部入力連携 (JS -> Unity)
+    //---------------------------------------------------------
+    public void HandleExternalInput(string inputChar)
+    {
+        Debug.Log($"[TypingSoft] JS Input Received: '{inputChar}'");
+
+        // Enterキー
+        if (inputChar == "Enter")
+        {
+            ProcessEnterKey();
+            return;
+        }
+
+        // 文字入力（スペース含む）
+        // JSからの入力は常に1文字（または特殊キー名）
+        if (inputChar.Length == 1)
+        {
+            bool handled = false;
+            if (inputChar == " ")
+            {
+                handled = ProcessSpaceKey();
+            }
+
+            if (!handled)
+            {
+                ProcessCharInput(inputChar);
+            }
+        }
+    }
+
+    /// <summary>
+    /// スペースキーの特殊処理
+    /// </summary>
+    /// <returns>処理が行われたら true</returns>
+    private bool ProcessSpaceKey()
+    {
+        Debug.Log($"[TypingSoft] ProcessSpaceKey Check: spaceStart={spaceStart}, spaceThrow={spaceThrow}, spaceEnd={spaceEnd}, GuestMode={GameManager.guestMode}");
+
+        if (spaceStart)     // スペースでスタート状態のとき
+        {
+            AssistKeyboardObj.pushKeyAction(" ");
+            // スペースでスタート状態を解除する
+            spaceStart = false;
+            UIH.text = "";
+            StartCoroutine(CountDown());    // カウントダウンからのスタート
+            return true;
+        }
+        else if (spaceThrow)
+        {
+            spaceThrow = false;
+            if (GameManager.guestMode)
+            {
+                return true;     // イベント用に固まらせる
+            }
+            diaRank = new System.Random().Next(0, 5);
+
+            StartCoroutine(PlayAnimationsInSequence());
+            return true;
+        }
+        else if (spaceEnd)    // スペースで終了状態のとき
+        {
+            AssistKeyboardObj.pushKeyAction(" ");
+            if (!goNextScene)
+            {
+                gm.savedata.Status[st.Gold] = totalSeeker;      // 所持シーカー
+                GameManager.SceneNo = (int)scene.House;         // ワールドシーンショップ前
+                if (GameManager.guestMode)
+                {
+                    return true;     // イベント用に固まらせる
+                }
+                SceneManager.LoadScene("WorldScene");           // ワールドシーンに遷移
+                goNextScene = true;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Enterキーの処理
+    /// </summary>
+    private void ProcessEnterKey()
+    {
+        // ゲストモードでリザルト表示後にEnterキーでタイトル画面に戻る
+        if (GameManager.guestMode && isWaitingForReturnKey)
+        {
+            Debug.Log("ゲストモード: Enterキーでタイトル画面に戻ります");
+            GameManager.SceneNo = (int)scene.Title;
+            SceneManager.LoadScene("TitleScene");
+            return;
+        }
+    }
+
+    /// <summary>
+    /// 文字入力処理
+    /// </summary>
+    private void ProcessCharInput(string inputChar)
+    {
+        if (isInputValid && !string.IsNullOrEmpty(inputChar))
+        {
+            AssistKeyboardObj.pushKeyAction(inputChar);
+            StartCoroutine(TypingCheck(inputChar));
+        }
+    }
+
     private void OnGUI()
     {
+        // WebGL環境かつエディタでない場合は、Unity標準入力を無効化（JSからの入力を待つ）
+#if UNITY_WEBGL && !UNITY_EDITOR
+        return;
+#endif
+
         Event e = Event.current;
         var isPushedShiftKey = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
