@@ -134,7 +134,27 @@ public class TitleSky : MonoBehaviour
         if (authManager != null)
         {
             authManager.OnAuthenticationSuccess += OnAuthSuccess;
-            Debug.Log("OnAuthenticationSuccessイベントを購読しました");
+            // 認証失敗時（未ログイン時含む）も購読してボタンを再表示する
+            authManager.OnAuthenticationFailed += OnAuthFailed;
+            Debug.Log("OnAuthenticationSuccess/Failedイベントを購読しました");
+            
+            // 起動直後の認証チェック中はボタンを非表示にする
+            if (authManager.IsAuthenticating)
+            {
+                startButton.SetActive(false);
+                guestButton.SetActive(false);
+                
+                // メッセージボックスを表示
+                if (message != null)
+                {
+                    message.SetActive(true);
+                    Text messageText = message.GetComponentInChildren<Text>();
+                    if (messageText != null)
+                    {
+                        messageText.text = "自動ログインチェック中...";
+                    }
+                }
+            }
         }
 
         // AppVersionManagerの強制再読み込みイベントを購読
@@ -167,12 +187,20 @@ public class TitleSky : MonoBehaviour
 
     public void StartButton()
     {
+        // 認証中はボタン操作を受け付けない
+        var authManager = FindObjectOfType<necotapuFB.AuthManager>();
+        if (authManager != null && authManager.IsAuthenticating)
+        {
+            Debug.Log("認証処理中のためボタン操作を無視します");
+            return;
+        }
+
         if (loginFlg == 0)
         {
             startButton.SetActive(false);   // ログイン完了まで一旦消す
             guestButton.SetActive(false);   // ログイン完了まで一旦消す
             // AuthManagerのGoogle認証を呼び出し
-            var authManager = FindObjectOfType<necotapuFB.AuthManager>();
+            // var authManager = FindObjectOfType<necotapuFB.AuthManager>(); // 重複宣言のため削除
             if (authManager != null)
             {
                 authManager.SignInWithGoogle();
@@ -193,11 +221,50 @@ public class TitleSky : MonoBehaviour
     }
 
     /// <summary>
+    /// 認証失敗時（未ログイン含む）の処理
+    /// </summary>
+    public void OnAuthFailed(necotapuFB.AuthResult result)
+    {
+        Debug.Log($"TitleSky: 認証チェック完了 - 未ログイン (Result: {result})");
+        
+        Text messageText = message.GetComponentInChildren<Text>();
+        if (messageText != null)
+        {
+            messageText.text = "ログインしてはじめよう。";
+        }
+
+        // ボタンを再表示して手動ログインを可能にする
+        startButton.SetActive(true);
+        guestButton.SetActive(true);
+        loginFlg = 0;
+        
+        TMP_Text buttonText = startButton.GetComponentInChildren<TMP_Text>();
+        if (buttonText != null) buttonText.text = "ログイン";
+    }
+
+    /// <summary>
     /// Unityエディタ環境での認証成功時の処理 
     /// </summary>
     public void OnAuthSuccess(necotapuFB.AuthInfo authInfo)
     {
         Debug.Log($"OnAuthenticationSuccess: Unityエディタ環境での認証成功 - 呼び出し元: {System.Environment.StackTrace}");
+
+        Text messageText = message.GetComponentInChildren<Text>();
+        if (messageText != null)
+        {
+            messageText.text = "スタートしよう。";
+        }
+
+        // ログイン成功状態にする
+        loginFlg = 1;
+        // ボタンを表示（STARTボタンとして）
+        startButton.SetActive(true);
+        guestButton.SetActive(false); // ゲストボタンは不要なので非表示のまま
+
+        TMP_Text buttonText = startButton.GetComponentInChildren<TMP_Text>();
+        if (buttonText != null) buttonText.text = "スタート";
+
+        // ... (以下既存の処理があれば)
         
         // ログインフラグを設定
         loginFlg = 1;
@@ -265,7 +332,7 @@ public class TitleSky : MonoBehaviour
     {
         Debug.Log("TitleSky: 強制再読み込みが必要なイベントを受信しました。");
         Text messageText = message.GetComponentInChildren<Text>();
-        messageText.text = "最新のアプリのバージョンが見つかりました。ロードするにゃん。";
+        messageText.text = "最新のアプリのバージョンが見つかりました。ロードします。";
         message.SetActive(true); // メッセージウィンドウを表示
     }
     

@@ -30,32 +30,60 @@ public class NpcManager : MonoBehaviour
             return;
         }
 
-        List<int> playerPool = new List<int>();
-        // 現在のユーザー（ExRankings[0]と仮定）を除く、他のプレイヤーのインデックスをプールに追加
+        List<int> realPlayerPool = new List<int>();
+        List<int> dummyPlayerPool = new List<int>();
+
+        // リアルユーザーとダミーユーザーを分別
         for (int i = 0; i < gm.savedata.ExRankings.Count; i++)
         {
-            // 現在のユーザー自身のデータはNPCとして選択しない
-            if (gm.savedata.ExRankings[i].Uid != gm.savedata.Uid)
+            var rankData = gm.savedata.ExRankings[i];
+            
+            // 自分自身は除外
+            if (rankData.Uid == gm.savedata.Uid) continue;
+
+            // ダミー判定 (UIDが "dummy_" で始まるもの)
+            if (!string.IsNullOrEmpty(rankData.Uid) && rankData.Uid.StartsWith("dummy_"))
             {
-                playerPool.Add(i);
+                dummyPlayerPool.Add(i);
+            }
+            else
+            {
+                realPlayerPool.Add(i);
             }
         }
-        Debug.Log($"shufflePlayers: playerPool.Count = {playerPool.Count}");
+        
+        Debug.Log($"shufflePlayers: RealUsers={realPlayerPool.Count}, DummyUsers={dummyPlayerPool.Count}");
 
-        int playersToPick = Mathf.Min(numberOfNPCs, playerPool.Count);
-        Debug.Log($"shufflePlayers: playersToPick = {playersToPick}");
-
-        for (int I = 0; I < playersToPick; I++)
+        // リストをシャッフルするローカル関数
+        void ShuffleList(List<int> list)
         {
-            if (playerPool.Count == 0) {
-                Debug.LogError("shufflePlayers: playerPoolが空になりました。これ以上プレイヤーを選べません。");
-                break;
+            for (int i = 0; i < list.Count; i++) {
+                int temp = list[i];
+                int randomIndex = Random.Range(i, list.Count);
+                list[i] = list[randomIndex];
+                list[randomIndex] = temp;
             }
-            int randomIndex = Random.Range(0, playerPool.Count);
-            pickedPlayers.Add(playerPool[randomIndex]);
-            playerPool.RemoveAt(randomIndex);
         }
-        Debug.Log($"shufflePlayers: pickedPlayers.Count = {pickedPlayers.Count}");
+
+        // 両方のプールをシャッフル
+        ShuffleList(realPlayerPool);
+        ShuffleList(dummyPlayerPool);
+
+        int countNeeded = numberOfNPCs;
+        
+        // 1. リアルユーザーから優先的に選出
+        for (int i = 0; i < realPlayerPool.Count && pickedPlayers.Count < countNeeded; i++)
+        {
+            pickedPlayers.Add(realPlayerPool[i]);
+        }
+        
+        // 2. 足りない分をダミーユーザーから補充
+        for (int i = 0; i < dummyPlayerPool.Count && pickedPlayers.Count < countNeeded; i++)
+        {
+            pickedPlayers.Add(dummyPlayerPool[i]);
+        }
+
+        Debug.Log($"shufflePlayers: 最終的に {pickedPlayers.Count} 体のNPCを選出しました。");
     }
 
     public void SpawnNPCs()

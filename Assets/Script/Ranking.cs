@@ -58,47 +58,56 @@ public class Ranking : MonoBehaviour
             return;
         }
 
-        int kpm;
-        int myBordSet = 0;
-        int rankingNo = 0;
-        int count = 0;
+        // 自分の最新KPMを反映して再ソート
+        var myRankData = gm.savedata.ExRankings.Find(r => r.Uid == gm.savedata.Uid);
+        if (myRankData != null)
+        {
+            myRankData.Kpm = gm.savedata.Status[st.Kpm];
+        }
+
+        // KPM降順でソート
+        gm.savedata.ExRankings.Sort((a, b) => b.Kpm - a.Kpm);
+
+        // 修正: 既存のRanking値の最小値を探して、それを基準にする
+        int minRank = int.MaxValue;
+        foreach(var r in gm.savedata.ExRankings) {
+            if (r.Ranking < minRank && r.Ranking > 0) minRank = r.Ranking;
+        }
+        if (minRank == int.MaxValue) minRank = 1;
+
+        // もし自分が1位になってminRankより上に行く場合を考慮し、
+        // 単純に minRank から連番を振ります。
+        // (ステージの切れ目での順位変動はクライアントだけで完結しない場合がありますが、表示用として)
+        for (int i = 0; i < gm.savedata.ExRankings.Count; i++)
+        {
+            gm.savedata.ExRankings[i].Ranking = minRank + i;
+        }
+
+
         // 新しいランキングデータをUIに表示する
         foreach (ExRank rank in gm.savedata.ExRankings)
         {
-            kpm = rank.Kpm;
-            if (kpm <= gm.savedata.Status[st.Kpm] && myBordSet == 0)   // 自分の場合（1回だけ）
+            GameObject rankBoard;
+            // リスト内のUidが自分と一致するか確認
+            if (rank.Uid == gm.savedata.Uid)
             {
-                GameObject myRankBoard = Instantiate(rankBoardMePrefab, rankBoardParent);
-
-                // RankBoardのUIコンポーネントにデータを設定
-                gm.savedata.Status[st.Rank] = rankingNo + 1;
-                myRankBoard.transform.Find("Rank").GetComponent<TextMeshProUGUI>().text = gm.savedata.Status[st.Rank].ToString();
-                myRankBoard.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = gm.savedata.UserName + gm.getNickname(gm.savedata.Equipment[eq.NicknameNo]);
-                myRankBoard.transform.Find("Kpm").GetComponent<TextMeshProUGUI>().text = gm.savedata.Status[st.Kpm].ToString();
-                myBordSet = 1;
+                rankBoard = Instantiate(rankBoardMePrefab, rankBoardParent);
+                // 自分の順位を更新
+                gm.savedata.Status[st.Rank] = rank.Ranking;
                 statusBord.dispStatus();
-                count++;
             }
-            // RankBoardのプレファブをインスタンス化
-            GameObject newRankBoard = Instantiate(rankBoardPrefab, rankBoardParent);
+            else
+            {
+                rankBoard = Instantiate(rankBoardPrefab, rankBoardParent);
+            }
 
-            // RankBoardのUIコンポーネントにデータを設定
-            rankingNo = rank.Ranking + myBordSet;
-            newRankBoard.transform.Find("Rank").GetComponent<TextMeshProUGUI>().text = rankingNo.ToString();
-            newRankBoard.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = rank.FirstName + gm.getNickname(rank.NicknameNo);
-            newRankBoard.transform.Find("Kpm").GetComponent<TextMeshProUGUI>().text = rank.Kpm.ToString();
-            count++;
-        }
-        if ((count == 199) && myBordSet == 0)   // 自分が最下位の場合
-        {
-                GameObject myRankBoard = Instantiate(rankBoardMePrefab, rankBoardParent);
-
-                // RankBoardのUIコンポーネントにデータを設定
-                gm.savedata.Status[st.Rank] = rankingNo + 1;
-                myRankBoard.transform.Find("Rank").GetComponent<TextMeshProUGUI>().text = gm.savedata.Status[st.Rank].ToString();
-                myRankBoard.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = gm.savedata.UserName + gm.getNickname(gm.savedata.Equipment[eq.NicknameNo]);
-                myRankBoard.transform.Find("Kpm").GetComponent<TextMeshProUGUI>().text = gm.savedata.Status[st.Kpm].ToString();
-                statusBord.dispStatus();
+            // UI設定
+            if (rankBoard != null)
+            {
+                rankBoard.transform.Find("Rank").GetComponent<TextMeshProUGUI>().text = rank.Ranking.ToString();
+                rankBoard.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = rank.FirstName + gm.getNickname(rank.NicknameNo);
+                rankBoard.transform.Find("Kpm").GetComponent<TextMeshProUGUI>().text = rank.Kpm.ToString();
+            }
         }
 //        ScrollTo(gm.savedata.Status[st.Rank]);
     }

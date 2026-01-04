@@ -86,8 +86,9 @@ namespace necotapuFB
                 Debug.LogError("AuthManager: GameManagerのインスタンスが見つかりません。");
             }
 
-            // 認証フラグをリセット
-            isAuthenticating = false;
+            // 認証フラグをリセット（初期化時はチェック中として扱う）
+            isAuthenticating = true;
+            StartCoroutine(AuthCheckTimeout());
             
             // 新しいアーキテクチャでは、認証はindex.htmlで行われるため、
             // Unity起動時は認証状態の復元のみを行う
@@ -101,6 +102,20 @@ namespace necotapuFB
                 Debug.Log("エディタ環境: 認証機能を有効化");
                 InitializeEditorAuth();
             #endif
+        }
+
+        /// <summary>
+        /// 認証チェックのタイムアウト監視
+        /// </summary>
+        private System.Collections.IEnumerator AuthCheckTimeout()
+        {
+            yield return new WaitForSeconds(3.0f);
+            if (isAuthenticating && !isAuthenticated)
+            {
+                Debug.Log("認証チェックタイムアウト(3秒): 強制的に未ログイン扱いとします");
+                // タイムアウト時は未ログインとして処理を進める（UI更新のため）
+                OnAuthFailed("Timeout");
+            }
         }
 
         /// <summary>

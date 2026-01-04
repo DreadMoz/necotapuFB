@@ -108,49 +108,234 @@
           showBanner: unityShowBanner,
         };
         
+        // 奈良県e-net用の市町村グルーピング定義
+        const NARA_CITY_GROUPS = {
+          "City_MY": [
+            "hdm", "htz", "rmj", "fgn", "gwg",
+            "phd", "gtg", "bkm", "gnr", "msg",
+            "mnw", "hjn", "nkf", "vbw", "gdw",
+            "jcs", "rvy", "wfs", "cfr", "kht"
+          ],
+        };
+
+        // メールアドレスからランキンググループ名（キー）を決定する関数
+        function getRankingGroupKey(email) {
+          if (!email) return "unknown";
+
+          const lowerEmail = email.toLowerCase();
+
+          // 1. 奈良県e-netドメインの場合
+          if (lowerEmail.endsWith("@e-net.nara.jp")) {
+            const prefix = lowerEmail.substring(0, 3); // 先頭3文字
+
+            // 定義表から検索
+            for (const [cityName, prefixes] of Object.entries(NARA_CITY_GROUPS)) {
+              if (prefixes.includes(prefix)) {
+                return `Nara_${cityName}`; // 例: Nara_City_MY
+              }
+            }
+            // 定義にない場合は "Nara_Other"
+            return "Nara_Other";
+          }
+
+          // 2. それ以外の場合：ドメイン名をそのままグループキーにする
+          const parts = lowerEmail.split("@");
+          if (parts.length === 2) {
+            return parts[1]; // 例: gmail.com
+          }
+
+          return "unknown";
+        }
+
         /**
-         * LocalStorageからデータを読み込む関数
-         * @returns {Promise<Object>} LocalStorageから読み込まれたデータとロード元を示すフラグ
+         * 認証完了を待機するヘルパー関数
+         * @returns {Promise<User|null>} 認証済みユーザー
          */
-        window.LoadDataFromLocal = function() {
+        window.waitForAuth = function() {
             return new Promise((resolve) => {
+                if (window.auth && window.auth.currentUser) {
+                    resolve(window.auth.currentUser);
+                    return;
+                }
+                
+                // Auth自体が未初期化の場合は少し待機
+                if (!window.auth) {
+                    setTimeout(() => {
+                         if (window.auth && window.auth.currentUser) resolve(window.auth.currentUser);
+                         else resolve(null);
+                    }, 2000);
+                    return;
+                }
+
+                // 認証状態の変更を監視
+                const unsubscribe = onAuthStateChanged(window.auth, (user) => {
+                    if (user) {
+                        unsubscribe();
+                        resolve(user);
+                    }
+                });
+
+                // タイムアウト設定
+                setTimeout(() => {
+                    resolve(null);
+                }, 5000);
+            });
+        };
+
+        /**
+         * LocalStorageからデータを読み込む関数 (認証待ち対応版)
+         */
+        window.LoadDataFromLocal = async function() {
+            try {
+                // 認証完了を待機（正しいアカウントキーを取得するため）
+                await window.waitForAuth();
+
+                const statusAccountKey = window.getAccountSpecificKey('statusData');
+                const storedStatusData = localStorage.getItem(statusAccountKey);
+                
+                const rankingAccountKey = window.getAccountSpecificKey('rankingData');
+                const storedRankingData = localStorage.getItem(rankingAccountKey);
+
+                const result = {
+                    statusData: null,
+                    rankingData: null,
+                    source: 'local'
+                };
+
+                if (storedStatusData) {
+                    result.statusData = JSON.parse(storedStatusData);
+                    console.log(`LocalStorage: ステータスデータ読み込み (${statusAccountKey})`);
+                }
+
+                if (storedRankingData) {
+                    result.rankingData = JSON.parse(storedRankingData);
+                    if (!Array.isArray(result.rankingData)) {
+                        result.rankingData = [result.rankingData];
+                    }
+                    console.log(`LocalStorage: ランキングデータ読み込み (${rankingAccountKey})`);
+                }
+
+                return result;
+
+            } catch (e) {
+                console.error("LocalStorage読み込みエラー:", e);
+                return { statusData: null, rankingData: null, source: 'local', error: e };
+            }
+        };
+
+        /**
+         * Unityから呼び出されるランキングデータ取得関数
+         * Firestoreからランキングデータを取得 (アグリゲート型: 1 Read)
+         * @returns {Promise<Array<Object>>} ランキングデータの配列
+         */
+        window.getNecoRank = function() {
+            return new Promise(async (resolve, reject) => {
+                console.log("ランキングデータロード開始");
+                
                 try {
-                    const statusAccountKey = window.getAccountSpecificKey('statusData');
-                    const storedStatusData = localStorage.getItem(statusAccountKey);
+                    // 認証完了を待機
+                    const user = await window.waitForAuth();
                     
-                    const rankingAccountKey = window.getAccountSpecificKey('rankingData');
-                    const storedRankingData = localStorage.getItem(rankingAccountKey);
-
-                    const result = {
-                        statusData: null,
-                        rankingData: null,
-                        source: 'local' // ロード元がLocalStorageであることを示すフラグ
-                    };
-
-                    if (storedStatusData) {
-                        result.statusData = JSON.parse(storedStatusData);
-                        console.log(`LocalStorageからステータスデータを読み込みました (${statusAccountKey}):`, result.statusData);
-                    } else {
-                        console.log(`LocalStorageにステータスデータが見つかりません (${statusAccountKey})`);
+                    if (!window.db || !user) {
+                        console.error("ユーザー未認証またはDB未初期化");
+                        resolve([]);
+                        return;
                     }
 
-                    if (storedRankingData) {
-                        result.rankingData = JSON.parse(storedRankingData);
-                        // 既存のランキングデータが単一オブジェクトの場合、配列に変換
-                        if (!Array.isArray(result.rankingData)) {
-                            result.rankingData = [result.rankingData];
-                            console.log("LocalStorageランキングデータを配列に変換しました。");
+                    // 1. 現在のユーザーのKPMを取得 (1 Read)
+                    const userDocRef = doc(window.db, 'users', user.uid);
+                    const userDoc = await getDoc(userDocRef);
+                    let currentUserKpm = 0;
+                    
+                    if (userDoc.exists() && userDoc.data() && userDoc.data().data && userDoc.data().data.Status) {
+                        currentUserKpm = userDoc.data().data.Status[3] || 0; 
+                    }
+
+                    // 2. グループキーの決定
+                    const groupKey = getRankingGroupKey(user.email);
+                    console.log(`ランキンググループ: ${groupKey}`);
+
+                    // 3. ステージボーダー情報の取得 (1 Read)
+                    const borderDocRef = doc(window.db, 'system', `ranking_borders_${groupKey}`);
+                    const borderDoc = await getDoc(borderDocRef);
+                    
+                    let targetStage = 0;
+                    if (borderDoc.exists()) {
+                        const borders = borderDoc.data().borders || {};
+                        const stageIds = Object.keys(borders).map(Number).sort((a, b) => a - b);
+                        
+                        let found = false;
+                        for (const stageId of stageIds) {
+                            const minKpm = borders[stageId];
+                            if (currentUserKpm >= minKpm) {
+                                targetStage = stageId;
+                                found = true;
+                                break; 
+                            }
                         }
-                        console.log(`LocalStorageからランキングデータを読み込みました (${rankingAccountKey}):`, result.rankingData);
+                        if (!found && stageIds.length > 0) {
+                             targetStage = stageIds[stageIds.length - 1];
+                        }
+                    }
+                    
+                    console.log(`決定されたステージ: ${targetStage} (KPM: ${currentUserKpm})`);
+
+                    // 4. ランキングリストの取得 (1 Read) - ここが重要：1回の読み込みでリスト全体を取得
+                    const rankingDocId = `${groupKey}_stage_${targetStage}`;
+                    const rankingDocRef = doc(window.db, 'rankings', rankingDocId);
+                    const rankingDoc = await getDoc(rankingDocRef);
+
+                    let rankingList = [];
+                    if (rankingDoc.exists() && rankingDoc.data().rankingList) {
+                        rankingList = rankingDoc.data().rankingList;
+                        console.log(`ランキングリスト取得完了: ${rankingList.length}件`);
                     } else {
-                        console.log(`LocalStorageにランキングデータが見つかりません (${rankingAccountKey})`);
+                        console.log("ランキングリストが見つかりません。空リストで開始します。");
                     }
 
-                    resolve(result);
+                    // 5. 自分のデータをリストにマージ（クライアント側補正）
+                    const myEntry = {
+                        Uid: user.uid,
+                        FirstName: (userDoc.exists() && userDoc.data().data) ? userDoc.data().data.UserName : "名無し",
+                        Kpm: currentUserKpm,
+                        Ranking: 0, 
+                    };
+                    
+                    if (userDoc.exists() && userDoc.data().data) {
+                        const d = userDoc.data().data;
+                        if (d.Equipment) {
+                            myEntry.NicknameNo = d.Equipment.length > 6 ? d.Equipment[6] : 0;
+                            myEntry.RightHand = d.Equipment.length > 0 ? d.Equipment[0] : 0;
+                            myEntry.Head = d.Equipment.length > 1 ? d.Equipment[1] : 0;
+                            myEntry.Glasses = d.Equipment.length > 2 ? d.Equipment[2] : 0;
+                            myEntry.LeftHand = d.Equipment.length > 3 ? d.Equipment[3] : 0;
+                            myEntry.CatBody = d.Equipment.length > 4 ? d.Equipment[4] : 0;
+                            myEntry.CatFace = d.Equipment.length > 5 ? d.Equipment[5] : 0;
+                        }
+                    }
 
-                } catch (e) {
-                    console.error("データの解析中にエラーが発生しました:", e);
-                    resolve({ statusData: null, rankingData: null, source: 'local', error: e });
+                    const myIndex = rankingList.findIndex(r => r.Uid === user.uid);
+                    if (myIndex !== -1) {
+                        rankingList[myIndex] = myEntry;
+                    } else {
+                        rankingList.push(myEntry);
+                    }
+
+                    rankingList.sort((a, b) => b.Kpm - a.Kpm);
+                    
+                    rankingList.forEach((entry, index) => {
+                        entry.Ranking = (targetStage * 150) + index + 1;
+                    });
+                    
+                    // LocalStorageに保存
+                    const rankingAccountKey = window.getAccountSpecificKey('rankingData');
+                    localStorage.setItem(rankingAccountKey, JSON.stringify(rankingList));
+                    
+                    resolve(rankingList);
+                    
+                } catch (error) {
+                    console.error("ランキングデータ取得中にエラーが発生:", error);
+                    resolve([]);
                 }
             });
         };
@@ -427,6 +612,10 @@
                     }
                 } else {
                     console.log("ℹ️ onAuthStateChanged: 未認証状態");
+                    // 未ログインであることをUnityに通知
+                    if (window.unityInstance) {
+                         window.unityInstance.SendMessage('AuthManager', 'OnAuthFailed', 'NotAuthenticated');
+                    }
                     // リロードフラグをクリア（認証が失われた場合）
                     localStorage.removeItem('forceReloadInProgress');
                 }
@@ -585,7 +774,8 @@
                     console.log("Batch: ユーザーデータをセット");
                 }
 
-                // 2. ランキングデータの保存
+                // 2. ランキングデータの保存 (廃止: usersコレクションからバッチで生成するため不要)
+                /* 
                 if (combinedData.rankingData && combinedData.rankingData.length > 0) {
                     // 配列の最初の要素（自分自身）を使用
                     const myRankData = combinedData.rankingData[0];
@@ -595,6 +785,7 @@
                          console.log("Batch: ランキングデータをセット");
                     }
                 }
+                */
 
                 // バッチコミット
                 await batch.commit();
@@ -910,101 +1101,8 @@
         };
 
         /**
-         * Unityから呼び出されるランキングデータ取得関数
-         * Firestoreからランキングデータを取得
-         * @returns {Promise<Array<Object>>} ランキングデータの配列
-         */
-        window.getNecoRank = function() {
-            return new Promise(async (resolve, reject) => {
-                console.log("ランキングデータロード開始");
-                
-                if (!window.db) {
-                    console.error("Firestoreが初期化されていません");
-                    reject([]);
-                    return;
-                }
-                
-                const user = window.auth.currentUser;
-                if (!user) {
-                    console.error("ユーザーが認証されていません。ランキングデータを取得できません。");
-                    resolve([]);
-                    return;
-                }
-
-                try {
-                    // まず、現在のユーザーのKPMとステージを取得
-                    const userDocRef = doc(window.db, 'users', user.uid);
-                    const userDoc = await getDoc(userDocRef);
-                    let currentUserKpm = 0;
-                    let currentUserStage = 0;
-
-                    if (userDoc.exists() && userDoc.data() && userDoc.data().data && userDoc.data().data.Status) {
-                        // SaveData.cs の st.Kpm (3) と st.Server (1) に対応
-                        currentUserKpm = userDoc.data().data.Status[3] || 0; 
-                        currentUserStage = userDoc.data().data.Status[1] || 0; 
-                        console.log(`現在のユーザーKPM: ${currentUserKpm}, ステージ: ${currentUserStage}`);
-                    } else {
-                        console.warn("ユーザーKPMまたはステージ情報が見つかりません。デフォルト値を使用します。");
-                    }
-
-                    // 新規ユーザー（ステージ0）の場合は、ランキングデータをフェッチしない
-                    if (currentUserStage === 0) {
-                        console.log("新規ユーザー（ステージ0）のため、ランキングデータを取得せず空リストを返します。");
-                        localStorage.setItem(window.getAccountSpecificKey('rankingData'), JSON.stringify([]));
-                        resolve([]);
-                        return;
-                    }
-
-                    // rankings コレクションから、同じステージのユーザーをKPM降順で150人取得
-                    const rankingsRef = collection(window.db, 'rankings');
-                    // ステージが0の場合はKPMが最も高いユーザー150人を対象とする
-                    let q;
-                    if (currentUserStage === 0) {
-                        console.log("ステージ0のため、全ユーザーからKPM上位150人を取得します。");
-                        q = query(rankingsRef, orderBy('Kpm', 'desc'), limit(150));
-                    } else {
-                        console.log(`ステージ ${currentUserStage} のユーザーをKPM降順で150人取得します。`);
-                        q = query(rankingsRef, where('Stage', '==', currentUserStage), orderBy('Kpm', 'desc'), limit(150));
-                    }
-                    
-                    const querySnapshot = await getDocs(q);
-                    const rankingList = [];
-                    
-                    querySnapshot.forEach((doc) => {
-                        const rankData = doc.data();
-                        rankingList.push({
-                            Uid: rankData.Uid || "",
-                            Ranking: rankData.Ranking || 0, // 取得した順位を使用（FireFunctionで計算されることを想定）
-                            FirstName: rankData.FirstName || "",
-                            RightHand: rankData.RightHand || 0,
-                            Glasses: rankData.Glasses || 0,
-                            Head: rankData.Head || 0,
-                            LeftHand: rankData.LeftHand || 0,
-                            CatBody: rankData.CatBody || 0,
-                            CatFace: rankData.CatFace || 0,
-                            NicknameNo: rankData.NicknameNo || 0,
-                            Kpm: rankData.Kpm || 0
-                        });
-                    });
-                    
-                    // LocalStorageに自動保存
-                    const rankingAccountKey = window.getAccountSpecificKey('rankingData');
-                    localStorage.setItem(rankingAccountKey, JSON.stringify(rankingList));
-                    console.log("💾 FirestoreランキングデータをLocalStorageに自動保存:", rankingAccountKey);
-                    
-                    console.log("✅ ランキングデータ取得成功:", rankingList);
-                    resolve(rankingList);
-                    
-                } catch (error) {
-                    console.error("ランキングデータ取得中にエラーが発生:", error);
-                    reject([]);
-                }
-            });
-        };
-
-        /**
          * Unityから呼び出されるランキングデータ保存関数
-         * Unityから受け取った単一のランキングデータをFirestoreに保存
+         * Unityから受け取った単一のランキングデータをFirestoreに保存 (廃止: usersコレクションからバッチで生成するため不要)
          */
         window.saveFirestoreRankingDataFromUnity = async function(rankingDataJson) {
             console.log("saveFirestoreRankingDataFromUnity: ランキングデータを保存開始", rankingDataJson);

@@ -279,13 +279,18 @@ public class FirestoreConnection : MonoBehaviour
             if (allData.rankingData != null)
             {
                 Debug.Log("FirestoreConnection: ランキングデータをGameManagerに設定");
+                // ダミーデータを追加
+                AddDummyData(allData.rankingData);
                 // 単一のExRankオブジェクトをList<ExRank>に変換して渡すように修正
                 gm.savedata.setRankingFromFirebaseOrLocal(allData.rankingData);
             }
             else
             {
                 Debug.Log("FirestoreConnection: ランキングデータがありません。空のリストを設定します。");
-                gm.savedata.setRankingFromFirebaseOrLocal(new System.Collections.Generic.List<ExRank>()); // 空のリストを渡す
+                var list = new System.Collections.Generic.List<ExRank>();
+                // ダミーデータを追加
+                AddDummyData(list);
+                gm.savedata.setRankingFromFirebaseOrLocal(list); // 空のリストを渡す
             }
 
             // アプリバージョン（appVersion）の処理
@@ -394,6 +399,58 @@ public class FirestoreConnection : MonoBehaviour
 #else
         Debug.Log("FirestoreConnection: エディタ環境 - 統合データ保存をスキップ");
 #endif
+    }
+
+    // ダミーデータ用の名前リスト
+    private List<string> randomNames = new List<string> {
+        "yuki", "hayato", "haruki", "ryusei", "kaito", "kota", "yuma", "soma", "riku", "sora", "ryota", "daiki", "minato", "ren", "hinata", "kazuki", "takumi", "hiroto", "ryuto", "yuma", "sosuke", "ryu", "keita", "koki", "toma", "seiji", "yu", "hana", "yui", "rin", "mei", "mio", "saki", "aoi", "yuna", "maika", "kokona", "miku", "nana", "rika", "yuka", "haruka", "emi", "risa", "yuri", "sakura", "rei", "noa", "mai", "rio", "meika", "erika", "airi", "marin", "aya", "mina", "yuko", "kaede", "ayumu", "taiga", "shota", "eito", "reo", "kensei", "shin", "manato", "ryoga", "kanata", "tsubasa", "itsuki", "asahi", "mahiro", "haru", "ikki", "sho", "yuki", "kyou", "ayaka", "sena", "himari", "yume", "aina", "kanon", "ryosuke", "saya", "kaho", "fumi", "sara", "momoka", "sumire", "akari", "hinako", "yuina", "riona", "manami", "sayaka", "nao", "yusuke", "tatsuya", "kazuma", "masato", "shun", "kyohei", "takuya", "naoki", "kenta", "jun", "misaki", "riko", "chinatsu", "kumi", "miyu", "ryou", "naoko", "keiko", "chie", "akiko", "asuka", "sato", "natsuki", "ryohei", "satoshi", "takahiro", "yasuharu", "yoshiki", "yota", "daigo", "ema", "himawari", "ichika", "juri", "kairi", "runa", "mao", "nagisa", "otoha", "hina", "rena", "suzu", "saiga", "umi", "nami", "wakana", "haruto", "yuto", "taiko", "mitsu", "nobuyuki", "haruna", "fumiya", "genki", "reisa", "ami", "yua", "miho", "sota", "tomoki", "arisa", "kana", "junya", "miki", "hiroki", "ai", "tetsuya", "yoko", "masaki", "naru", "kenji", "saki", "yuri", "yuki", "syo", "hiro", "mayo", "nori", "hana", "rina", "koji", "yuka", "asami", "ryusei", "shota", "reiko", "tomo", "yuto", "kai", "mao", "nao", "ryo", "kei", "asuka", "miko", "hikari", "taka", "shu", "saya", "yuji", "hiroto", "maki", "rin", "kota", "yumi", "sora", "tatsu", "aiko", "sumi", "seiya", "kotoha", "akira", "yuina", "maomi", "rena", "naoki", "yasu", "Yuto", "Hiroto", "Hina", "Ai", "Yuri", "Ryota", "Seiya", "Mei", "Aoi", "Kotone", "Hinata", "Daiki", "Daichi", "Hayato", "Suzu", "Kousuke", "Yuuji", "Riko", "Emi", "Yusuke", "Ryu", "Kouki", "Mai", "Kanon", "Hideto", "hideto", "Hinako", "Misaki", "Minato", "konan", "Yuna", "naomi", "tomomi", "taito", "yuine", "Akari", "Reona", "Riona", "Rio","iroha"
+    };
+
+    /// <summary>
+    /// ダウンロードしたランキングデータの末尾にダミーデータを追加する
+    /// </summary>
+    private void AddDummyData(List<ExRank> rankings)
+    {
+        if (rankings == null) return;
+
+        int dummyCount = 50;
+        int startRank = rankings.Count + 1;
+        int lastKpm = 10;
+
+        // 既存のデータの最後からKPMを取得
+        if (rankings.Count > 0)
+        {
+            lastKpm = rankings[rankings.Count - 1].Kpm;
+        }
+
+        System.Random rand = new System.Random();
+
+        for (int i = 0; i < dummyCount; i++)
+        {
+            // KPMをランダムに減少 (0~2)
+            int adjustment = rand.Next(0, 3);
+            lastKpm -= adjustment;
+            if (lastKpm < 10) lastKpm = 10;
+
+            ExRank dummy = new ExRank();
+            dummy.Ranking = startRank + i;
+            dummy.FirstName = randomNames[rand.Next(randomNames.Count)];
+            dummy.Kpm = lastKpm;
+            dummy.Uid = "dummy_" + System.Guid.NewGuid().ToString(); // ユニークID
+
+            // 装備データ: CatBodyは 201 + rand(0-7), 他は0
+            dummy.CatBody = 201 + rand.Next(0, 8);
+            dummy.RightHand = 0;
+            dummy.Glasses = 0;
+            dummy.Head = 0;
+            dummy.LeftHand = 0;
+            dummy.CatFace = 0;
+            dummy.NicknameNo = 0;
+            dummy.Stage = 0;
+
+            rankings.Add(dummy);
+        }
+        Debug.Log($"FirestoreConnection: {dummyCount}件のダミーデータを追加しました。現在の総数: {rankings.Count}");
     }
 }
 
