@@ -1091,8 +1091,6 @@ public class TypingSoft : MonoBehaviour
     //---------------------------------------------------------
     public void HandleExternalInput(string inputChar)
     {
-        Debug.Log($"[TypingSoft] JS Input Received: '{inputChar}'");
-
         // Enterキー
         if (inputChar == "Enter")
         {
@@ -1123,8 +1121,6 @@ public class TypingSoft : MonoBehaviour
     /// <returns>処理が行われたら true</returns>
     private bool ProcessSpaceKey()
     {
-        Debug.Log($"[TypingSoft] ProcessSpaceKey Check: spaceStart={spaceStart}, spaceThrow={spaceThrow}, spaceEnd={spaceEnd}, GuestMode={GameManager.guestMode}");
-
         if (spaceStart)     // スペースでスタート状態のとき
         {
             AssistKeyboardObj.pushKeyAction(" ");

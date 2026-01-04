@@ -1315,7 +1315,6 @@
 
             // Enterキー
             if (event.key === 'Enter') {
-                console.log("Key down (JS): Enter -> Sending to Unity");
                 window.unityInstance.SendMessage('TypingSoft', 'HandleExternalInput', 'Enter');
                 return;
             }
@@ -1324,7 +1323,6 @@
             // Shiftなどの修飾キー単体は length > 1 なので除外される
             // F1, ArrowUp なども length > 1 なので除外される
             if (event.key.length === 1) {
-                console.log(`Key down (JS): '${event.key}' -> Sending to Unity`);
                 // イベントをUnityに送信
                 window.unityInstance.SendMessage('TypingSoft', 'HandleExternalInput', event.key);
                 
