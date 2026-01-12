@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
     private int shopWindow = 0;
     private int heijoWindow = 0;
     private int keepOutCount = 0;
+    private bool isTurningToFront = false;
 
 //    private bool goNextScene = false;    // 次のシーンに遷移するためのフラグ
 
@@ -148,6 +149,18 @@ public class Player : MonoBehaviour
             transform.rotation = transform.rotation;
             return;
         }
+
+        // 正面を向く処理（共通）
+        if (isTurningToFront)
+        {
+            Quaternion targetRotation = Quaternion.Euler(0, 180, 0);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+            if (Quaternion.Angle(transform.rotation, targetRotation) < 1f)
+            {
+                isTurningToFront = false;
+            }
+        }
+
         if (typingWindow == 1)
         {
             if (!fadeDoor.IsFadeOutComplete())
@@ -309,6 +322,23 @@ public class Player : MonoBehaviour
             agent.velocity = Vector3.zero; // 速度を0にする
             rb.velocity = Vector3.zero; // 速度を0にする
             rb.angularVelocity = Vector3.zero; // 角速度を0にする
+
+            // ウィンドウが開いていてもプレイヤー自身をタップしたら正面を向く
+            if (Input.GetMouseButtonDown(0))
+            {
+                // UI上のクリックでなければ
+                if (!EventSystem.current.IsPointerOverGameObject())
+                {
+                    RaycastHit hit;
+                    if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
+                    {
+                        if (hit.collider.gameObject == this.gameObject)
+                        {
+                            isTurningToFront = true;
+                        }
+                    }
+                }
+            }
         }
         else
         {
@@ -326,6 +356,7 @@ public class Player : MonoBehaviour
 
                 if (direction.magnitude >= 0.1f)  // 入力がある場合
                 {
+                    isTurningToFront = false;
                     float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
                     Quaternion rotation = Quaternion.Euler(0, targetAngle, 0);
                     transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 10);
@@ -340,6 +371,16 @@ public class Player : MonoBehaviour
                     RaycastHit hit;
                     if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
                     {
+                        // プレイヤー自身をクリックした場合
+                        if (hit.collider.gameObject == this.gameObject)
+                        {
+                            agent.ResetPath(); // 移動キャンセル
+                            isTurningToFront = true; // 正面を向く
+                            animator.SetBool("Run", false); // 走りアニメーション停止
+                            return;
+                        }
+
+                        isTurningToFront = false;
                         agent.SetDestination(hit.point);
                         // 目的地に到着したら速度をリセット
                         if (agent.remainingDistance <= agent.stoppingDistance)

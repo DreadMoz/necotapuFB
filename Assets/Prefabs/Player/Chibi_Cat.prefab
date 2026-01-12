@@ -373,6 +373,9 @@ MonoBehaviour:
   cowboyHat: {fileID: 0}
   magicianHat: {fileID: 0}
   pajamaHat: {fileID: 0}
+  pajamaHatG: {fileID: 0}
+  pajamaHatP: {fileID: 0}
+  pajamaHatY: {fileID: 0}
   showerHat: {fileID: 0}
   vikingHelm: {fileID: 0}
   mexicoHat: {fileID: 0}
@@ -384,6 +387,8 @@ MonoBehaviour:
   grassABlack: {fileID: 0}
   sunglasMaruB: {fileID: 8839688906488372567, guid: 55b8d2de2dc834f2fb021e7fcc02e38a, type: 3}
   sunglasMaruG: {fileID: 8839688906488372567, guid: 798a9499d2c0a496983d0b276a28d667, type: 3}
+  sunglasMaruC: {fileID: 0}
+  sunglasMaruR: {fileID: 0}
   sunglasB: {fileID: 4742184703043563202, guid: f57ee96e999d04f3ca580bbd59a71422, type: 3}
   sunglasR: {fileID: 4742184703043563202, guid: f100849d1c9b741c99d76e98509edfbf, type: 3}
   sunglasY: {fileID: 4742184703043563202, guid: 04999a765280646dfa748c7e8301deda, type: 3}
@@ -411,6 +416,8 @@ MonoBehaviour:
   tennisR: {fileID: 0}
   tennisBatR: {fileID: 0}
   basketBallR: {fileID: 0}
+  eSnowManR: {fileID: 0}
+  eTreeR: {fileID: 0}
   spadL: {fileID: 0}
   driedFishL: {fileID: 0}
   meatL: {fileID: 0}
@@ -432,6 +439,8 @@ MonoBehaviour:
   tennisL: {fileID: 0}
   tennisBatL: {fileID: 0}
   basketBallL: {fileID: 0}
+  eSnowManL: {fileID: 0}
+  eTreeL: {fileID: 0}
 --- !u!1 &5609800129058851184
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +499,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0

@@ -35,11 +35,18 @@ public class TypingRoom : MonoBehaviour
     [SerializeField]
     private Setting setting;
 
+    [SerializeField]
+    private GameObject coinPrefab; // ゆびモード用コインプレハブ
+    [SerializeField]
+    private Transform coinParent;  // コインを表示する親オブジェクト
+
     private bool goNextScene = false;    // 次のシーンに遷移するためのフラグ
     
+    private GameManager gm;
 
     void Start()
     {
+        gm = FindObjectOfType<GameManager>();
         challengeList.SetActive(false);
         customList.SetActive(false);
         trainingList.SetActive(false);
@@ -47,6 +54,74 @@ public class TypingRoom : MonoBehaviour
         pAnimator = housePlayer.GetComponent<Animator>(); // Playerのアニメーターを取得
         lAnimator = littleCat.GetComponent<Animator>(); // littleCatのアニメーターを取得
         lAnimator.SetTrigger("jump");
+        
+        UpdateYubiCoins();
+    }
+
+    private void UpdateYubiCoins()
+    {
+        if (coinParent == null || coinPrefab == null || gm == null) return;
+
+        // LayoutGroupなどの自動レイアウトコンポーネントがついているとスクリプトによる座標変更が上書きされるため無効化する
+        var layoutGroup = coinParent.GetComponent<UnityEngine.UI.LayoutGroup>();
+        if (layoutGroup != null) layoutGroup.enabled = false;
+        
+        var contentSizeFitter = coinParent.GetComponent<UnityEngine.UI.ContentSizeFitter>();
+        if (contentSizeFitter != null) contentSizeFitter.enabled = false;
+
+        // 既存のコインを削除
+        foreach (Transform child in coinParent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // コインを生成
+        int yubiCount = gm.savedata.Settings[se.YubiCnt];
+        for (int i = 0; i < yubiCount; i++)
+        {
+            GameObject coin = Instantiate(coinPrefab, coinParent, false);
+            
+            // 位置調整 (重ねないようにずらす)
+            // プレハブにRectTransformがついていない(Transformのみ)場合に対応するため、transform.localPositionを直接操作する
+            Vector3 pos = coin.transform.localPosition;
+            pos.y += i * 36f;
+            pos.z += i * 5f;
+            coin.transform.localPosition = pos;
+
+            // ButtonコンポーネントはGraphic(Image等)がないとクリック判定を持たないため、
+            // SpriteRendererしかついていない場合は透明なImageを追加して当たり判定とする
+            if (coin.GetComponent<UnityEngine.UI.Image>() == null)
+            {
+                var img = coin.AddComponent<UnityEngine.UI.Image>();
+                img.color = new Color(0, 0, 0, 0); // 透明
+                // サイズが0だとクリックできないため、適当なサイズを与える
+                RectTransform rtImg = coin.GetComponent<RectTransform>();
+                if (rtImg != null)
+                {
+                    rtImg.sizeDelta = new Vector2(1, 1); // サイズ
+                }
+            }
+
+            Button btn = coin.GetComponent<Button>();
+            if (btn == null)
+            {
+                btn = coin.AddComponent<Button>();
+            }
+            btn.onClick.AddListener(StartYubiMode);
+        }
+    }
+
+    public void StartYubiMode()
+    {
+        if (gm.savedata.Settings[se.YubiCnt] > 0)
+        {
+            gm.savedata.Settings[se.YubiCnt]--;
+            gm.saveGameData();
+            
+            GameManager.isYubiMode = true;
+            GameManager.TypingDataPath = "YubiModeData"; // ゆびモード用のお題ファイルを指定
+            gotoTypingState();
+        }
     }
 
     // Update is called once per frame

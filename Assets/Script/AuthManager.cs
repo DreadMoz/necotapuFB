@@ -101,6 +101,10 @@ namespace necotapuFB
                 // エディタ環境でも認証機能を有効にする
                 Debug.Log("エディタ環境: 認証機能を有効化");
                 InitializeEditorAuth();
+                
+                // エディタ環境では自動的にゲスト認証をシミュレートしてログイン状態にする
+                // これにより開発時のタイムアウト待ちを防ぐ
+                SimulateGuestAuth(); 
             #endif
         }
 

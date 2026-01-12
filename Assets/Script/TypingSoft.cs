@@ -68,6 +68,7 @@ public class TypingSoft : MonoBehaviour
     private int seekerKey;
     private int seekerTime;
     private int seekerBonus;
+    private int seekerYubi;
     private int totalSeeker;
     private int maxCombo = 0;
 
@@ -107,6 +108,8 @@ public class TypingSoft : MonoBehaviour
 
     //　日本語表示テキスト
     private Text UIJ;
+    //　次のお題表示テキスト
+    private Text UINext;
     //　ひらがな表示テキスト
     private Text UIH;
     //　ローマ字表示テキスト
@@ -231,6 +234,7 @@ public class TypingSoft : MonoBehaviour
 
     void Start()
     {
+        _isFingerPracticeMode = false; // インスペクター値を無視して初期化
         this.gameObject.name = "TypingSoft"; // JS連携用に名前を固定
         lPlayer.SetActive(false);
         Fukidashi.SetActive(false);
@@ -286,6 +290,11 @@ public class TypingSoft : MonoBehaviour
 
         //　テキストUIを取得
         UIJ = transform.Find("InputPanel/QuestionJ").GetComponent<Text>();
+        var nextObj = transform.Find("InputPanel/NextSentence");
+        if (nextObj != null)
+        {
+            UINext = nextObj.GetComponent<Text>();
+        }
         UIH = transform.Find("InputPanel/QuestionH").GetComponent<Text>();
         UIR = transform.Find("InputPanel/QuestionR").GetComponent<TMP_Text>();
         UII = transform.Find("InputPanel/Input").GetComponent<TMP_Text>();
@@ -300,6 +309,7 @@ public class TypingSoft : MonoBehaviour
         UImistake = transform.Find("DataPanel/Mistake").GetComponent<Text>();
         UITimer = transform.Find("DataPanel/Timer").GetComponent<Text>();
         AssistKeyboardObj = GameObject.Find("AssistKeyboard").GetComponent<AssistKeyboardJIS>();
+        AssistKeyboardObj.SetFingerPracticeMode(isFingerPracticeMode);
 
         setDiaDisp(gm.savedata.Settings[se.GachaCnt]);
         
@@ -324,7 +334,16 @@ public class TypingSoft : MonoBehaviour
             setMessage();
             ShuffleThemes(theme.random);
 
-            if (theme.timer > 0)    // 時間設定ありなら
+            if (theme.timer == -1) // ゆびモード
+            {
+                isFingerPracticeMode = true;
+                
+                // タイマーを60秒に強制設定
+                totalTime = 60;
+                currentTime = totalTime;
+                UpdateTimerText();
+            }
+            else if (theme.timer > 0)    // 時間設定ありなら
             {
                 // タイマーを初期化
                 totalTime = theme.timer;
@@ -504,8 +523,26 @@ public class TypingSoft : MonoBehaviour
 
     private void updateSeeker()
     {
-        totalSeeker = seekerStart + seekerCombo + seekerKey + seekerTime + seekerBonus;
+        totalSeeker = seekerStart + seekerCombo + seekerKey + seekerTime + seekerBonus + seekerYubi;
         UIseeker.text = totalSeeker.ToString();
+    }
+    // ３コンボの倍数ごとにボーナスが出るようにcheckSeekerYubiを作成
+    private void checkSeekerYubi()
+    {
+        if (comboN == 0)
+        {
+            return;
+        }
+        if (comboN % 3 == 0)
+        {
+            seekerYubi += 7;
+            coins.SpawnCoins(7, 0); // コインアニメーション、任意で第2引数調整
+            if (typingVoice != null)
+            {
+                typingVoice.sayCoin();
+            }
+            updateSeeker();
+        }
     }
 
     private void checkSeekerCombo()
@@ -696,10 +733,38 @@ public class TypingSoft : MonoBehaviour
         }
         CurrentTypingSentence = nQR;
         UIJ.text = nQJ;     // 日本語表示
+        
+        // 次のお題表示
+        if (UINext != null)
+        {
+            if (currentThemeIndex < shuffledThemes.Count)
+            {
+                UINext.text = "(次) " + shuffledThemes[currentThemeIndex].kanji;
+            }
+            else
+            {
+                UINext.text = "";
+            }
+        }
+
         // 変数等の初期化
         isRecMistype = false;
         isSentenceMistyped = false;
         index = 0;
+
+        // 指練習モードの場合はテキストを非表示にする
+        if (isFingerPracticeMode)
+        {
+            UIH.text = "";
+            UIR.text = "";
+            UIJ.text = "";
+            if (UINext != null) UINext.text = "";
+            AssistKeyboardObj.SetFingerPracticeMode(true);
+        }
+        else
+        {
+            AssistKeyboardObj.SetFingerPracticeMode(false);
+        }
 
         var nextHighlight = typingJudge[0][0][0].ToString();
 
@@ -872,6 +937,8 @@ public class TypingSoft : MonoBehaviour
         spaceEnd = true;
 
         gm.setGemini();
+        
+        GameManager.isYubiMode = false; // 終了時にフラグを下ろす
     }
 
     private void dispResultTimerVer()
@@ -911,6 +978,8 @@ public class TypingSoft : MonoBehaviour
         rHand.SetActive(false);
 
         gm.setGemini();
+        
+        GameManager.isYubiMode = false; // 終了時にフラグを下ろす
 
         if (GameManager.guestMode)
         {
@@ -1253,12 +1322,8 @@ public class TypingSoft : MonoBehaviour
         if (isInputValid && e.type == EventType.KeyDown && e.keyCode != KeyCode.None
         && !Input.GetMouseButton(0) && !Input.GetMouseButton(1) && !Input.GetMouseButton(2))
         {
-            // デバッグ情報を追加（コメントアウト）
-            // Debug.Log($"Key pressed: {e.keyCode}, Character: '{e.character}', Shift: {isPushedShiftKey}");
-            
             // ConvertKeyCodeToStrを使用して文字を取得
             string inputChar = ConvertKeyCodeToStr(e.keyCode, isPushedShiftKey);
-            // Debug.Log($"Converted to: '{inputChar}'");
             
             // 文字が出力される場合のみ処理
             if (!string.IsNullOrEmpty(inputChar))
@@ -1318,178 +1383,74 @@ public class TypingSoft : MonoBehaviour
         StartCoroutine(throwDise(3));
     }
     /// <summary>
-    /// キーコードから string
-    /// <param name="key">keycode</param>
-    /// <param name="isShiftkeyPushed">シフトキーが押されたかどうか</param>
+    /// キーコードから string (Editorテスト用簡易実装)
     /// </summary>
     private string ConvertKeyCodeToStr(KeyCode key, bool isShiftkeyPushed)
     {
-        if (key != 0) {     // デバッグ用（コメントアウト）
-            // Debug.Log("key: " + key);
-            // END.text = "key: " + key;
-        }
-        int keyType = gm.savedata.Settings[se.Capital];
+        // WebGL環境(本番)ではJSからの入力を使用するため、この関数は使われない。
+        // Editorでのデバッグ用に、一般的なキーボード配置での変換を行う。
+
         switch (key)
         {
-            // 数字キー（共通）
-            case KeyCode.Alpha0:
-                return isShiftkeyPushed ? ")" : "0";
-            case KeyCode.Alpha1:
-                return isShiftkeyPushed ? "!" : "1";
-            case KeyCode.Alpha2:
-                return isShiftkeyPushed ? "\"" : "2";
-            case KeyCode.Alpha3:
-                return isShiftkeyPushed ? "#" : "3";
-            case KeyCode.Alpha4:
-                return isShiftkeyPushed ? "$" : "4";
-            case KeyCode.Alpha5:
-                return isShiftkeyPushed ? "%" : "5";
-            case KeyCode.Alpha6:
-                return isShiftkeyPushed ? "&" : "6";
-            case KeyCode.Alpha7:
-                return isShiftkeyPushed ? "\'" : "7";
-            case KeyCode.Alpha8:
-                return isShiftkeyPushed ? "(" : "8";
-            case KeyCode.Alpha9:
-                return isShiftkeyPushed ? ")" : "9";
+            // 数字キー
+            case KeyCode.Alpha0: return isShiftkeyPushed ? ")" : "0";
+            case KeyCode.Alpha1: return isShiftkeyPushed ? "!" : "1";
+            case KeyCode.Alpha2: return isShiftkeyPushed ? "\"" : "2";
+            case KeyCode.Alpha3: return isShiftkeyPushed ? "#" : "3";
+            case KeyCode.Alpha4: return isShiftkeyPushed ? "$" : "4";
+            case KeyCode.Alpha5: return isShiftkeyPushed ? "%" : "5";
+            case KeyCode.Alpha6: return isShiftkeyPushed ? "&" : "6";
+            case KeyCode.Alpha7: return isShiftkeyPushed ? "'" : "7";
+            case KeyCode.Alpha8: return isShiftkeyPushed ? "(" : "8";
+            case KeyCode.Alpha9: return isShiftkeyPushed ? ")" : "9";
             
-            // アルファベット（共通）
-            case KeyCode.A:
-                return isShiftkeyPushed ? "A" : "a";
-            case KeyCode.B:
-                return isShiftkeyPushed ? "B" : "b";
-            case KeyCode.C:
-                return isShiftkeyPushed ? "C" : "c";
-            case KeyCode.D:
-                return isShiftkeyPushed ? "D" : "d";
-            case KeyCode.E:
-                return isShiftkeyPushed ? "E" : "e";
-            case KeyCode.F:
-                return isShiftkeyPushed ? "F" : "f";
-            case KeyCode.G:
-                return isShiftkeyPushed ? "G" : "g";
-            case KeyCode.H:
-                return isShiftkeyPushed ? "H" : "h";
-            case KeyCode.I:
-                return isShiftkeyPushed ? "I" : "i";
-            case KeyCode.J:
-                return isShiftkeyPushed ? "J" : "j";
-            case KeyCode.K:
-                return isShiftkeyPushed ? "K" : "k";
-            case KeyCode.L:
-                return isShiftkeyPushed ? "L" : "l";
-            case KeyCode.M:
-                return isShiftkeyPushed ? "M" : "m";
-            case KeyCode.N:
-                return isShiftkeyPushed ? "N" : "n";
-            case KeyCode.O:
-                return isShiftkeyPushed ? "O" : "o";
-            case KeyCode.P:
-                return isShiftkeyPushed ? "P" : "p";
-            case KeyCode.Q:
-                return isShiftkeyPushed ? "Q" : "q";
-            case KeyCode.R:
-                return isShiftkeyPushed ? "R" : "r";
-            case KeyCode.S:
-                return isShiftkeyPushed ? "S" : "s";
-            case KeyCode.T:
-                return isShiftkeyPushed ? "T" : "t";
-            case KeyCode.U:
-                return isShiftkeyPushed ? "U" : "u";
-            case KeyCode.V:
-                return isShiftkeyPushed ? "V" : "v";
-            case KeyCode.W:
-                return isShiftkeyPushed ? "W" : "w";
-            case KeyCode.X:
-                return isShiftkeyPushed ? "X" : "x";
-            case KeyCode.Y:
-                return isShiftkeyPushed ? "Y" : "y";
-            case KeyCode.Z:
-                return isShiftkeyPushed ? "Z" : "z";
-            
-            // 記号（デバイスによって異なる）
-            case KeyCode.Minus:
-                return isShiftkeyPushed ? "=" : "-";
-            case KeyCode.Equals:
-                return isShiftkeyPushed ? "+" : "=";
-            case KeyCode.LeftBracket:
-                if (keyType == 1) {
-                    // Chromebook: [
-                    return isShiftkeyPushed ? "{" : "[";
-                } else if (keyType == 2) {
-                    // iPad: [
-                    return isShiftkeyPushed ? "{" : "[";
-                } else {
-                    // Macbook: [
-                    return isShiftkeyPushed ? "{" : "[";
-                }
-            case KeyCode.RightBracket:
-                if (keyType == 1) {
-                    // Chromebook: ]
-                    return isShiftkeyPushed ? "}" : "]";
-                } else if (keyType == 2) {
-                    // iPad: ]
-                    return isShiftkeyPushed ? "}" : "]";
-                } else {
-                    // Macbook: ]
-                    return isShiftkeyPushed ? "}" : "]";
-                }
-            case KeyCode.Backslash:
-                if (keyType == 1) {
-                    // Chromebook: \
-                    return isShiftkeyPushed ? "|" : "\\";
-                } else if (keyType == 2) {
-                    // iPad: \
-                    return isShiftkeyPushed ? "|" : "\\";
-                } else {
-                    // Macbook: \
-                    return isShiftkeyPushed ? "|" : "\\";
-                }
-            case KeyCode.Semicolon:
-                if (keyType == 1) {
-                    // Chromebook: ;
-                    return isShiftkeyPushed ? ":" : ";";
-                } else if (keyType == 2) {
-                    // iPad: ;
-                    return isShiftkeyPushed ? ":" : ";";
-                } else {
-                    // Macbook: ;
-                    return isShiftkeyPushed ? ":" : ";";
-                }
-            case KeyCode.Quote:
-                if (keyType == 1) {
-                    // Chromebook: '
-                    return isShiftkeyPushed ? "\"" : "'";
-                } else if (keyType == 2) {
-                    // iPad: '
-                    return isShiftkeyPushed ? "\"" : "'";
-                } else {
-                    // Macbook: '
-                    return isShiftkeyPushed ? "\"" : "'";
-                }
-            case KeyCode.Comma:
-                return isShiftkeyPushed ? "<" : ",";
-            case KeyCode.Period:
-                return isShiftkeyPushed ? ">" : ".";
-            case KeyCode.Slash:
-                return isShiftkeyPushed ? "?" : "/";
-            case KeyCode.BackQuote:
-                if (keyType == 1) {
-                    // Chromebook: `
-                    return isShiftkeyPushed ? "~" : "`";
-                } else if (keyType == 2) {
-                    // iPad: `
-                    return isShiftkeyPushed ? "~" : "`";
-                } else {
-                    // Macbook: `
-                    return isShiftkeyPushed ? "~" : "`";
-                }
-            case KeyCode.Underscore:
-                return "_";
-            case KeyCode.Space:
-                return " ";
-            default:
-                return "";
+            case KeyCode.At: return isShiftkeyPushed ? "`" : "@";
+            case KeyCode.Colon: return isShiftkeyPushed ? "*" : ":";
+            case KeyCode.Caret: return isShiftkeyPushed ? "~" : "^";
+
+            // アルファベット
+            case KeyCode.A: return isShiftkeyPushed ? "A" : "a";
+            case KeyCode.B: return isShiftkeyPushed ? "B" : "b";
+            case KeyCode.C: return isShiftkeyPushed ? "C" : "c";
+            case KeyCode.D: return isShiftkeyPushed ? "D" : "d";
+            case KeyCode.E: return isShiftkeyPushed ? "E" : "e";
+            case KeyCode.F: return isShiftkeyPushed ? "F" : "f";
+            case KeyCode.G: return isShiftkeyPushed ? "G" : "g";
+            case KeyCode.H: return isShiftkeyPushed ? "H" : "h";
+            case KeyCode.I: return isShiftkeyPushed ? "I" : "i";
+            case KeyCode.J: return isShiftkeyPushed ? "J" : "j";
+            case KeyCode.K: return isShiftkeyPushed ? "K" : "k";
+            case KeyCode.L: return isShiftkeyPushed ? "L" : "l";
+            case KeyCode.M: return isShiftkeyPushed ? "M" : "m";
+            case KeyCode.N: return isShiftkeyPushed ? "N" : "n";
+            case KeyCode.O: return isShiftkeyPushed ? "O" : "o";
+            case KeyCode.P: return isShiftkeyPushed ? "P" : "p";
+            case KeyCode.Q: return isShiftkeyPushed ? "Q" : "q";
+            case KeyCode.R: return isShiftkeyPushed ? "R" : "r";
+            case KeyCode.S: return isShiftkeyPushed ? "S" : "s";
+            case KeyCode.T: return isShiftkeyPushed ? "T" : "t";
+            case KeyCode.U: return isShiftkeyPushed ? "U" : "u";
+            case KeyCode.V: return isShiftkeyPushed ? "V" : "v";
+            case KeyCode.W: return isShiftkeyPushed ? "W" : "w";
+            case KeyCode.X: return isShiftkeyPushed ? "X" : "x";
+            case KeyCode.Y: return isShiftkeyPushed ? "Y" : "y";
+            case KeyCode.Z: return isShiftkeyPushed ? "Z" : "z";
+
+            // 記号 (一般的なUS/JIS配置を考慮した簡易実装)
+            case KeyCode.Minus: return isShiftkeyPushed ? "=" : "-";
+            case KeyCode.Equals: return isShiftkeyPushed ? "+" : "=";
+            case KeyCode.LeftBracket: return isShiftkeyPushed ? "{" : "[";
+            case KeyCode.RightBracket: return isShiftkeyPushed ? "}" : "]";
+            case KeyCode.Backslash: return isShiftkeyPushed ? "|" : "\\";
+            case KeyCode.Semicolon: return isShiftkeyPushed ? ":" : ";";
+            case KeyCode.Quote: return isShiftkeyPushed ? "\"" : "'";
+            case KeyCode.Comma: return isShiftkeyPushed ? "<" : ",";
+            case KeyCode.Period: return isShiftkeyPushed ? ">" : ".";
+            case KeyCode.Slash: return isShiftkeyPushed ? "?" : "/";
+            case KeyCode.BackQuote: return isShiftkeyPushed ? "~" : "`";
+            case KeyCode.Underscore: return "_";
+            case KeyCode.Space: return " ";
+            default: return "";
         }
     }
 
@@ -1596,12 +1557,16 @@ public class TypingSoft : MonoBehaviour
     private bool JudgeTyping(string currentStr)
     {
         bool isMistype = true;
+        // Debug.Log($"JudgeTyping Input: '{currentStr}'");
         for (int i = 0; i < typingJudge[index].Count; ++i)
         {
             // すでに打った文字から判定候補でないとわかるときはパス
             if (sentenceValid[index][i] == 0) { continue; }
             int j = sentenceIndex[index][i];
             string judgeString = typingJudge[index][i][j].ToString();
+            
+            // Debug.Log($"Comparing with: '{judgeString}' (Index: {index}, Pattern: {i}, CharIndex: {j})");
+
             if (currentStr.Equals(judgeString))
             {
                 isMistype = false;
@@ -1609,6 +1574,12 @@ public class TypingSoft : MonoBehaviour
             }
             else { indexAdd[index][i] = 0; }
         }
+        
+        if (isMistype)
+        {
+             Debug.Log($"Mistype detected. Input: '{currentStr}'");
+        }
+
         return isMistype;
     }
 
@@ -1632,6 +1603,10 @@ public class TypingSoft : MonoBehaviour
         UIcombo.text = string.Format("{0:0}", comboN);
 
         checkSeekerCombo();
+        if (isFingerPracticeMode)
+        {
+            checkSeekerYubi();
+        }
 
         // 可能な入力パターンのチェック
         bool isIndexCountUp = IsJudgeIndexCountUp(typeChar);
@@ -1730,13 +1705,26 @@ public class TypingSoft : MonoBehaviour
         {
             UIStr = correctString + (isSentenceMistyped ? ("<color=#ff8888ff>" + nextTypingSentence + "</color>") : "");
         }
-        SetUITypeText(UIStr);
+
+        // 指練習モードの場合はテキスト更新を行わない（非表示維持）
+        if (!isFingerPracticeMode)
+        {
+            SetUITypeText(UIStr);
+        }
+        
         CurrentTypingSentence = nextTypingSentence;
 
 
         if (CurrentTypingSentence == "" || !isInputValid)
         {
-            AssistKeyboardObj.SetAllKeyColorWhite();
+            if (isFingerPracticeMode)
+            {
+                AssistKeyboardObj.SetAllKeyColorDefault();
+            }
+            else
+            {
+                AssistKeyboardObj.SetAllKeyColorWhite();
+            }
         }
         else if (isInputValid)
         {
@@ -1818,7 +1806,12 @@ public class TypingSoft : MonoBehaviour
             {
                 UIStr = correctString + "<color=#ff0000ff>" + CurrentTypingSentence.ToString() + "</color>";
             }
-            SetUITypeText(UIStr);
+
+            // 指練習モードの場合はテキスト更新を行わない（非表示維持）
+            if (!isFingerPracticeMode)
+            {
+                SetUITypeText(UIStr);
+            }
         }
         // color タグを多重で入れないようにする
         isRecMistype = true;
@@ -1831,7 +1824,76 @@ public class TypingSoft : MonoBehaviour
     }
     public void onForceQuit()
     {
+        GameManager.isYubiMode = false; // 強制終了時にもフラグを下ろす
         isForceQuit = true;
+    }
+
+    // 指練習モードかどうか
+    [SerializeField]
+    private bool _isFingerPracticeMode = false;
+    public bool isFingerPracticeMode
+    {
+        get { return _isFingerPracticeMode; }
+        set
+        {
+            _isFingerPracticeMode = value;
+            if (AssistKeyboardObj != null)
+            {
+                AssistKeyboardObj.SetFingerPracticeMode(_isFingerPracticeMode);
+            }
+            
+            // モード切り替え時のテキスト表示更新
+            if (_isFingerPracticeMode)
+            {
+                UIH.text = "";
+                UIR.text = "";
+                UIJ.text = "";
+                if (UINext != null) UINext.text = "";
+            }
+            else
+            {
+                // ノーマルモードに戻った時は、現在のお題を再表示する必要がある
+                // ここでは簡易的に、次のUpdateSentenceなどで更新されるのを待つか、
+                // あるいは強制的にテキストを復帰させるロジックが必要になるが、
+                // 一旦「非表示解除」としての動作とする。
+                // 完全に復帰させるには現在のお題データを保持している変数を参照して再セットする。
+                if (theme.hide < 1)
+                {
+                    UIH.text = nQH;
+                    if (gm.savedata.Settings[se.Capital] == 1)
+                    {
+                        UIR.text = nQR.ToUpper();
+                    }
+                    else
+                    {
+                        UIR.text = nQR;
+                    }
+                    // すでに入力済みの部分の色変えなどを反映させる
+                    string UIStr = "";
+                    if (ConfigScript.IsBeginnerMode || ConfigScript.IsShowTypeSentence)
+                    {
+                        UIStr = CurrentTypingSentence;
+                    }
+                    else
+                    {
+                        UIStr = correctString + (isSentenceMistyped ? ("<color=#ff8888ff>" + CurrentTypingSentence + "</color>") : "");
+                    }
+                    SetUITypeText(UIStr);
+                }
+                UIJ.text = nQJ;
+                if (UINext != null)
+                {
+                    if (currentThemeIndex < shuffledThemes.Count)
+                    {
+                        UINext.text = "Next: " + shuffledThemes[currentThemeIndex].kanji;
+                    }
+                    else
+                    {
+                        UINext.text = "";
+                    }
+                }
+            }
+        }
     }
 
 }

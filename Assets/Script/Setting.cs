@@ -69,7 +69,7 @@ public class Setting : MonoBehaviour
         necoNumSlider.value = gm.savedata.Settings[se.CatNum];
         mailCharSlider.value = gm.savedata.Settings[se.MailChar];
         capitalSlider.value = gm.savedata.Settings[se.Capital];
-        keyTypeSlider.value = gm.savedata.Settings[se.KeyType];
+//        keyTypeSlider.value = gm.savedata.Settings[se.KeyType];
 
         // 画面サイズを都度取得しないと途中での最大化などに対応できない
         float screenWidth = Screen.width;
@@ -91,7 +91,7 @@ public class Setting : MonoBehaviour
             gm.savedata.Settings[se.CatNum] = (int)necoNumSlider.value;
             gm.savedata.Settings[se.MailChar] = (int)mailCharSlider.value;
             gm.savedata.Settings[se.Capital] = (int)capitalSlider.value;
-            gm.savedata.Settings[se.KeyType] = (int)keyTypeSlider.value;
+//            gm.savedata.Settings[se.KeyType] = (int)keyTypeSlider.value;
             
             // 画面サイズを都度取得しないと途中での最大化などに対応できない
             float screenWidth = Screen.width;
@@ -137,7 +137,7 @@ public class Setting : MonoBehaviour
         necoNumSlider.value = gm.savedata.Settings[se.CatNum];
         mailCharSlider.value = gm.savedata.Settings[se.MailChar];
         capitalSlider.value = gm.savedata.Settings[se.Capital];
-        keyTypeSlider.value = gm.savedata.Settings[se.KeyType];
+//        keyTypeSlider.value = gm.savedata.Settings[se.KeyType];
         
         worldAudio.volume = gm.savedata.Settings[se.Volume] * 0.01f;
         if (gm.savedata.Settings[se.Mute] == 1)

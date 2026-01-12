@@ -324,7 +324,14 @@ public class AssistKeyboardJIS : MonoBehaviour
     {"Key_BackSlash", (5, 'R')},
     {"Key_Space", (1, 'B')},
     {"Key_RShift", (5, 'R')},
-    {"Key_LShift", (5, 'L')}
+    {"Key_LShift", (5, 'L')},
+    {"Key_Tab", (5, 'L')},
+    {"Key_EJ", (5, 'L')},
+    {"Key_CapsLock", (5, 'L')},
+    {"Key_BS", (5, 'R')},
+    {"Key_Enter", (5, 'R')},
+    {"Keys_Row5L", (1, 'B')},
+    {"Keys_Row5R", (1, 'B')}
   };
 
   // JIS かなでのキートップ名
@@ -510,6 +517,168 @@ public class AssistKeyboardJIS : MonoBehaviour
     private static Color colorViolet = new Color(140f / 255f * darkenFactor, 64f / 255f * darkenFactor, 1 * darkenFactor, 1);
     private static Color colorLightViolet = new Color(234f / 255f * darkenFactor, 198f / 255f * darkenFactor, 1 * darkenFactor, 1);
 
+    /// <summary>
+    /// モード変更：指練習モード設定
+    /// </summary>
+    public void SetFingerPracticeMode(bool isPractice)
+    {
+        _isFingerPracticeMode = isPractice;
+
+        // キーの色味調整
+        float newFactor = isPractice ? 0.4f : 0.8f; // 練習モードは暗くする
+        UpdateColorDefinitions(newFactor);
+
+        // 手の見た目調整
+        UpdateHandVisuals(isPractice);
+
+        // キーの文字表示切り替え
+        SetKeyTextVisibility(!isPractice);
+
+        // キーのデフォルト色設定（モード切り替え直後に反映）
+        SetAllKeyColorDefault();
+    }
+
+    private void UpdateHandVisuals(bool isPractice)
+    {
+        // Normal: InnerColor 787878, RimPower 5.41
+        // Yubi:   InnerColor 000000, RimPower 1.65
+        Color innerColor = isPractice ? Color.black : new Color(120f / 255f, 120f / 255f, 120f / 255f, 1f);
+        float rimPower = isPractice ? 1.65f : 5.41f;
+
+        SetHandMaterialProperties(lHand, innerColor, rimPower);
+        SetHandMaterialProperties(rHand, innerColor, rimPower);
+    }
+
+    private void SetHandMaterialProperties(GameObject hand, Color innerColor, float rimPower)
+    {
+        if (hand == null) return;
+        var renderers = hand.GetComponentsInChildren<Renderer>();
+        foreach (var r in renderers)
+        {
+            foreach (var m in r.materials)
+            {
+                if (m.HasProperty("_InnerColor"))
+                {
+                    m.SetColor("_InnerColor", innerColor);
+                }
+                if (m.HasProperty("_RimPower"))
+                {
+                    m.SetFloat("_RimPower", rimPower);
+                }
+            }
+        }
+    }
+
+    private bool _isFingerPracticeMode = false;
+
+    private void SetKeyTextVisibility(bool visible)
+    {
+        if (AKKeys == null || AKKeys.Count == 0)
+        {
+            GetAllKeys(ConfigScript.InputMode, ConfigScript.InputArray);
+        }
+
+        if (!visible)
+        {
+            // 非表示：テキストを空にする
+            foreach (var keyObj in AKKeys.Values)
+            {
+                if (keyObj.transform.childCount > 0)
+                {
+                    var textMesh = keyObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                    if (textMesh != null)
+                    {
+                        textMesh.text = "";
+                    }
+                }
+            }
+        }
+        else
+        {
+            // 表示：辞書からテキストを復元する
+            RestoreKeyTexts();
+        }
+    }
+
+    private void RestoreKeyTexts()
+    {
+        int inputType = ConfigScript.InputMode;
+        int arrayType = ConfigScript.InputArray;
+
+        foreach (var kvp in AKKeys)
+        {
+            string keyName = kvp.Key;
+            GameObject obj = kvp.Value;
+            var textMesh = obj.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            if (textMesh == null) continue;
+
+            string textToSet = "";
+
+            if (inputType == (int)ConfigScript.InputType.jisKana && jisKanaKeyNameMap.ContainsKey(keyName))
+            {
+                textToSet = jisKanaKeyNameMap[keyName];
+            }
+            else if (arrayType == (int)ConfigScript.KeyArrayType.japanese && JISArrayKeyNameMap.ContainsKey(keyName))
+            {
+                textToSet = JISArrayKeyNameMap[keyName];
+            }
+            else if (arrayType == (int)ConfigScript.KeyArrayType.us && USArrayKeyNameMap.ContainsKey(keyName))
+            {
+                textToSet = USArrayKeyNameMap[keyName];
+            }
+            
+            textMesh.text = textToSet;
+        }
+
+        // Capital設定（大文字・小文字）の再適用
+        // Capitalクラスが存在する場合、その設定を反映させる
+        var capital = FindObjectOfType<Capital>();
+        if (capital != null)
+        {
+            capital.changeToggle();
+        }
+    }
+
+    private void UpdateColorDefinitions(float factor)
+    {
+        // 黒いキー（未選択状態）の色は固定（デフォルトの明るさ 0.8f を維持）
+        float baseFactor = 0.8f;
+        colorBlackFill = new Color(24f / 255f * baseFactor, 24f / 255f * baseFactor, 24f / 255f * baseFactor, 1);
+
+        // ハイライトカラー（次に押すキー）のみ明るさを変更する
+        colorPink = new Color(1 * factor, 40f / 255f * factor, 70f / 255f * factor, 1);
+        colorLightPink = new Color(1 * factor, 194f / 255f * factor, 217f / 255f * factor, 1);
+        colorOrange = new Color(251f / 255f * factor, 83f / 255f * factor, 30f / 255f * factor, 1);
+        colorLightOrange = new Color(1 * factor, 220f / 255f * factor, 160f / 255f * factor, 1);
+        colorGreen = new Color(49f / 255f * factor, 83f / 255f * factor, 30f / 255f * factor, 1);
+        colorLightGreen = new Color(180f / 255f * factor, 1 * factor, 190f / 255f * factor, 1);
+        colorBlue = new Color(28f / 255f * factor, 95f / 255f * factor, 166f / 255f * factor, 1);
+        colorLightBlue = new Color(141f / 255f * factor, 240f / 255f * factor, 1 * factor, 1);
+        colorViolet = new Color(140f / 255f * factor, 64f / 255f * factor, 1 * factor, 1);
+        colorLightViolet = new Color(234f / 255f * factor, 198f / 255f * factor, 1 * factor, 1);
+    }
+    
+    // この関数自体が機能していないもの。
+    private void SetHandTransparency(GameObject hand, float alpha)
+    {
+        if (hand == null) return;
+        var renderers = hand.GetComponentsInChildren<Renderer>();
+        foreach (var r in renderers)
+        {
+            foreach (var m in r.materials)
+            {
+                if (m.HasProperty("_Color"))
+                {
+                    Color c = m.color;
+                    c.a = alpha;
+                    m.color = c;
+                    // Standard Shaderの場合、透明にするにはRendering Modeを変更する必要がありますが、
+                    // ここではマテリアルの_Colorのアルファ値を変更するだけに留めます。
+                    // 実際に透明にするには、対象のマテリアルがTransparentまたはFadeモードである必要があります。
+                }
+            }
+        }
+    }
 
 
     /// <summary>
@@ -587,9 +756,27 @@ public class AssistKeyboardJIS : MonoBehaviour
     /// </summary>
     private void SetKeyColorWhite(string keyName)
     {
-        var shape = AKKeys[keyName].GetComponent<Shape>();
-        //        shape.settings.outlineColor = colorGray;
-        //        shape.settings.fillColor = colorWhite;
+        if (!AKKeys.ContainsKey(keyName)) return;
+        var go = AKKeys[keyName];
+        if (go == null) return;
+
+        var shape = go.GetComponent<Shape>();
+        if (shape != null)
+        {
+            ApplyWhiteColor(shape);
+        }
+        else
+        {
+            var shapes = go.GetComponentsInChildren<Shape>();
+            foreach (var s in shapes)
+            {
+                ApplyWhiteColor(s);
+            }
+        }
+    }
+
+    private void ApplyWhiteColor(Shape shape)
+    {
         shape.settings.outlineColor = colorBlack;
         shape.settings.fillColor = colorBlackFill;
     }
@@ -598,48 +785,125 @@ public class AssistKeyboardJIS : MonoBehaviour
     /// 指定したキーの色を変更する
     /// <param name="keyName">キー名</param>
     /// </summary>
-    private void SetKeyColorHighlight(string keyName)
-  {
-    var shape = AKKeys[keyName].GetComponent<Shape>();
-    switch (keyFingering[keyName].Item1)
+    private void SetKeyColorHighlight(string keyName, float brightnessScale = 1.0f)
     {
-      case 1:
-        shape.settings.outlineColor = colorViolet;
-        shape.settings.fillColor = colorLightViolet;
-        break;
-      case 2:
-        shape.settings.outlineColor = colorBlue;
-        shape.settings.fillColor = colorLightBlue;
-        break;
-      case 3:
-        shape.settings.outlineColor = colorGreen;
-        shape.settings.fillColor = colorLightGreen;
-        break;
-      case 4:
-        shape.settings.outlineColor = colorOrange;
-        shape.settings.fillColor = colorLightOrange;
-        break;
-      case 5:
-        shape.settings.outlineColor = colorPink;
-        shape.settings.fillColor = colorLightPink;
-        break;
-    }
-  }
+        if (!AKKeys.ContainsKey(keyName)) return;
+        var go = AKKeys[keyName];
+        if (go == null) return;
 
-  /// <summary>
-  /// 全てのキーの色を白にする
-  /// </summary>
-  public void SetAllKeyColorWhite()
-  {
-    foreach (var kvp in keyMappingJIS)
-    {
-      var keyList = new List<string>(kvp.Value);
-      foreach (var keyName in keyList)
-      {
-        SetKeyColorWhite(keyName);
-      }
+        var shape = go.GetComponent<Shape>();
+        if (shape != null)
+        {
+            ApplyColorToShape(shape, keyName, brightnessScale);
+        }
+        else
+        {
+            var shapes = go.GetComponentsInChildren<Shape>();
+            foreach (var s in shapes)
+            {
+                ApplyColorToShape(s, keyName, brightnessScale);
+            }
+        }
     }
-  }
+
+    private void ApplyColorToShape(Shape shape, string keyName, float brightnessScale)
+    {
+        switch (keyFingering[keyName].Item1)
+        {
+            case 1:
+                {
+                    Color cOutline = colorViolet * brightnessScale;
+                    cOutline.a = 1.0f;
+                    shape.settings.outlineColor = cOutline;
+                    Color c = colorLightViolet * brightnessScale;
+                    c.a = 1.0f;
+                    shape.settings.fillColor = c;
+                }
+                break;
+            case 2: // 人差し指
+                {
+                    Color cOutline = colorBlue * brightnessScale;
+                    cOutline.a = 1.0f;
+                    shape.settings.outlineColor = cOutline;
+                    Color c = colorLightBlue * brightnessScale;
+                    c.a = 1.0f;
+                    shape.settings.fillColor = c;
+                }
+                break;
+            case 3: // 中指
+                {
+                    Color cOutline = colorGreen * brightnessScale;
+                    cOutline.a = 1.0f;
+                    shape.settings.outlineColor = cOutline;
+                    Color c = colorLightGreen * brightnessScale;
+                    c.a = 1.0f;
+                    shape.settings.fillColor = c;
+                }
+                break;
+            case 4: // 薬指
+                {
+                    Color cOutline = colorOrange * brightnessScale;
+                    cOutline.a = 1.0f;
+                    shape.settings.outlineColor = cOutline;
+                    Color c = colorLightOrange * brightnessScale;
+                    c.a = 1.0f;
+                    shape.settings.fillColor = c;
+                }
+                break;
+            case 5: // 小指
+                {
+                    Color cOutline = colorPink * brightnessScale;
+                    cOutline.a = 1.0f;
+                    shape.settings.outlineColor = cOutline;
+                    Color c = colorLightPink * brightnessScale;
+                    c.a = 1.0f;
+                    shape.settings.fillColor = c;
+                }
+                break;
+        }
+    }
+
+    /// <summary>
+    /// 全てのキーの色をデフォルト（指ごとの色）にする
+    /// </summary>
+    public void SetAllKeyColorDefault()
+    {
+        if (AKKeys == null) return;
+
+        foreach (var keyName in AKKeys.Keys)
+        {
+            if (keyFingering.ContainsKey(keyName))
+            {
+                // ハイライトと同じ色設定ロジックを使用する
+                // デフォルトのキーは明るいままにする（brightnessScale = 1.0f）
+                SetKeyColorHighlight(keyName);
+            }
+            else
+            {
+                SetKeyColorWhite(keyName); // マッピングがないキーは黒/白のまま
+            }
+        }
+    }
+
+    /// <summary>
+    /// 全てのキーの色を白にする
+    /// </summary>
+    public void SetAllKeyColorWhite()
+    {
+        // 指練習モードの場合は、白ではなく「指ごとのデフォルト色」にする
+        if (_isFingerPracticeMode)
+        {
+            SetAllKeyColorDefault();
+            return;
+        }
+
+        if (AKKeys == null) return;
+
+        foreach (var keyName in AKKeys.Keys)
+        {
+            SetKeyColorWhite(keyName);
+        }
+    }
 
     /// <summary>
     /// 手のアニメーション操作
@@ -880,7 +1144,8 @@ public class AssistKeyboardJIS : MonoBehaviour
         }
         foreach (var keyName in keyList)
         {
-            SetKeyColorHighlight(keyName);
+            float brightness = _isFingerPracticeMode ? 0.33f : 1.0f;
+            SetKeyColorHighlight(keyName, brightness);
         }
     }
 
@@ -892,7 +1157,8 @@ public class AssistKeyboardJIS : MonoBehaviour
   {
     foreach (var keyName in keyList)
     {
-      SetKeyColorHighlight(keyName);
+        float brightness = _isFingerPracticeMode ? 0.33f : 1.0f;
+        SetKeyColorHighlight(keyName, brightness);
     }
   }
 }

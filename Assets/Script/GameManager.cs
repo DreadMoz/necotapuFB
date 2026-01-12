@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
     public static string geminiResponce { get; set; }
     public static bool eventHeijo { get; set; }
     public static bool guestMode { get; set; }
+    public static bool isYubiMode = false; // ゆびモード（指練習モード）で開始するかどうか
 
     [SerializeField] private float kpmRatio = 0.8f;
     [SerializeField] private Setting setting;
@@ -123,6 +124,20 @@ public class GameManager : MonoBehaviour
     private bool rankScroll = true;
     private void Awake()
     {
+        // デバッグ用：savedataがnullの場合にダミーデータを生成
+        if (savedata == null)
+        {
+            savedata = ScriptableObject.CreateInstance<SaveData>();
+            savedata.setNewDataFB("debug@example.com", "DebugUser", "Debug", "DebugAuth", 1);
+            Debug.Log("DEBUG: Dummy SaveData created for direct scene execution.");
+        }
+
+        // デバッグ用：settingがnullの場合にシーン内から検索
+        if (setting == null)
+        {
+            setting = FindObjectOfType<Setting>();
+        }
+
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
 
@@ -274,25 +289,54 @@ public class GameManager : MonoBehaviour
         // シーンが3タイピング後の場合
         else if (SceneNo == (int)scene.House)
         {
-            setting.initVolume();
-            setting.sayOutDoor();
-            rankingWindow.DisplayRankings();    // ランキング更新してから・・・プレイヤーのタイピング更新してから・・・保存したい
-            npcManager.SpawnNPCs();
+            // ゆびモードの回数リセット処理 (毎日3回に回復)
+            DateTime today = DateTime.Now;
+            int todayInt = today.Year * 10000 + today.Month * 100 + today.Day;
+            if (savedata.Settings[se.YubiDate] != todayInt)
+            {
+                savedata.Settings[se.YubiCnt] = 2;
+                savedata.Settings[se.YubiDate] = todayInt;
+                saveGameData(); // リセット情報を保存
+                Debug.Log("ゆびモードの回数をリセットしました。");
+            }
+
+            if (setting != null) 
+            {
+                setting.initVolume();
+                setting.sayOutDoor();
+            }
+            if (rankingWindow != null)
+            {
+                rankingWindow.DisplayRankings();    // ランキング更新してから・・・プレイヤーのタイピング更新してから・・・保存したい
+            }
+            if (npcManager != null)
+            {
+                npcManager.SpawnNPCs();
+            }
             if (savedata.Equipment[(int)eq.CatBody] != 0)
             {
-                chibiCat.setChara(savedata.Equipment[eq.CatBody]);
-                chibiCat2D.setChara(savedata.Equipment[eq.CatBody]);
+                if (chibiCat != null) chibiCat.setChara(savedata.Equipment[eq.CatBody]);
+                if (chibiCat2D != null) chibiCat2D.setChara(savedata.Equipment[eq.CatBody]);
             }
-            chibiCat.changeEquipHands(savedata.Equipment[eq.RightHand], savedata.Equipment[eq.LeftHand], checkBagItem());
-            chibiCat.changeEquipHead(savedata.Equipment[eq.Head]);
-            chibiCat.changeEquipGlasses(savedata.Equipment[eq.Glasses]);
-            chibiCat2D.changeEquipHands(savedata.Equipment[eq.RightHand], savedata.Equipment[eq.LeftHand], checkBagItem());
-            chibiCat2D.changeEquipHead(savedata.Equipment[eq.Head]);
-            chibiCat2D.changeEquipGlasses(savedata.Equipment[eq.Glasses]);
+            if (chibiCat != null)
+            {
+                chibiCat.changeEquipHands(savedata.Equipment[eq.RightHand], savedata.Equipment[eq.LeftHand], checkBagItem());
+                chibiCat.changeEquipHead(savedata.Equipment[eq.Head]);
+                chibiCat.changeEquipGlasses(savedata.Equipment[eq.Glasses]);
+            }
+            if (chibiCat2D != null)
+            {
+                chibiCat2D.changeEquipHands(savedata.Equipment[eq.RightHand], savedata.Equipment[eq.LeftHand], checkBagItem());
+                chibiCat2D.changeEquipHead(savedata.Equipment[eq.Head]);
+                chibiCat2D.changeEquipGlasses(savedata.Equipment[eq.Glasses]);
+            }
             if (NewKpm != 0)
             {
-                rankingWindow.SetTo(savedata.Status[st.Rank]);
-                rankingWindow.ScrollTo(savedata.Status[st.Rank]);
+                if (rankingWindow != null)
+                {
+                    rankingWindow.SetTo(savedata.Status[st.Rank]);
+                    rankingWindow.ScrollTo(savedata.Status[st.Rank]);
+                }
             }
             MistypedSentences.Clear();  // リストから全ての要素を削除
         }
