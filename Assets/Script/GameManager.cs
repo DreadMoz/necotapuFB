@@ -289,16 +289,8 @@ public class GameManager : MonoBehaviour
         // シーンが3タイピング後の場合
         else if (SceneNo == (int)scene.House)
         {
-            // ゆびモードの回数リセット処理 (毎日3回に回復)
-            DateTime today = DateTime.Now;
-            int todayInt = today.Year * 10000 + today.Month * 100 + today.Day;
-            if (savedata.Settings[se.YubiDate] != todayInt)
-            {
-                savedata.Settings[se.YubiCnt] = 2;
-                savedata.Settings[se.YubiDate] = todayInt;
-                saveGameData(); // リセット情報を保存
-                Debug.Log("ゆびモードの回数をリセットしました。");
-            }
+            // ゆびモードの回数リセット処理
+            CheckDailyReset();
 
             if (setting != null) 
             {
@@ -878,6 +870,26 @@ public class CombinedSaveData
         if (talk != null)
         {
             talk.text = response;
+        }
+    }
+
+    /// <summary>
+    /// ゆびモードの回数を毎日リセットする
+    /// </summary>
+    public void CheckDailyReset()
+    {
+        if (savedata == null) return;
+
+        DateTime today = DateTime.Now;
+        int todayInt = today.Year * 10000 + today.Month * 100 + today.Day;
+        
+        // 日付が変わっているかチェック
+        if (savedata.Settings[se.YubiDate] != todayInt)
+        {
+            savedata.Settings[se.YubiCnt] = 2; // 毎日2回にリセット
+            savedata.Settings[se.YubiDate] = todayInt;
+            saveGameData(); // リセット情報を保存
+            Debug.Log($"ゆびモードの回数をリセットしました。(残り{savedata.Settings[se.YubiCnt]}回)");
         }
     }
 }

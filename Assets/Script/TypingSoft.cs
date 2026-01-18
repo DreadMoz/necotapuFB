@@ -192,6 +192,7 @@ public class TypingSoft : MonoBehaviour
 
     [SerializeField] private GameObject Fukidashi;
     [SerializeField] private Text messageText;
+    [SerializeField] private GameObject CapitalSlider;
 
 
     // 結果画面
@@ -342,6 +343,12 @@ public class TypingSoft : MonoBehaviour
                 totalTime = 60;
                 currentTime = totalTime;
                 UpdateTimerText();
+                
+                // CapitalSliderを非表示にする
+                if (CapitalSlider != null)
+                {
+                    CapitalSlider.SetActive(false);
+                }
             }
             else if (theme.timer > 0)    // 時間設定ありなら
             {
@@ -539,7 +546,7 @@ public class TypingSoft : MonoBehaviour
             coins.SpawnCoins(7, 0); // コインアニメーション、任意で第2引数調整
             if (typingVoice != null)
             {
-                typingVoice.sayCoin();
+                typingVoice.sayCoin3();
             }
             updateSeeker();
         }
@@ -737,9 +744,14 @@ public class TypingSoft : MonoBehaviour
         // 次のお題表示
         if (UINext != null)
         {
-            if (currentThemeIndex < shuffledThemes.Count)
+            // Fukidashiが表示されている場合は非表示にする
+            if (Fukidashi.activeSelf)
             {
-                UINext.text = "(次) " + shuffledThemes[currentThemeIndex].kanji;
+                UINext.text = "";
+            }
+            else if (currentThemeIndex < shuffledThemes.Count)
+            {
+                UINext.text = "(次) " + shuffledThemes[currentThemeIndex].hiragana;
             }
             else
             {
@@ -853,6 +865,11 @@ public class TypingSoft : MonoBehaviour
                 isTimerRunning = false;
                 isInputValid = false;
                 Fukidashi.SetActive(false);
+                // Fukidashiが非表示になったら、次のお題があれば再表示する
+                if (UINext != null && currentThemeIndex < shuffledThemes.Count)
+                {
+                    UINext.text = "(次) " + shuffledThemes[currentThemeIndex].hiragana;
+                }
 
                 checkSeekerTimer();
                 dispResultTimerVer();
@@ -860,6 +877,12 @@ public class TypingSoft : MonoBehaviour
                 door.SetActive(false);
             }
             UpdateTimerText();
+        }
+
+        // Fukidashiが表示されている間は、次のお題表示を非表示にする
+        if (Fukidashi.activeSelf && UINext != null && !string.IsNullOrEmpty(UINext.text))
+        {
+            UINext.text = "";
         }
 
         if (spaceStart)
@@ -912,6 +935,7 @@ public class TypingSoft : MonoBehaviour
         UIH.text = "";
         UIR.text = "";
         UII.text = "";
+        if (UINext != null) UINext.text = "";
 
         getKeyComboBonus();
 
@@ -948,6 +972,7 @@ public class TypingSoft : MonoBehaviour
         UIH.text = "";
         UIR.text = "";
         UII.text = "";
+        if (UINext != null) UINext.text = "";
 
         getKeyComboBonus();
 

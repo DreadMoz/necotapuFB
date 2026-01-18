@@ -47,6 +47,13 @@ public class TypingRoom : MonoBehaviour
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
+        
+        // 起動時にリセットチェックを行う
+        if (gm != null) 
+        {
+            gm.CheckDailyReset();
+        }
+
         challengeList.SetActive(false);
         customList.SetActive(false);
         trainingList.SetActive(false);
@@ -113,6 +120,13 @@ public class TypingRoom : MonoBehaviour
 
     public void StartYubiMode()
     {
+        // プレイ直前にもリセットチェック（放置対策）
+        if (gm != null)
+        {
+            gm.CheckDailyReset();
+            UpdateYubiCoins(); 
+        }
+
         if (gm.savedata.Settings[se.YubiCnt] > 0)
         {
             gm.savedata.Settings[se.YubiCnt]--;

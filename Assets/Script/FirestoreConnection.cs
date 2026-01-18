@@ -317,6 +317,17 @@ public class FirestoreConnection : MonoBehaviour
                 FindObjectOfType<TitleSky>().ShowStartButton();
             }
             IsFirebaseLoadedSuccessfully = allData.isFirebaseAccessed; // JSLibから渡されたフラグで更新
+
+            // データロード完了後にリセットチェック
+            if (gm != null) 
+            {
+                gm.CheckDailyReset();
+            }
+            else
+            {
+                var currentGm = FindObjectOfType<GameManager>();
+                if (currentGm != null) currentGm.CheckDailyReset();
+            }
         }
         catch (System.Exception e)
         {

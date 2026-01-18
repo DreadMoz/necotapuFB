@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <meta charset="utf-8">
@@ -820,11 +820,9 @@
                 await batch.commit();
                 console.log("✅ Firestoreに統合データを一括保存完了 (Batch)");
                 
-                // LocalStorageにも保存 (Ranking)
-                if (combinedData.rankingData) {
-                    const rankingAccountKey = window.getAccountSpecificKey('rankingData');
-                    localStorage.setItem(rankingAccountKey, JSON.stringify(combinedData.rankingData));
-                }
+                // LocalStorageにはランキングデータを保存しない
+                // ランキングデータはgetNecoRank関数で取得したときにのみLocalStorageに保存される
+                // ここで保存すると、自分のデータだけが上書きされてしまうため
 
                 if (window.unityInstance) {
                     window.unityInstance.SendMessage('FirestoreConnection', 'OnSaveComplete', 'success');
