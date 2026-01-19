@@ -542,6 +542,7 @@ public class TypingSoft : MonoBehaviour
         }
         if (comboN % 3 == 0)
         {
+            animator.SetInteger("yubi", new System.Random().Next(2, 3));
             seekerYubi += 7;
             coins.SpawnCoins(7, 0); // コインアニメーション、任意で第2引数調整
             if (typingVoice != null)
@@ -887,6 +888,8 @@ public class TypingSoft : MonoBehaviour
 
         if (spaceStart)
         {
+            // スペースキーでスタートのメッセージを表示
+            UIH.text = "スペースキーでスタート";
             // アニメーションを切り替える
             if (Time.time % 20 > 19.9)
             {
