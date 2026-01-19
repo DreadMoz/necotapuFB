@@ -41,6 +41,8 @@ public class TypingSoft : MonoBehaviour
     [SerializeField]
     private GameObject suzakuBack;
 
+    [SerializeField]
+    private GameObject fireWork; // 花火のGameObject
     int[,] diceProbabilities = new int[5, 6] {
         {20, 50, 75, 95, 99,100}, 
         {10, 35, 60, 85, 95,100}, 
@@ -239,6 +241,10 @@ public class TypingSoft : MonoBehaviour
         this.gameObject.name = "TypingSoft"; // JS連携用に名前を固定
         lPlayer.SetActive(false);
         Fukidashi.SetActive(false);
+        if (fireWork != null)
+        {
+            fireWork.SetActive(false); // 起動時に花火を非表示にする
+        }
 
         // スペースでスタート状態にする
         spaceStart = true;
@@ -542,7 +548,17 @@ public class TypingSoft : MonoBehaviour
         }
         if (comboN % 3 == 0)
         {
-            animator.SetInteger("yubi", new System.Random().Next(2, 3));
+            // 花火エフェクトを再生
+            if (fireWork != null)
+            {
+                fireWork.SetActive(true);
+                ParticleSystem particleSystem = fireWork.GetComponentInChildren<ParticleSystem>();
+                if (particleSystem != null)
+                {
+                    particleSystem.Play();
+                }
+            }
+            animator.SetInteger("yubi", new System.Random().Next(1, 3)); // 1または2をランダムに返す
             seekerYubi += 7;
             coins.SpawnCoins(7, 0); // コインアニメーション、任意で第2引数調整
             if (typingVoice != null)
