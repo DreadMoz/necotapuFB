@@ -20,6 +20,7 @@ public class TypingVoice : MonoBehaviour, IPointerUpHandler
     [SerializeField] private AudioClip coin3;
     [SerializeField] private AudioClip countDown;
     [SerializeField] private AudioClip coltu;
+    [SerializeField] private AudioClip don;
 
     // Start is called before the first frame update
 
@@ -198,6 +199,18 @@ public class TypingVoice : MonoBehaviour, IPointerUpHandler
         else
         {
             Debug.LogWarning("TypingVoice: coltu AudioClip または eventAudio がアサインされていません。");
+        }
+    }
+    public void sayDon()
+    {
+        if (eventAudio != null && don != null)
+        {
+            // donだけボリュームを下げる（0.5倍）
+            eventAudio.PlayOneShot(don, 0.5f);
+        }
+        else
+        {
+            Debug.LogWarning("TypingVoice: don AudioClip または eventAudio がアサインされていません。");
         }
     }
 }

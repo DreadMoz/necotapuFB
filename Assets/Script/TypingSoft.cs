@@ -542,6 +542,11 @@ public class TypingSoft : MonoBehaviour
     // ３コンボの倍数ごとにボーナスが出るようにcheckSeekerYubiを作成
     private void checkSeekerYubi()
     {
+        // 正解率が60%以下の場合、シーカーを増やさない
+        if (correctAR <= 0.6f)
+        {
+            return;
+        }
         if (comboN == 0)
         {
             return;
@@ -557,6 +562,8 @@ public class TypingSoft : MonoBehaviour
                 {
                     particleSystem.Play();
                 }
+                // 花火エフェクト開始から2.5秒後に効果音を再生
+                StartCoroutine(PlayFireworkSound());
             }
             animator.SetInteger("yubi", new System.Random().Next(1, 3)); // 1または2をランダムに返す
             seekerYubi += 7;
@@ -571,6 +578,11 @@ public class TypingSoft : MonoBehaviour
 
     private void checkSeekerCombo()
     {
+        // 正解率が60%以下の場合、シーカーを増やさない
+        if (correctAR <= 0.6f)
+        {
+            return;
+        }
         if (comboN == 0)
         {
             return;
@@ -596,6 +608,11 @@ public class TypingSoft : MonoBehaviour
 
     private void checkSeekerMail()
     {
+        // 正解率が60%以下の場合、シーカーを増やさない
+        if (correctAR <= 0.6f)
+        {
+            return;
+        }
         if ((currentThemeIndex > 0) && (mailReplaceNo != -1))
         {
             if (shuffledThemes[currentThemeIndex-1].id == mailReplaceNo + 1)
@@ -610,6 +627,11 @@ public class TypingSoft : MonoBehaviour
 
     private void checkSeekerKey()
     {
+        // 正解率が60%以下の場合、シーカーを増やさない
+        if (correctAR <= 0.6f)
+        {
+            return;
+        }
         switch (seekerKey)
         {
             case 0:
@@ -689,6 +711,11 @@ public class TypingSoft : MonoBehaviour
 
     private void checkSeekerTimer()
     {
+        // 正解率が60%以下の場合、シーカーを増やさない
+        if (correctAR <= 0.6f)
+        {
+            return;
+        }
         if (theme.timer > 0)    // 時間設定ありなら
         {
             seekerTime = (int)(totalTime / 10);
@@ -707,8 +734,16 @@ public class TypingSoft : MonoBehaviour
         // コンボ数リセット、表示更新
         if (totalTime != currentTime)
         {
-            kpm = correctN / (totalTime - currentTime) * 60.0f;
-            UIkpm.text = string.Format("{0:0}", kpm);
+            // 正解率が60%以下の場合、KPMを"---"にする
+            if (correctAR <= 0.6f)
+            {
+                UIkpm.text = "---";
+            }
+            else
+            {
+                kpm = correctN / (totalTime - currentTime) * 60.0f;
+                UIkpm.text = string.Format("{0:0}", kpm);
+            }
         }
         checkSeekerMail();
         checkSeekerKey();
@@ -941,6 +976,11 @@ public class TypingSoft : MonoBehaviour
 
     private void getKeyComboBonus()
     {
+        // 正解率が60%以下の場合、シーカーを増やさない
+        if (correctAR <= 0.6f)
+        {
+            return;
+        }
         seekerBonus += seekerCombo/2 + seekerKey/2;
         coins.SpawnCoins(seekerCombo/2 + seekerKey/2, 0);    // コインアニメーション
         typingVoice.sayCoin3();
@@ -996,11 +1036,19 @@ public class TypingSoft : MonoBehaviour
         getKeyComboBonus();
 
         kpm = correctN / totalTime * 60.0f;
-        UIkpm.text = string.Format("{0:0}", kpm);
+        // 正解率が60%以下の場合、KPMを"---"にする
+        if (correctAR <= 0.6f)
+        {
+            UIkpm.text = "---";
+        }
+        else
+        {
+            UIkpm.text = string.Format("{0:0}", kpm);
+        }
 
         GameManager.NewKpm = (theme.timer > 0) ? (int)kpm : 0;  // 今回のKPM
         GameManager.KeyParSecond = correctN / totalTime;        // 今回の１秒あたりのキー入力
-        GameManager.AnswerRate = correctAR;     // 今回の正答率
+        GameManager.AnswerRate = correctAR;     // 今回の正解率
         GameManager.TypingTitle = theme.title;  // 実施したテーマ
         GameManager.MaxCombo = maxCombo;        // 今回の最大コンボ数
 
@@ -1015,7 +1063,15 @@ public class TypingSoft : MonoBehaviour
 
         // 結果ウィンドウ表示
         resultTitle.text = GameManager.TypingTitle;
-        resultKpm.text = UIkpm.text;
+        // 正解率が60%以下の場合、KPMを"---"にする
+        if (correctAR <= 0.6f)
+        {
+            resultKpm.text = "---"; // KPMを"---"に
+        }
+        else
+        {
+            resultKpm.text = UIkpm.text;
+        }
         resultCombo.text = maxCombo.ToString();
         resultWindow.SetActive(true);
         lHand.SetActive(false);
@@ -1153,25 +1209,28 @@ public class TypingSoft : MonoBehaviour
         yield return new WaitUntil(() => diceAnim.GetCurrentAnimatorStateInfo(0).IsName(diceStates[diceNo-1]) &&
                                             diceAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
 
-        
-        if (diceNo == 6) {
-            seekerBonus += 36;
+        // 正解率が60%以下の場合、シーカーを増やさない
+        if (correctAR > 0.6f)
+        {
+            if (diceNo == 6) {
+                seekerBonus += 36;
+                typingVoice.sayCoin3();
+                coins.SpawnCoins(20, 0);
+                coins.SpawnCoins(8, 1);
+                coins.SpawnCoins(8, 2);
+            } else if (diceNo == 5) {
+                seekerBonus += 20;
+                typingVoice.sayCoin3();
+                coins.SpawnCoins(14, 0);
+                coins.SpawnCoins(3, 1);
+                coins.SpawnCoins(3, 2);
+            } else {
+                seekerBonus += (int)(diceNo * 2)+6;
+                coins.SpawnCoins((int)(diceNo * 2)+6, 0);
+            }
             typingVoice.sayCoin3();
-            coins.SpawnCoins(20, 0);
-            coins.SpawnCoins(8, 1);
-            coins.SpawnCoins(8, 2);
-        } else if (diceNo == 5) {
-            seekerBonus += 20;
-            typingVoice.sayCoin3();
-            coins.SpawnCoins(14, 0);
-            coins.SpawnCoins(3, 1);
-            coins.SpawnCoins(3, 2);
-        } else {
-            seekerBonus += (int)(diceNo * 2)+6;
-            coins.SpawnCoins((int)(diceNo * 2)+6, 0);
+            updateSeeker();
         }
-        typingVoice.sayCoin3();
-        updateSeeker();
         gm.savedata.Settings[se.GachaCnt] = 1;
         spaceEnd = true;
     }
@@ -1412,6 +1471,21 @@ public class TypingSoft : MonoBehaviour
         StartCoroutine(throwDise(diaRank));
     }
 
+    /// <summary>
+    /// 花火エフェクト開始から2.5秒後に効果音を再生するコルーチン
+    /// </summary>
+    private IEnumerator PlayFireworkSound()
+    {
+        // 2.5秒待機
+        yield return new WaitForSeconds(0.8f);
+        
+        // 効果音再生
+        if (typingVoice != null)
+        {
+            typingVoice.sayDon();
+        }
+    }
+
     public void testThrow()
     {
         dia1.SetActive(true);
@@ -1518,6 +1592,15 @@ public class TypingSoft : MonoBehaviour
         if (((float)correctN + (float)mistakeN) != 0)
         {
             UIcorrectAR.text = string.Format("{0:0.0} %", correctAR*100);
+            // 正解率が60%以下の場合、正解率の文字と数値を赤色にする
+            if (correctAR <= 0.6f)
+            {
+                UIcorrectAR.color = Color.red;
+            }
+            else
+            {
+                UIcorrectAR.color = Color.white; // デフォルトの色に戻す
+            }
         }
 
         if (comboN == 0)   // コンボ依存のアニメーション

@@ -137,7 +137,9 @@ public class Player : MonoBehaviour
             if (GameManager.SceneNo == scene.House)
             {
                 practice.calcStars();           // 表示する星を計算
-                if (GameManager.TypingTab == 2)
+                // 練習モード（TypingTab == 2）かつ指モードでない場合のみ詳細画面を表示
+                // TypingDataPathがnullの場合は強制終了などで途中終了した場合なので、Detailウィンドウを表示しない
+                if (GameManager.TypingTab == 2 && GameManager.TypingDataPath != null && GameManager.TypingDataPath != "YubiModeData")
                 {
                     practice.showDetail();          // 詳細画面表示 ステージ番号が入るから星計算の後
                 }
