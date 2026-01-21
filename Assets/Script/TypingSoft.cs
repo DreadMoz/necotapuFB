@@ -1599,7 +1599,7 @@ public class TypingSoft : MonoBehaviour
             }
             else
             {
-                UIcorrectAR.color = Color.white; // デフォルトの色に戻す
+                UIcorrectAR.color = new Color(0.196f, 0.196f, 0.196f, 1f); // デフォルトの色（#323232）に戻す
             }
         }
 
