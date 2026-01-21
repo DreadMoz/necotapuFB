@@ -542,8 +542,8 @@ public class TypingSoft : MonoBehaviour
     // ３コンボの倍数ごとにボーナスが出るようにcheckSeekerYubiを作成
     private void checkSeekerYubi()
     {
-        // 正解率が60%以下の場合、シーカーを増やさない
-        if (correctAR <= 0.6f)
+        // 正解率が70%以下の場合、シーカーを増やさない
+        if (correctAR <= 0.7f)
         {
             return;
         }
@@ -578,8 +578,8 @@ public class TypingSoft : MonoBehaviour
 
     private void checkSeekerCombo()
     {
-        // 正解率が60%以下の場合、シーカーを増やさない
-        if (correctAR <= 0.6f)
+        // 正解率が70%以下の場合、シーカーを増やさない
+        if (correctAR <= 0.7f)
         {
             return;
         }
@@ -608,8 +608,8 @@ public class TypingSoft : MonoBehaviour
 
     private void checkSeekerMail()
     {
-        // 正解率が60%以下の場合、シーカーを増やさない
-        if (correctAR <= 0.6f)
+        // 正解率が70%以下の場合、シーカーを増やさない
+        if (correctAR <= 0.7f)
         {
             return;
         }
@@ -627,8 +627,8 @@ public class TypingSoft : MonoBehaviour
 
     private void checkSeekerKey()
     {
-        // 正解率が60%以下の場合、シーカーを増やさない
-        if (correctAR <= 0.6f)
+        // 正解率が70%以下の場合、シーカーを増やさない
+        if (correctAR <= 0.7f)
         {
             return;
         }
@@ -711,8 +711,8 @@ public class TypingSoft : MonoBehaviour
 
     private void checkSeekerTimer()
     {
-        // 正解率が60%以下の場合、シーカーを増やさない
-        if (correctAR <= 0.6f)
+        // 正解率が70%以下の場合、シーカーを増やさない
+        if (correctAR <= 0.7f)
         {
             return;
         }
@@ -734,8 +734,8 @@ public class TypingSoft : MonoBehaviour
         // コンボ数リセット、表示更新
         if (totalTime != currentTime)
         {
-            // 正解率が60%以下の場合、KPMを"---"にする
-            if (correctAR <= 0.6f)
+            // 正解率が70%以下の場合、KPMを"---"にする
+            if (correctAR <= 0.7f)
             {
                 UIkpm.text = "---";
             }
@@ -976,8 +976,8 @@ public class TypingSoft : MonoBehaviour
 
     private void getKeyComboBonus()
     {
-        // 正解率が60%以下の場合、シーカーを増やさない
-        if (correctAR <= 0.6f)
+        // 正解率が70%以下の場合、シーカーを増やさない
+        if (correctAR <= 0.7f)
         {
             return;
         }
@@ -1036,17 +1036,17 @@ public class TypingSoft : MonoBehaviour
         getKeyComboBonus();
 
         kpm = correctN / totalTime * 60.0f;
-        // 正解率が60%以下の場合、KPMを"---"にする
-        if (correctAR <= 0.6f)
+        // 正解率が70%以下の場合、KPMを"---"にする
+        if (correctAR <= 0.7f)
         {
             UIkpm.text = "---";
+            GameManager.NewKpm = 0;  // 記録としても0にする
         }
         else
         {
             UIkpm.text = string.Format("{0:0}", kpm);
+            GameManager.NewKpm = (theme.timer > 0) ? (int)kpm : 0;  // 今回のKPM
         }
-
-        GameManager.NewKpm = (theme.timer > 0) ? (int)kpm : 0;  // 今回のKPM
         GameManager.KeyParSecond = correctN / totalTime;        // 今回の１秒あたりのキー入力
         GameManager.AnswerRate = correctAR;     // 今回の正解率
         GameManager.TypingTitle = theme.title;  // 実施したテーマ
@@ -1063,8 +1063,8 @@ public class TypingSoft : MonoBehaviour
 
         // 結果ウィンドウ表示
         resultTitle.text = GameManager.TypingTitle;
-        // 正解率が60%以下の場合、KPMを"---"にする
-        if (correctAR <= 0.6f)
+        // 正解率が70%以下の場合、KPMを"---"にする
+        if (correctAR <= 0.7f)
         {
             resultKpm.text = "---"; // KPMを"---"に
         }
@@ -1209,8 +1209,8 @@ public class TypingSoft : MonoBehaviour
         yield return new WaitUntil(() => diceAnim.GetCurrentAnimatorStateInfo(0).IsName(diceStates[diceNo-1]) &&
                                             diceAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
 
-        // 正解率が60%以下の場合、シーカーを増やさない
-        if (correctAR > 0.6f)
+        // 正解率が70%以下の場合、シーカーを増やさない
+        if (correctAR > 0.7f)
         {
             if (diceNo == 6) {
                 seekerBonus += 36;
@@ -1592,8 +1592,8 @@ public class TypingSoft : MonoBehaviour
         if (((float)correctN + (float)mistakeN) != 0)
         {
             UIcorrectAR.text = string.Format("{0:0.0} %", correctAR*100);
-            // 正解率が60%以下の場合、正解率の文字と数値を赤色にする
-            if (correctAR <= 0.6f)
+            // 正解率が70%以下の場合、正解率の文字と数値を赤色にする
+            if (correctAR <= 0.7f)
             {
                 UIcorrectAR.color = Color.red;
             }
