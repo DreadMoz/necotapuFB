@@ -137,21 +137,40 @@
           showBanner: unityShowBanner,
         };
         
-        // 奈良県e-net用の市町村グルーピング定義
-        const NARA_CITY_GROUPS = {
-          "City_MY": [
-            "hdm", "htz", "rmj", "fgn", "gwg",
-            "phd", "gtg", "bkm", "gnr", "msg",
-            "mnw", "hjn", "nkf", "vbw", "gdw",
-            "jcs", "rvy", "wfs", "cfr", "kht"
-          ],
-        };
+        // 奈良県e-net用の市町村グルーピング定義（nara_config.jsonから読み込む）
+        let NARA_CITY_GROUPS = {};
+        let TRANSFER_STUDENTS = {};
+        let TEACHERS = {};
+
+        // 設定ファイルを読み込む
+        async function loadNaraConfig() {
+          try {
+            const response = await fetch('nara_config.json');
+            const config = await response.json();
+            NARA_CITY_GROUPS = config.NARA_CITY_GROUPS;
+            TRANSFER_STUDENTS = config.TRANSFER_STUDENTS;
+            TEACHERS = config.TEACHERS;
+            console.log("Nara config loaded successfully");
+          } catch (e) {
+            console.error("Failed to load Nara config:", e);
+          }
+        }
+        loadNaraConfig();
 
         // メールアドレスからランキンググループ名（キー）を決定する関数
         function getRankingGroupKey(email) {
           if (!email) return "unknown";
-
           const lowerEmail = email.toLowerCase();
+
+          // 0. 先生リストのチェック
+          if (TEACHERS[lowerEmail]) {
+            return `Nara_${TEACHERS[lowerEmail]}`;
+          }
+
+          // 0.5 転校生（例外リスト）のチェック
+          if (TRANSFER_STUDENTS[lowerEmail]) {
+            return `Nara_${TRANSFER_STUDENTS[lowerEmail]}`;
+          }
 
           // 1. 奈良県e-netドメインの場合
           if (lowerEmail.endsWith("@e-net.nara.jp")) {
@@ -164,6 +183,24 @@
               }
             }
             // 定義にない場合は "Nara_Other"
+            return "Nara_Other";
+          }
+
+          // 1.5 奈良県e-netドメイン（サブドメインあり）の場合
+          if (lowerEmail.endsWith(".e-net.nara.jp")) {
+            const parts = lowerEmail.split("@");
+            if (parts.length === 2) {
+              const domainParts = parts[1].split(".");
+              // [prefix].e-net.nara.jp の形式を想定
+              if (domainParts.length >= 4) {
+                const prefix = domainParts[0];
+                for (const [cityName, prefixes] of Object.entries(NARA_CITY_GROUPS)) {
+                  if (prefixes.includes(prefix)) {
+                    return `Nara_${cityName}`;
+                  }
+                }
+              }
+            }
             return "Nara_Other";
           }
 
@@ -611,11 +648,24 @@
         function setupAuthStateListener() {
             console.log("🔍 Firebase認証状態監視を設定");
             
-            onAuthStateChanged(window.auth, async (user) => {
-                if (user) {
-                    console.log("✅ onAuthStateChanged: 認証済みユーザーを検出", user.uid);
-                    console.log("   メール:", user.email);
-                    console.log("   表示名:", user.displayName);
+        onAuthStateChanged(window.auth, async (user) => {
+            if (user) {
+                console.log("✅ onAuthStateChanged: 認証済みユーザーを検出", user.uid);
+                
+                // 名前が取得できない場合のリトライ処理
+                if (!user.displayName && !user.isAnonymous) {
+                    console.warn("⚠️ 表示名が取得できません。再取得を試みます...");
+                    try {
+                        await user.reload();
+                        user = window.auth.currentUser; // 最新のユーザー情報を取得
+                        console.log("🔄 ユーザー情報をリロードしました。表示名:", user.displayName);
+                    } catch (e) {
+                        console.error("❌ ユーザー情報のリロードに失敗:", e);
+                    }
+                }
+
+                console.log("   メール:", user.email);
+                console.log("   表示名:", user.displayName);
                     
                     // リロード後かどうかをチェック
                     const reloadFlag = localStorage.getItem('forceReloadInProgress');

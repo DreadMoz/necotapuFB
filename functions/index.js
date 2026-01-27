@@ -7,21 +7,52 @@ const db = admin.firestore();
 // ステージごとのランキング人数制限
 const RANKING_LIMIT = 150;
 
-// 奈良県e-net用の市町村グルーピング定義
-const NARA_CITY_GROUPS = {
-  "City_MY": [
-    "hdm", "htz", "rmj", "fgn", "gwg", 
-    "phd", "gtg", "bkm", "gnr", "msg", 
-    "mnw", "hjn", "nkf", "vbw", "gdw", 
-    "jcs", "rvy", "wfs", "cfr", "kht"
-  ],
-};
+// 奈良県e-net用の市町村グルーピング定義（nara_config.jsonから読み込む）
+let NARA_CITY_GROUPS = {};
+let TRANSFER_STUDENTS = {};
+let TEACHERS = {};
+
+/**
+ * 設定ファイルを読み込む
+ */
+async function loadNaraConfig() {
+  try {
+    // Functions環境ではファイルシステムから直接読み込む
+    const fs = require('fs');
+    const path = require('path');
+    const configPath = path.join(__dirname, 'nara_config.json');
+    if (fs.existsSync(configPath)) {
+      const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+      NARA_CITY_GROUPS = config.NARA_CITY_GROUPS;
+      TRANSFER_STUDENTS = config.TRANSFER_STUDENTS;
+      TEACHERS = config.TEACHERS;
+      console.log("Nara config loaded successfully from file");
+    } else {
+      console.warn("nara_config.json not found, using empty config");
+    }
+  } catch (e) {
+    console.error("Failed to load Nara config:", e);
+  }
+}
+
+// 初期化時に読み込み
+loadNaraConfig();
 
 // メールアドレスからランキンググループ名（キー）を決定する関数
 function getRankingGroupKey(email) {
   if (!email) return "unknown";
 
   const lowerEmail = email.toLowerCase();
+
+  // 0. 先生リストのチェック
+  if (TEACHERS[lowerEmail]) {
+    return `Nara_${TEACHERS[lowerEmail]}`;
+  }
+
+  // 0.5 転校生（例外リスト）のチェック
+  if (TRANSFER_STUDENTS[lowerEmail]) {
+    return `Nara_${TRANSFER_STUDENTS[lowerEmail]}`;
+  }
 
   // 1. 奈良県e-netドメインの場合
   if (lowerEmail.endsWith("@e-net.nara.jp")) {
@@ -34,6 +65,24 @@ function getRankingGroupKey(email) {
       }
     }
     // 定義にない場合は "Nara_Other"
+    return "Nara_Other";
+  }
+
+  // 1.5 奈良県e-netドメイン（サブドメインあり）の場合
+  if (lowerEmail.endsWith(".e-net.nara.jp")) {
+    const parts = lowerEmail.split("@");
+    if (parts.length === 2) {
+      const domainParts = parts[1].split(".");
+      // [prefix].e-net.nara.jp の形式を想定
+      if (domainParts.length >= 4) {
+        const prefix = domainParts[0];
+        for (const [cityName, prefixes] of Object.entries(NARA_CITY_GROUPS)) {
+          if (prefixes.includes(prefix)) {
+            return `Nara_${cityName}`;
+          }
+        }
+      }
+    }
     return "Nara_Other";
   }
 
@@ -153,12 +202,6 @@ async function runDailyRankingLogic() {
 
   let usersQuery = db.collection("users");
   
-  // FullBuild(初回) または WeeklyRebuild の場合は全件取得のほうが安全だが、
-  // コスト削減のためWeeklyでも「差分更新＋再ソート」で対応可能か検討。
-  // しかし「1週間ログインしていないが、先週KPMを更新した人」などが漏れると困る。
-  // → ここではシンプルに「Active Userのみ更新」を貫く。
-  // 引退ユーザーは順位が下がっていくだけ（Weeklyで再ソートされるため）
-  
   if (!isFullBuild) {
     console.log(`差分取得: ${yesterday.toISOString()} 以降の更新データを取得`);
     usersQuery = usersQuery.where('updatedAt', '>', yesterday);
@@ -173,13 +216,6 @@ async function runDailyRankingLogic() {
     console.log("更新対象なし。終了します。");
     return;
   }
-
-  // 3. 更新データの処理
-  const updatedEntries = [];
-  usersSnapshot.forEach(doc => {
-    const entry = createRankEntry(doc);
-    if (entry) updatedEntries.push(entry);
-  });
 
   const batch = db.batch();
   let writeCount = 0;
@@ -203,146 +239,161 @@ async function runDailyRankingLogic() {
         });
     });
 
-    // 2. 更新データをマージ（グループキーも最新情報から再判定）
-    updatedEntries.forEach(entry => {
-      // ユーザーの最新グループキーを取得（メアドから判定）
-      // ※注意: createRankEntryではemailが含まれていないため、docから再取得必要
-      // ここでは簡易的に、更新データのentryにはemailが含まれていないため、
-      // usersSnapshotループ内でグループキー判定を行う必要があります。
-      // リファクタリング: createRankEntryにEmailを含めるか、ここでdocを参照する。
-      // 今回はusersSnapshotループ内で処理済みとして、updatedEntriesをMapにするのが良いが、
-      // 既存コードの流れを変えるため、updatedEntries作成時にグループキーも持たせる形に微修正します。
-    });
-    
-    // ※上記のループ修正のため、ロジックを少し戻します。
-    // Map<GroupKey, Map<Uid, Entry>>
-    const updatesByGroup = new Map();
+    // 2. 更新データをマージ（グループ移動対応）
     usersSnapshot.forEach(doc => {
       const entry = createRankEntry(doc);
       if (!entry) return;
+      
       const userData = doc.data().data || {};
-      const groupKey = getRankingGroupKey(userData.Email);
-      if (!updatesByGroup.has(groupKey)) updatesByGroup.set(groupKey, new Map());
-      updatesByGroup.get(groupKey).set(entry.Uid, entry);
+      const newGroupKey = getRankingGroupKey(userData.Email);
+      
+      // 既存の場所を探す
+      const oldLocation = userLocationMap.get(entry.Uid);
+      
+      if (oldLocation && oldLocation.groupKey !== newGroupKey) {
+        // グループが変わった場合、古いグループから削除
+        console.log(`Weekly: ユーザー ${entry.Uid} がグループ移動: ${oldLocation.groupKey} -> ${newGroupKey}`);
+        const oldGroupEntries = mergedEntriesByGroup.get(oldLocation.groupKey);
+        if (oldGroupEntries) {
+          oldGroupEntries.delete(entry.Uid);
+        }
+      }
+      
+      // 新しいグループに追加/更新
+      if (!mergedEntriesByGroup.has(newGroupKey)) {
+        mergedEntriesByGroup.set(newGroupKey, new Map());
+      }
+      mergedEntriesByGroup.get(newGroupKey).set(entry.Uid, entry);
     });
 
-    // マージ処理
-    // 全グループキーを収集
-    const allGroupKeys = new Set([...mergedEntriesByGroup.keys(), ...updatesByGroup.keys()]);
+    // 3. マージ処理と保存
+    const allGroupKeys = Array.from(mergedEntriesByGroup.keys());
 
     for (const groupKey of allGroupKeys) {
-      const groupEntries = mergedEntriesByGroup.get(groupKey) || new Map();
-      const updates = updatesByGroup.get(groupKey);
-
-      // 更新分で上書き
-      if (updates) {
-        updates.forEach((entry, uid) => {
-          groupEntries.set(uid, entry);
-      });
-    }
+      const groupEntries = mergedEntriesByGroup.get(groupKey);
+      if (!groupEntries || groupEntries.size === 0) continue;
 
       // 配列化＆ソート
       let entries = Array.from(groupEntries.values());
-    entries.sort((a, b) => b.Kpm - a.Kpm); // KPM降順
+      entries.sort((a, b) => b.Kpm - a.Kpm); // KPM降順
 
-    // ステージ分割保存
-    let stageIndex = 0;
-    const groupBorders = {};
+      // ステージ分割保存
+      let stageIndex = 0;
+      const groupBorders = {};
 
-    if (entries.length === 0) continue;
+      for (let i = 0; i < entries.length; i += RANKING_LIMIT) {
+        const stageEntries = entries.slice(i, i + RANKING_LIMIT);
+        
+        stageEntries.forEach((entry, idx) => {
+          entry.Ranking = i + idx + 1;
+        });
 
-    for (let i = 0; i < entries.length; i += RANKING_LIMIT) {
-      const stageEntries = entries.slice(i, i + RANKING_LIMIT);
-      
-      stageEntries.forEach((entry, idx) => {
-        entry.Ranking = i + idx + 1;
-      });
+        const docId = `${groupKey}_stage_${stageIndex}`;
+        const docRef = db.collection("rankings").doc(docId);
 
-      const docId = `${groupKey}_stage_${stageIndex}`;
-      const docRef = db.collection("rankings").doc(docId);
+        batch.set(docRef, {
+          rankingList: stageEntries,
+          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+          groupKey: groupKey,
+          stageId: stageIndex
+        });
+        writeCount++;
 
-      batch.set(docRef, {
-        rankingList: stageEntries,
-        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-        groupKey: groupKey,
-        stageId: stageIndex
-      });
-      writeCount++;
-
-      const lastEntry = stageEntries[stageEntries.length - 1];
-      groupBorders[stageIndex] = lastEntry ? lastEntry.Kpm : 0;
-      stageIndex++;
-    }
-    allBorderlines[groupKey] = groupBorders;
+        const lastEntry = stageEntries[stageEntries.length - 1];
+        groupBorders[stageIndex] = lastEntry ? lastEntry.Kpm : 0;
+        stageIndex++;
+      }
+      allBorderlines[groupKey] = groupBorders;
     }
 
   } else {
     // ==========================================
-    // B. Daily Mode: 情報更新のみ（ステージ移動なし）
+    // B. Daily Mode: 情報更新のみ（グループ移動対応）
     // ==========================================
     
-    // 更新があったドキュメント（ステージ）のみを記録
-    // Map<DocID, { list: entry[], groupKey: string, stageId: number, isDirty: boolean }>
-    
-    // まず更新データをループして、既存データの場所を探す
     usersSnapshot.forEach(doc => {
       const newEntry = createRankEntry(doc);
       if (!newEntry) return;
 
+      const userData = doc.data().data || {};
+      const newGroupKey = getRankingGroupKey(userData.Email);
       const location = userLocationMap.get(newEntry.Uid);
       
       if (location) {
-        // 既存ユーザー: そのステージのリスト内のデータを更新
-        const stageData = existingRankings.get(location.docId);
-        if (stageData) {
-          const list = stageData.list;
-          const idx = list.findIndex(e => e.Uid === newEntry.Uid);
-          if (idx !== -1) {
-            // ランキング順位は維持したまま、データだけ更新
-            // ※KPMが変わってもDailyでは順位入れ替えすらしない（クライアント側でソートする運用）
-            const originalRanking = list[idx].Ranking;
-            list[idx] = newEntry;
-            list[idx].Ranking = originalRanking; // 順位を戻す
-            stageData.isDirty = true;
+        // 既存ユーザー
+        if (location.groupKey !== newGroupKey) {
+          // 【重要】グループが変わった場合、古いグループから削除し、新しいグループの末尾に追加
+          console.log(`Daily: ユーザー ${newEntry.Uid} がグループ移動を検知: ${location.groupKey} -> ${newGroupKey}`);
+          
+          // 旧グループから削除
+          const oldStageData = existingRankings.get(location.docId);
+          if (oldStageData) {
+            oldStageData.list = oldStageData.list.filter(e => e.Uid !== newEntry.Uid);
+            oldStageData.isDirty = true;
           }
-        }
-      } else {
-        // 新規ユーザー（またはランキング圏外からの復帰）
-        // Dailyモードでは「一番下のステージ」に追加する
-        const userData = doc.data().data || {};
-        const groupKey = getRankingGroupKey(userData.Email);
-        
-        // そのグループの最終ステージを探す
-        // Mapだと順序がないので、existingRankingsから検索
-        let targetDocId = null;
-        let maxStageId = -1;
-
-        existingRankings.forEach((val, docId) => {
-          if (val.groupKey === groupKey) {
-            if (val.stageId > maxStageId) {
+          
+          // 新グループの最終ステージを探す
+          let targetDocId = null;
+          let maxStageId = -1;
+          existingRankings.forEach((val, docId) => {
+            if (val.groupKey === newGroupKey && val.stageId > maxStageId) {
               maxStageId = val.stageId;
               targetDocId = docId;
             }
+          });
+
+          if (targetDocId) {
+            const newStageData = existingRankings.get(targetDocId);
+            newEntry.Ranking = 9999;
+            newStageData.list.push(newEntry);
+            newStageData.isDirty = true;
+          } else {
+            // 新グループがまだ存在しない場合
+            const newDocId = `${newGroupKey}_stage_0`;
+            newEntry.Ranking = 1;
+            existingRankings.set(newDocId, {
+              list: [newEntry],
+              groupKey: newGroupKey,
+              stageId: 0,
+              isDirty: true
+            });
+          }
+        } else {
+          // 同一グループ内の更新
+          const stageData = existingRankings.get(location.docId);
+          if (stageData) {
+            const list = stageData.list;
+            const idx = list.findIndex(e => e.Uid === newEntry.Uid);
+            if (idx !== -1) {
+              const originalRanking = list[idx].Ranking;
+              list[idx] = newEntry;
+              list[idx].Ranking = originalRanking;
+              stageData.isDirty = true;
+            }
+          }
+        }
+      } else {
+        // 完全な新規ユーザー（一番下のステージに追加）
+        let targetDocId = null;
+        let maxStageId = -1;
+        existingRankings.forEach((val, docId) => {
+          if (val.groupKey === newGroupKey && val.stageId > maxStageId) {
+            maxStageId = val.stageId;
+            targetDocId = docId;
           }
         });
 
         if (targetDocId) {
-          // 既存グループあり: 最終ステージに追加
           const stageData = existingRankings.get(targetDocId);
-          // もし最終ステージが満員(150人)なら、新規ステージを作るべきだが、
-          // 簡易的に「溢れても追加」するか、「あきらめる」か。
-          // ここでは「溢れても追加」します（次のWeeklyで整理される）
-          newEntry.Ranking = 9999; // 暫定順位
+          newEntry.Ranking = 9999;
           stageData.list.push(newEntry);
           stageData.isDirty = true;
         } else {
-          // 完全に新規のグループ: 新規ステージ作成
-          // existingRankingsに追加してしまう
-          const newDocId = `${groupKey}_stage_0`;
+          const newDocId = `${newGroupKey}_stage_0`;
           newEntry.Ranking = 1;
           existingRankings.set(newDocId, {
             list: [newEntry],
-            groupKey: groupKey,
+            groupKey: newGroupKey,
             stageId: 0,
             isDirty: true
           });
@@ -353,14 +404,6 @@ async function runDailyRankingLogic() {
     // 変更があったステージのみ保存
     existingRankings.forEach((val, docId) => {
       if (val.isDirty) {
-        // Dailyモードではリスト内のソートもしない（順位固定）ならそのままで良いが、
-        // 「順位はローカルでKPMで並び替えるだけでいい」とのことなので、
-        // DB上のリスト順序はバラバラでもOK？ 
-        // 念のためKPM順にソートだけはしておく（Ranking番号は変えない）とクライアントが見やすいかもですが、
-        // 「Ranking番号とリスト順序が不一致」は混乱の元。
-        // ここでは「Ranking番号固定、リスト順序もRanking番号順（＝変更なし）」とします。
-        
-        // 保存
         const docRef = db.collection("rankings").doc(docId);
         batch.set(docRef, {
           rankingList: val.list,
@@ -370,9 +413,7 @@ async function runDailyRankingLogic() {
         });
         writeCount++;
         
-        // ボーダーライン情報の更新（末尾が変わった可能性があるため）
         if (!allBorderlines[val.groupKey]) allBorderlines[val.groupKey] = {};
-        // 現在のリストの末尾のKPMを取得（ソートされていないと不正確だが、Dailyは近似値で許容）
         const lastEntry = val.list[val.list.length - 1];
         allBorderlines[val.groupKey][val.stageId] = lastEntry ? lastEntry.Kpm : 0;
       }
@@ -381,14 +422,11 @@ async function runDailyRankingLogic() {
 
   // 5. ボーダーライン情報の保存
   for (const [groupKey, borders] of Object.entries(allBorderlines)) {
-    // 既存のボーダー情報を取得していないので、Dailyモードだと
-    // 「更新があったステージのボーダー」しか書き込まれない（他ステージが消える）恐れがある。
-    // → systemドキュメントは { merge: true } で書き込むべき。
     const borderDocRef = db.collection("system").doc(`ranking_borders_${groupKey}`);
     batch.set(borderDocRef, {
       borders: borders,
       updatedAt: admin.firestore.FieldValue.serverTimestamp()
-    }, { merge: true }); // merge追加
+    }, { merge: true });
     writeCount++;
   }
 

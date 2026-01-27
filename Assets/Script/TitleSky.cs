@@ -247,7 +247,21 @@ public class TitleSky : MonoBehaviour
     /// </summary>
     public void OnAuthSuccess(necotapuFB.AuthInfo authInfo)
     {
-        Debug.Log($"OnAuthenticationSuccess: Unityエディタ環境での認証成功 - 呼び出し元: {System.Environment.StackTrace}");
+        Debug.Log($"OnAuthenticationSuccess: 認証成功データ受信 - UserID: {authInfo.userId}");
+
+        // 名前が取得できていない場合はエラーを表示して中断
+        if (string.IsNullOrEmpty(authInfo.displayName) && !authInfo.isGuest)
+        {
+            Debug.LogError("TitleSky: 認証情報に名前が含まれていません。Firestoreへの登録を制限します。");
+            Text messageTextErr = message.GetComponentInChildren<Text>();
+            if (messageTextErr != null)
+            {
+                messageTextErr.text = "エラー：Googleアカウントから名前を取得できませんでした。ページを再読み込みしてやり直してください。";
+            }
+            message.SetActive(true);
+            startButton.SetActive(false); // ボタンを隠して進行不能にする
+            return;
+        }
 
         Text messageText = message.GetComponentInChildren<Text>();
         if (messageText != null)
@@ -274,20 +288,47 @@ public class TitleSky : MonoBehaviour
         message.SetActive(true);
         
         // 表示名からfirstNameとlastNameを分割
-        string[] nameParts = authInfo.displayName.Split(' ');
-        string firstName = nameParts.Length > 0 ? nameParts[0] : "";
-        string lastName = nameParts.Length > 1 ? nameParts[1] : "";
+        string firstNameStr = "";
+        string lastNameStr = "";
+
+        if (!string.IsNullOrEmpty(authInfo.displayName))
+        {
+            string[] nameParts = authInfo.displayName.Split(' ');
+            firstNameStr = nameParts.Length > 0 ? nameParts[0] : "";
+            lastNameStr = nameParts.Length > 1 ? nameParts[1] : "";
+            
+            // 名字がない（スペースがない）場合は、displayName全体をfirstNameに入れる
+            if (string.IsNullOrEmpty(lastNameStr))
+            {
+                firstNameStr = authInfo.displayName;
+                lastNameStr = " "; // 空文字を避ける
+            }
+        }
+        else if (!string.IsNullOrEmpty(authInfo.email))
+        {
+            // 名前が取得できない場合はメールアドレスの@前を使用
+            firstNameStr = authInfo.email.Split('@')[0];
+            lastNameStr = " ";
+            Debug.LogWarning($"TitleSky: displayNameが空のためメールアドレスから名前を生成: {firstNameStr}");
+        }
+        else
+        {
+            firstNameStr = "名無し";
+            lastNameStr = "さん";
+            Debug.LogError("TitleSky: 認証情報に名前もメールアドレスもありません。");
+        }
         
         // 認証情報を保存
-        currentFirstName = firstName;
-        currentLastName = lastName;
+        currentFirstName = firstNameStr;
+        currentLastName = lastNameStr;
         currentEmail = authInfo.email;
         
         // UIに表示
         mailText.text = authInfo.email;
-        this.firstName.text = firstName;
-        this.lastName.text = lastName;
+        this.firstName.text = firstNameStr;
+        this.lastName.text = lastNameStr;
         department.text = authInfo.authMethod; // 認証方法を表示
+        ouText.text = authInfo.authMethod; // 追加：新規ユーザー時の保存用にセット
         
         // プロフィール画像（Googleアカウントの画像がある場合のみ表示）
         if (!string.IsNullOrEmpty(authInfo.photoURL))
@@ -486,15 +527,17 @@ public class TitleSky : MonoBehaviour
     /// </summary>
     private void UpdateUserInfoFromAuth()
     {
-        if (!string.IsNullOrEmpty(currentFirstName) && !string.IsNullOrEmpty(currentLastName))
+        if (!string.IsNullOrEmpty(currentFirstName))
         {
             // 現在のFirebaseデータとGoogleアカウント情報を比較
             bool needsUpdate = false;
             
+            // 名前の更新（不一致の場合）
             if (gm.savedata.UserName != currentFirstName)
             {
                 Debug.Log($"ユーザー名を更新: '{gm.savedata.UserName}' → '{currentFirstName}'");
                 gm.savedata.UserName = currentFirstName;
+                this.firstName.text = currentFirstName; // UIも更新
                 needsUpdate = true;
             }
             
@@ -502,6 +545,7 @@ public class TitleSky : MonoBehaviour
             {
                 Debug.Log($"姓を更新: '{gm.savedata.LastName}' → '{currentLastName}'");
                 gm.savedata.LastName = currentLastName;
+                this.lastName.text = currentLastName; // UIも更新
                 needsUpdate = true;
             }
             
@@ -509,12 +553,23 @@ public class TitleSky : MonoBehaviour
             {
                 Debug.Log($"メールアドレスを更新: '{gm.savedata.Email}' → '{currentEmail}'");
                 gm.savedata.Email = currentEmail;
+                mailText.text = currentEmail; // UIも更新
+                needsUpdate = true;
+            }
+
+            // AuthMethodが空の場合の救済
+            if (string.IsNullOrEmpty(gm.savedata.AuthMethod) || gm.savedata.AuthMethod == "unknown")
+            {
+                string method = string.IsNullOrEmpty(ouText.text) ? "google.com" : ouText.text;
+                Debug.Log($"認証方法を更新: '{gm.savedata.AuthMethod}' → '{method}'");
+                gm.savedata.AuthMethod = method;
+                ouText.text = method; // UIも更新
                 needsUpdate = true;
             }
             
             if (needsUpdate)
             {
-                Debug.Log("ユーザー情報が更新されました - Firebaseに保存を実行");
+                Debug.Log("ユーザー情報が自動修正されました - Firebaseに保存を実行");
                 // 更新された情報をFirebaseに保存
                 gm.savedata.saveInitialDataToFirebase();
             }
@@ -525,7 +580,7 @@ public class TitleSky : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("認証情報が不完全です - ユーザー情報の更新をスキップ");
+            Debug.LogWarning("認証情報が不完全なため、自動修正をスキップしました。");
         }
     }
 
@@ -711,8 +766,16 @@ public class TitleSky : MonoBehaviour
 
     public void confirmNeco()
     {
-        gm.savedata.setNewDataFB(mailText.text, firstName.text, lastName.text, ouText.text, necoNo);
-        Debug.Log("confirmNeco: ねこを決定してFirebaseに初期値保存");
+        // 最終チェック：名前が空の場合は絶対に保存させない
+        if (string.IsNullOrEmpty(currentFirstName) || currentFirstName == "名無し")
+        {
+            Debug.LogError("confirmNeco: 名前が不完全なため保存を中止しました。");
+            return;
+        }
+
+        // UIのテキストではなく、保持している確実な認証情報を使用する
+        gm.savedata.setNewDataFB(currentEmail, currentFirstName, currentLastName, ouText.text, necoNo);
+        Debug.Log($"confirmNeco: ねこを決定してFirebaseに初期値保存 (User: {currentFirstName}, Email: {currentEmail}, Auth: {ouText.text})");
         
         // 装備データの確認
         Debug.Log($"confirmNeco: 設定後の既存配列装備情報 - CatBody: {gm.savedata.Equipment[eq.CatBody]}, RightHand: {gm.savedata.Equipment[eq.RightHand]}, LeftHand: {gm.savedata.Equipment[eq.LeftHand]}, Head: {gm.savedata.Equipment[eq.Head]}, Glasses: {gm.savedata.Equipment[eq.Glasses]}");
