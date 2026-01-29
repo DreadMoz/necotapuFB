@@ -1,8 +1,87 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
+// レガシーデータマージ用
+let legacyData = null;
+try {
+  legacyData = require('./legacy_data.json');
+} catch (e) {
+  console.warn("legacy_data.json not found. Merge function will be disabled.");
+}
+
 admin.initializeApp();
 const db = admin.firestore();
+
+// ... (existing code) ...
+
+// ユーザーデータバージョン比較関数
+// ... (existing code) ...
+
+/**
+ * 旧バージョン（スプレッドシート版）からのデータマージ
+ */
+exports.mergeLegacyData = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError('unauthenticated', 'ログインが必要です。');
+  }
+
+  if (!legacyData) {
+    return { status: 'skipped', reason: 'no_legacy_data' };
+  }
+
+  const uid = context.auth.uid;
+  const email = context.auth.token.email ? context.auth.token.email.toLowerCase() : null;
+
+  if (!email || !legacyData[email]) {
+    return { status: 'skipped', reason: 'user_not_found_in_legacy' };
+  }
+
+  const userDocRef = db.collection('users').doc(uid);
+  const userDoc = await userDocRef.get();
+
+  if (!userDoc.exists) {
+    return { status: 'error', reason: 'user_doc_not_found' };
+  }
+
+  const userData = userDoc.data();
+  if (userData.isLegacyMerged) {
+    return { status: 'already_merged' };
+  }
+
+  const legacy = legacyData[email];
+  const currentData = userData.data || {};
+
+  // 1. シーカー（ゴールド）のマージ
+  if (!currentData.Status) currentData.Status = [0, 0, 0, 0];
+  currentData.Status[0] = (currentData.Status[0] || 0) + legacy.s;
+
+  // 2. アイテムのマージ
+  if (!currentData.Items) currentData.Items = new Array(256).fill(false);
+  
+  // legacy.i は [Item1, Item2, Item3, Item4] (文字列化されたulong)
+  for (let i = 0; i < legacy.i.length; i++) {
+    const val = BigInt(legacy.i[i]);
+    for (let bit = 0; bit < 64; bit++) {
+      if ((val & (1n << BigInt(bit))) !== 0n) {
+        const itemIdx = i * 64 + bit;
+        if (itemIdx < currentData.Items.length) {
+          currentData.Items[itemIdx] = true;
+        }
+      }
+    }
+  }
+
+  // 保存
+  await userDocRef.set({
+    data: currentData,
+    isLegacyMerged: true,
+    updatedAt: admin.firestore.FieldValue.serverTimestamp()
+  }, { merge: true });
+
+  console.log(`✅ User ${email} (${uid}) merged legacy data: +${legacy.s} gold`);
+  return { status: 'success', mergedGold: legacy.s };
+});
+
 
 // ステージごとのランキング人数制限
 const RANKING_LIMIT = 150;

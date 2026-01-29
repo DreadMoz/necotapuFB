@@ -3,7 +3,23 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | typingWorld</title>
+    <title>ねこたぷ | 楽しく学べるタイピング練習ゲーム</title>
+    <meta name="description" content="ねこたぷは、ねこと一緒に冒険しながら楽しく学べるタイピング練習ゲームです。奈良県の子どもたちのために開発されました。Googleアカウントでログインして、ランキングに挑戦しよう！">
+    <meta name="keywords" content="ねこたぷ,タイピング,タイピング練習,タイピングゲーム,奈良県,e-net,教育,小学生">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://necotapufb.web.app/">
+    <meta property="og:title" content="ねこたぷ | 楽しく学べるタイピング練習ゲーム">
+    <meta property="og:description" content="ねこと一緒に冒険しながら楽しく学べるタイピング練習ゲーム！ランキングで友達と競い合おう。">
+    <meta property="og:image" content="https://necotapufb.web.app/necotapu.ico">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://necotapufb.web.app/">
+    <meta property="twitter:title" content="ねこたぷ | 楽しく学べるタイピング練習ゲーム">
+    <meta property="twitter:description" content="ねこと一緒に冒険しながら楽しく学べるタイピング練習ゲーム！ランキングで友達と競い合おう。">
+
     <link rel="shortcut icon" href="necotapu.ico">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -22,6 +38,20 @@
         <div id="unity-warning"> </div>
         <div id="unity-footer">
             <div id="unity-webgl-logo"></div>
+        </div>
+        
+        <!-- SEO対策用のテキストセクション -->
+        <div id="seo-content" style="padding: 20px; color: #888; font-family: sans-serif; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+            <h1 style="font-size: 1.2em; color: #aaa;">ねこたぷ - 楽しく学べるタイピング練習ゲーム</h1>
+            <p>「ねこたぷ」は、ねこと一緒に冒険しながらタイピングスキルを磨くことができる、完全無料のWebタイピング練習アプリです。奈良県の子どもたちが楽しくICTスキルを身につけられるよう開発されました。</p>
+            <h2 style="font-size: 1.1em; color: #aaa;">ねこたぷの特徴</h2>
+            <ul style="list-style-type: none; padding: 0;">
+                <li>🐾 <strong>ねこと冒険：</strong> 可愛いねこたちと一緒にタイピングの練習ができます。</li>
+                <li>🏆 <strong>ランキング機能：</strong> 自分のタイピング速度（KPM）を記録し、友達や他のユーザーと競い合えます。</li>
+                <li>🛡️ <strong>安全なログイン：</strong> 学校のGoogleアカウント（e-net.nara.jp）で簡単にログイン・データ保存が可能です。</li>
+                <li>🎮 <strong>ゲーム性：</strong> 練習を重ねてシーカー（ポイント）を貯め、アイテムをゲットしよう！</li>
+            </ul>
+            <p>タイピング練習をこれから始める小学生から、さらなるスピードアップを目指す中高生まで、幅広く楽しめる内容になっています。毎日コツコツ練習して、タイピングマスターを目指そう！</p>
         </div>
         
         <!-- ログインオーバーレイ (Unityの上に表示) -->
@@ -519,6 +549,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, GoogleAuthProvider, OAuthProvider, signInWithPopup, signInAnonymously, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
         import { getFirestore, collection, doc, setDoc, getDoc, getDocs, serverTimestamp, query, orderBy, limit, where, writeBatch } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-functions.js";
 
         // Firebase設定（設定テンプレートから読み込み）
         let firebaseConfig = null;
@@ -666,23 +697,40 @@
 
                 console.log("   メール:", user.email);
                 console.log("   表示名:", user.displayName);
+
+                // 旧データマージの実行
+                if (!user.isAnonymous) {
+                    const functions = getFunctions(window.app);
+                    const mergeLegacyData = httpsCallable(functions, 'mergeLegacyData');
+                    mergeLegacyData().then((result) => {
+                        if (result.data.status === 'success') {
+                            console.log(`✨ 旧データのマージに成功しました！ (+${result.data.mergedGold} シーカー)`);
+                        }
+                    }).catch(err => console.error("旧データマージエラー:", err));
+                }
+                    
+                // ゲストユーザーの名前補完
+                let finalDisplayName = user.displayName;
+                if (!finalDisplayName && user.isAnonymous) {
+                    finalDisplayName = "ゲスト";
+                }
                     
                     // リロード後かどうかをチェック
                     const reloadFlag = localStorage.getItem('forceReloadInProgress');
                     if (reloadFlag === 'true') {
                         console.log("🔄 強制リロード後の認証状態復元を検出");
-                        await handlePostReloadAuth(user); // await を追加
+                        await handlePostReloadAuth(user, finalDisplayName); // 引数を追加
                     } else {
                         console.log("🆕 通常の認証状態変更を検出");
                         // 通常の認証プロセス（Unity側に送信）
                         if (window.unityInstance) {
-                            const processedPhotoURL = await processPhotoURLForUnity(user.photoURL); // ここを修正
+                            const processedPhotoURL = await processPhotoURLForUnity(user.photoURL);
                             const authInfo = {
                                 userId: user.uid,
-                                email: user.email,
-                                displayName: user.displayName,
-                                photoURL: processedPhotoURL, // 処理済みのURLを使用
-                                authMethod: user.providerData[0]?.providerId || "unknown",
+                                email: user.email || "",
+                                displayName: finalDisplayName,
+                                photoURL: processedPhotoURL,
+                                authMethod: user.isAnonymous ? "Guest" : (user.providerData[0]?.providerId || "unknown"),
                                 isGuest: user.isAnonymous,
                                 authenticatedAt: new Date().toISOString()
                             };
@@ -704,7 +752,7 @@
         /**
          * 強制リロード後の認証状態復元処理
          */
-        async function handlePostReloadAuth(user) { // async を追加
+        async function handlePostReloadAuth(user, finalDisplayName) { // 引数を追加
             console.log("🔄 リロード後の自動データロード処理を開始");
             
             // リロードフラグをクリア
@@ -719,13 +767,13 @@
                 
                 // Unity側に認証情報とデータを送信
                 if (window.unityInstance) {
-                    const processedPhotoURL = await processPhotoURLForUnity(user.photoURL); // ここを修正
+                    const processedPhotoURL = await processPhotoURLForUnity(user.photoURL);
                     const authInfo = {
                         userId: user.uid,
-                        email: user.email,
-                        displayName: user.displayName,
-                        photoURL: processedPhotoURL, // 処理済みのURLを使用
-                        authMethod: user.providerData[0]?.providerId || "unknown",
+                        email: user.email || "",
+                        displayName: finalDisplayName,
+                        photoURL: processedPhotoURL,
+                        authMethod: user.isAnonymous ? "Guest" : (user.providerData[0]?.providerId || "unknown"),
                         isGuest: user.isAnonymous,
                         authenticatedAt: new Date().toISOString()
                     };
@@ -740,13 +788,13 @@
                 
                 // Unity側に認証情報を送信（通常フロー）
                 if (window.unityInstance) {
-                    const processedPhotoURL = await processPhotoURLForUnity(user.photoURL); // ここを修正
+                    const processedPhotoURL = await processPhotoURLForUnity(user.photoURL);
                     const authInfo = {
                         userId: user.uid,
-                        email: user.email,
-                        displayName: user.displayName,
-                        photoURL: processedPhotoURL, // 処理済みのURLを使用
-                        authMethod: user.providerData[0]?.providerId || "unknown",
+                        email: user.email || "",
+                        displayName: finalDisplayName,
+                        photoURL: processedPhotoURL,
+                        authMethod: user.isAnonymous ? "Guest" : (user.providerData[0]?.providerId || "unknown"),
                         isGuest: user.isAnonymous,
                         authenticatedAt: new Date().toISOString()
                     };

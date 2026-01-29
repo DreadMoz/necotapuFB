@@ -304,6 +304,12 @@ public class TitleSky : MonoBehaviour
                 lastNameStr = " "; // 空文字を避ける
             }
         }
+        else if (authInfo.isGuest)
+        {
+            firstNameStr = "ゲスト";
+            lastNameStr = "さん";
+            Debug.Log("TitleSky: ゲストユーザーとしてログイン");
+        }
         else if (!string.IsNullOrEmpty(authInfo.email))
         {
             // 名前が取得できない場合はメールアドレスの@前を使用
@@ -773,6 +779,31 @@ public class TitleSky : MonoBehaviour
             return;
         }
 
+        // ゲストユーザーの場合はFirestoreへの初期保存をスキップ
+        necotapuFB.AuthManager authManager = FindObjectOfType<necotapuFB.AuthManager>();
+        if (authManager != null && authManager.CurrentAuthInfo != null && authManager.CurrentAuthInfo.isGuest)
+        {
+            Debug.Log("confirmNeco: ゲストユーザーのためFirestoreへの保存をスキップし、ローカルデータで開始します。");
+            // SaveDataの初期化だけ行う
+            gm.savedata.setNewDataFB("", currentFirstName, currentLastName, "Guest", necoNo);
+            
+            // UIボタンを非表示
+            standupButton.SetActive(false);
+            nextButton.SetActive(false);
+            prevButton.SetActive(false);
+            confirmButton.SetActive(false);
+            reLogin.SetActive(false);
+            
+            // StartButtonの表示とテキスト設定
+            TMP_Text buttonText = startButton.GetComponentInChildren<TMP_Text>();
+            buttonText.text = "スタート";
+            startButton.SetActive(true);
+            loginFlg = 1;
+            
+            DisplayLoadCompleteMessage("new_user");
+            return;
+        }
+
         // UIのテキストではなく、保持している確実な認証情報を使用する
         gm.savedata.setNewDataFB(currentEmail, currentFirstName, currentLastName, ouText.text, necoNo);
         Debug.Log($"confirmNeco: ねこを決定してFirebaseに初期値保存 (User: {currentFirstName}, Email: {currentEmail}, Auth: {ouText.text})");
@@ -795,12 +826,10 @@ public class TitleSky : MonoBehaviour
         reLogin.SetActive(false);
         
         // StartButtonの表示とテキスト設定、loginFlgの設定を行う
-        TMP_Text buttonText = startButton.GetComponentInChildren<TMP_Text>();
-        buttonText.text = "スタート"; // テキストを「スタート」に設定
+        TMP_Text startBtnText = startButton.GetComponentInChildren<TMP_Text>();
+        startBtnText.text = "スタート"; // テキストを「スタート」に設定
         startButton.SetActive(true); // スタートボタンをアクティブにする
         loginFlg = 1; // ログインフラグを1（既存ユーザー状態）に設定
-
-        // メッセージを更新
     }
     
     public void updownNeco()
