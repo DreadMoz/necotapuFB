@@ -575,9 +575,9 @@ public class TitleSky : MonoBehaviour
             
             if (needsUpdate)
             {
-                Debug.Log("ユーザー情報が自動修正されました - Firebaseに保存を実行");
-                // 更新された情報をFirebaseに保存
-                gm.savedata.saveInitialDataToFirebase();
+                Debug.Log("ユーザー情報が自動修正されました - Firebaseに保存を実行（制限付き）");
+                // 更新された情報をFirebaseに保存（無制限のsaveInitialDataToFirebaseから制限付きのsaveGameDataに変更）
+                gm.saveGameData();
             }
             else
             {

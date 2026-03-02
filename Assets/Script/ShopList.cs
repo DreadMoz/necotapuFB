@@ -39,7 +39,7 @@ public class ShopList : MonoBehaviour
     private Setting setting;
     public int tabNo = 0;
     int[] rankScore = { 0, 40, 80, 120, 200, 263};
-    int[] openWeapon = { 3, 6, 9, 13, 17, 20};
+    int[] openWeapon = { 3, 7, 11, 15, 19, 25};
     int[] openGlasses = { 3, 5, 8, 10, 12, 13};
     int[] openHat = { 3, 5, 6, 8, 12, 14};
 

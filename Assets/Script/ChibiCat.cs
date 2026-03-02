@@ -68,6 +68,10 @@ public class ChibiCat : MonoBehaviour
     [SerializeField] private GameObject tennisR;
     [SerializeField] private GameObject tennisBatR;
     [SerializeField] private GameObject basketBallR;
+    [SerializeField] private GameObject gloveCR;
+    [SerializeField] private GameObject gloveBR;
+    [SerializeField] private GameObject kameLR;
+    [SerializeField] private GameObject kameSR;
     [SerializeField] private GameObject eSnowManR;
     [SerializeField] private GameObject eTreeR;
 
@@ -93,8 +97,15 @@ public class ChibiCat : MonoBehaviour
     [SerializeField] private GameObject tennisL;
     [SerializeField] private GameObject tennisBatL;
     [SerializeField] private GameObject basketBallL;
+    [SerializeField] private GameObject gloveCL;
+    [SerializeField] private GameObject gloveBL;
+    [SerializeField] private GameObject kameLL;
+    [SerializeField] private GameObject kameSL;
     [SerializeField] private GameObject eSnowManL;
     [SerializeField] private GameObject eTreeL;
+
+    [SerializeField] private GameObject kameB;
+    [SerializeField] private GameObject ryukku;
 
     // Start is called before the first frame update
     void Awake()
@@ -160,8 +171,11 @@ public class ChibiCat : MonoBehaviour
     }
     public void changeEquipHands(int itemIdRight, int itemIdLeft, int bagItem)
     {
+        // 1. まず初期状態(何も装備していない・インベントリのデフォルト表示)にリセット
         releaseHands(bagItem);
-        switch (itemIdRight)     // 右手
+
+        // 2. 右手の装備処理
+        switch (itemIdRight)
         {
             case 1:
                 spadR.SetActive(true);
@@ -229,6 +243,20 @@ public class ChibiCat : MonoBehaviour
                 break;
             case 21:
                 basketBallR.SetActive(true);
+                break;
+            case 22:
+                gloveCR.SetActive(true);
+                break;
+            case 23:
+                kameSR.SetActive(true);
+                break;
+            case 24:
+                gloveBR.SetActive(true);
+                break;
+            case 25:
+                kameLR.SetActive(true);
+                kameB.SetActive(false);
+                ryukku.SetActive(true);
                 break;
             case 241:
                 eSnowManR.SetActive(true);
@@ -305,6 +333,21 @@ public class ChibiCat : MonoBehaviour
                 break;
             case 21:
                 basketBallL.SetActive(true);
+                break;
+            case 22:
+                gloveCL.SetActive(true);
+                break;
+            case 23:
+                kameSL.SetActive(true);
+                break;
+            case 24:
+                gloveBL.SetActive(true);
+                break;
+            case 25:
+                kameLL.SetActive(true);
+                kameB.SetActive(false);
+                ryukku.SetActive(true);
+                Debug.Log("kameB set to false (equipped kameLL)");
                 break;
             case 241:
                 eSnowManL.SetActive(true);
@@ -420,6 +463,18 @@ public class ChibiCat : MonoBehaviour
 
     private void releaseHands(int bagItem)
     {
+        // インベントリにあればカバンを替える。
+        bool hasKameInInventory = (bagItem & 0x10) == 0x10;
+        if (hasKameInInventory)
+        {
+            kameB.SetActive(true);
+            ryukku.SetActive(false);
+        }
+        else
+        {
+            kameB.SetActive(false);
+            ryukku.SetActive(true);
+        }
         panB.SetActive((bagItem & 0x01) == 0x01);          // インベントリにあればかばんに付ける
         spadB.SetActive((bagItem & 0x02) == 0x02);
         driedFishB.SetActive((bagItem & 0x04) == 0x04);
@@ -446,6 +501,10 @@ public class ChibiCat : MonoBehaviour
         tennisR.SetActive(false);
         tennisBatR.SetActive(false);
         basketBallR.SetActive(false);
+        gloveCR.SetActive(false);
+        kameSR.SetActive(false);
+        kameLR.SetActive(false);
+        gloveBR.SetActive(false);
         eSnowManR.SetActive(false);
         eTreeR.SetActive(false);
 
@@ -471,6 +530,10 @@ public class ChibiCat : MonoBehaviour
         tennisL.SetActive(false);
         tennisBatL.SetActive(false);
         basketBallL.SetActive(false);
+        gloveCL.SetActive(false);
+        kameSL.SetActive(false);
+        kameLL.SetActive(false);
+        gloveBL.SetActive(false);
         eSnowManL.SetActive(false);
         eTreeL.SetActive(false);
     }

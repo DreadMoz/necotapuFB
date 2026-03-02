@@ -9,9 +9,9 @@ public class FirestoreConnection : MonoBehaviour
 {
     public static FirestoreConnection Instance { get; private set; }
 
-    // Firebaseアクセス制限の設定（時間単位）
-    [SerializeField] private int firebaseAccessLimitHoursLoad = 1;
-    [SerializeField] private int firebaseAccessLimitHoursSave = 1;
+    // Firebaseアクセス23時間制限の設定（時間単位）
+    [SerializeField] private int firebaseAccessLimitHoursLoad = 23;
+    [SerializeField] private int firebaseAccessLimitHoursSave = 23;
     // Firebaseからのデータロード成功フラグ
     public bool IsFirebaseLoadedSuccessfully { get; private set; }
     

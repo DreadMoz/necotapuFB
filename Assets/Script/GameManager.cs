@@ -699,6 +699,10 @@ public class GameManager : MonoBehaviour
         {
             ret += 0x08;
         }
+        if (savedata.existInventory(25))
+        {
+            ret += 0x10;
+        }
         return ret;
     }
 
