@@ -159,6 +159,9 @@ public class InventrySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IDro
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        // 既に他のアイテムを掴んでいる（他の指でドラッグ中など）場合は無視する
+        if (hand.IsHavingItem()) return;
+
         gm.dragging = true;
         if (MyItem == null) return;
 
@@ -181,15 +184,22 @@ public class InventrySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IDro
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (draggingObj == null) return; // OnBeginDragで弾かれた場合は無視
+
         gm.dragging = true;
         if (MyItem == null) return;
 
-        draggingObj.transform.position = hand.transform.position + new Vector3(10, 10, 0);
+        // eventData.positionを使用して、ドラッグ中の指の位置に追従させる
+        draggingObj.transform.position = new Vector3(eventData.position.x, eventData.position.y, 0) + new Vector3(10, 10, 0);
     }
 
     // ドラッグが終わって特定の枠上でドロップをした
     public void OnDrop(PointerEventData eventData)
     {
+        // ドラッグ元が本当にドラッグ開始できているか確認する（マルチタッチによる不正なドロップ防止）
+        InventrySlot sourceSlot = eventData.pointerDrag?.GetComponent<InventrySlot>();
+        if (sourceSlot == null || sourceSlot.draggingObj == null) return;
+
         gm.dragging = false;
         // Handにアイテムがなければ何もせずにreturn
         if (!hand.IsHavingItem()) return;
@@ -271,8 +281,11 @@ public class InventrySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IDro
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (draggingObj == null) return; // OnBeginDragで弾かれた場合は無視
+
         gm.dragging = false;
         Destroy(draggingObj);
+        draggingObj = null;
 
         // OnDropで行われた
         // Handからアイテムを取得
