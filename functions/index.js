@@ -191,6 +191,7 @@ function createRankEntry(doc) {
     LeftHand: (data.Equipment && data.Equipment.length > 3) ? data.Equipment[3] : 0,
     CatBody: (data.Equipment && data.Equipment.length > 4) ? data.Equipment[4] : 0,
     CatFace: (data.Equipment && data.Equipment.length > 5) ? data.Equipment[5] : 0,
+    BackpackType: (data.Equipment && data.Equipment.length > 7) ? data.Equipment[7] : 0,
     
     // マージ判定用
     UpdatedAt: userData.updatedAt ? userData.updatedAt.toDate() : new Date(0)

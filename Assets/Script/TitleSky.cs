@@ -408,6 +408,7 @@ public class TitleSky : MonoBehaviour
             cat.changeEquipHands(gm.savedata.Equipment[eq.RightHand], gm.savedata.Equipment[eq.LeftHand], gm.checkBagItem());
             cat.changeEquipHead(gm.savedata.Equipment[eq.Head]);
             cat.changeEquipGlasses(gm.savedata.Equipment[eq.Glasses]);
+            gm.updateBackpackType();
 
             // データロード後、既存データ処理を実行してUIを更新
             UseExistingData();

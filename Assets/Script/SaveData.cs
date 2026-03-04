@@ -30,7 +30,7 @@ public class st
     public const int Rank = 2;
     public const int Kpm = 3;
 }
-// RightHand,Head(151),Glasses(121),LeftHand,CatBody(201)あえて0,CatFace(101),NickName(211)
+// RightHand,Head(151),Glasses(121),LeftHand,CatBody(201)あえて0,CatFace(101),NickName(211),BackpackType(25=亀),予備
 public class eq
 {
     public const int RightHand = 0;
@@ -40,6 +40,9 @@ public class eq
     public const int CatBody = 4;
     public const int CatFace = 5;
     public const int NicknameNo = 6;
+    public const int BackpackType = 7;  // 25=亀の甲羅, 0=リュック（NPC表示用）
+    public const int Spare8 = 8;
+    public const int Spare9 = 9;
 }
 // Gold,Server,Rank,userName
 public class se
@@ -103,6 +106,7 @@ public class ExRank
     public int CatBody { get; set; }
     public int CatFace { get; set; }
     public int NicknameNo { get; set; }
+    public int BackpackType { get; set; }  // 25=亀の甲羅, 0=リュック（NPC表示用）
     public int Kpm { get; set; }
     public int Stage { get; set; } // ここにStageプロパティを追加しますにゃん！
 }
@@ -182,7 +186,7 @@ public class SaveData : ScriptableObject
     public int[] Status = new int[4];
 
     [SerializeField]
-    public int[] Equipment = new int[7];
+    public int[] Equipment = new int[10];
 
     [SerializeField]
     public int[] Inventory = new int[60];
@@ -269,6 +273,9 @@ public class SaveData : ScriptableObject
         Equipment[eq.CatBody] = catBody; // ねこボディ
         Equipment[eq.CatFace] = 0;      // ねこ顔
         Equipment[eq.NicknameNo] = 0;     // ニックネーム
+        Equipment[eq.BackpackType] = 0;   // リュック
+        Equipment[eq.Spare8] = 0;
+        Equipment[eq.Spare9] = 0;
         
         // インベントリ・アイテム
         for (int i = 0; i < Inventory.Length; i++)
@@ -363,6 +370,13 @@ public class SaveData : ScriptableObject
     public void DeserializeFromFirebaseOrLocal(string json)
     {
         JsonUtility.FromJsonOverwrite(json, this);
+        if (Equipment != null && Equipment.Length < 10)
+        {
+            int[] expanded = new int[10];
+            for (int i = 0; i < Equipment.Length; i++) expanded[i] = Equipment[i];
+            for (int i = Equipment.Length; i < 10; i++) expanded[i] = 0;
+            Equipment = expanded;
+        }
     }
 
     public int getBlankInventoryIndex()

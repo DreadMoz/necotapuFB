@@ -457,6 +457,7 @@ public class FirestoreConnection : MonoBehaviour
             dummy.LeftHand = 0;
             dummy.CatFace = 0;
             dummy.NicknameNo = 0;
+            dummy.BackpackType = 0;
             dummy.Stage = 0;
 
             rankings.Add(dummy);

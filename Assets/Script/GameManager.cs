@@ -285,6 +285,7 @@ public class GameManager : MonoBehaviour
             chibiCat2D.changeEquipHands(savedata.Equipment[eq.RightHand], savedata.Equipment[eq.LeftHand], checkBagItem());
             chibiCat2D.changeEquipHead(savedata.Equipment[eq.Head]);
             chibiCat2D.changeEquipGlasses(savedata.Equipment[eq.Glasses]);
+            updateBackpackType();
         }
         // シーンが3タイピング後の場合
         else if (SceneNo == (int)scene.House)
@@ -322,6 +323,7 @@ public class GameManager : MonoBehaviour
                 chibiCat2D.changeEquipHead(savedata.Equipment[eq.Head]);
                 chibiCat2D.changeEquipGlasses(savedata.Equipment[eq.Glasses]);
             }
+            updateBackpackType();
             if (NewKpm != 0)
             {
                 if (rankingWindow != null)
@@ -343,6 +345,7 @@ public class GameManager : MonoBehaviour
             chibiCat.changeEquipHands(savedata.Equipment[eq.RightHand], savedata.Equipment[eq.LeftHand], checkBagItem());
             chibiCat.changeEquipHead(savedata.Equipment[eq.Head]);
             chibiCat.changeEquipGlasses(savedata.Equipment[eq.Glasses]);
+            updateBackpackType();
         }
         // シーンが5平城後の場合
         else if (SceneNo == (int)scene.Heijo)
@@ -362,6 +365,7 @@ public class GameManager : MonoBehaviour
             chibiCat2D.changeEquipHands(savedata.Equipment[eq.RightHand], savedata.Equipment[eq.LeftHand], checkBagItem());
             chibiCat2D.changeEquipHead(savedata.Equipment[eq.Head]);
             chibiCat2D.changeEquipGlasses(savedata.Equipment[eq.Glasses]);
+            updateBackpackType();
             if (NewKpm != 0)
             {
                 rankingWindow.SetTo(savedata.Status[st.Rank]);
@@ -666,6 +670,7 @@ public class GameManager : MonoBehaviour
             case 0:     // 両手
                 chibiCat.changeEquipHands(savedata.Equipment[eq.RightHand], savedata.Equipment[eq.LeftHand], checkBagItem());
                 chibiCat2D.changeEquipHands(savedata.Equipment[eq.RightHand], savedata.Equipment[eq.LeftHand], checkBagItem());
+                updateBackpackType();
                 break;
 
             case 1:     // 頭
@@ -706,6 +711,23 @@ public class GameManager : MonoBehaviour
         return ret;
     }
 
+    /// <summary>
+    /// 亀/リュックの判定結果をEquipment[eq.BackpackType]に反映（NPC表示用）
+    /// </summary>
+    public void updateBackpackType()
+    {
+        int right = savedata.Equipment[eq.RightHand];
+        int left = savedata.Equipment[eq.LeftHand];
+        int bagItem = checkBagItem();
+        bool hasKameInInventory = (bagItem & 0x10) == 0x10;
+        bool equipKameInHand = (right == 25 || left == 25);
+        int val = (hasKameInInventory && !equipKameInHand) ? 25 : 0;
+        if (savedata.Equipment.Length > eq.BackpackType)
+        {
+            savedata.Equipment[eq.BackpackType] = val;
+        }
+    }
+
 [System.Serializable]
 public class CombinedSaveData
 {
@@ -735,6 +757,7 @@ public class CombinedSaveData
             CatBody = savedata.Equipment[eq.CatBody],
             CatFace = savedata.Equipment[eq.CatFace],
             NicknameNo = savedata.Equipment[eq.NicknameNo],
+            BackpackType = savedata.Equipment.Length > eq.BackpackType ? savedata.Equipment[eq.BackpackType] : 0,
             Ranking = savedata.Status[st.Rank], // 現在のRankingも保存
             Stage = savedata.Status[st.Server]  // 現在のStageも保存
         };

@@ -401,6 +401,7 @@
                         const d = userDoc.data().data;
                         if (d.Equipment) {
                             myEntry.NicknameNo = d.Equipment.length > 6 ? d.Equipment[6] : 0;
+                            myEntry.BackpackType = d.Equipment.length > 7 ? d.Equipment[7] : 0;
                             myEntry.RightHand = d.Equipment.length > 0 ? d.Equipment[0] : 0;
                             myEntry.Head = d.Equipment.length > 1 ? d.Equipment[1] : 0;
                             myEntry.Glasses = d.Equipment.length > 2 ? d.Equipment[2] : 0;

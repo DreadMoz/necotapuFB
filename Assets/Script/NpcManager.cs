@@ -136,7 +136,8 @@ public class NpcManager : MonoBehaviour
                 chibiCatScript.setName(gm.savedata.ExRankings[pickedPlayers[i]].FirstName + gm.getNickname(gm.savedata.ExRankings[pickedPlayers[i]].NicknameNo));
                 chibiCatScript.setChara(gm.savedata.ExRankings[pickedPlayers[i]].CatBody);
                 chibiCatScript.releaseAllEquip();
-                chibiCatScript.changeEquipHands(gm.savedata.ExRankings[pickedPlayers[i]].RightHand, gm.savedata.ExRankings[pickedPlayers[i]].LeftHand, 0);
+                int bagItem = (gm.savedata.ExRankings[pickedPlayers[i]].BackpackType == 25) ? 0x10 : 0;
+                chibiCatScript.changeEquipHands(gm.savedata.ExRankings[pickedPlayers[i]].RightHand, gm.savedata.ExRankings[pickedPlayers[i]].LeftHand, bagItem);
                 chibiCatScript.changeEquipHead(gm.savedata.ExRankings[pickedPlayers[i]].Head);
                 chibiCatScript.changeEquipGlasses(gm.savedata.ExRankings[pickedPlayers[i]].Glasses);
             }
