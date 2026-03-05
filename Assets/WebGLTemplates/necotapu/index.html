@@ -155,11 +155,12 @@
         }
 
         var buildUrl = "Build";
-        var loaderUrl = buildUrl + "/WebGL.loader.js";
+        var cacheBust = "?v=" + "{{{ PRODUCT_VERSION }}}";
+        var loaderUrl = buildUrl + "/WebGL.loader.js" + cacheBust;
         var config = {
-          dataUrl: buildUrl + "/WebGL.data.unityweb",
-          frameworkUrl: buildUrl + "/WebGL.framework.js.unityweb",
-          codeUrl: buildUrl + "/WebGL.wasm.unityweb",
+          dataUrl: buildUrl + "/WebGL.data.unityweb" + cacheBust,
+          frameworkUrl: buildUrl + "/WebGL.framework.js.unityweb" + cacheBust,
+          codeUrl: buildUrl + "/WebGL.wasm.unityweb" + cacheBust,
           streamingAssetsUrl: "StreamingAssets",
           companyName: "DefaultCompany",
           productName: "TestingGAS",
@@ -1185,33 +1186,12 @@
 
         /**
          * Unityから呼び出されるアプリバージョン取得関数
-         * Firestoreからアプリバージョン情報を取得
+         * ※Firestore課金回避のため、app_versions/current へのアクセスは無効化済み
+         * 常にnullを返し、強制再読み込みルートには入らない
          */
         window.checkAppVersion = async function() {
-            try {
-                console.log("アプリバージョン取得開始");
-                
-                if (!window.db) {
-                    console.error("Firestoreが初期化されていません");
-                    return null;
-                }
-                
-                // app_versionsコレクションのcurrentドキュメントからバージョン情報を取得
-                const versionDocRef = doc(window.db, "app_versions", "current");
-                const versionDoc = await getDoc(versionDocRef);
-                
-                if (versionDoc.exists()) {
-                    const versionData = versionDoc.data();
-                    console.log("アプリバージョン情報取得成功:", versionData);
-                    return versionData;
-                } else {
-                    console.log("アプリバージョンドキュメントが存在しません");
-                    return null;
-                }
-            } catch (error) {
-                console.error("アプリバージョン取得中にエラーが発生:", error);
-                return null;
-            }
+            console.log("アプリバージョン取得: Firestoreアクセス無効化のためスキップ");
+            return null;
         };
 
         /**

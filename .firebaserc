@@ -3,6 +3,14 @@
     "default": "necotapufb",
     "necotapu": "necotapu-7408c"
   },
-  "targets": {},
+  "targets": {
+    "necotapufb": {
+      "hosting": {
+        "test": [
+          "necotapufb--test"
+        ]
+      }
+    }
+  },
   "etags": {}
 }
