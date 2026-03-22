@@ -154,15 +154,7 @@
           };
         }
 
-        // WebGL の実体（Build/）を置く場所。空文字＝このページと同じオリジン（ローカル検証や Build を同じホストに置く場合）。
-        // Firebase Hosting では Build/ をデプロイしないため、本番では R2 公開 URL を末尾スラッシュなしで設定する（例: "https://pub-xxxx.r2.dev"）。
-        var ASSET_BASE_URL = "";
-        if (!ASSET_BASE_URL && (location.hostname.endsWith(".web.app") || location.hostname.endsWith(".firebaseapp.com"))) {
-          console.warn("[necotapu] ASSET_BASE_URL が空です。Build は Firebase に載っていないため、R2 の公開 URL を ASSET_BASE_URL に設定してからデプロイしてください。");
-        }
-        var buildUrl = ASSET_BASE_URL
-          ? ASSET_BASE_URL.replace(/\/$/, "") + "/Build"
-          : "Build";
+        var buildUrl = "Build";
         var cacheBust = "?v=" + "1.41";
         var loaderUrl = buildUrl + "/WebGL.loader.js" + cacheBust;
         var config = {

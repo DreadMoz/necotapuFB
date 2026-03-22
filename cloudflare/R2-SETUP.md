@@ -1,6 +1,6 @@
 # Cloudflare R2 で WebGL Build を配信する手順
 
-Firebase Hosting には `index.html` など薄いシェルのみ載せ、`WebGL/Build/` の大きなファイルは R2 に置く構成です。`firebase.json` の `ignore` により `Build/` は Firebase に上がりません。
+Firebase Hosting には `index.html` など薄いシェルのみ載せ、`WebGL/Build/` の大きなファイルは R2 に置く構成です。**本番を R2 分割に切り替えるとき**に限り、`firebase.json` の `hosting.ignore` に `"Build/**"` を追加し、`Build/` が Firebase に上がらないようにする（切り替え前は `Build/**` を ignore に含めないこと）。
 
 ## 1. R2 バケットを作成
 

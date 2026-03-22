@@ -8,8 +8,7 @@
       "firebase.json",
       "firebase.test.json",
       "**/.*",
-      "**/node_modules/**",
-      "Build/**"
+      "**/node_modules/**"
     ],
     "headers": [
       {
@@ -20,7 +19,7 @@
         }]
       },
       {
-        "source": "**/*.br",
+        "regex": "^/.*\\.br$",
         "headers": [{
           "key": "Content-Encoding",
           "value": "br"
