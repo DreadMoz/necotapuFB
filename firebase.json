@@ -19,7 +19,7 @@
         }]
       },
       {
-        "regex": "^/.*\\.br$",
+        "source": "**/*.br",
         "headers": [{
           "key": "Content-Encoding",
           "value": "br"
