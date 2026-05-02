@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>ねこたぷ | 楽しく学べるタイピング練習ゲーム</title>
-    <meta name="description" content="ねこたぷは、ねこと一緒に冒険しながら楽しく学べるタイピング練習ゲームです。奈良県の子どもたちのために開発されました。Googleアカウントでログインして、ランキングに挑戦しよう！">
-    <meta name="keywords" content="ねこたぷ,タイピング,タイピング練習,タイピングゲーム,奈良県,e-net,教育,小学生">
+    <meta name="description" content="ねこたぷは、ねこと一緒に冒険しながら楽しく学べるタイピング練習ゲームです。子どもたちのために開発されました。Googleアカウントでログインして、ランキングに挑戦しよう！">
+    <meta name="keywords" content="ねこたぷ,タイピング,タイピング練習,タイピングゲーム,奈良県,e-net,教育,小学生,たぷたぷ">
+    <link rel="canonical" href="https://necotapufb.web.app/">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -23,10 +24,27 @@
     <link rel="shortcut icon" href="necotapu.ico">
     <link rel="stylesheet" href="style.css">
     <style>
-        body { background-color: #231F20; }
+        body { background-color: #231F20; margin: 0; }
+        .page-shell { min-height: 100vh; position: relative; box-sizing: border-box; }
+        #site-seo-footer {
+            max-width: 42rem;
+            margin: 0 auto;
+            padding: 1.25rem 1rem 2rem;
+            color: #b8b4b5;
+            font-size: 0.875rem;
+            line-height: 1.65;
+            border-top: 1px solid #3d3839;
+        }
+        #site-seo-footer h1 { color: #f5f5f5; font-size: 1.28rem; font-weight: 600; margin: 0 0 0.75rem; line-height: 1.35; }
+        #site-seo-footer h2 { color: #e8e6e6; font-size: 1.05rem; font-weight: 600; margin: 1.35rem 0 0.5rem; line-height: 1.35; }
+        #site-seo-footer h3 { color: #ddd; font-size: 1rem; font-weight: 600; margin: 1rem 0 0.45rem; line-height: 1.35; }
+        #site-seo-footer p { margin: 0 0 0.75rem; }
+        #site-seo-footer ul { margin: 0 0 0.75rem; padding-left: 1.25rem; }
+        #site-seo-footer .seo-placeholder { color: #8a8586; font-style: italic; }
     </style>
 </head>
 <body>
+    <div class="page-shell">
     <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas" width=1366 height=768></canvas>
         <div id="unity-loading-bar">
@@ -38,20 +56,6 @@
         <div id="unity-warning"> </div>
         <div id="unity-footer">
             <div id="unity-webgl-logo"></div>
-        </div>
-        
-        <!-- SEO対策用のテキストセクション -->
-        <div id="seo-content" style="display: none;">
-            <h1>ねこたぷ - 楽しく学べるタイピング練習ゲーム</h1>
-            <p>「ねこたぷ」は、ねこと一緒に冒険しながらタイピングスキルを磨くことができる、完全無料のWebタイピング練習アプリです。奈良県の子どもたちが楽しくICTスキルを身につけられるよう開発されました。</p>
-            <h2>ねこたぷの特徴</h2>
-            <ul>
-                <li>🐾 <strong>ねこと冒険：</strong> 可愛いねこたちと一緒にタイピングの練習ができます。</li>
-                <li>🏆 <strong>ランキング機能：</strong> 自分のタイピング速度（KPM）を記録し、友達や他のユーザーと競い合えます。</li>
-                <li>🛡️ <strong>安全なログイン：</strong> 学校のGoogleアカウント（e-net.nara.jp）で簡単にログイン・データ保存が可能です。</li>
-                <li>🎮 <strong>ゲーム性：</strong> 練習を重ねてシーカー（ポイント）を貯め、アイテムをゲットしよう！</li>
-            </ul>
-            <p>タイピング練習をこれから始める小学生から、さらなるスピードアップを目指す中高生まで、幅広く楽しめる内容になっています。毎日コツコツ練習して、タイピングマスターを目指そう！</p>
         </div>
         
         <!-- ログインオーバーレイ (Unityの上に表示) -->
@@ -80,6 +84,22 @@
             </div>
         </div>
     </div>
+    </div>
+
+    <footer id="site-seo-footer" lang="ja">
+        <p class="seo-placeholder">（せつめい！)</p>
+        <h1>ねこたぷ - 楽しく学べるタイピングれんしゅうアプリ</h1>
+        <p>「ねこたぷ」は、ねこと一緒に冒険しながらタイピングスキルをみがくことができる、完全無料のWebタイピングれんしゅうアプリです。子どもたちが楽しくICTスキルを身につけられるよう奈良県の先生がつくったんだよ。</p>
+        <h2>ねこたぷのとくちょう</h2>
+        <ul>
+            <li>🐾 <strong>ねこと冒険：</strong> かわいいねこたちと一緒にタイピングのれんしゅうができるよ。</li>
+            <li>🏆 <strong>ランキング：</strong> 自分のタイピングのはやさ（たぷたぷ）を記録し、友達やほかのユーザーときょうそうできるよ。</li>
+            <li>🛡️ <strong>安全なログイン：</strong> 学校のGoogleアカウントでかんたんにログイン・データのほぞんができるよ。</li>
+            <li>🎮 <strong>ゲーム性：</strong> れんしゅうをしてシーカー（お金）をため、アイテムをゲットしよう！</li>
+        </ul>
+        <p>タイピングれんしゅうをこれから始める小学生から、さらなるスピードアップを目指す中高生まで、はばひろく楽しめる内容になっています。毎日コツコツれんしゅうをして、タイピングマスターをめざそう！</p>
+        <p>タイピング練習場でコインをタップすると、指の使い方をマスターするためのモードになるよ。シーカーがいっぱいもらえるからがんばってみてね。正しい指の使い方をみにつけるのが、タイピングマスターへのちかみちだよ。</p>
+    </footer>
 
     <script type="module">// Import the functions you need from the SDKs you need
         var userInfo = null;
@@ -154,8 +174,11 @@
           };
         }
 
-        var buildUrl = "Build";
-        var cacheBust = "?v=" + "{{{ PRODUCT_VERSION }}}";
+        // R2 公開 URL（末尾スラッシュなし）。ローカルで Build を同一オリジンに置くときは "" に。
+        var ASSET_BASE_URL = "https://pub-8aeaa91eec6c4eb2b570150a59c60a4d.r2.dev";
+        var buildUrl = ASSET_BASE_URL ? ASSET_BASE_URL.replace(/\/$/, "") + "/Build" : "Build";
+        // R2 を同じパスで上書きしたときのブラウザキャッシュ対策。Build 載せ替えのたびに 1.42 のように一段上げる。
+        var cacheBust = "?v=" + "1.42";
         var loaderUrl = buildUrl + "/WebGL.loader.js" + cacheBust;
         var config = {
           dataUrl: buildUrl + "/WebGL.data.unityweb" + cacheBust,

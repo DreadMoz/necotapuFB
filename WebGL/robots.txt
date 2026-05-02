@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://necotapufb.web.app/sitemap.xml
