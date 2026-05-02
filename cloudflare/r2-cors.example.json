@@ -2,7 +2,8 @@
   {
     "AllowedOrigins": [
       "https://necotapufb.web.app",
-      "https://necotapufb.firebaseapp.com"
+      "https://necotapufb.firebaseapp.com",
+      "https://necotapufb--preview-tvyvb7nk.web.app"
     ],
     "AllowedMethods": ["GET", "HEAD"],
     "AllowedHeaders": ["*"],

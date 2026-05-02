@@ -8,7 +8,8 @@
       "firebase.json",
       "firebase.test.json",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      "Build/**"
     ],
     "headers": [
       {

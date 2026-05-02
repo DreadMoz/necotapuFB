@@ -154,7 +154,9 @@
           };
         }
 
-        var buildUrl = "Build";
+        // 本番: R2 の公開 URL（末尾スラッシュなし）。ローカル検証で Firebase と同じオリジンに Build を置く場合は一時的に "" に戻す。
+        var ASSET_BASE_URL = "https://pub-8aeaa91eec6c4eb2b570150a59c60a4d.r2.dev";
+        var buildUrl = ASSET_BASE_URL ? ASSET_BASE_URL.replace(/\/$/, "") + "/Build" : "Build";
         var cacheBust = "?v=" + "1.41";
         var loaderUrl = buildUrl + "/WebGL.loader.js" + cacheBust;
         var config = {

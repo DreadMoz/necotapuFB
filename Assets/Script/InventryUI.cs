@@ -54,6 +54,11 @@ public class InventryUI : MonoBehaviour
         }
         for (int i = 0; i < gm.savedata.Inventory.Length; i++)
         {
+            if (i == SaveData.InventoryAutoFillSkipIndex)
+            {
+                continue;
+            }
+
             if (gm.savedata.Inventory[i] == 0)  // インベントリの空きがあれば
             {
                 gm.savedata.Inventory[i] = no;  //　アイテム番号を代入

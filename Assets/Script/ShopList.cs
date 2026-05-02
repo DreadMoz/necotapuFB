@@ -200,10 +200,52 @@ public class ShopList : MonoBehaviour
         newItem.transform.Find("Type").GetComponent<TextMeshProUGUI>().text = typeMes;
         newItem.transform.Find("Memo").GetComponent<TextMeshProUGUI>().text = item.MyItemMemo;
         newItem.transform.Find("Price").GetComponent<TextMeshProUGUI>().text = item.MyItemPrice.ToString();
+        ApplyHalfOffShopDisplay(newItem.transform, item);
 
         if (!gm.savedata.Items[item.MyItemNo])
         {
             newItem.transform.Find("SoldOut").GetComponent<Image>().gameObject.SetActive(false);
+        }
+    }
+
+    // 板プレハブ子: Price=実売価。半額UIは子名「50%off」（バッジ）と「OldPrice」（取り消し線の旧価格）。OldPrice は直下か 50%off 配下。
+    private static void ApplyHalfOffShopDisplay(Transform boardRoot, Item item)
+    {
+        Transform banner = boardRoot.Find("50%off");
+        Transform oldPriceText = boardRoot.Find("OldPrice");
+        if (oldPriceText == null && banner != null)
+        {
+            oldPriceText = banner.Find("OldPrice");
+        }
+
+        if (banner != null)
+        {
+            banner.gameObject.SetActive(item.MyItemShowHalfOffUi);
+        }
+
+        if (oldPriceText == null)
+        {
+            return;
+        }
+
+        if (item.MyItemShowHalfOffUi)
+        {
+            var oldTmp = oldPriceText.GetComponent<TextMeshProUGUI>();
+            if (oldTmp == null)
+            {
+                oldTmp = oldPriceText.GetComponentInChildren<TextMeshProUGUI>(true);
+            }
+
+            if (oldTmp != null)
+            {
+                oldTmp.text = (item.MyItemPrice * 2).ToString();
+            }
+
+            oldPriceText.gameObject.SetActive(true);
+        }
+        else
+        {
+            oldPriceText.gameObject.SetActive(false);
         }
     }
 }

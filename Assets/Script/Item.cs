@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "Items", menuName = "Items/item")]
 
@@ -19,6 +20,10 @@ public class Item : ScriptableObject
     private int itemPrice;
 
     [SerializeField]
+    [FormerlySerializedAs("itemHalfPrice")]
+    private bool showHalfOffUi;
+
+    [SerializeField]
     private Sprite itemImage;
 
     [SerializeField]
@@ -28,6 +33,7 @@ public class Item : ScriptableObject
     public string MyItemName { get => itemName; }
     public ItemType MyItemType { get => itemType; }
     public int MyItemPrice { get => itemPrice; }
+    public bool MyItemShowHalfOffUi { get => showHalfOffUi; }
     public Sprite MyItemImage { get => itemImage; }
     public string MyItemMemo { get => itemMemo; }
 }

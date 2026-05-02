@@ -188,6 +188,9 @@ public class SaveData : ScriptableObject
     [SerializeField]
     public int[] Equipment = new int[10];
 
+    /// <summary>自動の空きスロット検索・補正投入から除外（UI上リュック/大亀など専用スロット向け）。</summary>
+    public const int InventoryAutoFillSkipIndex = 7;
+
     [SerializeField]
     public int[] Inventory = new int[60];
 
@@ -383,6 +386,11 @@ public class SaveData : ScriptableObject
     {
         for (int i = 0; i < Inventory.Length; i++)
         {
+            if (i == InventoryAutoFillSkipIndex)
+            {
+                continue;
+            }
+
             if (Inventory[i] == 0)
             {
                 return i;

@@ -101,6 +101,11 @@ public class SaveData : ScriptableObject
     {
         for (int i = 0; i < inventory.Length; i++)
         {
+            if (i == SaveData.InventoryAutoFillSkipIndex)
+            {
+                continue;
+            }
+
             if (inventory[i] == 0)
             {
                 return i;

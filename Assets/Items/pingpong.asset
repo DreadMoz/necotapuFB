@@ -15,6 +15,7 @@ MonoBehaviour:
   itemNo: 161
   itemName: "\u5353\u7403\u306E\u30DC\u30FC\u30EB"
   itemType: 1
-  itemPrice: 1600
+  itemPrice: 800
+  showHalfOffUi: 1
   itemImage: {fileID: 21300000, guid: 7808c8766aa7e4848a63a02cf79b61cf, type: 3}
   itemMemo: "\u305F\u3063\u304D\u3085\u3046\u306E\u30BF\u30DE\u3067\u3059\u3088\u3002\u306A\u3093\u3067\u307C\u3046\u3057\u306A\u3093\u3060\u308D\u3046\u3002"
