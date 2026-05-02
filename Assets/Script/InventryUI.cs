@@ -123,13 +123,19 @@ public class InventryUI : MonoBehaviour
                 return true;
             }
         }
-        foreach (int equip in gm.savedata.Equipment)    // 装備側はシンプルにあるかないか見る
+        for (int ei = 0; ei < gm.savedata.Equipment.Length; ei++)
         {
-            if (equip == itemNo)
+            if (ei == eq.BackpackType)
+            {
+                continue;
+            }
+
+            if (gm.savedata.Equipment[ei] == itemNo)
             {
                 return true;
             }
         }
+
         return false;
     }
 

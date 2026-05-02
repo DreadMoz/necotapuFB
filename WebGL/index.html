@@ -154,10 +154,11 @@
           };
         }
 
-        // 本番: R2 の公開 URL（末尾スラッシュなし）。ローカル検証で Firebase と同じオリジンに Build を置く場合は一時的に "" に戻す。
+        // R2 公開 URL（末尾スラッシュなし）。ローカルで Build を同一オリジンに置くときは "" に。
         var ASSET_BASE_URL = "https://pub-8aeaa91eec6c4eb2b570150a59c60a4d.r2.dev";
         var buildUrl = ASSET_BASE_URL ? ASSET_BASE_URL.replace(/\/$/, "") + "/Build" : "Build";
-        var cacheBust = "?v=" + "1.41";
+        // R2 を同じパスで上書きしたときのブラウザキャッシュ対策。Build 載せ替えのたびに 1.42 のように一段上げる。
+        var cacheBust = "?v=" + "1.42";
         var loaderUrl = buildUrl + "/WebGL.loader.js" + cacheBust;
         var config = {
           dataUrl: buildUrl + "/WebGL.data.unityweb" + cacheBust,
