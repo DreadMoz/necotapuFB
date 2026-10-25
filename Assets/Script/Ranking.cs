@@ -105,7 +105,8 @@ public class Ranking : MonoBehaviour
             if (rankBoard != null)
             {
                 rankBoard.transform.Find("Rank").GetComponent<TextMeshProUGUI>().text = rank.Ranking.ToString();
-                rankBoard.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = rank.FirstName + gm.getNickname(rank.NicknameNo);
+                var nameText = rankBoard.transform.Find("Name").GetComponent<TextMeshProUGUI>();
+                nameText.text = DisplayNameFilter.ToDisplay(rank.FirstName, nameText.font) + gm.getNickname(rank.NicknameNo);
                 rankBoard.transform.Find("Kpm").GetComponent<TextMeshProUGUI>().text = rank.Kpm.ToString();
             }
         }

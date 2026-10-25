@@ -138,7 +138,7 @@ public class ChibiCat : MonoBehaviour
         var textComponent = GetComponentInChildren<TextMeshProUGUI>();
         if (textComponent != null)
         {
-            textComponent.text = name; // 名前をテキストにセット
+            textComponent.text = DisplayNameFilter.ToDisplay(name, textComponent.font); // 名前をテキストにセット（フォントにない文字は「？」）
         }
         else
         {
