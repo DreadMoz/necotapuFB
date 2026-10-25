@@ -1,0 +1,565 @@
+﻿{
+    "createdAt": "2026-10-25 12:19:39",
+    "entries": [
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_01.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_02.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_03.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_04.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_05.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_06.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_07.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_08.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_09.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_10.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_11.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_12.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_13.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_14.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_15.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_16.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_17.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_18.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_19.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_20.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_21.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_22.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_23.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_24.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_25.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_26.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_27.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/Textures/Emotions/T_Chibi_Emo_28.png",
+            "kind": "Emotion",
+            "defaultMaxSize": 512,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Baseball Essentials/Assets/Textures/Glove/Variation 1/Glove_01_Ambient_Occlusion.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Baseball Essentials/Assets/Textures/Glove/Variation 1/Glove_01_Metallic_Smoothness.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Baseball Essentials/Assets/Textures/Glove/Variation 1/Glove_01_Normal.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Baseball Essentials/Assets/Textures/Glove/Variation 2/Glove_02_Ambient_Occlusion.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Baseball Essentials/Assets/Textures/Glove/Variation 2/Glove_02_Metallic_Smoothness.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Baseball Essentials/Assets/Textures/Glove/Variation 2/Glove_02_Normal.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Christmas/Blink_Christmas_2021/Props_Christmas/Props_Textures/Showman_Bake_AO.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Christmas/Blink_Christmas_2021/Props_Christmas/Props_Textures/Showman_Bake_Normal.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Christmas/Blink_Christmas_2021/Weapon_Christmas/ChristmasSword_Emissive.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Christmas/Blink_Christmas_2021/Weapon_Christmas/ChristmasSword_Metallic.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Christmas/Blink_Christmas_2021/Weapon_Christmas/ChristmasSword_Normal.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Classic Ping-Pong Racket/Materials/Racket Mat/Racket Tex/Ball Metallic.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 512,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Classic Ping-Pong Racket/Materials/Racket Mat/Racket Tex/Ball Normal.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 512,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Classic Ping-Pong Racket/Materials/Racket Mat/Racket Tex/Racket Metallic.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Classic Ping-Pong Racket/Materials/Racket Mat/Racket Tex/Racket Normal.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Classic Ping-Pong Racket/Materials/Racket Mat/Racket Tex/Wood1 Metallic.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Classic Ping-Pong Racket/Materials/Racket Mat/Racket Tex/Wood1 Normal.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Classic Ping-Pong Racket/Materials/Racket Mat/Racket Tex/Wood2 Metallic.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Classic Ping-Pong Racket/Materials/Racket Mat/Racket Tex/Wood2 Normal.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Clipboard/Textures/clipboard2_board_Normal.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Clipboard/Textures/clipboard2_metal_MetallicSmoothness.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Clipboard/Textures/clipboard2_metal_Normal.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Clipboard/Textures/clipboard2_page_Normal.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/FreeSportsKIt_SA/Textures/SoccerBall_textures/Ball_Normals.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/FreeSportsKIt_SA/Textures/basketBall_textures/Ball_Normal_OpenGL.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/FreeSportsKIt_SA/Textures/tennis_balltextures/tennis_ball2_Height.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/FreeSportsKIt_SA/Textures/tennis_balltextures/tennis_ball2_Metalness.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/FreeSportsKIt_SA/Textures/tennis_balltextures/tennis_ball2_Normal.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/FreeSportsKIt_SA/Textures/tennis_bat_textures/blue/tennis_bat2_Height.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/FreeSportsKIt_SA/Textures/tennis_bat_textures/blue/tennis_bat2_Metallic.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/FreeSportsKIt_SA/Textures/tennis_bat_textures/blue/tennis_bat2_Normal.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/FreeSportsKIt_SA/Textures/volleyball_textures/fbx_volleyball_aiStandardSurface1_Height.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/FreeSportsKIt_SA/Textures/volleyball_textures/fbx_volleyball_aiStandardSurface1_Metalness.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/FreeSportsKIt_SA/Textures/volleyball_textures/fbx_volleyball_aiStandardSurface1_Normal.png",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/HQ Laptop/Textures/normal.tga",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/HQ Laptop/Textures/specular.tga",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Smartphone/smartphone_ao.tga",
+            "kind": "SupportMap",
+            "defaultMaxSize": 256,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/ToonyTurtle/Materials/Turtle_AO.tga",
+            "kind": "SupportMap",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/ToonyTurtle/Materials/Turtle_Height.tga",
+            "kind": "SupportMap",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/ToonyTurtle/Materials/Turtle_MetallicSmoothness.tga",
+            "kind": "SupportMap",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/ToonyTurtle/Materials/Turtle_Normal.tga",
+            "kind": "SupportMap",
+            "defaultMaxSize": 1024,
+            "webglOverridden": false,
+            "webglMaxSize": 1024,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/Prefabs/Steampunk Goggles Wire_by IVL.fbx",
+            "kind": "Goggles",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        }
+    ]
+}
