@@ -560,6 +560,678 @@
             "webglOverridden": false,
             "webglMaxSize": 0,
             "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Christmas/Blink_Christmas_2021/Props_Christmas/Showman/Showman.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Christmas/Blink_Christmas_2021/Weapon_Christmas/ChristmasSword.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Donut Set/Models/Donut.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Donut Set/Models/Glaze.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Donut Set/Models/SprinklesGlaze.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/FreeSportsKIt_SA/Models/SoccerBall_01.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/FreeSportsKIt_SA/Models/basketBall_mdl.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/FreeSportsKIt_SA/Models/tennis_ball.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/FreeSportsKIt_SA/Models/tennis_bat.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/FreeSportsKIt_SA/Models/volleyball.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Dice_6/Meshes/Dice_d6.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/FantasyEnvironments/Environments/Ambient-Occlusion-Trees/FBX/Oak_tree1.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/LittleFriends-CartoonAnimals-Lite/Meshes/StrawberrySpongeCake.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/FBX/Accessory/Dried_fish.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/FBX/Accessory/GrassA_Red.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/FBX/Accessory/MeatA.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/FBX/Accessory/Pan.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/FBX/Accessory/SpadA.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/FBX/Environment/Floor_A.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/FBX/Environment/Mushroom_A.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/Prefabs/Glasses.blend",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/Prefabs/Quest2_lowpoly.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/Prefabs/uploads_files_2808886_Scifi+Mono+Lens.blend",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/Prefabs/uploads_files_313750_SunGlasses1.obj",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Baseball Essentials/Assets/Meshes/Glove.obj",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Baseball Essentials/Assets/Meshes/Glove_Collider.obj",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Classic Ping-Pong Racket/Mesh/ClassicRacket.FBX",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Clipboard/Meshes/ClipBoard.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/HQ Laptop/Mesh/Laptop.FBX",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Mg3D_Hats/CowboyHat.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Mg3D_Hats/MagicianHat.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Mg3D_Hats/MinerHat.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Mg3D_Hats/PajamaHat.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Mg3D_Hats/PoliceCap.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Mg3D_Hats/ShowerCap.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Mg3D_Hats/Sombrero.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Mg3D_Hats/VikingHelmet.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Office Supplies Low Poly/Assets/FBX/Eraser.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Office Supplies Low Poly/Assets/FBX/Pencil red.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Smartphone/smartphone.FBX",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Snowconesolid Assets/Super Rubber Duck Pack/Mesh/RubberDuck_Pink.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Snowconesolid Assets/Super Rubber Duck Pack/Mesh/RubberDuck_Pond.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/Snowconesolid Assets/Super Rubber Duck Pack/Mesh/RubberDuck_Yellow.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsForItems/ToonyTurtle/Turtle.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Baker House/Models/Baker_house.FBX",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/FantasyEnvironments/Environments/Ambient-Occlusion-Trees/FBX/Birch_tree1.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/FantasyEnvironments/Environments/Ambient-Occlusion-Trees/FBX/Deciduous_tree1.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/FantasyEnvironments/Environments/FBX/Flower1.FBX",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/FantasyEnvironments/Environments/FBX/Flower2.FBX",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/FantasyEnvironments/Environments/FBX/Grass1.FBX",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/FantasyEnvironments/Environments/FBX/Mushroom1.FBX",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/FantasyEnvironments/Environments/FBX/Rock1.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/LittleFriends-CartoonAnimals-Lite/Meshes/LittleCat.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Mushroom house/mesh/mushroom_house.FBX",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_Attack01Smile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_Attack02Smile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_Attack03Smile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_DieSmile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_DizzySmile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_GetHitSmile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_IdleBattleSmile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_IdleNormalSmile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_IdlePlant.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_IdlePlantToBattleSmile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_SenseSomethingMaintainSmile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_SenseSomethingStartSmile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_TauntingSmile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_VictorySmile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_runFWDSmile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_walkBWDSmile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_walkFWDSmile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_walkLFTSmile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Animation/Mushroom/Mushroom_walkRGTSmile.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/RPGMonsterBuddiesPBRPA/Mesh/MushroomMeshPBR.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/FBX/Accessory/Bag_bread.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/FBX/Accessory/Baton_wood.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/FBX/Accessory/Hiking_hat_A.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/FBX/Accessory/Whirligig_A.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/FBX/Characters/Chibi_Cat.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/FBX/Environment/Butterfly_A.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/FBX/Environment/Flower_A.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/FBX/Environment/Grass_A.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/Suriyun/Pspsps/FBX/Environment/Tree_A.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
+        },
+        {
+            "path": "Assets/AssetsOld/VRHands/Models/HandsVR.fbx",
+            "kind": "MeshCompress",
+            "defaultMaxSize": 0,
+            "webglOverridden": false,
+            "webglMaxSize": 0,
+            "meshCompression": 0
         }
     ]
 }
