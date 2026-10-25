@@ -116,7 +116,13 @@ public class Capital : MonoBehaviour
             keyn.text = "n";
             keym.text = "m";
         }
+        // 値が変わったときだけ保存する（画面の開始時などの再適用では保存しない）
+        bool changed = gm.savedata.Settings[se.Capital] != (int)slider.value;
         gm.savedata.Settings[se.Capital] = (int)slider.value;
+        if (changed)
+        {
+            gm.saveGameData();
+        }
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);    // EventSystemのフォーカスをクリア
 
     }

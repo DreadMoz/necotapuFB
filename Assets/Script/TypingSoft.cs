@@ -109,11 +109,11 @@ public class TypingSoft : MonoBehaviour
     private string[] qH;
 
     //　日本語表示テキスト
-    private Text UIJ;
+    private TMP_Text UIJ;
     //　次のお題表示テキスト
-    private Text UINext;
+    private TMP_Text UINext;
     //　ひらがな表示テキスト
-    private Text UIH;
+    private TMP_Text UIH;
     //　ローマ字表示テキスト
     private TMP_Text UIR;
     //　終了表示テキスト
@@ -296,13 +296,13 @@ public class TypingSoft : MonoBehaviour
         animator.SetFloat("runSpeed", 1.0f);
 
         //　テキストUIを取得
-        UIJ = transform.Find("InputPanel/QuestionJ").GetComponent<Text>();
+        UIJ = transform.Find("InputPanel/QuestionJ").GetComponent<TMP_Text>();
         var nextObj = transform.Find("InputPanel/NextSentence");
         if (nextObj != null)
         {
-            UINext = nextObj.GetComponent<Text>();
+            UINext = nextObj.GetComponent<TMP_Text>();
         }
-        UIH = transform.Find("InputPanel/QuestionH").GetComponent<Text>();
+        UIH = transform.Find("InputPanel/QuestionH").GetComponent<TMP_Text>();
         UIR = transform.Find("InputPanel/QuestionR").GetComponent<TMP_Text>();
         UII = transform.Find("InputPanel/Input").GetComponent<TMP_Text>();
         END = transform.Find("InputPanel/End").GetComponent<Text>();
