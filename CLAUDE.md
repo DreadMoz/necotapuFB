@@ -55,6 +55,8 @@ Firebase SDK は Unity 側ではなく **`index.html` 内の JavaScript** が使
 
 ## デプロイコマンド（リポジトリルートで実行）
 
+**Build を R2 に上げ直したら、必ず `cacheBust` のバージョンを上げる。** `index.html`（テンプレート `Assets/WebGLTemplates/necotapu/index.html` と `WebGL/index.html` の両方）の `var cacheBust = "?v=" + "1.43";` を一段上げ（1.43 → 1.44 など）、**R2 への upload が終わってから** `firebase deploy --only hosting --project necotapufb` で index.html を配信する。上げないと、ブラウザに古い Build が残ることがある。
+
 | 目的 | コマンド |
 |---|---|
 | WebGL 再ビルド後、Build を R2 へ | `./cloudflare/upload-build-to-r2.sh`（要 `wrangler login`、バケットは `R2_BUCKET` で上書き可） |
@@ -83,8 +85,13 @@ Firebase SDK は Unity 側ではなく **`index.html` 内の JavaScript** が使
 - お題（`Assets/Resources/` の TextPrompts / TextChallange / TextCustom）を追加・変更したら、リポジトリルートで `node tools/check-odai.js` を実行する。主な役割は「JSON が壊れていないか（書き間違い）の確認」。あわせて、参考として「常用漢字＋82字（`Assets/Fonts/NekotapuCharset.txt`）の範囲外の字」を知らせる（範囲外でも Dynamic フォントなので表示はできる。足すか直すかは隊長が決める）。お題ファイルは書き換えず、報告だけする。
 
 ## dev_log.md の書き方
-作業が一区切りついたら、dev_log.md の先頭に以下の形式で追記すること（新しいものが上）。
+作業が一区切りついたら、dev_log.md の「作業ログ」の先頭に以下の形式で追記すること（新しいものが上）。
 dev_log.md はねこ隊長とねこ軍師が開発方針を相談するための資料なので、簡潔に書く。
+
+**API の料金を抑えるためのルール（2026-10-25 追加）**
+- 1 件は**10 行以内**。表や長い一覧、調査の詳細は `調査_*.md` に書き、dev_log.md には要点と「相談したいこと」だけを書く。
+- dev_log.md 全体は**200 行以内**に保つ。超えそうになったら、古い作業ログを `dev_log_old.md` の先頭に移す（消さない）。「現在の状況（要約）」は、状況が変わったら書き直す。
+- `dev_log_old.md` と `調査_*.md` は、必要なときだけ、必要な部分だけを読む（全文を読まない）。
 
 ### YYYY-MM-DD 作業タイトル
 - やったこと：（箇条書き、3〜5行）

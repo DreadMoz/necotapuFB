@@ -631,11 +631,11 @@ public class AssistKeyboardJIS : MonoBehaviour
         }
 
         // Capital設定（大文字・小文字）の再適用
-        // Capitalクラスが存在する場合、その設定を反映させる
+        // Capitalクラスが存在する場合、保存済みの設定でキー表示だけを再適用する（設定値の書き換え・保存は行わない）
         var capital = FindObjectOfType<Capital>();
         if (capital != null)
         {
-            capital.changeToggle();
+            capital.RefreshKeyLabels();
         }
     }
 

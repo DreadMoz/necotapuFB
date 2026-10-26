@@ -88,5 +88,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 dev_log.md
+dev_log_old.md
 指令書.md
 Assets/LightMeshes/

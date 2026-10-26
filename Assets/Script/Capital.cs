@@ -52,7 +52,31 @@ public class Capital : MonoBehaviour
     public void changeToggle()
     {
         voice.sayColtu();
-        if (slider.value == 1)
+        ApplyKeyLabels(slider.value == 1);
+        // 値が変わったときだけ保存する（画面の開始時などの再適用では保存しない）
+        bool changed = gm.savedata.Settings[se.Capital] != (int)slider.value;
+        gm.savedata.Settings[se.Capital] = (int)slider.value;
+        if (changed)
+        {
+            gm.saveGameData();
+        }
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);    // EventSystemのフォーカスをクリア
+
+    }
+
+    /// <summary>
+    /// 保存済みの設定値でキー表示だけを再適用する（保存は行わない）。
+    /// スライダーの初期化前に呼ばれても設定値を上書きしないように、スライダーではなく保存値を参照する。
+    /// </summary>
+    public void RefreshKeyLabels()
+    {
+        ApplyKeyLabels(gm.savedata.Settings[se.Capital] == 1);
+    }
+
+    // キーボードの文字を大文字または小文字で表示する
+    private void ApplyKeyLabels(bool isUpper)
+    {
+        if (isUpper)
         {
             capitala.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
             capitalA.transform.localScale = new Vector3(1.6f, 1.6f, 1.6f);
@@ -116,14 +140,5 @@ public class Capital : MonoBehaviour
             keyn.text = "n";
             keym.text = "m";
         }
-        // 値が変わったときだけ保存する（画面の開始時などの再適用では保存しない）
-        bool changed = gm.savedata.Settings[se.Capital] != (int)slider.value;
-        gm.savedata.Settings[se.Capital] = (int)slider.value;
-        if (changed)
-        {
-            gm.saveGameData();
-        }
-        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);    // EventSystemのフォーカスをクリア
-
     }
 }
