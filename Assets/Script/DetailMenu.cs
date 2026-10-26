@@ -50,7 +50,9 @@ public class DetailMenu : MonoBehaviour
         switch (medal)
         {
             case 0:
-                if (id * 3 + level == 3)     // 閉じない
+                // 最初のステージ（0：スペースキーの使い方、3：あいうえおの打ち方）は、
+                // 保存データの値が 0 でも鍵をかけない（移行などで 0 のまま残ったデータへの対策）
+                if (id * 3 + level == 0 || id * 3 + level == 3)
                 {
                     break;
                 }
