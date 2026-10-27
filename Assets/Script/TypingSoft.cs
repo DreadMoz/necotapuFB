@@ -460,12 +460,17 @@ public class TypingSoft : MonoBehaviour
                     Debug.Log("JSONファイルの取得に失敗しました。");
                     return false;
                 }
-                if ((fileName.StartsWith("TextC")) && (gm.savedata.Settings[se.MailChar] != 0) && !GameManager.guestMode)
+                if (fileName.StartsWith("TextC"))
                 {
+                    // 前半と後半の組み合わせは、ボーナス文の設定やゲストかどうかに関係なく行う
+                    // （以前はボーナス文がオンのときだけ行っており、オフやゲストでは前半・後半が別々に出て、ひらがな・ローマ字も表示されなかった）
                     combineCentence();
-                    mailReplaceNo = new System.Random().Next(0, theme.themes.Length);
-                    theme.themes[mailReplaceNo].hiragana = gm.savedata.Email;
-                    theme.themes[mailReplaceNo].kanji = "ボーナス！";
+                    if ((gm.savedata.Settings[se.MailChar] != 0) && !GameManager.guestMode)
+                    {
+                        mailReplaceNo = new System.Random().Next(0, theme.themes.Length);
+                        theme.themes[mailReplaceNo].hiragana = gm.savedata.Email;
+                        theme.themes[mailReplaceNo].kanji = "ボーナス！";
+                    }
                 }
                 return true;
             }
