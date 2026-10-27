@@ -62,6 +62,18 @@ public class TypingSoft : MonoBehaviour
     public GameObject testMode;
     private float necoSpeed = 0.4f;
 
+    // 打った数で進むコース（タイマー開始時に作る）
+    [Header("打った数で進むコース")]
+    [SerializeField] private float courseGoalViewportX = 0.92f;   // ゴールの横位置（画面の左端 0 〜 右端 1）
+    [SerializeField] private float courseExpectedRatio = 0.8f;    // 基準の打鍵数でコースのどこまで進むか
+    [SerializeField] private int courseDefaultKpm = 60;           // 自分の Kpm がまだないときの仮の値
+    [SerializeField] private float courseSmoothTime = 0.3f;       // 自分のねこが位置を追いかけるなめらかさ（秒）
+    [SerializeField] private float courseStartSlowSeconds = 10f;  // 出だしをゆっくりにする長さ（ふつうに打ったときの秒数）
+    [SerializeField] private float courseStartSlowSpeed = 0.3f;   // 出だしの最初の進み方（ふつうの何倍か）
+    [SerializeField] private float courseSlowdownStart = 0.7f;    // ゴール手前で遅くしはじめる位置（コースの割合）
+    private TypingCourse course;
+    private float courseVelocity = 0f;
+
     private bool goNextScene = false;    // 次のシーンに遷移するためのフラグ
     
 
@@ -195,6 +207,8 @@ public class TypingSoft : MonoBehaviour
     [SerializeField] private GameObject Fukidashi;
     [SerializeField] private Text messageText;
     [SerializeField] private GameObject CapitalSlider;
+    [SerializeField] private GameObject GhostSlider;        // ゴースト表示スイッチ
+    [SerializeField] private GhostRunner ghostRunner;       // ゴーストの表示係（未設定なら何もしない）
 
 
     // 結果画面
@@ -355,6 +369,11 @@ public class TypingSoft : MonoBehaviour
                 {
                     CapitalSlider.SetActive(false);
                 }
+                // ゆびモードではゴーストを出さない
+                if (GhostSlider != null)
+                {
+                    GhostSlider.SetActive(false);
+                }
             }
             else if (theme.timer > 0)    // 時間設定ありなら
             {
@@ -362,12 +381,23 @@ public class TypingSoft : MonoBehaviour
                 totalTime = theme.timer;
                 currentTime = totalTime;
                 UpdateTimerText();
+
+                // ゴースト対戦の準備（時間制限ありのときだけ）
+                if (ghostRunner != null)
+                {
+                    ghostRunner.Setup(totalTime);
+                }
             }
             else   // 時間設定なしモードなら
             {
                 player.transform.position = new Vector3(-1 * player.transform.position.x, player.transform.position.y, player.transform.position.z);
                 player.transform.LookAt(targetCam.transform);   // カメラを向く
                 lPlayer.SetActive(true);
+                // 時間制限なしではゴーストを出さない
+                if (GhostSlider != null)
+                {
+                    GhostSlider.SetActive(false);
+                }
                 currentTime = 0;        // タイマーはゼロにしておく。
                 ObjKPM.SetActive(false);
                 Objkpm.SetActive(false);
@@ -844,11 +874,51 @@ public class TypingSoft : MonoBehaviour
     }
 
     /// <summary>
+    /// 打った数で進むコースを作る。
+    /// 基準の打鍵数は、ゴーストを表示しているときはゴーストの最終打鍵数、それ以外は自分の Kpm（過去数回の平均）から求める。
+    /// </summary>
+    private void CreateCourse()
+    {
+        course = null;
+        courseVelocity = 0f;
+        if (player == null || totalTime <= 0f) return;
+
+        Camera cam = (targetCam != null) ? targetCam.GetComponent<Camera>() : null;
+        if (cam == null) cam = Camera.main;
+        if (cam == null) return;
+
+        float startX = player.transform.position.x;
+        float endX = TypingCourse.ViewportX(cam, player.transform.position, courseGoalViewportX);
+        if (endX <= startX + 0.1f)
+        {
+            Debug.LogWarning("TypingSoft: コースのゴールがスタートより左にあるため、コースを作りません。");
+            return;
+        }
+
+        float expectedKeys = (ghostRunner != null) ? ghostRunner.GetVisibleFinalCount() : -1f;
+        if (expectedKeys <= 0f)
+        {
+            int kpm = gm.savedata.Status[st.Kpm];
+            if (kpm <= 0) kpm = courseDefaultKpm;
+            expectedKeys = kpm * totalTime / 60f;
+        }
+        // 出だしの区間：ふつうに打ったとき courseStartSlowSeconds 秒で進む割合
+        float startZone = courseExpectedRatio * courseStartSlowSeconds / totalTime;
+        course = new TypingCourse(startX, endX, expectedKeys, courseExpectedRatio,
+            startZone, courseStartSlowSpeed, courseSlowdownStart);
+        Debug.Log($"TypingSoft: コースを作成しました（基準の打鍵数={expectedKeys:0}、ゴールまで={course.KeysToGoal:0}）");
+    }
+
+    /// <summary>
     /// カウントダウン演出
     /// </summary>
     private IEnumerator CountDown()
     {
         animator.SetTrigger("kamae");
+        if (ghostRunner != null)
+        {
+            ghostRunner.OnCountdownStart();     // ゴーストは少し遅れて構える
+        }
         // キーカラークリア
         AssistKeyboardObj.SetAllKeyColorWhite();
         player.transform.rotation *= Quaternion.Euler(0, -60, 0);
@@ -866,6 +936,12 @@ public class TypingSoft : MonoBehaviour
         StartCoroutine(ChangeSentence());
         isTimerRunning = true;
         isInputValid = true;
+        CreateCourse();
+        if (ghostRunner != null)
+        {
+            ghostRunner.SetCourse(course);
+            ghostRunner.StartRace();
+        }
 
         animator.SetBool("move", true);
     }
@@ -905,17 +981,35 @@ public class TypingSoft : MonoBehaviour
         if (isTimerRunning)
         {
             // 進んでいく フレームに依存しないTime.deltaTime
-            player.transform.position += new Vector3(necoSpeed * Time.deltaTime, 0, 0);
+            if (course != null)
+            {
+                // 正しく打ったキーの数でコース上の位置を決め、なめらかに追いかける
+                Vector3 p = player.transform.position;
+                p.x = Mathf.SmoothDamp(p.x, course.XAt(correctN), ref courseVelocity, courseSmoothTime);
+                player.transform.position = p;
+            }
+            else
+            {
+                player.transform.position += new Vector3(necoSpeed * Time.deltaTime, 0, 0);
+            }
             player.transform.LookAt(targetCam.transform);   // カメラを向く
             player.transform.rotation *= Quaternion.Euler(0, -60, 0);
 
             currentTime -= Time.deltaTime;
+            if (ghostRunner != null)
+            {
+                ghostRunner.UpdateRace(Mathf.Min(totalTime - currentTime, totalTime), correctN);
+            }
             // タイマーが0以下になったら停止
             if (currentTime < 0)
             {
                 currentTime = 0;
                 isTimerRunning = false;
                 isInputValid = false;
+                if (ghostRunner != null)
+                {
+                    ghostRunner.FinishRace(correctN);
+                }
                 Fukidashi.SetActive(false);
                 // Fukidashiが非表示になったら、次のお題があれば再表示する
                 if (UINext != null && currentThemeIndex < shuffledThemes.Count)

@@ -56,7 +56,7 @@ public class se
     public const int Capital = 6;
     public const int YubiCnt = 7;
     public const int YubiDate = 8;
-    public const int dummy9 = 9;
+    public const int Ghost = 9;     // ゴースト表示（0=オフ, 1=オン）
     public const int dummy10 = 10;
     public const int dummy11 = 11;
     public const int dummy12 = 12;
@@ -317,7 +317,7 @@ public class SaveData : ScriptableObject
         Settings[se.Capital] = 0;     // 大文字
         Settings[se.YubiCnt] = 0;      // 未使用
         Settings[se.YubiDate] = 0;      // 未使用
-        Settings[se.dummy9] = 0;      // 未使用
+        Settings[se.Ghost] = 0;       // ゴースト表示（最初はオフ）
         Settings[se.dummy10] = 0;     // 未使用
         Settings[se.dummy11] = 0;     // 未使用
         Settings[se.dummy12] = 0;     // 未使用

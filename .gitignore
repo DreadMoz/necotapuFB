@@ -91,3 +91,6 @@ dev_log.md
 dev_log_old.md
 指令書.md
 Assets/LightMeshes/
+
+# macOS が自動で作るファイル
+.DS_Store

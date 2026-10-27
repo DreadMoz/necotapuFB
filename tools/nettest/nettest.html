@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ねこたぷ つながるかテスト</title>
+<style>
+  body { font-family: "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", sans-serif; background:#fffaf2; color:#333; margin:0; padding:16px; }
+  main { max-width: 760px; margin: 0 auto; }
+  h1 { font-size: 1.4em; margin: 0 0 4px; }
+  .sub { color:#777; font-size:.9em; margin-bottom:16px; }
+  section { background:#fff; border:1px solid #eadfcf; border-radius:10px; padding:12px 16px; margin-bottom:12px; }
+  h2 { font-size:1.05em; margin:0 0 8px; }
+  label { display:block; font-size:.9em; margin:6px 0 2px; }
+  input { width:100%; box-sizing:border-box; padding:6px 8px; font-size:1em; border:1px solid #ccc; border-radius:6px; }
+  button { font-size:1em; padding:8px 14px; margin:8px 8px 0 0; border:none; border-radius:8px; background:#f0a040; color:#fff; cursor:pointer; }
+  button:disabled { background:#ccc; cursor:default; }
+  table { width:100%; border-collapse:collapse; font-size:.95em; }
+  td, th { border-bottom:1px solid #eee; padding:6px 4px; text-align:left; vertical-align:top; }
+  .ok { color:#1a8f3c; font-weight:bold; }
+  .ng { color:#c62828; font-weight:bold; }
+  .wait { color:#999; }
+  #log { font-family: monospace; font-size:.75em; white-space:pre-wrap; max-height:200px; overflow:auto; background:#f7f7f7; padding:6px; border-radius:6px; }
+  textarea { width:100%; height:140px; font-family:monospace; font-size:.8em; box-sizing:border-box; }
+</style>
+</head>
+<body>
+<main>
+  <h1>ねこたぷ つながるかテスト</h1>
+  <div class="sub">対戦機能（Realtime Database）が、この端末・このネットワークで使えるかを調べます。</div>
+
+  <section>
+    <h2>1. 準備</h2>
+    <label>データベースのURL（Firebase コンソールの Realtime Database の画面に表示されているもの）</label>
+    <input id="dbUrl" value="https://necotapufb-default-rtdb.asia-southeast1.firebasedatabase.app">
+    <label>へやのあいことば（同時に試す端末どうしで同じにする）</label>
+    <input id="room" value="test" maxlength="8">
+    <button id="btnLogin">Google でログイン</button>
+    <span id="who" class="wait">まだログインしていません</span>
+  </section>
+
+  <section>
+    <h2>2. テスト</h2>
+    <button id="btnRun" disabled>テストを始める（約1分）</button>
+    <table>
+      <tr><th>項目</th><th>結果</th></tr>
+      <tr><td>HTTPS でデータベースに届くか</td><td id="r_https" class="wait">-</td></tr>
+      <tr><td>WebSocket が使えるか</td><td id="r_ws" class="wait">-</td></tr>
+      <tr><td>データベースに接続できたか</td><td id="r_conn" class="wait">-</td></tr>
+      <tr><td>通信方式</td><td id="r_transport" class="wait">-</td></tr>
+      <tr><td>応答の速さ（5回の平均）</td><td id="r_ping" class="wait">-</td></tr>
+      <tr><td>ほかの端末のデータが届くか</td><td id="r_peers" class="wait">-</td></tr>
+      <tr><td>受け取った量（目安）</td><td id="r_bytes" class="wait">-</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>3. 同じへやの端末（5秒ごとに更新）</h2>
+    <table id="peers"><tr><th>端末</th><th>カウント</th><th>最後に届いてから</th></tr></table>
+  </section>
+
+  <section>
+    <h2>4. 結果をコピーしてねこ軍師に渡す</h2>
+    <button id="btnCopy" disabled>結果をコピー</button>
+    <textarea id="summary" readonly></textarea>
+  </section>
+
+  <section>
+    <h2>くわしい記録</h2>
+    <div id="log"></div>
+  </section>
+</main>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getDatabase, ref, set, onValue, onDisconnect, remove, serverTimestamp, enableLogging, goOffline } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+// 公開されている Web 用の設定値（index.html と同じプロジェクト）
+const firebaseConfig = {
+  apiKey: "AIzaSyAlz5pYr-M5MzY_es94f2zNphBBMiJ5TXs",
+  authDomain: "necotapufb.firebaseapp.com",
+  projectId: "necotapufb",
+  storageBucket: "necotapufb.firebasestorage.app",
+  messagingSenderId: "794942101336",
+  appId: "1:794942101336:web:e244937b77bb056a43772d"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const $ = (id) => document.getElementById(id);
+const deviceId = Math.random().toString(36).slice(2, 5);
+const results = {};
+let user = null;
+
+function log(msg) {
+  const el = $("log");
+  const t = new Date().toLocaleTimeString();
+  el.textContent += `[${t}] ${msg}\n`;
+  el.scrollTop = el.scrollHeight;
+}
+function show(id, ok, text) {
+  const el = $(id);
+  el.className = ok === null ? "wait" : (ok ? "ok" : "ng");
+  el.textContent = text;
+  results[id] = text;
+}
+
+onAuthStateChanged(auth, (u) => {
+  user = u;
+  if (u) {
+    $("who").textContent = `ログイン中：${u.email}`;
+    $("who").className = "ok";
+    $("btnRun").disabled = false;
+  }
+});
+$("btnLogin").onclick = async () => {
+  try { await signInWithPopup(auth, new GoogleAuthProvider()); }
+  catch (e) { log("ログイン失敗: " + e.message); $("who").textContent = "ログインできませんでした"; $("who").className = "ng"; }
+};
+
+// 受信量の目安を数えるため、SDK のログを横取りする
+let recvBytes = 0, recvMsgs = 0, transport = "不明";
+enableLogging((line) => {
+  const s = String(line);
+  if (/websocket connected/i.test(s)) transport = "WebSocket";
+  if (/long-?poll/i.test(s) && transport !== "WebSocket") transport = "ロングポーリング（WebSocket が使えないときの方式）";
+  // サーバーから届いたメッセージは「from server: {...}」の形で記録される
+  const m = s.match(/from server:\s*(.*)$/i);
+  if (m) { recvBytes += new TextEncoder().encode(m[1]).length; recvMsgs++; }
+}, false);
+
+function checkHttps(dbUrl) {
+  return new Promise((resolve) => {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 8000);
+    fetch(dbUrl.replace(/\/$/, "") + "/.json?shallow=true", { signal: ctrl.signal })
+      .then((r) => { clearTimeout(timer); resolve({ ok: true, text: `届いた（HTTP ${r.status}）` }); })
+      .catch((e) => { clearTimeout(timer); resolve({ ok: false, text: "届かない（" + e.name + "）" }); });
+  });
+}
+function checkWebSocket(dbUrl) {
+  return new Promise((resolve) => {
+    const u = new URL(dbUrl);
+    const ns = u.hostname.split(".")[0];
+    let done = false;
+    const finish = (ok, text) => { if (!done) { done = true; resolve({ ok, text }); } };
+    try {
+      const ws = new WebSocket(`wss://${u.hostname}/.ws?v=5&ns=${ns}`);
+      const timer = setTimeout(() => { try { ws.close(); } catch (_) {} finish(false, "使えない（時間切れ）"); }, 8000);
+      ws.onopen = () => { clearTimeout(timer); ws.close(); finish(true, "使える"); };
+      ws.onerror = () => { clearTimeout(timer); finish(false, "使えない（エラー）"); };
+    } catch (e) { finish(false, "使えない（" + e.message + "）"); }
+  });
+}
+
+$("btnRun").onclick = async () => {
+  $("btnRun").disabled = true;
+  const dbUrl = $("dbUrl").value.trim();
+  const room = ($("room").value.trim() || "test").replace(/[.#$\[\]\/]/g, "_");
+  log(`開始：端末ID=${deviceId}、へや=${room}、URL=${dbUrl}`);
+
+  show("r_https", null, "調べています…");
+  const h = await checkHttps(dbUrl); show("r_https", h.ok, h.text);
+  show("r_ws", null, "調べています…");
+  const w = await checkWebSocket(dbUrl); show("r_ws", w.ok, w.text);
+
+  const db = getDatabase(app, dbUrl);
+  show("r_conn", null, "接続しています…");
+  const t0 = performance.now();
+  await new Promise((resolve) => {
+    const timer = setTimeout(() => { show("r_conn", false, "15秒たっても接続できない"); resolve(); }, 15000);
+    const off = onValue(ref(db, ".info/connected"), (s) => {
+      if (s.val() === true) {
+        clearTimeout(timer);
+        show("r_conn", true, `接続できた（${Math.round(performance.now() - t0)} ms）`);
+        off(); resolve();
+      }
+    });
+  });
+  show("r_transport", transport === "WebSocket", transport);
+
+  // 応答の速さ：書き込みがサーバーに届いて確認が返るまでの時間
+  const myRef = ref(db, `nettest/${room}/${deviceId}`);
+  onDisconnect(myRef).remove();
+  const pings = [];
+  for (let i = 0; i < 5; i++) {
+    const s = performance.now();
+    try { await set(myRef, { c: 0, t: serverTimestamp() }); pings.push(performance.now() - s); }
+    catch (e) { log("書き込み失敗: " + e.message); show("r_ping", false, "書き込めない（ルールを確認）"); break; }
+  }
+  if (pings.length === 5) {
+    const avg = Math.round(pings.reduce((a, b) => a + b, 0) / 5);
+    show("r_ping", avg < 1000, `${avg} ms`);
+  }
+
+  // ほかの端末：へやの全員を表示（5秒ごとにカウントを送る、約1分）
+  const seen = {};
+  const peersOff = onValue(ref(db, `nettest/${room}`), (snap) => {
+    const val = snap.val() || {};
+    for (const [id, d] of Object.entries(val)) { if (id !== deviceId) seen[id] = { c: d.c, at: Date.now() }; }
+    renderPeers(val);
+  });
+  function renderPeers(val) {
+    const rows = Object.entries(val).map(([id, d]) => {
+      const me = id === deviceId ? "（この端末）" : "";
+      const ago = seen[id] ? Math.round((Date.now() - seen[id].at) / 1000) + "秒前" : "-";
+      return `<tr><td>${id}${me}</td><td>${d.c}</td><td>${me ? "-" : ago}</td></tr>`;
+    }).join("");
+    $("peers").innerHTML = "<tr><th>端末</th><th>カウント</th><th>最後に届いてから</th></tr>" + rows;
+  }
+  show("r_peers", null, "1分間ようすを見ます（ほかの端末でも同時にテストしてください）");
+  const bytesAtStart = recvBytes, msgsAtStart = recvMsgs;
+  for (let c = 1; c <= 12; c++) {
+    await new Promise((r) => setTimeout(r, 5000));
+    try { await set(myRef, { c, t: serverTimestamp() }); } catch (e) { log("送信失敗: " + e.message); }
+    $("r_peers").textContent = `${c * 5}秒経過… ほかの端末：${Object.keys(seen).length}台`;
+  }
+  const n = Object.keys(seen).length;
+  show("r_peers", n > 0, n > 0 ? `届いた（ほかの端末 ${n}台）` : "ほかの端末のデータは届かなかった（1台だけで試した場合はこのままでOK）");
+  show("r_bytes", null, `1分間で約 ${((recvBytes - bytesAtStart) / 1024).toFixed(1)} KB（${recvMsgs - msgsAtStart}通）。全体で約 ${(recvBytes / 1024).toFixed(1)} KB。暗号化などの余分は含まない`);
+
+  peersOff();
+  await remove(myRef).catch(() => {});
+  goOffline(db);
+  log("終了");
+
+  const lines = [
+    `ねこたぷ つながるかテスト結果 ${new Date().toLocaleString()}`,
+    `ドメイン：${(user && user.email || "").split("@")[1] || "-"}`,
+    `ブラウザ：${navigator.userAgent}`,
+    `HTTPS：${results.r_https}`,
+    `WebSocket：${results.r_ws}`,
+    `接続：${results.r_conn}`,
+    `通信方式：${results.r_transport}`,
+    `応答の速さ：${results.r_ping || "-"}`,
+    `ほかの端末：${results.r_peers}`,
+    `受け取った量：${results.r_bytes}`
+  ];
+  $("summary").value = lines.join("\n");
+  $("btnCopy").disabled = false;
+};
+
+$("btnCopy").onclick = async () => {
+  try { await navigator.clipboard.writeText($("summary").value); $("btnCopy").textContent = "コピーしました"; }
+  catch (_) { $("summary").select(); }
+};
+</script>
+</body>
+</html>
