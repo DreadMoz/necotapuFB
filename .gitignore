@@ -94,3 +94,6 @@ Assets/LightMeshes/
 
 # macOS が自動で作るファイル
 .DS_Store
+
+# WebGL ビルド（R2 と ~/necotapu_release/ で保管）
+WebGL/Build/

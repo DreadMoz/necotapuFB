@@ -70,6 +70,7 @@ Firebase SDK は Unity 側ではなく **`index.html` 内の JavaScript** が使
 
 - 機密のため gitignore されているファイル: `Assets/ScriptableObject/FirebaseConfig.asset`, `AppSettings.asset`, `Assets/Script/GoogleServiceAccount.cs`, テンプレートの `index.html`。
 - `Assets/AssetsOld/`, `Assets/AssetsForItems/` は gitignore 対象（ローカルのみ）。
+- `WebGL/Build/` は git で管理しない（2026-10-27 決定）。ビルドの保管は R2 と ~/necotapu_release/ で行う。
 - `server/saml-auth-server.js`, `GoogleSheets.cs`, `*Gss*` 系 jslib はいいネットなら版（スプレッドシート/SAML）の名残とみられ、C# や index.html からの参照は見当たらない。
 - firebase deploy、deploy.sh、deploy-test.sh、upload-build-to-r2.sh などのデプロイ系コマンドは、隊長の明示的な指示なしに実行しない
 - フォント方針（2026-10-25 決定）: BIZUDPGothic 1 本に統一し、SDF アセット（`Assets/Fonts/BIZUDPGothic-Regular SDF.asset`）は **Dynamic のまま**使う（Static にはしない）。旧UI の Text のフォントも BIZUDPGothic の TTF に揃え、NotoSansJP は外す。`DisplayNameFilter`（ユーザー名の表示用）は Dynamic では何もしない。
